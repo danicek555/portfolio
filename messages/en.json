@@ -1,0 +1,480 @@
+{
+  "About": {
+    "badge": "RISING STAR SWIMMER",
+    "title": "Czech National Record Holder",
+    "description": "Daniel Mitka, a 16-year-old elite swimmer from SK Motorlet Praha, has achieved remarkable success in Czech swimming. His standout achievement is setting a national record as part of the mixed 4x50m medley relay at the 2022 Winter Championships in Mladá Boleslav. Competing at the highest national level, Daniel contributes every year to the performance and overall success of SK Motorlet Praha. With his proven track record in competitive swimming, he is now focused on joining the Colorado Hilltoppers team while pursuing his studies in the USA.",
+    "cta": "Get in touch"
+  },
+  "Hero": {
+    "subtitle": "Czech Youth Swimming Champion & Lifesaving Medalist",
+    "cta": "Get in touch"
+  },
+  "Competitions": {
+    "badge": "COMPETITIVE SWIMMING",
+    "title": "Recent Race Performances",
+    "cta": "Learn more ",
+    "competitions": [
+      {
+        "title": "Team Championship Finals Ostrava 2025",
+        "description": "Elite team championship finals representing Motorlet Praha at the highest level of Czech swimming competition."
+      },
+      {
+        "title": "Slovakia Cup Šamorín 2024",
+        "description": "International swimming competition showcasing versatility across multiple disciplines in Slovakia."
+      },
+      {
+        "title": "Lifesaving World Championships 2024",
+        "description": "Witness Daniel's incredible journey to becoming a World Vice-champion in lifesaving."
+      },
+      {
+        "title": "Czech National Swimming Championship 2024",
+        "description": "Experience the pinnacle of Czech swimming competition at the prestigious MCR Podolí championship."
+      },
+      {
+        "title": "Plzen Czech Open Championship 2024",
+        "description": "Major international swimming competition in Plzen showcasing elite performance across multiple swimming disciplines."
+      }
+    ]
+  },
+  "Projects": {
+    "badge": "COMPUTER SCIENCE PROJECTS",
+    "title": "My Recent Works",
+    "visitWebsite": "Visit Website",
+    "viewProject": "View Project >",
+    "projects": [
+      {
+        "title": "My Love Website",
+        "description": "A romantic website counting days together with interactive hearts and beautiful animations."
+      }
+    ]
+  },
+  "Navbar": {
+    "home": "Home",
+    "about": "About",
+    "competitions": "Competitions",
+    "work": "Work"
+  },
+  "Footer": {
+    "contact": "Contact",
+    "socialMedia": "Social Media",
+    "swimmingStatistics": "Swimming Statistics",
+    "about": "Daniel Mitka",
+    "aboutDescription": "Passionate developer and swimming enthusiast.",
+    "copyright": "© {year} Daniel Mitka. All rights reserved."
+  },
+  "Australia": {
+    "hero": {
+      "badge1": "International Success",
+      "badge2": "Featured",
+      "title": "Silver Medal at the 2024",
+      "subtitle": "Lifesaving World Championships",
+      "eventTitle": "Line Throw Event",
+      "partner": "With partner Adam Pekař"
+    },
+    "info": {
+      "location": "Location",
+      "locationValue": "Gold Coast, Australia",
+      "date": "Date",
+      "dateValue": "2024",
+      "category": "Category",
+      "categoryValue": "Junior Division"
+    },
+    "story": {
+      "title": "The Championship Story",
+      "paragraph1": "At the prestigious 2024 Lifesaving World Championships in Gold Coast, Australia, Daniel Mitka demonstrated exceptional prowess in multiple disciplines, proudly representing the Czech Republic in the junior category.",
+      "highlight": "The championship's pinnacle moment came with securing the silver medal in the Line Throw event, where Daniel and Adam Pekař's perfect synchronization showcased Czech excellence on the international stage.",
+      "paragraph2": "This achievement represents not just individual skill, but the culmination of years of dedicated training and teamwork that has placed Czech lifesaving on the world map."
+    },
+    "results": {
+      "title": "Competition Results",
+      "achievements": [
+        {
+          "position": "2nd",
+          "event": "Line Throw Event",
+          "description": "Silver medal with Adam Pekař"
+        },
+        {
+          "position": "4th",
+          "event": "Rescue Tube Rescue Relay",
+          "description": "Outperforming teams from New Zealand and South Africa"
+        },
+        {
+          "position": "6th",
+          "event": "4x25 Manikin Relay",
+          "description": "Outstanding teamwork and precision"
+        },
+        {
+          "position": "14th",
+          "event": "Beach Sprint",
+          "description": "Individual excellence on sand"
+        }
+      ]
+    },
+    "gallery": {
+      "title": "Championship Moments"
+    }
+  },
+  "Ostrava": {
+    "hero": {
+      "badge1": "Team Championship",
+      "badge2": "Finals",
+      "title": "Czech Team Championship Finals",
+      "subtitle": "Ostrava 2025",
+      "teamName": "Motorlet Praha",
+      "teamDescription": "1st & 2nd League Finals"
+    },
+    "info": {
+      "location": "Location",
+      "locationValue": "Ostrava, Czech Republic",
+      "date": "Date",
+      "dateValue": "March 22-23, 2025",
+      "level": "Level",
+      "levelValue": "Elite Team Championship"
+    },
+    "story": {
+      "title": "Elite Team Championship",
+      "paragraph1": "The Team Championship Finals in Ostrava represents the pinnacle of Czech club swimming, where only the best teams advance after rigorous semifinal competitions. Motorlet Praha earned their place through exceptional performances in earlier rounds.",
+      "quote": "We advance to the finals, which will be held on March 22-23 in Ostrava - celebrating the successful semifinal campaign that brought both men's and women's teams to the elite level.",
+      "paragraph2": "The finals showcased Daniel's versatility across multiple disciplines, contributing crucial points to Motorlet Praha's overall team success in this prestigious competition."
+    },
+    "teamAchievements": {
+      "title": "Team Achievements",
+      "achievements": [
+        {
+          "category": "Men's Team",
+          "result": "8th Place",
+          "description": "Elite level team competition"
+        },
+        {
+          "category": "Women's Team",
+          "result": "8th Place",
+          "description": "Strong team performance"
+        },
+        {
+          "category": "Qualification",
+          "result": "Advanced to Finals",
+          "description": "Successful semifinal performance"
+        }
+      ]
+    },
+    "individualResults": {
+      "title": "Daniel's Individual Results",
+      "events": [
+        {
+          "event": "100m Freestyle",
+          "time": "0:55.68",
+          "points": "578 pts",
+          "placement": "15th place",
+          "category": "Overall",
+          "description": "Sprint freestyle technique"
+        },
+        {
+          "event": "400m Individual Medley",
+          "time": "4:49.75",
+          "points": "586 pts",
+          "placement": "6th place",
+          "category": "Overall",
+          "description": "All four strokes combined - best individual result"
+        },
+        {
+          "event": "200m Freestyle",
+          "time": "2:00.81",
+          "points": "601 pts",
+          "placement": "8th place",
+          "category": "Overall",
+          "description": "Middle distance freestyle"
+        },
+        {
+          "event": "200m Individual Medley",
+          "time": "2:15.61",
+          "points": "594 pts",
+          "placement": "8th place",
+          "category": "Overall",
+          "description": "Technical multi-stroke event"
+        }
+      ]
+    },
+    "eventVideos": {
+      "title": "Event Videos",
+      "videoTitle": "Team Championship Finals Ostrava 2025",
+      "videoDescription": "Watch Daniel's performance in the {event} at the Team Championship Finals in Ostrava. Final time: {time}, earning {points} and finishing {placement}."
+    },
+    "statistics": {
+      "competitionOverview": {
+        "title": "Competition Overview",
+        "eventsCompeted": "Events Competed:",
+        "eventsCompetedValue": "4 Individual",
+        "bestPlacement": "Best Placement:",
+        "bestPlacementValue": "6th Place",
+        "highestPoints": "Highest Points:",
+        "highestPointsValue": "601 pts"
+      },
+      "teamPerformance": {
+        "title": "Team Performance",
+        "mensTeam": "Men's Team:",
+        "mensTeamValue": "8th Place",
+        "womensTeam": "Women's Team:",
+        "womensTeamValue": "8th Place",
+        "overallResult": "Overall Result:",
+        "overallResultValue": "Improvement"
+      }
+    },
+    "highlights": {
+      "title": "Championship Impact",
+      "description": "The Team Championship Finals in Ostrava showcased the strength of Czech club swimming, with Motorlet Praha achieving solid results across both men's and women's divisions. Daniel's contribution across four individual events demonstrated his versatility and commitment to team success.",
+      "experience": "Elite Team Championship Finals Experience"
+    }
+  },
+  "Samorin": {
+    "hero": {
+      "badge1": "International Competition",
+      "badge2": "2024",
+      "title": "Slovakia Cup",
+      "subtitle": "Šamorín 2024",
+      "eventTitle": "Swimming Excellence",
+      "eventDescription": "Multiple Events Participation"
+    },
+    "info": {
+      "location": "Location",
+      "locationValue": "Šamorín, Slovakia",
+      "date": "Date",
+      "dateValue": "October 25, 2024",
+      "competition": "Competition",
+      "competitionValue": "Slovakia Cup"
+    },
+    "story": {
+      "title": "International Experience",
+      "paragraph1": "The Slovakia Cup in Šamorín on October 25, 2024, was a showcase of versatility where Daniel Mitka competed across five different swimming events, demonstrating technical proficiency in both freestyle and individual medley disciplines.",
+      "highlight": "Standout performances included a strong 100m freestyle time of 0:52.82 and consistent individual medley swims across 100m, 200m, and 400m distances, showing excellent stroke technique and endurance.",
+      "paragraph2": "The competition featured multiple events ranging from sprint distances to challenging 400m individual medley, testing both speed and technical mastery across all four competitive swimming strokes."
+    },
+    "events": {
+      "title": "Events Participated",
+      "eventsList": [
+        {
+          "event": "100m Individual Medley",
+          "time": "0:58.53",
+          "description": "Personal best in all four swimming strokes"
+        },
+        {
+          "event": "200m Freestyle",
+          "time": "1:54.80",
+          "description": "Strong middle distance performance"
+        },
+        {
+          "event": "400m Individual Medley",
+          "time": "4:36.38",
+          "description": "Challenging long distance medley event"
+        },
+        {
+          "event": "200m Individual Medley",
+          "time": "2:06.65",
+          "description": "Technical precision across all strokes"
+        },
+        {
+          "event": "100m Freestyle",
+          "time": "0:52.82",
+          "description": "Sprint freestyle performance"
+        }
+      ]
+    }
+  },
+  "Podoli": {
+    "hero": {
+      "badge1": "National Championship",
+      "badge2": "Czech Republic",
+      "title": "Czech National Swimming",
+      "subtitle": "Championship 2024",
+      "eventTitle": "MCR Podolí",
+      "eventDescription": "Representing Czech Republic"
+    },
+    "info": {
+      "location": "Location",
+      "locationValue": "Podolí, Prague",
+      "date": "Date",
+      "dateValue": "2024",
+      "level": "Level",
+      "levelValue": "National Championship"
+    },
+    "story": {
+      "title": "National Competition Excellence",
+      "paragraph1": "The Czech National Swimming Championship (MCR) in Podolí represents the pinnacle of domestic swimming competition, where the nation's best swimmers compete for national titles and records.",
+      "highlight": "Competing at this level demands not only technical excellence but also mental fortitude to perform under the pressure of representing your region at the highest national standard.",
+      "paragraph2": "This championship serves as a crucial stepping stone for international competitions and demonstrates Daniel's commitment to achieving excellence in Czech swimming."
+    },
+    "events": {
+      "title": "Championship Events",
+      "eventsList": [
+        {
+          "event": "50m Freestyle",
+          "result": "Finals",
+          "time": "25.00",
+          "description": "Heats: 25.14 | Finals: 25.00 - Strong sprint performance"
+        },
+        {
+          "event": "200m Individual Medley",
+          "result": "Heats",
+          "time": "2:11.91",
+          "description": "Heats: 2:11.91 | Finals: 2:11.92 - All four strokes combined"
+        },
+        {
+          "event": "200m Freestyle",
+          "result": "Finals",
+          "time": "1:57.72",
+          "description": "Heats: 2:00.50 | Finals: 1:57.72 - Excellent improvement in finals"
+        },
+        {
+          "event": "100m Breaststroke",
+          "result": "Finals",
+          "time": "1:07.99",
+          "description": "Heats: 1:09.01 | Finals: 1:07.99 - Strong technical performance"
+        },
+        {
+          "event": "400m Individual Medley",
+          "result": "Finals",
+          "time": "4:44.39",
+          "description": "Heats: 4:44.39 - Long distance medley challenge"
+        },
+        {
+          "event": "200m Breaststroke",
+          "result": "Heats",
+          "time": "2:32.03",
+          "description": "Heats: 2:32.03 | Finals: 2:33.19 - Technical breaststroke race"
+        }
+      ]
+    },
+    "highlights": {
+      "title": "Championship Experience",
+      "description": "The Czech National Swimming Championship in Podolí provided an invaluable opportunity to compete against the country's elite swimmers in a world-class facility.",
+      "experience": "National Level Competition Experience"
+    }
+  },
+  "Plzen": {
+    "hero": {
+      "badge1": "Czech Open",
+      "badge2": "Championship",
+      "title": "Plzen Czech Open Championship",
+      "subtitle": "Plzen 2024",
+      "teamName": "Motorlet Praha",
+      "teamDescription": "International Competition"
+    },
+    "info": {
+      "location": "Location",
+      "locationValue": "Plzen, Czech Republic",
+      "date": "Date",
+      "dateValue": "April 12-14, 2024",
+      "level": "Level",
+      "levelValue": "International Open Championship"
+    },
+    "story": {
+      "title": "International Swimming Competition",
+      "paragraph1": "The Plzen Czech Open Championship represents one of the most prestigious international swimming competitions in the Czech Republic, attracting elite swimmers from across Europe. The event showcases the highest level of competitive swimming with exceptional performances.",
+      "quote": "Competing against international talent in Plzen provided invaluable experience and opportunities to test skills against Europe's finest swimmers.",
+      "paragraph2": "Daniel demonstrated remarkable versatility and determination throughout the competition, achieving personal bests and contributing to Motorlet Praha's strong international presence."
+    },
+    "teamAchievements": {
+      "title": "Competition Achievements",
+      "achievements": [
+        {
+          "category": "Individual Performance",
+          "result": "Personal Bests",
+          "description": "Multiple PB times achieved"
+        },
+        {
+          "category": "Team Representation",
+          "result": "Motorlet Praha",
+          "description": "Strong international presence"
+        },
+        {
+          "category": "International Level",
+          "result": "European Competition",
+          "description": "Competing against top swimmers"
+        }
+      ]
+    },
+    "individualResults": {
+      "title": "Daniel's Individual Results",
+      "events": [
+        {
+          "event": "50m Freestyle",
+          "time": "0:25.47",
+          "points": "612 pts",
+          "placement": "12th place",
+          "category": "Overall",
+          "description": "Sprint freestyle performance"
+        },
+        {
+          "event": "100m Individual Medley",
+          "time": "1:05.82",
+          "points": "598 pts",
+          "placement": "9th place",
+          "category": "Overall",
+          "description": "Technical short medley - best result"
+        },
+        {
+          "event": "100m Freestyle",
+          "time": "0:56.12",
+          "points": "571 pts",
+          "placement": "14th place",
+          "category": "Overall",
+          "description": "Middle distance freestyle"
+        },
+        {
+          "event": "200m Individual Medley",
+          "time": "2:16.45",
+          "points": "589 pts",
+          "placement": "11th place",
+          "category": "Overall",
+          "description": "Long medley showcase"
+        }
+      ]
+    },
+    "eventVideos": {
+      "title": "Event Videos",
+      "videoTitle": "Plzen Czech Open Championship 2024",
+      "videoDescription": "Watch Daniel's performance in the {event} at the Plzen Czech Open Championship. Final time: {time}, earning {points} and finishing {placement}."
+    },
+    "statistics": {
+      "competitionOverview": {
+        "title": "Competition Overview",
+        "eventsCompeted": "Events Competed:",
+        "eventsCompetedValue": "4 Individual",
+        "bestPlacement": "Best Placement:",
+        "bestPlacementValue": "9th Place",
+        "highestPoints": "Highest Points:",
+        "highestPointsValue": "612 pts"
+      },
+      "teamPerformance": {
+        "title": "International Experience",
+        "internationalLevel": "Competition Level:",
+        "internationalLevelValue": "European Open",
+        "personalBests": "Personal Bests:",
+        "personalBestsValue": "2 Achieved",
+        "overallResult": "Overall Result:",
+        "overallResultValue": "Strong Performance"
+      }
+    }
+  },
+  "NotFound": {
+    "title": "Oops! Page Not Found",
+    "subtitle": "404",
+    "description": "Looks like you've swum into uncharted waters! The page you're looking for doesn't exist.",
+    "features": [
+      {
+        "title": "Lost your way?",
+        "description": "Don't worry, even the best swimmers sometimes take a wrong turn in the pool."
+      },
+      {
+        "title": "Dive back in",
+        "description": "Let's get you back to the main competition area where all the action happens."
+      },
+      {
+        "title": "Explore more",
+        "description": "Check out my swimming achievements, competitions, and projects while you're here."
+      }
+    ],
+    "homeButton": "Return to Home",
+    "competitionsButton": "View Competitions",
+    "funFact": "Fun fact: Daniel has never gotten lost in a swimming pool! 🏊‍♂️"
+  }
+}
