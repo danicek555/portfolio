@@ -7,7 +7,8 @@ import {
 } from "../../../../lib/schema";
 
 // Environment variables for metadata
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://daniel.mitka.cz";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.vercel.app";
 const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Daniel Mitka Portfolio";
 const authorName = process.env.NEXT_PUBLIC_AUTHOR_NAME || "Daniel Mitka";
 

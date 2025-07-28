@@ -83,7 +83,7 @@ This document outlines the comprehensive Schema.org JSON-LD structured data impl
 ### 1. **Google Rich Results Test**
 
 - Visit: [Google Rich Results Test](https://search.google.com/test/rich-results)
-- Enter your URL: `https://daniel.mitka.cz`
+- Enter your URL: `https://danielmitka.vercel.app`
 - Check for validation errors and rich result eligibility
 
 ### 2. **Google Structured Data Testing Tool**
@@ -96,7 +96,7 @@ This document outlines the comprehensive Schema.org JSON-LD structured data impl
 
 ```bash
 # View page source and search for JSON-LD
-curl -s https://daniel.mitka.cz | grep -A 50 "application/ld+json"
+curl -s https://danielmitka.vercel.app | grep -A 50 "application/ld+json"
 ```
 
 ### 4. **Browser DevTools**
@@ -221,10 +221,10 @@ scripts.forEach((script, index) => {
 
 ```bash
 # Check if schema is present
-curl -s https://daniel.mitka.cz | grep "application/ld+json"
+curl -s https://danielmitka.vercel.app | grep "application/ld+json"
 
 # Validate JSON syntax
-node -e "console.log(JSON.parse(process.argv[1]))" "$(curl -s https://daniel.mitka.cz | grep -A 100 'application/ld+json' | sed -n '2,/script/p' | sed '$d')"
+node -e "console.log(JSON.parse(process.argv[1]))" "$(curl -s https://danielmitka.vercel.app | grep -A 100 'application/ld+json' | sed -n '2,/script/p' | sed '$d')"
 ```
 
 ## 📚 Resources

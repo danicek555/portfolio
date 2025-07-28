@@ -7,7 +7,8 @@ import Projects from "../../components/projects";
 import { generatePersonSchema, createJsonLd } from "../../lib/schema";
 
 // Environment variables for metadata
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://daniel.mitka.cz";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.vercel.app";
 const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Daniel Mitka Portfolio";
 const authorName = process.env.NEXT_PUBLIC_AUTHOR_NAME || "Daniel Mitka";
 
@@ -142,7 +143,8 @@ export default async function HomePage({
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: process.env.NEXT_PUBLIC_SITE_URL || "https://daniel.mitka.cz",
+        item:
+          process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.vercel.app",
       },
     ],
   };
@@ -157,7 +159,7 @@ export default async function HomePage({
       locale === "cs"
         ? "Oficiální portfolio Daniela Mitky předvádějící plavecké úspěchy, závodní vrcholy a vývojové projekty."
         : "Official portfolio showcasing Daniel Mitka's swimming achievements, competition highlights, and development projects.",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://daniel.mitka.cz",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.vercel.app",
     inLanguage: locale === "cs" ? "cs-CZ" : "en-US",
   };
 

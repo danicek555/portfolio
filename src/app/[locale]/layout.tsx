@@ -4,8 +4,6 @@ import Footer from "../../components/footer";
 import { ThemeProvider } from "../../components/ThemeProvider";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import LanguageToggle from "../../components/LanguageToggle";
-import BetaPopup from "../../components/BetaPopup";
-import RecruitButton from "../../components/RecruitButton";
 import { roboto, montserrat } from "../../styles/fonts";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
@@ -13,8 +11,7 @@ import { routing } from "../../i18n/routing";
 import type { Metadata } from "next";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://portfolio-na-steroidech.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.vercel.app";
 
 // Generate metadata for each locale with proper canonical and hreflang
 export async function generateMetadata({
@@ -94,8 +91,6 @@ export default async function LocaleLayout({
           <Footer />
           <DarkModeToggle />
           <LanguageToggle />
-          <BetaPopup />
-          <RecruitButton />
         </ThemeProvider>
       </NextIntlClientProvider>
     </div>

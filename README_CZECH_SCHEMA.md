@@ -141,7 +141,7 @@ export default async function CompetitionPage({ params }) {
 
 ```
 https://search.google.com/test/rich-results
-Enter: https://daniel.mitka.cz/cs/competitions/czech-youth-nationals-2024
+Enter: https://danielmitka.vercel.app/cs/competitions/czech-youth-nationals-2024
 ```
 
 ### **Schema Validator (Czech Content)**

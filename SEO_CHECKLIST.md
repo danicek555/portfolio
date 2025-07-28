@@ -40,7 +40,7 @@ NEXT_PUBLIC_CLARITY_ID=your_clarity_id
 ### 3. **Submit Sitemaps**
 
 ```
-https://daniel.mitka.cz/sitemap.xml
+https://danielmitka.vercel.app/sitemap.xml
 ```
 
 Submit to:
@@ -141,7 +141,7 @@ Submit to:
 
 ```bash
 # Add to .env.local
-NEXT_PUBLIC_SITE_URL=https://daniel.mitka.cz
+NEXT_PUBLIC_SITE_URL=https://danielmitka.vercel.app
 NEXT_PUBLIC_GOOGLE_VERIFICATION=your_verification_code
 NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 NEXT_PUBLIC_CLARITY_ID=your_clarity_project_id
