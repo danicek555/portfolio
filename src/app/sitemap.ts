@@ -1,8 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.vercel.app";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.com";
 
   // Get current date for lastModified
   const currentDate = new Date();

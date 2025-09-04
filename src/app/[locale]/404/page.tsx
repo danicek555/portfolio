@@ -4,8 +4,7 @@ import NotFoundClient from "./NotFoundClient";
 import { generatePersonSchema, createJsonLd } from "../../../lib/schema";
 
 // Environment variables for schema
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.com";
 const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Daniel Mitka Portfolio";
 
 // Metadata for 404 page

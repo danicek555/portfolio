@@ -10,8 +10,7 @@ import { notFound } from "next/navigation";
 import { routing } from "../../i18n/routing";
 import type { Metadata } from "next";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.com";
 
 // Generate metadata for each locale with proper canonical and hreflang
 export async function generateMetadata({
