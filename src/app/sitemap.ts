@@ -6,8 +6,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Get current date for lastModified
   const currentDate = new Date();
 
-  // Define your competition pages
-  const competitions = ["ostrava", "samorin", "australia", "podoli", "plzen"];
+  // Define competition page slugs that exist in the app
+  const competitions = [
+    "team-championship-finals-2025",
+    "czech-open-nationals-2025",
+    "czech-youth-nationals-2024",
+    "lifesaving-worlds-australia",
+    "slovakia-cup-2024",
+  ];
 
   // Define supported locales
   const locales = ["en", "cs"];
