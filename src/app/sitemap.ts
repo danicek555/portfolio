@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { blogPosts } from "../lib/blogPosts";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.com";
@@ -23,6 +24,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: "",
       priority: 1.0,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      url: "/blog",
+      priority: 0.8,
       changeFrequency: "weekly" as const,
     },
   ];
@@ -59,6 +65,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
           languages: {
             en: `${baseUrl}/en/competitions/${competition}`,
             cs: `${baseUrl}/cs/competitions/${competition}`,
+          },
+        },
+      });
+    });
+  });
+
+  // Add blog posts for each locale
+  locales.forEach((locale) => {
+    blogPosts.forEach((post) => {
+      sitemap.push({
+        url: `${baseUrl}/${locale}/blog/${post.slug}`,
+        lastModified: currentDate,
+        changeFrequency: "weekly",
+        priority: 0.6,
+        alternates: {
+          languages: {
+            en: `${baseUrl}/en/blog/${post.slug}`,
+            cs: `${baseUrl}/cs/blog/${post.slug}`,
           },
         },
       });

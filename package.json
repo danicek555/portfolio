@@ -7,9 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test-sitemap": "node scripts/test-sitemap.js"
+    "test-sitemap": "node scripts/test-sitemap.js",
+    "prisma:generate": "prisma generate --schema prisma/schema.prisma",
+    "prisma:migrate": "prisma migrate dev --schema prisma/schema.prisma",
+    "prisma:deploy": "prisma migrate deploy --schema prisma/schema.prisma"
   },
   "dependencies": {
+    "@prisma/client": "^6.15.0",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "clsx": "^2.1.1",
@@ -30,6 +34,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "postcss": "^8.5.4",
+    "prisma": "^6.15.0",
     "tailwindcss": "^4.1.8",
     "typescript": "^5"
   }

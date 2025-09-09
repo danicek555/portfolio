@@ -95,6 +95,18 @@ const Navbar: React.FC = () => {
           </Link>
         </li>
         <li>
+          <Link
+            href="/blog"
+            className={clsx(
+              "transition-colors no-underline font-bold",
+              isDarkMode ? "hover:text-gray-300" : "hover:text-gray-600"
+            )}
+            style={{ fontWeight: 700 }}
+          >
+            {t("blog")}
+          </Link>
+        </li>
+        <li>
           <a
             href="https://www.instagram.com/dan_mitka"
             target="_blank"
@@ -222,6 +234,21 @@ const Navbar: React.FC = () => {
               style={{ fontWeight: 700 }}
             >
               {t("work")}
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog"
+              onClick={closeMenu}
+              className={clsx(
+                "block px-4 py-4 transition-colors no-underline font-bold border-b",
+                isDarkMode
+                  ? "hover:bg-gray-700 border-gray-700 text-white"
+                  : "hover:bg-gray-50 border-gray-200 text-black"
+              )}
+              style={{ fontWeight: 700 }}
+            >
+              {t("blog")}
             </Link>
           </li>
           <li>
