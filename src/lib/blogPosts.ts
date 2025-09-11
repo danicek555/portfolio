@@ -26,3 +26,26 @@ export const blogPosts: BlogPost[] = [
       "Between early morning swims and late-night homework, balance is everything. I set daily priorities, protect my sleep, and keep coding projects fun and bite-sized.",
   },
 ];
+
+export const blogPostsByLocale: Record<string, BlogPost[]> = {
+  en: blogPosts,
+  cs: [
+    {
+      slug: "first-impressions-usa",
+      title: "První dojmy z USA",
+      excerpt:
+        "Přílet do USA, kulturní šoky, rozdíly v tréninku a první emoce.",
+      date: "2025-01-05",
+      content:
+        "Do USA jsem přijel s nadšením i malou nervozitou. Tréninky jsou intenzivní, ale zázemí je skvělé. Největším překvapením je podpora a týmová atmosféra.",
+    },
+    {
+      slug: "training-and-life-balance",
+      title: "Balanc mezi tréninkem a životem",
+      excerpt: "Jak zvládám plavání, školu a programování, aniž bych vyhořel.",
+      date: "2025-02-12",
+      content:
+        "Mezi ranními tréninky a večerními úkoly je rovnováha klíčová. Každý den si určím priority, hlídám spánek a udržuji programování zábavné a po menších částech.",
+    },
+  ],
+};

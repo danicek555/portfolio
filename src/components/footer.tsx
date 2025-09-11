@@ -94,6 +94,20 @@ const Footer: React.FC = () => {
                 <Instagram className="w-6 h-6" />
               </a>
             </div>
+            <a
+              href="https://steroid.danielmitka.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={clsx(
+                "mt-3 inline-flex items-center transition-colors duration-200",
+                isDarkMode
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-600 hover:text-gray-800"
+              )}
+            >
+              <ExternalLink className="w-4 h-4 mr-2" />
+              steroid.danielmitka.com
+            </a>
           </div>
 
           {/* About */}
