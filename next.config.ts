@@ -2,6 +2,20 @@ import { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/en/competitions/ostrava",
+        destination: "/en/competitions/czech-open-nationals-2025",
+        permanent: true,
+      },
+      {
+        source: "/en/competitions/podoli",
+        destination: "/en/competitions/czech-youth-nationals-2024",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

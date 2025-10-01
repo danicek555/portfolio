@@ -1,4 +1,5 @@
 import Script from "next/script";
+import "../styles/globals.css";
 import { roboto, montserrat } from "../styles/fonts";
 import {
   generateWebSiteSchema,

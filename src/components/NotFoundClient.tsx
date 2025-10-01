@@ -1,9 +1,9 @@
 "use client";
 
 import { Home, Trophy, Search, ArrowRight, Waves } from "lucide-react";
-import { useTheme } from "../../../components/ThemeProvider";
+import { useTheme } from "./ThemeProvider";
 import { useTranslations } from "next-intl";
-import { Link } from "../../../i18n/navigation";
+import { Link } from "../i18n/navigation";
 import clsx from "clsx";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
