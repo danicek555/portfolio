@@ -45,8 +45,20 @@
       {
         "title": "My Love Website",
         "description": "A romantic website counting days together with interactive hearts and beautiful animations."
+      },
+      {
+        "title": "Strunzova Pila Website",
+        "description": "A professional website for Strunzova Pila company showcasing their wood processing services and products."
       }
     ]
+  },
+  "Blog": {
+    "title": "Blog",
+    "description": "Short reflections about my USA journey, training, and life.",
+    "backToHome": "Back to Home",
+    "backToBlog": "Back to Blog",
+    "previous": "Previous",
+    "next": "Next"
   },
   "Navbar": {
     "home": "Home",

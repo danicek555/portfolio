@@ -7,7 +7,7 @@
       "source": "/(.*)",
       "destination": "https://www.danielmitka.com/$1",
       "permanent": true,
-      "has": [{ "type": "host", "value": "danielmitka.vercel.app" }]
+      "has": [{ "type": "host", "value": "danielmitka.com" }]
     }
   ]
 }

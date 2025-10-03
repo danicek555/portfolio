@@ -35,57 +35,51 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const sitemap: MetadataRoute.Sitemap = [];
 
-  // Add main pages for each locale
-  locales.forEach((locale) => {
-    basePages.forEach((page) => {
-      sitemap.push({
-        url: `${baseUrl}/${locale}${page.url}`,
-        lastModified: currentDate,
-        changeFrequency: page.changeFrequency,
-        priority: page.priority,
-        alternates: {
-          languages: {
-            en: `${baseUrl}/en${page.url}`,
-            cs: `${baseUrl}/cs${page.url}`,
-          },
+  // Add main pages (one entry per page with language alternates)
+  basePages.forEach((page) => {
+    sitemap.push({
+      url: `${baseUrl}/en${page.url}`,
+      lastModified: currentDate,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en${page.url}`,
+          cs: `${baseUrl}/cs${page.url}`,
         },
-      });
+      },
     });
   });
 
-  // Add competition pages for each locale
-  locales.forEach((locale) => {
-    competitions.forEach((competition) => {
-      sitemap.push({
-        url: `${baseUrl}/${locale}/competitions/${competition}`,
-        lastModified: currentDate,
-        changeFrequency: "monthly",
-        priority: 0.7,
-        alternates: {
-          languages: {
-            en: `${baseUrl}/en/competitions/${competition}`,
-            cs: `${baseUrl}/cs/competitions/${competition}`,
-          },
+  // Add competition pages (one entry per page with language alternates)
+  competitions.forEach((competition) => {
+    sitemap.push({
+      url: `${baseUrl}/en/competitions/${competition}`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en/competitions/${competition}`,
+          cs: `${baseUrl}/cs/competitions/${competition}`,
         },
-      });
+      },
     });
   });
 
-  // Add blog posts for each locale
-  locales.forEach((locale) => {
-    blogPosts.forEach((post) => {
-      sitemap.push({
-        url: `${baseUrl}/${locale}/blog/${post.slug}`,
-        lastModified: currentDate,
-        changeFrequency: "weekly",
-        priority: 0.6,
-        alternates: {
-          languages: {
-            en: `${baseUrl}/en/blog/${post.slug}`,
-            cs: `${baseUrl}/cs/blog/${post.slug}`,
-          },
+  // Add blog posts (one entry per page with language alternates)
+  blogPosts.forEach((post) => {
+    sitemap.push({
+      url: `${baseUrl}/en/blog/${post.slug}`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.6,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en/blog/${post.slug}`,
+          cs: `${baseUrl}/cs/blog/${post.slug}`,
         },
-      });
+      },
     });
   });
 

@@ -19,9 +19,6 @@ const Competitions: React.FC = () => {
   const { isDarkMode } = useTheme();
   const t = useTranslations("Competitions");
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragStart, setDragStart] = useState(0);
-  const [dragOffset, setDragOffset] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
   const competitions: Competition[] = [
@@ -105,72 +102,6 @@ const Competitions: React.FC = () => {
     setCurrentSlide(index);
   };
 
-  // Mouse drag functionality
-  const handleMouseDown = (event: React.MouseEvent) => {
-    if (!hasMoreThanMax) return;
-    setIsDragging(true);
-    setDragStart(event.clientX);
-    setDragOffset(0);
-  };
-
-  const handleMouseMove = (event: React.MouseEvent) => {
-    if (!isDragging || !hasMoreThanMax) return;
-    const currentX = event.clientX;
-    const offset = currentX - dragStart;
-    setDragOffset(offset);
-  };
-
-  const handleMouseUp = () => {
-    if (!isDragging || !hasMoreThanMax) return;
-    setIsDragging(false);
-
-    // If drag distance is significant, change slide
-    if (Math.abs(dragOffset) > 50) {
-      if (dragOffset > 0 && !isAtStart) {
-        // Only go to previous slide if not at start
-        prevSlide();
-      } else if (dragOffset < 0 && !isAtEnd) {
-        // Only go to next slide if not at end
-        nextSlide();
-      }
-    }
-
-    setDragOffset(0);
-  };
-
-  // Touch functionality for mobile
-  const handleTouchStart = (event: React.TouchEvent) => {
-    if (!hasMoreThanMax) return;
-    setIsDragging(true);
-    setDragStart(event.touches[0].clientX);
-    setDragOffset(0);
-  };
-
-  const handleTouchMove = (event: React.TouchEvent) => {
-    if (!isDragging || !hasMoreThanMax) return;
-    const currentX = event.touches[0].clientX;
-    const offset = currentX - dragStart;
-    setDragOffset(offset);
-  };
-
-  const handleTouchEnd = () => {
-    if (!isDragging || !hasMoreThanMax) return;
-    setIsDragging(false);
-
-    // If swipe distance is significant, change slide
-    if (Math.abs(dragOffset) > 50) {
-      if (dragOffset > 0 && !isAtStart) {
-        // Only go to previous slide if not at start
-        prevSlide();
-      } else if (dragOffset < 0 && !isAtEnd) {
-        // Only go to next slide if not at end
-        nextSlide();
-      }
-    }
-
-    setDragOffset(0);
-  };
-
   // Keyboard navigation
   useEffect(() => {
     if (!hasMoreThanMax || isMobile) return;
@@ -187,18 +118,44 @@ const Competitions: React.FC = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [hasMoreThanMax, isMobile, nextSlide, prevSlide, isAtStart, isAtEnd]);
 
-  // Handle mouse leave to reset drag state
+  // Prevent browser's default horizontal scroll behavior
   useEffect(() => {
-    const handleMouseUp = () => {
-      if (isDragging) {
-        setIsDragging(false);
-        setDragOffset(0);
+    const handleWheel = (event: Event) => {
+      const wheelEvent = event as WheelEvent;
+      if (Math.abs(wheelEvent.deltaX) > Math.abs(wheelEvent.deltaY)) {
+        event.preventDefault();
       }
     };
 
-    window.addEventListener("mouseup", handleMouseUp);
-    return () => window.removeEventListener("mouseup", handleMouseUp);
-  }, [isDragging]);
+    const container = document.querySelector("[data-competitions-container]");
+    if (container) {
+      container.addEventListener("wheel", handleWheel, { passive: false });
+      return () => container.removeEventListener("wheel", handleWheel);
+    }
+  }, []);
+
+  // Handle wheel events for trackpad scrolling
+  const handleWheel = useCallback(
+    (event: React.WheelEvent) => {
+      if (!hasMoreThanMax || isMobile) return;
+
+      const deltaX = event.deltaX;
+      const deltaY = event.deltaY;
+
+      // Only prevent default if there's significant horizontal movement
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (deltaX > 0 && !isAtEnd) {
+          nextSlide();
+        } else if (deltaX < 0 && !isAtStart) {
+          prevSlide();
+        }
+      }
+    },
+    [hasMoreThanMax, isMobile, nextSlide, prevSlide, isAtStart, isAtEnd]
+  );
 
   const renderCompetitionCard = (comp: Competition, index: number) => (
     <motion.div
@@ -294,33 +251,40 @@ const Competitions: React.FC = () => {
           <div className="relative">
             {/* Slider Container with touch support */}
             <div
-              className="overflow-hidden cursor-grab active:cursor-grabbing py-2 sm:py-4 md:py-8 touch-pan-y select-none"
-              onMouseDown={handleMouseDown}
-              onMouseMove={handleMouseMove}
-              onMouseUp={handleMouseUp}
-              onMouseLeave={handleMouseUp}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
+              className="overflow-hidden py-2 sm:py-4 md:py-8 select-none"
+              onWheel={handleWheel}
+              data-competitions-container
               style={{
-                userSelect: "none",
-                WebkitUserSelect: "none",
-                MozUserSelect: "none",
-                msUserSelect: "none",
+                touchAction: "pan-y pinch-zoom",
+                overscrollBehavior: "contain",
               }}
             >
               <motion.div
                 className="flex gap-4 sm:gap-6 md:gap-8 select-none"
+                drag="x"
+                dragConstraints={{
+                  left: -(competitions.length - slidesToShow) * 400, // Approximate slide width
+                  right: 0,
+                }}
+                dragElastic={0.1}
+                dragMomentum={false}
+                onDragEnd={(_, info) => {
+                  const threshold = 50;
+                  if (info.offset.x > threshold && !isAtStart) {
+                    prevSlide();
+                  } else if (info.offset.x < -threshold && !isAtEnd) {
+                    nextSlide();
+                  }
+                }}
                 animate={{
                   x: `calc(-${currentSlide * (100 / slidesToShow)}% - ${
                     currentSlide * (isMobile ? 1 : 2)
-                  }rem + ${isDragging ? dragOffset : 0}px)`,
+                  }rem)`,
                 }}
                 transition={{
                   type: "spring",
                   stiffness: 300,
                   damping: 30,
-                  duration: isDragging ? 0 : undefined,
                 }}
                 style={{
                   userSelect: "none",
@@ -431,7 +395,7 @@ const Competitions: React.FC = () => {
               >
                 {isMobile
                   ? "Swipe to navigate"
-                  : "Drag to navigate • Use ← → keys"}
+                  : "Drag to navigate • Use ← → keys • Trackpad scroll"}
               </span>
             </div>
           </div>

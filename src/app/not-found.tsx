@@ -3,6 +3,8 @@ import { NextIntlClientProvider } from "next-intl";
 import enMessages from "../../messages/en.json";
 import { ThemeProvider } from "../components/ThemeProvider";
 import NotFoundClient from "../components/NotFoundClient";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 import type { Metadata } from "next";
 import Script from "next/script";
 import { generatePersonSchema, createJsonLd } from "../lib/schema";
@@ -94,7 +96,9 @@ export default function GlobalNotFound() {
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: createJsonLd(combinedSchema) }}
           />
+          <Navbar />
           <NotFoundClient />
+          <Footer />
         </>
       </ThemeProvider>
     </NextIntlClientProvider>

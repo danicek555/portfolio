@@ -27,11 +27,19 @@ const Projects: React.FC = () => {
       description: t("projects.0.description"),
       technologies: ["HTML", "CSS", "JavaScript"],
       link: "https://daniel.mitka.cz/terka/",
-      img: "/Macbook_No_Background.png",
+      img: "/lovewebsitemockup2.png",
       type: "external",
       featured: true,
     },
-    // Add more projects here in the future
+    {
+      title: t("projects.1.title"),
+      description: t("projects.1.description"),
+      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+      link: "https://strunzovapila.vercel.app",
+      img: "/strunzovapilamockup2.png",
+      type: "external",
+      featured: true,
+    },
   ];
 
   // Animation variants

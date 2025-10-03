@@ -99,7 +99,7 @@ export default function NotFoundClient() {
         animate="visible"
         variants={containerVariants}
         className={clsx(
-          "min-h-screen flex items-center justify-center relative overflow-hidden transition-colors duration-300 pt-24",
+          "min-h-screen flex items-center justify-center relative overflow-hidden transition-colors duration-300 pt-20",
           isDarkMode ? "bg-gray-900" : "bg-white"
         )}
       >

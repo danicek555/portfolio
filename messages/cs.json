@@ -45,8 +45,20 @@
       {
         "title": "Můj Love Web",
         "description": "Romantický web počítající dny spolu s interaktivními srdci a krásnými animacemi."
+      },
+      {
+        "title": "Strunzova Pila",
+        "description": "Profesionální web pro společnost Strunzova Pila představující jejich služby apartmánů."
       }
     ]
+  },
+  "Blog": {
+    "title": "Blog",
+    "description": "Krátké úvahy o mé cestě do USA, tréninku a životě.",
+    "backToHome": "Zpět domů",
+    "backToBlog": "Zpět na blog",
+    "previous": "Předchozí",
+    "next": "Další"
   },
   "Navbar": {
     "home": "Domů",

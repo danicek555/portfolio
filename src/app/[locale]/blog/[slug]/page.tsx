@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { blogPostsByLocale } from "../../../../lib/blogPosts";
-import InteractionsClient from "./InteractionsClient";
+import { hasLocale } from "next-intl";
+import { routing } from "../../../../i18n/routing";
+import BlogPostClient from "./BlogPostClient";
 
 type Params = Promise<{ locale: string; slug: string }>;
 
@@ -33,26 +35,19 @@ export async function generateMetadata({
 
 export default async function BlogPostPage({ params }: { params: Params }) {
   const { locale, slug } = await params;
-  const posts = blogPostsByLocale[locale] ?? blogPostsByLocale["en"];
+  const lc = hasLocale(routing.locales, locale)
+    ? locale
+    : routing.defaultLocale;
+  const posts =
+    blogPostsByLocale[lc] ?? blogPostsByLocale[routing.defaultLocale];
   const post = posts.find((p) => p.slug === slug);
   if (!post) notFound();
 
-  return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
-      <article className="px-4 sm:px-10 py-10 max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold mb-3">{post.title}</h1>
-        <time className="block text-sm text-gray-600 dark:text-gray-400 mb-8">
-          {new Date(post.date).toLocaleDateString(undefined, {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })}
-        </time>
-        <div className="prose dark:prose-invert max-w-none">
-          <p>{post.content || post.excerpt}</p>
-        </div>
-        <InteractionsClient slug={post.slug} title={post.title} />
-      </article>
-    </div>
-  );
+  // Find current post index and get previous/next posts
+  const currentIndex = posts.findIndex((p) => p.slug === slug);
+  const prevPost = currentIndex > 0 ? posts[currentIndex - 1] : null;
+  const nextPost =
+    currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
+
+  return <BlogPostClient post={post} prevPost={prevPost} nextPost={nextPost} />;
 }

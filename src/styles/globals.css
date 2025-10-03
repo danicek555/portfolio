@@ -28,10 +28,22 @@
   }
 }
 
+html {
+  background: #ffffff;
+}
+
+html.dark {
+  background: #1f2937;
+}
+
 body {
-  background: var(--background);
+  background: #ffffff;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+html.dark body {
+  background: #1f2937;
 }
 
 /* Line clamp utilities for text truncation */
