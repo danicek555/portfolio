@@ -281,6 +281,9 @@ export default function AustraliaCompetitionClient() {
                       )}
                     >
                       {achievement.event}
+                      <span className="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                        50m bazén
+                      </span>
                     </h3>
                     <p
                       className={clsx(

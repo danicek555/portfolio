@@ -347,6 +347,9 @@ export default function SamorinCompetitionClient() {
                         } mb-1 transition-colors duration-300`}
                       >
                         {event.event}
+                        <span className="ml-2 text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">
+                          25m bazén
+                        </span>
                       </h3>
                       <p className="text-purple-600 font-semibold text-sm mb-2">
                         {event.time}

@@ -248,6 +248,9 @@ export default function PodoliCompetitionClient() {
                         )}
                       >
                         {event.event}
+                        <span className="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                          50m bazén
+                        </span>
                       </h3>
                       <div className="flex items-center gap-2 mb-2">
                         <span className="bg-red-600 text-white px-2 py-1 rounded text-xs font-semibold">

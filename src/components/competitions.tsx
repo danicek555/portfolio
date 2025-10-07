@@ -29,6 +29,12 @@ const Competitions: React.FC = () => {
       img: "/mcr2025.jpg",
     },
     {
+      title: t("competitions.4.title"),
+      description: t("competitions.4.description"),
+      link: "/competitions/czech-open-nationals-2025",
+      img: "/mcrplzen252.jpg",
+    },
+    {
       title: t("competitions.0.title"),
       description: t("competitions.0.description"),
       link: "/competitions/team-championship-finals-2025",
@@ -51,12 +57,6 @@ const Competitions: React.FC = () => {
       description: t("competitions.3.description"),
       link: "/competitions/czech-youth-nationals-2024",
       img: "/podoliFoto.jpg",
-    },
-    {
-      title: t("competitions.4.title"),
-      description: t("competitions.4.description"),
-      link: "/competitions/czech-open-nationals-2025",
-      img: "/plzen.jpg",
     },
   ];
 

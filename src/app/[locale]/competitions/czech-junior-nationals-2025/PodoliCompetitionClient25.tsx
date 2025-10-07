@@ -35,8 +35,10 @@ export default function PodoliCompetitionClient25() {
       result: "3. místo",
       resultEn: "3rd Place",
       time: "4:43.14",
-      description: "Bronzová medaile v nejnáročnější disciplíně",
-      descriptionEn: "Bronze medal in the most demanding discipline",
+      description:
+        "Bronzová medaile v nejnáročnější disciplíně plavání. 400m polohový závod testuje všechny čtyři styly a vyžaduje maximální kondici. Výkon 4:43.14 přinesl zasloužené třetí místo na českém juniorském mistrovství.",
+      descriptionEn:
+        "Bronze medal in the most demanding swimming discipline. The 400m individual medley tests all four strokes and requires maximum fitness. The 4:43.14 performance earned a well-deserved third place at the Czech Junior Championship.",
       videoId: "hGz2USOYI9o",
       duration: "5:33",
       views: "1.2K",
@@ -47,8 +49,10 @@ export default function PodoliCompetitionClient25() {
       result: "4. místo",
       resultEn: "4th Place",
       time: "2:11.96",
-      description: "finále: 2:11.96",
-      descriptionEn: "Final: 2:11.96",
+      description:
+        "Těsné čtvrté místo v rychlé polohové disciplíně. 200m polohový závod vyžaduje precizní techniku ve všech čtyřech stylech. Čas 2:11.96 ukázal výbornou kondici a technickou připravenost.",
+      descriptionEn:
+        "Close fourth place in the fast individual medley discipline. The 200m individual medley requires precise technique in all four strokes. The 2:11.96 time showed excellent fitness and technical preparation.",
       videoId: "Wax8A4dUpSE",
       duration: "4:25",
       views: "890",
@@ -59,8 +63,10 @@ export default function PodoliCompetitionClient25() {
       result: "1. místo SwimOff",
       resultEn: "1st Place SwimOff",
       time: "1:58.75",
-      description: "Swimoff: 1:58.75",
-      descriptionEn: "SwimOff: 1:58.75",
+      description:
+        "Vítězství v dramatickém SwimOff závodu o postup do finále. 200m volný způsob vyžaduje vytrvalost a strategické rozložení sil. Čas 1:58.75 zajistil postup do finále a ukázal mentální sílu.",
+      descriptionEn:
+        "Victory in the dramatic SwimOff race for advancement to the final. The 200m freestyle requires endurance and strategic energy distribution. The 1:58.75 time secured advancement to the final and showed mental strength.",
       videoId: "cX0ecF9EbUo",
       duration: "2:43",
       views: "756",
@@ -71,9 +77,10 @@ export default function PodoliCompetitionClient25() {
       result: "6. místo",
       resultEn: "6th Place",
       time: "2:31.30",
-      description: "Solidní výkon v technické disciplíně.  finále: 2:31.30",
+      description:
+        "Solidní výkon v technicky náročné disciplíně prsou. 200m prsa vyžaduje dokonalou koordinaci rukou, nohou a dýchání. Čas 2:31.30 přinesl šesté místo v silné konkurenci.",
       descriptionEn:
-        "Solid performance in technical discipline. , Final: 2:31.30",
+        "Solid performance in the technically demanding breaststroke discipline. The 200m breaststroke requires perfect coordination of arms, legs and breathing. The 2:31.30 time earned sixth place in strong competition.",
       videoId: "9Y7zUzaKJMI",
       duration: "4:11",
       views: "634",
@@ -84,8 +91,10 @@ export default function PodoliCompetitionClient25() {
       result: "Výběr",
       resultEn: "Selection",
       time: "2:30.36",
-      description: "Další záběry z mistrovství Rozplavby: 2:30.36,",
-      descriptionEn: "Additional championship footage Heats: 2:30.36",
+      description:
+        "Úspěšný postup z rozplaveb do finále v disciplíně prsou. Rozplavby ukázaly konzistentní techniku a správné tempo. Čas 2:30.36 zajistil kvalifikaci do finále mistrovství.",
+      descriptionEn:
+        "Successful advancement from heats to final in the breaststroke discipline. The heats showed consistent technique and proper pacing. The 2:30.36 time secured qualification for the championship final.",
       videoId: "gT-J9WULX5g",
       duration: "3:15",
       views: "1.5K",
@@ -96,8 +105,10 @@ export default function PodoliCompetitionClient25() {
       result: "Výběr",
       resultEn: "Selection",
       time: "N/A",
-      description: "Závěrečné momenty mistrovství Heats: 2:11.74, ",
-      descriptionEn: "Final championship moments Heats: 2:11.74, ",
+      description:
+        "Kvalifikační závod v polohovém závodu s výborným časem 2:11.74. Rozplavby prokázaly všestrannost ve všech čtyřech plaveckých stylech. Výkon zajistil postup do finále a ukázal připravenost na vrchol.",
+      descriptionEn:
+        "Qualifying race in the individual medley with an excellent time of 2:11.74. The heats demonstrated versatility in all four swimming strokes. The performance secured advancement to the final and showed readiness for the peak.",
       videoId: "lzIXrfZIh-E",
       duration: "2:45",
       views: "1.1K",
@@ -108,8 +119,10 @@ export default function PodoliCompetitionClient25() {
       result: "Výběr",
       resultEn: "Selection",
       time: "2:00.46",
-      description: "Finální zvýraznění mistrovství, rozplacby 2:00.46",
-      descriptionEn: "Final championship highlights Heats: 2:00.46,",
+      description:
+        "Silný výkon v rozplavbách volného způsobu s časem 2:00.46. 200m volný způsob testuje vytrvalost a schopnost udržet konzistentní tempo. Výkon zajistil postup do SwimOff a ukázal výbornou kondici.",
+      descriptionEn:
+        "Strong performance in the freestyle heats with a time of 2:00.46. The 200m freestyle tests endurance and the ability to maintain consistent pace. The performance secured advancement to the SwimOff and showed excellent fitness.",
       videoId: "ZBSe7icCLSc",
       duration: "4:20",
       views: "2.1K",
@@ -421,6 +434,9 @@ export default function PodoliCompetitionClient25() {
                         )}
                       >
                         {locale === "en" ? result.eventEn : result.event}
+                        <span className="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                          {locale === "en" ? "50m pool" : "50m bazén"}
+                        </span>
                       </h3>
                       <div className="flex items-center gap-2 mb-2">
                         <span
