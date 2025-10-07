@@ -33,8 +33,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const sitemap: MetadataRoute.Sitemap = [];
 
-  // Add main pages (one entry per page with language alternates)
+  // Add main pages for both languages
   basePages.forEach((page) => {
+    // English version
     sitemap.push({
       url: `${baseUrl}/en${page.url}`,
       lastModified: currentDate,
@@ -47,10 +48,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     });
+
+    // Czech version
+    sitemap.push({
+      url: `${baseUrl}/cs${page.url}`,
+      lastModified: currentDate,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en${page.url}`,
+          cs: `${baseUrl}/cs${page.url}`,
+        },
+      },
+    });
   });
 
-  // Add competition pages (one entry per page with language alternates)
+  // Add competition pages for both languages
   competitions.forEach((competition) => {
+    // English version
     sitemap.push({
       url: `${baseUrl}/en/competitions/${competition}`,
       lastModified: currentDate,
@@ -63,12 +79,41 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     });
+
+    // Czech version
+    sitemap.push({
+      url: `${baseUrl}/cs/competitions/${competition}`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en/competitions/${competition}`,
+          cs: `${baseUrl}/cs/competitions/${competition}`,
+        },
+      },
+    });
   });
 
-  // Add blog posts (one entry per page with language alternates)
+  // Add blog posts for both languages
   blogPosts.forEach((post) => {
+    // English version
     sitemap.push({
       url: `${baseUrl}/en/blog/${post.slug}`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.6,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en/blog/${post.slug}`,
+          cs: `${baseUrl}/cs/blog/${post.slug}`,
+        },
+      },
+    });
+
+    // Czech version
+    sitemap.push({
+      url: `${baseUrl}/cs/blog/${post.slug}`,
       lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.6,
