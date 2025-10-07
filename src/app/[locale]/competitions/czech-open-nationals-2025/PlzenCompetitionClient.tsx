@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { MapPin, Calendar, Trophy, Target } from "lucide-react";
 import { useTheme } from "../../../../components/ThemeProvider";
-import { useTranslations, useLocale } from "next-intl";
+import { useLocale } from "next-intl";
 import clsx from "clsx";
-import VideoGallery from "../../../../components/VideoGallery";
+
 import VideoPlayer from "../../../../components/VideoPlayer";
 import { motion } from "framer-motion";
 
