@@ -6,6 +6,8 @@ import { useTheme } from "../../../../components/ThemeProvider";
 import { useTranslations, useLocale } from "next-intl";
 import clsx from "clsx";
 import VideoGallery from "../../../../components/VideoGallery";
+import VideoPlayer from "../../../../components/VideoPlayer";
+import { motion } from "framer-motion";
 
 export default function PlzenCompetitionClient() {
   const { isDarkMode } = useTheme();
@@ -55,6 +57,108 @@ export default function PlzenCompetitionClient() {
         "Nejnáročnější disciplína s výborným finálním časem. Rozplavby: 4:52.28, finále: 4:47.51",
       descriptionEn:
         "Most demanding discipline with excellent final time. Heats: 4:52.28, final: 4:47.51",
+    },
+  ];
+
+  // Video data with YouTube IDs - All videos in 2-column grid
+  const videoResults = [
+    {
+      event: "100m Motýlek Rozplavby - České mistrovství 2025",
+      eventEn: "100m Butterfly Heats - Czech Championship 2025",
+      result: "Rozplavby",
+      resultEn: "Heats",
+      time: "0:59.23",
+      description:
+        "Rychlý výkon v motýlku pod 1:00. Technicky náročná disciplína vyžadující sílu a koordinaci.",
+      descriptionEn:
+        "Fast performance in butterfly under 1:00. Technically demanding discipline requiring strength and coordination.",
+      videoId: "2KqCRdBI2wo",
+      duration: "1:27",
+      views: "1.2K",
+    },
+    {
+      event: "200m Polohový závod Finále - České mistrovství 2025",
+      eventEn: "200m Individual Medley Final - Czech Championship 2025",
+      result: "Finále",
+      resultEn: "Final",
+      time: "2:12.66",
+      description:
+        "Finální výkon v polohovém závodu s časem 2:12.66. Konzistentní výkon ve všech čtyřech stylech.",
+      descriptionEn:
+        "Final performance in individual medley with time 2:12.66. Consistent performance in all four strokes.",
+      videoId: "6uLoAYOjJXY",
+      duration: "4:18",
+      views: "890",
+    },
+    {
+      event: "200m Polohový závod Rozplavby - České mistrovství 2025",
+      eventEn: "200m Individual Medley Heats - Czech Championship 2025",
+      result: "Rozplavby",
+      resultEn: "Heats",
+      time: "2:12.24",
+      description:
+        "Kvalifikační závod v polohovém závodu s časem 2:12.24. Výborný postup do finále.",
+      descriptionEn:
+        "Qualifying race in individual medley with time 2:12.24. Excellent advancement to final.",
+      videoId: "gGVCTvq9WDw",
+      duration: "2:40",
+      views: "756",
+    },
+    {
+      event: "200m Prsa Finále - České mistrovství 2025",
+      eventEn: "200m Breaststroke Final - Czech Championship 2025",
+      result: "Finále",
+      resultEn: "Final",
+      time: "2:27.11",
+      description:
+        "Finální výkon v prsou s časem 2:27.11. Výborný výkon v technické disciplíně prsou.",
+      descriptionEn:
+        "Final performance in breaststroke with time 2:27.11. Excellent performance in the technical breaststroke discipline.",
+      videoId: "oBEKE5B3dlA",
+      duration: "3:58",
+      views: "1.1K",
+    },
+    {
+      event: "200m Prsa Rozplavby - České mistrovství 2025",
+      eventEn: "200m Breaststroke Heats - Czech Championship 2025",
+      result: "Rozplavby",
+      resultEn: "Heats",
+      time: "2:29.37",
+      description:
+        "Kvalifikační závod v prsou s časem 2:29.37. Úspěšný postup do finále.",
+      descriptionEn:
+        "Qualifying race in breaststroke with time 2:29.37. Successful advancement to final.",
+      videoId: "X1kJNg-B6qQ",
+      duration: "2:55",
+      views: "890",
+    },
+    {
+      event: "400m Polohový závod Finále - České mistrovství 2025",
+      eventEn: "400m Individual Medley Final - Czech Championship 2025",
+      result: "Finále",
+      resultEn: "Final",
+      time: "4:47.51",
+      description:
+        "Finální výkon v nejnáročnější disciplíně s časem 4:47.51. Vynikající výkon ve všech čtyřech stylech.",
+      descriptionEn:
+        "Final performance in the most demanding discipline with time 4:47.51. Outstanding performance in all four strokes.",
+      videoId: "85nOZt_0jwE",
+      duration: "6:30",
+      views: "1.5K",
+    },
+    {
+      event: "400m Polohový závod Rozplavby - České mistrovství 2025",
+      eventEn: "400m Individual Medley Heats - Czech Championship 2025",
+      result: "Rozplavby",
+      resultEn: "Heats",
+      time: "4:52.28",
+      description:
+        "Kvalifikační závod v nejnáročnější disciplíně s časem 4:52.28. Výborný postup do finále.",
+      descriptionEn:
+        "Qualifying race in the most demanding discipline with time 4:52.28. Excellent advancement to final.",
+      videoId: "1AWkFUwqreM",
+      duration: "5:38",
+      views: "1.2K",
     },
   ];
 
@@ -339,20 +443,77 @@ export default function PlzenCompetitionClient() {
               ))}
             </div>
           </div>
-          <VideoGallery
-            title="Swimming Competition Videos"
-            subtitle="Experience my competitive swimming journey"
-            videos={[
-              {
-                id: "1",
-                videoId: "Nm6LNRUCTCM",
-                title: "Czech National Championship",
-                category: "Competition",
+
+          {/* Video Section */}
+          <motion.div
+            className="mt-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.2,
+                },
               },
-              // Add more videos...
-            ]}
-            columns={2}
-          />
+            }}
+          >
+            <motion.h2
+              className={clsx(
+                "text-4xl font-bold mb-8 text-center transition-colors duration-300",
+                isDarkMode ? "text-white" : "text-gray-900"
+              )}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+            >
+              {locale === "en" ? "Competition Videos" : "Videa ze soutěže"}
+            </motion.h2>
+            <motion.div
+              className="grid md:grid-cols-2 gap-6"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.15,
+                  },
+                },
+              }}
+            >
+              {videoResults.map((result, index) => (
+                <motion.div
+                  key={index}
+                  variants={{
+                    hidden: { opacity: 0, y: 40, scale: 0.9 },
+                    visible: { opacity: 1, y: 0, scale: 1 },
+                  }}
+                  whileHover={{
+                    scale: 1.02,
+                    transition: { duration: 0.2 },
+                  }}
+                >
+                  <VideoPlayer
+                    videoId={result.videoId}
+                    title={locale === "en" ? result.eventEn : result.event}
+                    description={
+                      locale === "en"
+                        ? result.descriptionEn
+                        : result.description
+                    }
+                    duration={result.duration}
+                    views={result.views}
+                    className="mb-4"
+                    priority={index < 2}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+
           {/* Championship Highlights */}
           <div className="mt-16 text-center">
             <h2
