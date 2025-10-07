@@ -1,15 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import {
-  MapPin,
-  Calendar,
-  Trophy,
-  Target,
-  Medal,
-  Clock,
-  Award,
-} from "lucide-react";
+import { MapPin, Calendar, Trophy, Target, Medal, Award } from "lucide-react";
 import { useTheme } from "../../../../components/ThemeProvider";
 import { useTranslations, useLocale } from "next-intl";
 import VideoPlayer from "../../../../components/VideoPlayer";

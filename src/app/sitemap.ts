@@ -16,9 +16,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "slovakia-cup-2024",
   ];
 
-  // Define supported locales
-  const locales = ["en", "cs"];
-
   // Base pages without fragments - only actual pages
   const basePages = [
     {
