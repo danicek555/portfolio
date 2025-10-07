@@ -23,6 +23,12 @@ const Competitions: React.FC = () => {
 
   const competitions: Competition[] = [
     {
+      title: t("competitions.5.title"),
+      description: t("competitions.5.description"),
+      link: "/competitions/czech-junior-nationals-2025",
+      img: "/mcr2025.jpg",
+    },
+    {
       title: t("competitions.0.title"),
       description: t("competitions.0.description"),
       link: "/competitions/team-championship-finals-2025",

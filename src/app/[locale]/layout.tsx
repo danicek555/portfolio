@@ -8,6 +8,7 @@ import { roboto, montserrat } from "../../styles/fonts";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "../../i18n/routing";
+import { getMessages } from "next-intl/server";
 import type { Metadata } from "next";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.com";
@@ -76,14 +77,19 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  // Providing all messages to the client
+  // side is the easiest way to get started
+  const messages = await getMessages();
+
   return (
     <div
       className={`${roboto.variable} ${montserrat.variable}`}
       style={{
-        fontFamily: "var(--font-roboto), var(--font-montserrat), sans-serif",
+        fontFamily:
+          "var(--font-roboto), var(--font-montserrat), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       }}
     >
-      <NextIntlClientProvider>
+      <NextIntlClientProvider messages={messages}>
         <ThemeProvider>
           <Navbar />
           <main>{children}</main>

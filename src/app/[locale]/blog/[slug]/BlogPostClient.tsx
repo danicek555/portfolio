@@ -22,9 +22,9 @@ export default function BlogPostClient({
   const locale = useLocale();
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
       {/* Navigation Header */}
-      <div className="sticky top-0 bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 z-10">
+      <div className="sticky top-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 z-10">
         <div className="px-4 sm:px-10 py-4 max-w-3xl mx-auto flex items-center justify-between">
           <Link
             href="/blog"

@@ -5,6 +5,15 @@ export const montserrat = Montserrat({
   weight: ["400", "700"],
   display: "swap",
   variable: "--font-montserrat",
+  fallback: [
+    "system-ui",
+    "-apple-system",
+    "BlinkMacSystemFont",
+    "Segoe UI",
+    "sans-serif",
+  ],
+  preload: true,
+  adjustFontFallback: true,
 });
 
 export const roboto = Roboto({
@@ -12,6 +21,15 @@ export const roboto = Roboto({
   weight: ["300", "400", "700", "900"],
   display: "swap",
   variable: "--font-roboto",
+  fallback: [
+    "system-ui",
+    "-apple-system",
+    "BlinkMacSystemFont",
+    "Segoe UI",
+    "sans-serif",
+  ],
+  preload: true,
+  adjustFontFallback: true,
 });
 
 // Combined font family string for use in components

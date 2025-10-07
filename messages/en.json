@@ -33,6 +33,10 @@
       {
         "title": "Plzen Czech Open Championship 2024",
         "description": "Major international swimming competition in Plzen showcasing elite performance across multiple swimming disciplines."
+      },
+      {
+        "title": "Czech National Junior Championship 2025",
+        "description": "Prestigious junior national championship held at Podolí swimming complex, showcasing the future stars of Czech swimming."
       }
     ]
   },
@@ -48,7 +52,7 @@
       },
       {
         "title": "Strunzova Pila Website",
-        "description": "A professional website for Strunzova Pila company showcasing their wood processing services and products."
+        "description": "A professional website for Strunzova Pila company showcasing their apartment services."
       }
     ]
   },
@@ -66,6 +70,47 @@
     "competitions": "Competitions",
     "work": "Work",
     "blog": "Blog"
+  },
+  "Podoli2025": {
+    "hero": {
+      "badge1": "JUNIOR CHAMPIONSHIP",
+      "badge2": "2025",
+      "title": "Czech National Junior Championship",
+      "subtitle": "Podolí 2025",
+      "eventTitle": "Bronze Medal Performance",
+      "eventDescription": "Outstanding results at the prestigious junior national competition in Prague"
+    },
+    "info": {
+      "location": "Location",
+      "locationValue": "Podolí Swimming Complex, Prague",
+      "date": "Date",
+      "dateValue": "June 13-15, 2025",
+      "level": "Level",
+      "levelValue": "Junior National Championship",
+      "achievement": "Achievement",
+      "achievementValue": "Bronze Medal 400m IM"
+    },
+    "story": {
+      "title": "A Championship Weekend to Remember",
+      "paragraph1": "The Czech National Junior Championship 2025 in Podolí was a defining moment in Daniel's swimming career. Competing against the best junior swimmers in the country, Daniel showcased exceptional versatility across multiple disciplines.",
+      "highlight": "Bronze medal in 400m Individual Medley - the most demanding swimming event that tests all four strokes.",
+      "paragraph2": "This prestigious competition brought together the top junior swimmers from across the Czech Republic, with Daniel representing SK Motorlet Praha with distinction. His performance across multiple events demonstrated not just technical skill, but mental toughness and competitive spirit."
+    },
+    "results": {
+      "title": "Competition Results"
+    },
+    "videos": {
+      "title": "Competition Videos",
+      "videoTitle": "Race Highlights",
+      "videoDescription": "{event} - {result} ({time}) - {description}",
+      "comingSoon": "Videos Coming Soon",
+      "description": "Highlights and race footage from the championship will be available here soon."
+    },
+    "highlights": {
+      "title": "Championship Highlights",
+      "description": "This competition represents the pinnacle of junior swimming in the Czech Republic. Daniel's bronze medal performance in the 400m Individual Medley, along with strong showings in other events, demonstrates his potential as one of the country's most promising young swimmers.",
+      "experience": "A weekend that showcased the future of Czech swimming"
+    }
   },
   "Footer": {
     "contact": "Contact",

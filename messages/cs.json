@@ -33,6 +33,10 @@
       {
         "title": "Plzeň Czech Open Mistrovství 2024",
         "description": "Velká mezinárodní plavecká soutěž v Plzni předvádějící elitní výkony napříč různými plaveckými disciplínami."
+      },
+      {
+        "title": "České juniorské mistrovství 2025",
+        "description": "Prestižní juniorské mistrovství republiky konané v plaveckém areálu Podolí, představující budoucí hvězdy českého plavání."
       }
     ]
   },
@@ -66,6 +70,47 @@
     "competitions": "Závody",
     "work": "Práce",
     "blog": "Blog"
+  },
+  "Podoli2025": {
+    "hero": {
+      "badge1": "JUNIORSKÉ MISTROVSTVÍ",
+      "badge2": "2025",
+      "title": "České juniorské mistrovství",
+      "subtitle": "Podolí 2025",
+      "eventTitle": "Bronzová medaile",
+      "eventDescription": "Výjimečné výsledky na prestižním juniorském mistrovství v Praze"
+    },
+    "info": {
+      "location": "Místo",
+      "locationValue": "Plavecký komplex Podolí, Praha",
+      "date": "Datum",
+      "dateValue": "13.-15. června 2025",
+      "level": "Úroveň",
+      "levelValue": "Juniorské mistrovství republiky",
+      "achievement": "Úspěch",
+      "achievementValue": "Bronzová medaile 400m PZ"
+    },
+    "story": {
+      "title": "Víkend mistrovství k zapamatování",
+      "paragraph1": "České juniorské mistrovství 2025 v Podolí bylo definujícím okamžikem v Danielově plavecké kariéře. Závodění proti nejlepším juniorům v zemi předvedl Daniel výjimečnou všestrannost napříč různými disciplínami.",
+      "highlight": "Bronzová medaile v 400m polohovém závodě - nejnáročnější plavecké disciplíně, která testuje všechny čtyři styly.",
+      "paragraph2": "Toto prestižní mistrovství spojilo nejlepší juniorské plavce z celé České republiky, přičemž Daniel reprezentoval SK Motorlet Praha s rozlišováním. Jeho výkon napříč různými disciplínami demonstroval nejen technické dovednosti, ale i mentální odolnost a soutěživého ducha."
+    },
+    "results": {
+      "title": "Výsledky soutěže"
+    },
+    "videos": {
+      "title": "Videa ze soutěže",
+      "videoTitle": "Zvýraznění závodu",
+      "videoDescription": "{event} - {result} ({time}) - {description}",
+      "comingSoon": "Videa brzy k dispozici",
+      "description": "Zvýraznění a závodní záběry z mistrovství budou brzy k dispozici zde."
+    },
+    "highlights": {
+      "title": "Zvýraznění mistrovství",
+      "description": "Toto mistrovství představuje vrchol juniorského plavání v České republice. Danielův bronzový výkon v 400m polohovém závodě, spolu se silnými výkony v dalších disciplínách, demonstruje jeho potenciál jako jednoho z nejslibnějších mladých plavců v zemi.",
+      "experience": "Víkend, který představil budoucnost českého plavání"
+    }
   },
   "Footer": {
     "contact": "Kontakt",
