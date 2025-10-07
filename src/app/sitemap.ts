@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "czech-youth-nationals-2024",
     "lifesaving-worlds-australia",
     "slovakia-cup-2024",
+    "czech-junior-nationals-2025",
   ];
 
   // Base pages without fragments - only actual pages
