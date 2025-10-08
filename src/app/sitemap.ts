@@ -2,7 +2,8 @@ import { MetadataRoute } from "next";
 import { blogPosts } from "../lib/blogPosts";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.com";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
 
   // Get current date for lastModified
   const currentDate = new Date();

@@ -4,7 +4,8 @@ import { hasLocale } from "next-intl";
 import { routing } from "../../../i18n/routing";
 import BlogClient from "./BlogClient";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.com";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
 
 export const metadata: Metadata = {
   title: "Blog - Daniel Mitka",

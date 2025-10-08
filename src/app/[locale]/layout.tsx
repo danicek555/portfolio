@@ -11,7 +11,8 @@ import { routing } from "../../i18n/routing";
 import { getMessages } from "next-intl/server";
 import type { Metadata } from "next";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.com";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
 
 // Generate metadata for each locale with proper canonical and hreflang
 export async function generateMetadata({

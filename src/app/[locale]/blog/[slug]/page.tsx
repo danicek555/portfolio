@@ -7,7 +7,8 @@ import BlogPostClient from "./BlogPostClient";
 
 type Params = Promise<{ locale: string; slug: string }>;
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.com";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
 
 export async function generateMetadata({
   params,
