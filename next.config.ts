@@ -4,14 +4,22 @@ import createNextIntlPlugin from "next-intl/plugin";
 const nextConfig: NextConfig = {
   async redirects() {
     return [
+      // EN
       {
         source: "/en/competitions/ostrava",
-        destination: "/en/competitions/czech-open-nationals-2025",
+        destination: "/en/competitions/team-championship-finals-2025",
         permanent: true,
       },
       {
         source: "/en/competitions/podoli",
         destination: "/en/competitions/czech-youth-nationals-2024",
+        permanent: true,
+      },
+
+      // CS
+      {
+        source: "/cs/competitions/plzen",
+        destination: "/cs/competitions/czech-open-nationals-2025",
         permanent: true,
       },
     ];
