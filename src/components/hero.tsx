@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative h-screen flex items-center px-20 bg-cover bg-center bg-no-repeat overflow-hidden"
+      className="relative h-screen flex items-center justify-center md:justify-start px-6 md:px-20 bg-cover bg-center bg-no-repeat overflow-hidden"
       style={{
         backgroundImage: "url('/skokDoVody.jpg')",
         backgroundSize: "cover",
@@ -28,13 +28,13 @@ const Hero: React.FC = () => {
       />
 
       {/* Content */}
-      <div className="relative z-10 text-left max-w-2xl">
+      <div className="relative z-10 text-center md:text-left max-w-2xl">
         <motion.h1
           initial={{ opacity: 0, y: 80 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
           className={clsx(
-            "text-6xl font-bold mb-6 font-montserrat transition-colors duration-300",
+            "text-5xl md:text-6xl font-bold mb-6 font-montserrat transition-colors duration-300",
             isDarkMode ? "text-blue-100" : "text-white"
           )}
         >
@@ -46,7 +46,7 @@ const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
           className={clsx(
-            "text-2xl mb-8 leading-relaxed font-montserrat transition-colors duration-300",
+            "text-lg md:text-2xl mb-8 leading-relaxed font-montserrat transition-colors duration-300",
             isDarkMode ? "text-blue-200" : "text-gray-100"
           )}
         >

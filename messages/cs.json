@@ -45,13 +45,40 @@
     "title": "Moje nedávné práce",
     "visitWebsite": "Navštívit web",
     "viewProject": "Zobrazit projekt ",
+    "betaWarning": "⚠️ BETA VERZE - Prosím nezadávejte žádné emaily, hesla a ani nic nerezervujte, protože je to stále ve vývoji!",
+    "projectTips": [
+      [
+        "🏢 Profesionální web pro Strunzova Pila představující služby apartmánů s moderním designem a uživatelsky přívětivým rozhraním.",
+        "⚡ Postaven s Next.js, React a TypeScriptem pro rychlé načítání a vynikající uživatelský zážitek.",
+        "🎯 Obsahuje responzivní design s Tailwind CSS zajišťující perfektní zobrazení na všech velikostech obrazovek.",
+        "🚀 Optimalizováno pro SEO a výkon s moderními best practices ve webovém vývoji."
+      ],
+      [
+        "📚 Interaktivní aplikace s kartičkami pro učení nových slov a frází se systémem opakování v intervalech.",
+        "🔐 Bezpečná autentizace uživatelů s bcrypt hashováním hesel a integrací Prisma databáze.",
+        "📧 Emailová funkcionalita pomocí Resend pro notifikace uživatelů a správu účtů.",
+        "🎯 Algoritmus opakování v intervalech pro optimalizaci efektivity učení a dlouhodobé retence."
+      ],
+      [
+        "🤖 Automatizovaný bot pro nákup lístků na Ticketportal s pokročilými vyhledávacími parametry a cílením na události.",
+        "🔧 Postaven s Node.js a Puppeteer pro spolehlivou webovou automatizaci a nákup lístků.",
+        "🛡️ Obsahuje zpracování ReCaptcha a pokročilé error handling pro robustní provoz.",
+        "⚙️ Konfigurovatelné vyhledávací parametry umožňující přizpůsobení pro různé události a preference."
+      ],
+      [
+        "💕 Romantický web s interaktivními srdci a krásnými animacemi počítající speciální okamžiky spolu.",
+        "🎨 Obsahuje vlastní CSS animace a responzivní design, který perfektně funguje na všech zařízeních.",
+        "💝 Postaven s čistým HTML, CSS a JavaScriptem pro optimální výkon a plynulý uživatelský zážitek.",
+        "📱 Mobile-first design zajišťující, že romantický zážitek je perfektní na telefonech a tabletech."
+      ]
+    ],
     "projects": [
       {
         "title": "Můj Love Web",
         "description": "Romantický web počítající dny spolu s interaktivními srdci a krásnými animacemi."
       },
       {
-        "title": "Strunzova Pila",
+        "title": "BETA! Strunzova Pila",
         "description": "Profesionální web pro společnost Strunzova Pila představující jejich služby apartmánů."
       },
       {
@@ -124,6 +151,7 @@
     "contact": "Kontakt",
     "socialMedia": "Sociální sítě",
     "swimmingStatistics": "Plavecké statistiky",
+    "swimmingStatistics2": "SwimCloud",
     "about": "Daniel Mitka",
     "aboutDescription": "Vášnivý vývojář a nadšenec do plavání. ",
     "copyright": "© {year} Daniel Mitka. Všechna práva vyhrazena."

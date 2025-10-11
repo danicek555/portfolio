@@ -257,7 +257,7 @@ export default function RootLayout({
         <meta name="msvalidate.01" content="0D0DAFC7989A1E883D0B80797FAEDBED" />
       </head>
       <body
-        className="transition-colors duration-300 bg-white dark:bg-gray-900"
+        className="transition-colors duration-300"
         style={{
           fontFamily: "var(--font-roboto), var(--font-montserrat), sans-serif",
         }}

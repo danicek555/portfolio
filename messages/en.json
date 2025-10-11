@@ -45,13 +45,40 @@
     "title": "My Recent Works",
     "visitWebsite": "Visit Website",
     "viewProject": "View Project >",
+    "betaWarning": "⚠️ BETA VERSION - Please do not enter any emails, passwords and do not reserve anything because this is still in development!",
+    "projectTips": [
+      [
+        "🏢 Professional website for Strunzova Pila showcasing apartment services with modern design and user-friendly interface.",
+        "⚡ Built with Next.js, React, and TypeScript for fast loading and excellent user experience.",
+        "🎯 Features responsive design with Tailwind CSS ensuring perfect display on all screen sizes.",
+        "🚀 Optimized for SEO and performance with modern web development best practices."
+      ],
+      [
+        "📚 Interactive flashcard application for learning new words and phrases with spaced repetition system.",
+        "🔐 Secure user authentication with bcrypt password hashing and Prisma database integration.",
+        "📧 Email functionality using Resend for user notifications and account management.",
+        "🎯 Spaced repetition algorithm to optimize learning efficiency and long-term retention."
+      ],
+      [
+        "🤖 Automated bot for ticket purchasing on Ticketportal with advanced search parameters and event targeting.",
+        "🔧 Built with Node.js and Puppeteer for reliable web automation and ticket purchasing.",
+        "🛡️ Includes ReCaptcha handling and advanced error handling for robust operation.",
+        "⚙️ Configurable search parameters allowing customization for different events and preferences."
+      ],
+      [
+        "💕 A romantic website with interactive hearts and beautiful animations counting special moments together.",
+        "🎨 Features custom CSS animations and responsive design that works perfectly on all devices.",
+        "💝 Built with pure HTML, CSS, and JavaScript for optimal performance and smooth user experience.",
+        "📱 Mobile-first design approach ensuring the romantic experience is perfect on phones and tablets."
+      ]
+    ],
     "projects": [
       {
         "title": "My Love Website",
         "description": "A romantic website counting days together with interactive hearts and beautiful animations."
       },
       {
-        "title": "Strunzova Pila Website",
+        "title": "BETA! Strunzova Pila Website",
         "description": "A professional website for Strunzova Pila company showcasing their apartment services."
       },
       {
@@ -124,6 +151,7 @@
     "contact": "Contact",
     "socialMedia": "Social Media",
     "swimmingStatistics": "Swimming Statistics",
+    "swimmingStatistics2": "SwimCloud",
     "about": "Daniel Mitka",
     "aboutDescription": "Passionate developer and swimming enthusiast.",
     "copyright": "© {year} Daniel Mitka. All rights reserved."

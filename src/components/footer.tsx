@@ -1,6 +1,13 @@
 "use client";
 
-import { Mail, Phone, ExternalLink, Facebook, Instagram } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  ExternalLink,
+  Facebook,
+  Instagram,
+  Waves,
+} from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 import { useTranslations } from "next-intl";
 import clsx from "clsx";
@@ -69,7 +76,9 @@ const Footer: React.FC = () => {
             <h3 className="text-lg font-semibold mb-4">{t("socialMedia")}</h3>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://www.facebook.com/dan.mitka.5"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={clsx(
                   "transition-colors duration-200",
                   isDarkMode
@@ -92,6 +101,20 @@ const Footer: React.FC = () => {
                 aria-label="Instagram"
               >
                 <Instagram className="w-6 h-6" />
+              </a>
+              <a
+                href="https://www.swimcloud.com/swimmer/1828936"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={clsx(
+                  "transition-colors duration-200",
+                  isDarkMode
+                    ? "text-gray-300 hover:text-white"
+                    : "text-gray-600 hover:text-gray-800"
+                )}
+                aria-label="Swimcloud"
+              >
+                <Waves className="w-6 h-6" />
               </a>
             </div>
             <a
