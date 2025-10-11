@@ -2,7 +2,7 @@
   "About": {
     "badge": "VZESTUPUJÍCÍ HVĚZDA PLAVÁNÍ",
     "title": "Držitel českého národního rekordu",
-    "description": "Daniel Mitka, 16letý elitní plavec ze SK Motorlet Praha, dosáhl pozoruhodných úspěchů v českém plavání. Jeho vrcholným úspěchem je vyplavání národního rekordu jako člen smíšené štafety 4x50m polohový závod na Zimním mistrovství 2022 v Mladé Boleslavi. Soutěží na nejvyšší národní úrovni a pravidelně každým rokem přispívá k výsledkům a týmovému úspěchu SK Motorlet Praha. Se svým prokázaným úspěchem v závodním plavání se nyní Daniel zaměřuje na připojení k týmu Colorado Hilltoppers při studiu v USA.",
+    "description": "Daniel Mitka, 17letý elitní plavec ze SK Motorlet Praha, dosáhl pozoruhodných úspěchů v českém plavání. Jeho vrcholným úspěchem je vyplavání národního rekordu jako člen smíšené štafety 4x50m polohový závod na Zimním mistrovství 2022 v Mladé Boleslavi. Soutěží na nejvyšší národní úrovni a pravidelně každým rokem přispívá k výsledkům a týmovému úspěchu SK Motorlet Praha. Se svým prokázaným úspěchem v závodním plavání se nyní Daniel zaměřuje na plavání v týmu Colorado Hilltoppers při studiu v USA.",
     "cta": "Kontaktujte mě"
   },
   "Hero": {
@@ -27,15 +27,15 @@
         "description": "Sledujte Danielovu neuvěřitelnou cestu k titulu světového vicemistra v záchranářství."
       },
       {
-        "title": "České juniorské mistrovství v plavání 2024",
+        "title": "České juniorské mistrovství v Podolí 2024",
         "description": "Zažijte vrchol českého plaveckého závodění na prestižním mistrovství ČR v Podolí."
       },
       {
-        "title": "Plzeň Czech Open Mistrovství 2024",
+        "title": "Mistrovství ČR 2025 OPEN Plzeň",
         "description": "Velká mezinárodní plavecká soutěž v Plzni předvádějící elitní výkony napříč různými plaveckými disciplínami."
       },
       {
-        "title": "České juniorské mistrovství 2025",
+        "title": "České juniorské mistrovství v Podolí 2025",
         "description": "Prestižní juniorské mistrovství republiky konané v plaveckém areálu Podolí, představující budoucí hvězdy českého plavání."
       }
     ]
@@ -53,6 +53,14 @@
       {
         "title": "Strunzova Pila",
         "description": "Profesionální web pro společnost Strunzova Pila představující jejich služby apartmánů."
+      },
+      {
+        "title": "Automatický bot pro nákup lístků na Ticketportal",
+        "description": "Bot, který automaticky nakupuje lístky na Ticketportal pro konkrétní událost s konkrétními vyhledávacími parametry."
+      },
+      {
+        "title": "BETA! Duocards Web Aplikace",
+        "description": "Web pro naučení nových slov a frází s flashcards."
       }
     ]
   },

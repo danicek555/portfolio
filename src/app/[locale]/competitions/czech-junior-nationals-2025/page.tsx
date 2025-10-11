@@ -140,7 +140,7 @@ export default async function PodoliCompetitionPage25({
 
   // Generate SportsEvent Schema.org structured data with locale support
   const eventNames = {
-    en: "Czech National Junior Championship Podolí 2025",
+    en: "Czech Junior National Championship Podolí 2025",
     cs: "České juniorské mistrovství Podolí 2025",
   };
 

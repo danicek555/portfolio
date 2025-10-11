@@ -15,7 +15,7 @@ export default function AustraliaCompetitionClient() {
       position: t("results.achievements.0.position"),
       event: t("results.achievements.0.event"),
       description: t("results.achievements.0.description"),
-      highlight: true,
+      isSilver: true,
     },
     {
       position: t("results.achievements.1.position"),
@@ -251,25 +251,23 @@ export default function AustraliaCompetitionClient() {
                   key={index}
                   className={clsx(
                     "p-6 rounded-xl transition-all duration-300 hover:scale-105",
-                    achievement.highlight
+                    achievement.isSilver
                       ? isDarkMode
-                        ? "bg-gradient-to-br from-yellow-900/50 to-yellow-800/50 border-2 border-yellow-500"
-                        : "bg-gradient-to-br from-yellow-50 to-yellow-100 border-2 border-yellow-300"
+                        ? "bg-gradient-to-br from-gray-700/50 to-gray-600/50 border-2 border-gray-400"
+                        : "bg-gradient-to-br from-gray-100 to-gray-200 border-2 border-gray-300"
                       : isDarkMode
                       ? "bg-gray-800 hover:bg-gray-700"
                       : "bg-gray-50 hover:bg-gray-100"
                   )}
                 >
                   <div className="text-center">
-                    {achievement.highlight && (
-                      <Award className="w-8 h-8 text-yellow-600 mx-auto mb-2" />
+                    {achievement.isSilver && (
+                      <Award className="w-8 h-8 text-gray-500 mx-auto mb-2" />
                     )}
                     <span
                       className={clsx(
                         "text-4xl font-bold block mb-3",
-                        achievement.highlight
-                          ? "text-yellow-600"
-                          : "text-blue-600"
+                        achievement.isSilver ? "text-gray-500" : "text-blue-600"
                       )}
                     >
                       {achievement.position}
@@ -281,9 +279,6 @@ export default function AustraliaCompetitionClient() {
                       )}
                     >
                       {achievement.event}
-                      <span className="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
-                        50m bazén
-                      </span>
                     </h3>
                     <p
                       className={clsx(

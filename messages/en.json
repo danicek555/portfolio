@@ -2,7 +2,7 @@
   "About": {
     "badge": "RISING STAR SWIMMER",
     "title": "Czech National Record Holder",
-    "description": "Daniel Mitka, a 16-year-old elite swimmer from SK Motorlet Praha, has achieved remarkable success in Czech swimming. His standout achievement is setting a national record as part of the mixed 4x50m medley relay at the 2022 Winter Championships in Mladá Boleslav. Competing at the highest national level, Daniel contributes every year to the performance and overall success of SK Motorlet Praha. With his proven track record in competitive swimming, he is now focused on joining the Colorado Hilltoppers team while pursuing his studies in the USA.",
+    "description": "Daniel Mitka, a 17-year-old elite swimmer from SK Motorlet Praha, has achieved remarkable success in Czech swimming. His standout achievement is setting a national record as part of the mixed 4x50m medley relay at the 2022 Winter Championships in Mladá Boleslav. Competing at the highest national level, Daniel contributes every year to the performance and overall success of SK Motorlet Praha. With his proven track record in competitive swimming, he is now focused on swimming in the Colorado Hilltoppers team while pursuing his studies in the USA.",
     "cta": "Get in touch"
   },
   "Hero": {
@@ -31,11 +31,11 @@
         "description": "Experience the pinnacle of Czech swimming competition at the prestigious MCR Podolí championship."
       },
       {
-        "title": "Plzen Czech Open Championship 2024",
+        "title": "Czech National Swimming Championship 2025",
         "description": "Major international swimming competition in Plzen showcasing elite performance across multiple swimming disciplines."
       },
       {
-        "title": "Czech National Junior Championship 2025",
+        "title": "Czech Junior National Championship 2025",
         "description": "Prestigious junior national championship held at Podolí swimming complex, showcasing the future stars of Czech swimming."
       }
     ]
@@ -53,6 +53,14 @@
       {
         "title": "Strunzova Pila Website",
         "description": "A professional website for Strunzova Pila company showcasing their apartment services."
+      },
+      {
+        "title": "Automatic Bot for Buying Tickets on Ticketportal",
+        "description": "A bot that automatically buys tickets on Ticketportal for a specific event with specific search parameters."
+      },
+      {
+        "title": "BETA! Duocards Website",
+        "description": "A website for learning new words and phrases with flashcards."
       }
     ]
   },

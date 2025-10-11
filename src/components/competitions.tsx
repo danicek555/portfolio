@@ -20,6 +20,7 @@ const Competitions: React.FC = () => {
   const t = useTranslations("Competitions");
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const competitions: Competition[] = [
     {
@@ -89,20 +90,28 @@ const Competitions: React.FC = () => {
   const isAtEnd = currentSlide >= maxSlide;
 
   const nextSlide = useCallback(() => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
     setCurrentSlide((prev) => {
       const newSlide = prev + 1;
       // Stop at the boundary instead of wrapping
       return newSlide > maxSlide ? prev : newSlide;
     });
-  }, [maxSlide]);
+    // Reset transition flag after animation duration
+    setTimeout(() => setIsTransitioning(false), 250);
+  }, [maxSlide, isTransitioning]);
 
   const prevSlide = useCallback(() => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
     setCurrentSlide((prev) => {
       const newSlide = prev - 1;
       // Stop at the boundary instead of wrapping
       return newSlide < 0 ? prev : newSlide;
     });
-  }, []);
+    // Reset transition flag after animation duration
+    setTimeout(() => setIsTransitioning(false), 250);
+  }, [isTransitioning]);
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
@@ -143,16 +152,18 @@ const Competitions: React.FC = () => {
   // Handle wheel events for trackpad scrolling
   const handleWheel = useCallback(
     (event: React.WheelEvent) => {
-      if (!hasMoreThanMax || isMobile) return;
+      if (!hasMoreThanMax || isMobile || isTransitioning) return;
 
       const deltaX = event.deltaX;
       const deltaY = event.deltaY;
 
       // Only prevent default if there's significant horizontal movement
-      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+      // Higher threshold to ensure one section per scroll gesture
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
         event.preventDefault();
         event.stopPropagation();
 
+        // Move only one section per scroll gesture
         if (deltaX > 0 && !isAtEnd) {
           nextSlide();
         } else if (deltaX < 0 && !isAtStart) {
@@ -160,7 +171,15 @@ const Competitions: React.FC = () => {
         }
       }
     },
-    [hasMoreThanMax, isMobile, nextSlide, prevSlide, isAtStart, isAtEnd]
+    [
+      hasMoreThanMax,
+      isMobile,
+      isTransitioning,
+      nextSlide,
+      prevSlide,
+      isAtStart,
+      isAtEnd,
+    ]
   );
 
   const renderCompetitionCard = (comp: Competition, index: number) => (
@@ -263,6 +282,8 @@ const Competitions: React.FC = () => {
               style={{
                 touchAction: "pan-y pinch-zoom",
                 overscrollBehavior: "contain",
+                willChange: "transform",
+                transform: "translateZ(0)", // Force hardware acceleration
               }}
             >
               <motion.div
@@ -272,8 +293,9 @@ const Competitions: React.FC = () => {
                   left: -(competitions.length - slidesToShow) * 400, // Approximate slide width
                   right: 0,
                 }}
-                dragElastic={0.1}
+                dragElastic={0.05}
                 dragMomentum={false}
+                dragTransition={{ bounceStiffness: 300, bounceDamping: 30 }}
                 onDragEnd={(_, info) => {
                   const threshold = 50;
                   if (info.offset.x > threshold && !isAtStart) {
@@ -288,15 +310,18 @@ const Competitions: React.FC = () => {
                   }rem)`,
                 }}
                 transition={{
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 30,
+                  type: "tween",
+                  duration: 0.25,
+                  ease: [0.25, 0.46, 0.45, 0.94], // Custom easing for smoother motion
                 }}
                 style={{
                   userSelect: "none",
                   WebkitUserSelect: "none",
                   MozUserSelect: "none",
                   msUserSelect: "none",
+                  willChange: "transform",
+                  backfaceVisibility: "hidden",
+                  WebkitBackfaceVisibility: "hidden",
                 }}
               >
                 {competitions.map((comp, index) => (
