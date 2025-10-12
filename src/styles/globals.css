@@ -19,17 +19,32 @@
 
 html {
   background: #ffffff !important;
+  background-color: #ffffff !important;
   transition: background-color 0.3s ease;
+}
+
+/* Force Safari to start with white background regardless of theme state */
+html:not(.dark) {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+/* Safari-specific initial background fix */
+html[data-theme="dark"] {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
 }
 
 html.dark {
   background: #1f2937 !important;
+  background-color: #1f2937 !important;
   --background: #1f2937;
   --foreground: #ededed;
 }
 
 body {
   background: #ffffff !important;
+  background-color: #ffffff !important;
   color: #171717;
   font-family: Arial, Helvetica, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -38,16 +53,62 @@ body {
 
 html.dark body {
   background: #1f2937 !important;
+  background-color: #1f2937 !important;
   color: #ededed;
 }
 
 /* Force Safari to respect background changes */
 #__next {
   background: inherit;
+  background-color: inherit;
 }
 
 html.dark #__next {
   background: #1f2937 !important;
+  background-color: #1f2937 !important;
+}
+
+/* Safari-specific override for initial load */
+@supports (-webkit-touch-callout: none) {
+  html {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+  }
+
+  /* Override any dark theme on initial load in Safari */
+  html[data-theme="dark"] {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+  }
+
+  /* Only apply dark background after React hydration */
+  html.dark {
+    background: #1f2937 !important;
+    background-color: #1f2937 !important;
+  }
+}
+
+/* Force Safari to show white background immediately on page load */
+html,
+body {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+/* Override any system dark mode preference for initial load */
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+  }
+}
+
+/* Only apply dark mode after React has loaded */
+html.dark,
+html.dark body {
+  background: #1f2937 !important;
+  background-color: #1f2937 !important;
 }
 
 /* Line clamp utilities for text truncation */

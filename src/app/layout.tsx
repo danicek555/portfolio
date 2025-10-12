@@ -201,7 +201,7 @@ export const generateViewport = () => ({
   colorScheme: "light dark",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#111827" },
+    { media: "(prefers-color-scheme: dark)", color: "#1f2937" },
   ],
 });
 
@@ -230,6 +230,20 @@ export default function RootLayout({
           }}
         />
 
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+            html, body { 
+              background-color: #ffffff !important; 
+              background: #ffffff !important;
+            }
+            html[data-theme="dark"], html[data-theme="dark"] body {
+              background-color: #ffffff !important;
+              background: #ffffff !important;
+            }
+          `,
+          }}
+        />
         <Script id="theme-mode" strategy="beforeInteractive">
           {`
             (function () {
