@@ -64,6 +64,21 @@ const nextConfig: NextConfig = {
         destination: "/cs/competitions/czech-open-nationals-2025",
         permanent: true,
       },
+      // KOŘEN www.danielmitka.com -> rovnou /en (nahradí 307 jazykový hop za 308)
+      {
+        source: "/",
+        has: [{ type: "host", value: "www.danielmitka.com" }],
+        destination: "/en",
+        permanent: true,
+      },
+
+      // KOŘEN www.steroid.danielmitka.com -> rovnou /en (taky nahradí 307)
+      {
+        source: "/",
+        has: [{ type: "host", value: "www.steroid.danielmitka.com" }],
+        destination: "https://steroid.danielmitka.com/en",
+        permanent: true,
+      },
     ];
   },
   images: {
