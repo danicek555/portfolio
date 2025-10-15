@@ -81,7 +81,6 @@ html.dark #__next {
     background-color: #ffffff !important;
   }
 
-  /* Only apply dark background after React hydration */
   html.dark {
     background: #1f2937 !important;
     background-color: #1f2937 !important;
@@ -104,7 +103,6 @@ body {
   }
 }
 
-/* Only apply dark mode after React has loaded */
 html.dark,
 html.dark body {
   background: #1f2937 !important;

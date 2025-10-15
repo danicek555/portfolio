@@ -4,6 +4,48 @@ import createNextIntlPlugin from "next-intl/plugin";
 const nextConfig: NextConfig = {
   async redirects() {
     return [
+      // --- Doména danielmitka.com (hlavní web) ---
+
+      // 1) Kořen apexu (http i https, non-www host) → rovnou na kanonické www + /en
+      {
+        source: "/",
+        has: [{ type: "host", value: "danielmitka.com" }],
+        destination: "https://www.danielmitka.com/en",
+        permanent: true,
+      },
+
+      // 2) Všechny ostatní cesty na apexu → stejná cesta na www (zkrátí non-www→www na 1 hop)
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "danielmitka.com" }],
+        destination: "https://www.danielmitka.com/:path*",
+        permanent: true,
+      },
+
+      // 3) Normalizace lomítka u /en/ a /cs/ (omezí dodatečný hop)
+      { source: "/en/", destination: "/en", permanent: true },
+      { source: "/cs/", destination: "/cs", permanent: true },
+
+      // --- Subdoména steroid.danielmitka.com ---
+
+      // 4) www.sub → sub (zkrátí www.steroid → steroid na 1 hop)
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.steroid.danielmitka.com" }],
+        destination: "https://steroid.danielmitka.com/:path*",
+        permanent: true,
+      },
+
+      // 5) Kořen www.sub → rovnou /en na čisté subdoméně
+      {
+        source: "/",
+        has: [{ type: "host", value: "www.steroid.danielmitka.com" }],
+        destination: "https://steroid.danielmitka.com/en",
+        permanent: true,
+      },
+
+      // --- Obsahové přesměrování slugů (trvale) ---
+
       // EN
       {
         source: "/en/competitions/ostrava",
