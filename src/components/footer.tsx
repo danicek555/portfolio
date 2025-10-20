@@ -75,47 +75,107 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">{t("socialMedia")}</h3>
             <div className="flex space-x-4">
-              <a
-                href="https://www.facebook.com/dan.mitka.5"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={clsx(
-                  "transition-colors duration-200",
-                  isDarkMode
-                    ? "text-gray-300 hover:text-white"
-                    : "text-gray-600 hover:text-gray-800"
-                )}
-                aria-label="Facebook"
-              >
-                <Facebook className="w-6 h-6" />
-              </a>
-              <a
-                href="https://www.instagram.com/dan_mitka"
-                target="_blank"
-                className={clsx(
-                  "transition-colors duration-200",
-                  isDarkMode
-                    ? "text-gray-300 hover:text-white"
-                    : "text-gray-600 hover:text-gray-800"
-                )}
-                aria-label="Instagram"
-              >
-                <Instagram className="w-6 h-6" />
-              </a>
-              <a
-                href="https://www.swimcloud.com/swimmer/1828936"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={clsx(
-                  "transition-colors duration-200",
-                  isDarkMode
-                    ? "text-gray-300 hover:text-white"
-                    : "text-gray-600 hover:text-gray-800"
-                )}
-                aria-label="Swimcloud"
-              >
-                <Waves className="w-6 h-6" />
-              </a>
+              <div className="relative group">
+                <a
+                  href="https://www.facebook.com/dan.mitka.5"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={clsx(
+                    "transition-colors duration-200",
+                    isDarkMode
+                      ? "text-gray-300 hover:text-white"
+                      : "text-gray-600 hover:text-gray-800"
+                  )}
+                  aria-label="Facebook"
+                >
+                  <Facebook className="w-6 h-6" />
+                </a>
+                <div
+                  className={clsx(
+                    "absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 rounded-lg text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10",
+                    isDarkMode
+                      ? "bg-gray-700 text-white"
+                      : "bg-gray-800 text-white"
+                  )}
+                >
+                  {t("facebookTooltip")}
+                  <div
+                    className={clsx(
+                      "absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2",
+                      isDarkMode
+                        ? "border-l-transparent border-r-transparent border-t-gray-700"
+                        : "border-l-transparent border-r-transparent border-t-gray-800"
+                    )}
+                  ></div>
+                </div>
+              </div>
+              <div className="relative group">
+                <a
+                  href="https://www.instagram.com/dan_mitka"
+                  target="_blank"
+                  className={clsx(
+                    "transition-colors duration-200",
+                    isDarkMode
+                      ? "text-gray-300 hover:text-white"
+                      : "text-gray-600 hover:text-gray-800"
+                  )}
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-6 h-6" />
+                </a>
+                <div
+                  className={clsx(
+                    "absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 rounded-lg text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10",
+                    isDarkMode
+                      ? "bg-gray-700 text-white"
+                      : "bg-gray-800 text-white"
+                  )}
+                >
+                  {t("instagramTooltip")}
+                  <div
+                    className={clsx(
+                      "absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2",
+                      isDarkMode
+                        ? "border-l-transparent border-r-transparent border-t-gray-700"
+                        : "border-l-transparent border-r-transparent border-t-gray-800"
+                    )}
+                  ></div>
+                </div>
+              </div>
+              <div className="relative group">
+                <a
+                  href="https://www.swimcloud.com/swimmer/1828936"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={clsx(
+                    "transition-colors duration-200",
+                    isDarkMode
+                      ? "text-gray-300 hover:text-white"
+                      : "text-gray-600 hover:text-gray-800"
+                  )}
+                  aria-label="Swimcloud"
+                >
+                  <Waves className="w-6 h-6" />
+                </a>
+                <div
+                  className={clsx(
+                    "absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 rounded-lg text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10",
+                    isDarkMode
+                      ? "bg-gray-700 text-white"
+                      : "bg-gray-800 text-white"
+                  )}
+                >
+                  {t("swimcloudTooltip")}
+                  <div
+                    className={clsx(
+                      "absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2",
+                      isDarkMode
+                        ? "border-l-transparent border-r-transparent border-t-gray-700"
+                        : "border-l-transparent border-r-transparent border-t-gray-800"
+                    )}
+                  ></div>
+                </div>
+              </div>
             </div>
             <a
               href="https://steroid.danielmitka.com"

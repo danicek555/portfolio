@@ -188,46 +188,88 @@ export default function PlzenCompetitionClient() {
         </div>
 
         <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <span className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider">
+          <motion.div
+            className="flex items-center justify-center gap-3 mb-6"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.span
+              className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider"
+              whileHover={{ scale: 1.05, rotate: 2 }}
+              whileTap={{ scale: 0.95 }}
+            >
               {locale === "en" ? "Czech Nationals" : "Mistrovství ČR"}
-            </span>
-            <span className="bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+            </motion.span>
+            <motion.span
+              className="bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold"
+              whileHover={{ scale: 1.05, rotate: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
               {locale === "en" ? "3rd Round CP" : "3. kolo ČP"}
-            </span>
-          </div>
+            </motion.span>
+          </motion.div>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-            {locale === "en"
-              ? "Czech Open Nationals 2025"
-              : "Mistrovství ČR 2025 OPEN"}
-          </h1>
+          <motion.h1
+            className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              {locale === "en"
+                ? "Czech Open Nationals 2025"
+                : "Mistrovství ČR 2025 OPEN"}
+            </motion.span>
+          </motion.h1>
 
-          <div
+          <motion.div
             className={clsx(
               "rounded-2xl p-8 inline-flex items-center gap-6 shadow-2xl transition-colors duration-300",
               isDarkMode
                 ? "bg-gray-800/95 text-white"
                 : "bg-white/95 text-gray-900"
             )}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            whileHover={{ scale: 1.02, y: -5 }}
           >
-            <div className="text-6xl">🏊‍♂️</div>
+            <motion.div
+              className="text-6xl"
+              animate={{ rotate: [0, 5, -5, 0] }}
+              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+            >
+              🏊‍♂️
+            </motion.div>
             <div className="text-left">
-              <h3 className="text-2xl font-bold mb-2">
+              <motion.h3
+                className="text-2xl font-bold mb-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}
+              >
                 {locale === "en" ? "Czech Championship" : "České mistrovství"}
-              </h3>
-              <p
+              </motion.h3>
+              <motion.p
                 className={clsx(
                   "text-lg transition-colors duration-300",
                   isDarkMode ? "text-gray-300" : "text-gray-600"
                 )}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}
               >
                 {locale === "en"
                   ? "3rd Round Czech Cup in Plzen"
                   : "3. kolo Českého poháru v Plzni"}
-              </p>
+              </motion.p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -235,14 +277,39 @@ export default function PlzenCompetitionClient() {
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           {/* Event Info */}
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <div
+          <motion.div
+            className="grid md:grid-cols-3 gap-8 mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.2,
+                },
+              },
+            }}
+          >
+            <motion.div
               className={clsx(
                 "flex items-center gap-4 p-6 rounded-xl transition-colors duration-300",
                 isDarkMode ? "bg-gray-800" : "bg-gray-50"
               )}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ duration: 0.3 }}
             >
-              <MapPin className="w-8 h-8 text-blue-600" />
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <MapPin className="w-8 h-8 text-blue-600" />
+              </motion.div>
               <div>
                 <h3
                   className={clsx(
@@ -263,14 +330,25 @@ export default function PlzenCompetitionClient() {
                     : "Plzeň, Česká republika"}
                 </p>
               </div>
-            </div>
-            <div
+            </motion.div>
+            <motion.div
               className={clsx(
                 "flex items-center gap-4 p-6 rounded-xl transition-colors duration-300",
                 isDarkMode ? "bg-gray-800" : "bg-gray-50"
               )}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ duration: 0.3 }}
             >
-              <Calendar className="w-8 h-8 text-blue-600" />
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Calendar className="w-8 h-8 text-blue-600" />
+              </motion.div>
               <div>
                 <h3
                   className={clsx(
@@ -289,14 +367,25 @@ export default function PlzenCompetitionClient() {
                   15.05.2025 - 18.05.2025
                 </p>
               </div>
-            </div>
-            <div
+            </motion.div>
+            <motion.div
               className={clsx(
                 "flex items-center gap-4 p-6 rounded-xl transition-colors duration-300",
                 isDarkMode ? "bg-gray-800" : "bg-gray-50"
               )}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ duration: 0.3 }}
             >
-              <Trophy className="w-8 h-8 text-blue-600" />
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Trophy className="w-8 h-8 text-blue-600" />
+              </motion.div>
               <div>
                 <h3
                   className={clsx(
@@ -317,8 +406,8 @@ export default function PlzenCompetitionClient() {
                     : "Mistrovství ČR OPEN"}
                 </p>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Story */}
           <div className="grid lg:grid-cols-2 gap-12 mb-16">
@@ -378,20 +467,48 @@ export default function PlzenCompetitionClient() {
           </div>
 
           {/* Competition Events */}
-          <div>
-            <h2
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+          >
+            <motion.h2
               className={clsx(
                 "text-4xl font-bold mb-8 text-center transition-colors duration-300",
                 isDarkMode ? "text-white" : "text-gray-900"
               )}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
             >
               {locale === "en"
                 ? "Championship Results"
                 : "Výsledky mistrovství"}
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
+            </motion.h2>
+            <motion.div
+              className="grid md:grid-cols-2 gap-6"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.15,
+                  },
+                },
+              }}
+            >
               {events.map((event, index) => (
-                <div
+                <motion.div
                   key={index}
                   className={clsx(
                     "p-6 rounded-xl border transition-all duration-300 hover:shadow-lg",
@@ -399,9 +516,24 @@ export default function PlzenCompetitionClient() {
                       ? "bg-gradient-to-br from-blue-900/30 to-green-900/30 border-gray-700"
                       : "bg-gradient-to-br from-blue-50 to-green-50 border-gray-200"
                   )}
+                  variants={{
+                    hidden: { opacity: 0, y: 30, scale: 0.95 },
+                    visible: { opacity: 1, y: 0, scale: 1 },
+                  }}
+                  whileHover={{
+                    scale: 1.02,
+                    y: -5,
+                    transition: { duration: 0.2 },
+                  }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <div className="flex items-start gap-4">
-                    <Target className="w-8 h-8 text-blue-600 mt-1" />
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Target className="w-8 h-8 text-blue-600 mt-1" />
+                    </motion.div>
                     <div className="flex-1">
                       <h3
                         className={clsx(
@@ -415,17 +547,21 @@ export default function PlzenCompetitionClient() {
                         </span>
                       </h3>
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs font-semibold">
+                        <motion.span
+                          className="bg-blue-600 text-white px-2 py-1 rounded text-xs font-semibold"
+                          whileHover={{ scale: 1.05 }}
+                        >
                           {locale === "en" ? event.resultEn : event.result}
-                        </span>
-                        <span
+                        </motion.span>
+                        <motion.span
                           className={clsx(
                             "text-sm transition-colors duration-300",
                             isDarkMode ? "text-gray-300" : "text-gray-600"
                           )}
+                          whileHover={{ scale: 1.05 }}
                         >
                           {event.time}
-                        </span>
+                        </motion.span>
                       </div>
                       <p
                         className={clsx(
@@ -439,10 +575,10 @@ export default function PlzenCompetitionClient() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Video Section */}
           <motion.div
@@ -515,52 +651,135 @@ export default function PlzenCompetitionClient() {
           </motion.div>
 
           {/* Championship Highlights */}
-          <div className="mt-16 text-center">
-            <h2
+          <motion.div
+            className="mt-16 text-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.4,
+                },
+              },
+            }}
+          >
+            <motion.h2
               className={clsx(
                 "text-4xl font-bold mb-8 transition-colors duration-300",
                 isDarkMode ? "text-white" : "text-gray-900"
               )}
+              variants={{
+                hidden: { opacity: 0, y: 30, scale: 0.9 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: {
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 15,
+                  },
+                },
+              }}
             >
               {locale === "en"
                 ? "Championship Experience"
                 : "Zkušenost z mistrovství"}
-            </h2>
-            <div
+            </motion.h2>
+            <motion.div
               className={clsx(
                 "rounded-2xl p-8 transition-colors duration-300",
                 isDarkMode
                   ? "bg-gradient-to-r from-blue-900/30 to-green-900/30"
                   : "bg-gradient-to-r from-blue-50 to-green-50"
               )}
+              variants={{
+                hidden: { opacity: 0, scale: 0.8, rotateX: -10 },
+                visible: {
+                  opacity: 1,
+                  scale: 1,
+                  rotateX: 0,
+                  transition: {
+                    type: "spring",
+                    stiffness: 80,
+                    damping: 15,
+                  },
+                },
+              }}
+              whileHover={{
+                scale: 1.02,
+                y: -5,
+                boxShadow: "0 25px 50px rgba(0, 0, 0, 0.15)",
+              }}
             >
               <div className="max-w-3xl mx-auto">
-                <p
+                <motion.p
                   className={clsx(
                     "text-xl leading-relaxed mb-6 transition-colors duration-300",
                     isDarkMode ? "text-gray-300" : "text-gray-700"
                   )}
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        type: "spring",
+                        stiffness: 100,
+                        damping: 20,
+                      },
+                    },
+                  }}
                 >
                   {locale === "en"
                     ? "The Czech Open Nationals 2025 in Plzen provided an excellent platform for developing competitive skills and gaining valuable experience in a supportive yet competitive environment."
                     : "Mistrovství ČR 2025 OPEN v Plzni poskytlo vynikající platformu pro rozvoj konkurenčních dovedností a získání cenných zkušeností v podporujícím, ale zároveň konkurenčním prostředí."}
-                </p>
-                <div className="flex items-center justify-center gap-4">
-                  <Trophy className="w-8 h-8 text-blue-600" />
-                  <span
+                </motion.p>
+                <motion.div
+                  className="flex items-center justify-center gap-4"
+                  variants={{
+                    hidden: { opacity: 0, y: 20, scale: 0.8 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                      transition: {
+                        type: "spring",
+                        stiffness: 120,
+                        damping: 15,
+                      },
+                    },
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <motion.div
+                    whileHover={{
+                      scale: 1.2,
+                      rotate: 360,
+                      color: "#2563eb",
+                    }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <Trophy className="w-8 h-8 text-blue-600" />
+                  </motion.div>
+                  <motion.span
                     className={clsx(
                       "text-lg font-semibold transition-colors duration-300",
                       isDarkMode ? "text-gray-200" : "text-gray-800"
                     )}
+                    whileHover={{ scale: 1.05 }}
                   >
                     {locale === "en"
                       ? "National Level Development"
                       : "Rozvoj na národní úrovni"}
-                  </span>
-                </div>
+                  </motion.span>
+                </motion.div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </div>

@@ -23,6 +23,14 @@ export const blogPosts: BlogPost[] = [
     date: "2025-09-01T12:00:00.000Z",
     content: "Coming soon... ",
   },
+  {
+    slug: "first-day-american-school",
+    title: "My first day in american school",
+    excerpt:
+      "How I organize swimming, school, and coding projects without burning out.",
+    date: "2025-10-10T12:00:00.000Z",
+    content: "Coming soon... ",
+  },
 ];
 
 export const blogPostsByLocale: Record<string, BlogPost[]> = {
@@ -41,6 +49,13 @@ export const blogPostsByLocale: Record<string, BlogPost[]> = {
       title: "Balanc mezi tréninkem a životem",
       excerpt: "Jak zvládám plavání, školu a programování, aniž bych vyhořel.",
       date: "2025-09-01T12:00:00.000Z",
+      content: "Coming soon... ",
+    },
+    {
+      slug: "first-day-american-school",
+      title: "Můj první den v americké škole",
+      excerpt: "Jak jsem se cítil první den v americké škole.",
+      date: "2025-10-10T12:00:00.000Z",
       content: "Coming soon... ",
     },
   ],

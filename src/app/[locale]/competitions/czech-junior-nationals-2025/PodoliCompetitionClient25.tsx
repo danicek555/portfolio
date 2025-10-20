@@ -199,43 +199,92 @@ export default function PodoliCompetitionClient25() {
         </div>
 
         <div className="relative z-20 text-center max-w-4xl mx-auto px-6">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <span className="bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider">
+          <motion.div
+            className="flex items-center justify-center gap-3 mb-6"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.span
+              className="bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider"
+              whileHover={{ scale: 1.05, rotate: 2 }}
+              whileTap={{ scale: 0.95 }}
+            >
               {t("hero.badge1")}
-            </span>
-            <span className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+            </motion.span>
+            <motion.span
+              className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold"
+              whileHover={{ scale: 1.05, rotate: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
               {t("hero.badge2")}
-            </span>
-          </div>
+            </motion.span>
+          </motion.div>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-            {t("hero.title")}
-            <span className="block text-amber-400">{t("hero.subtitle")}</span>
-          </h1>
+          <motion.h1
+            className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              {t("hero.title")}
+            </motion.span>
+            <motion.span
+              className="block text-amber-400"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              {t("hero.subtitle")}
+            </motion.span>
+          </motion.h1>
 
-          <div
+          <motion.div
             className={clsx(
               "rounded-2xl p-8 inline-flex items-center gap-6 shadow-2xl transition-colors duration-300",
               isDarkMode
                 ? "bg-gray-800/95 text-white"
                 : "bg-white/95 text-gray-900"
             )}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            whileHover={{ scale: 1.02, y: -5 }}
           >
-            <div className="text-6xl">🥉</div>
+            <motion.div
+              className="text-6xl"
+              animate={{ rotate: [0, 5, -5, 0] }}
+              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+            >
+              🥉
+            </motion.div>
             <div className="text-left">
-              <h3 className="text-2xl font-bold mb-2">
+              <motion.h3
+                className="text-2xl font-bold mb-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}
+              >
                 {t("hero.eventTitle")}
-              </h3>
-              <p
+              </motion.h3>
+              <motion.p
                 className={clsx(
                   "text-lg transition-colors duration-300",
                   isDarkMode ? "text-gray-300" : "text-gray-600"
                 )}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}
               >
                 {t("hero.eventDescription")}
-              </p>
+              </motion.p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -243,14 +292,39 @@ export default function PodoliCompetitionClient25() {
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           {/* Event Info */}
-          <div className="grid md:grid-cols-4 gap-6 mb-16">
-            <div
+          <motion.div
+            className="grid md:grid-cols-4 gap-6 mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.2,
+                },
+              },
+            }}
+          >
+            <motion.div
               className={clsx(
                 "flex items-center gap-4 p-6 rounded-xl transition-colors duration-300",
                 isDarkMode ? "bg-gray-800" : "bg-gray-50"
               )}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ duration: 0.3 }}
             >
-              <MapPin className="w-8 h-8 text-amber-600" />
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <MapPin className="w-8 h-8 text-amber-600" />
+              </motion.div>
               <div>
                 <h3
                   className={clsx(
@@ -269,14 +343,25 @@ export default function PodoliCompetitionClient25() {
                   {t("info.locationValue")}
                 </p>
               </div>
-            </div>
-            <div
+            </motion.div>
+            <motion.div
               className={clsx(
                 "flex items-center gap-4 p-6 rounded-xl transition-colors duration-300",
                 isDarkMode ? "bg-gray-800" : "bg-gray-50"
               )}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ duration: 0.3 }}
             >
-              <Calendar className="w-8 h-8 text-amber-600" />
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Calendar className="w-8 h-8 text-amber-600" />
+              </motion.div>
               <div>
                 <h3
                   className={clsx(
@@ -295,14 +380,25 @@ export default function PodoliCompetitionClient25() {
                   {t("info.dateValue")}
                 </p>
               </div>
-            </div>
-            <div
+            </motion.div>
+            <motion.div
               className={clsx(
                 "flex items-center gap-4 p-6 rounded-xl transition-colors duration-300",
                 isDarkMode ? "bg-gray-800" : "bg-gray-50"
               )}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ duration: 0.3 }}
             >
-              <Trophy className="w-8 h-8 text-amber-600" />
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Trophy className="w-8 h-8 text-amber-600" />
+              </motion.div>
               <div>
                 <h3
                   className={clsx(
@@ -321,14 +417,25 @@ export default function PodoliCompetitionClient25() {
                   {t("info.levelValue")}
                 </p>
               </div>
-            </div>
-            <div
+            </motion.div>
+            <motion.div
               className={clsx(
                 "flex items-center gap-4 p-6 rounded-xl transition-colors duration-300",
                 isDarkMode ? "bg-gray-800" : "bg-gray-50"
               )}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ duration: 0.3 }}
             >
-              <Medal className="w-8 h-8 text-amber-600" />
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Medal className="w-8 h-8 text-amber-600" />
+              </motion.div>
               <div>
                 <h3
                   className={clsx(
@@ -347,8 +454,8 @@ export default function PodoliCompetitionClient25() {
                   {t("info.achievementValue")}
                 </p>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Story Section */}
           <div className="grid lg:grid-cols-2 gap-12 mb-16">
@@ -400,18 +507,46 @@ export default function PodoliCompetitionClient25() {
           </div>
 
           {/* Results Section */}
-          <div>
-            <h2
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+          >
+            <motion.h2
               className={clsx(
                 "text-4xl font-bold mb-8 text-center transition-colors duration-300",
                 isDarkMode ? "text-white" : "text-gray-900"
               )}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
             >
               {t("results.title")}
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
+            </motion.h2>
+            <motion.div
+              className="grid md:grid-cols-2 gap-6"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.15,
+                  },
+                },
+              }}
+            >
               {results.map((result, index) => (
-                <div
+                <motion.div
                   key={index}
                   className={clsx(
                     "p-6 rounded-xl border transition-all duration-300 hover:shadow-lg",
@@ -419,13 +554,28 @@ export default function PodoliCompetitionClient25() {
                       ? "bg-gradient-to-br from-amber-900/30 to-blue-900/30 border-gray-700"
                       : "bg-gradient-to-br from-amber-50 to-blue-50 border-gray-200"
                   )}
+                  variants={{
+                    hidden: { opacity: 0, y: 30, scale: 0.95 },
+                    visible: { opacity: 1, y: 0, scale: 1 },
+                  }}
+                  whileHover={{
+                    scale: 1.02,
+                    y: -5,
+                    transition: { duration: 0.2 },
+                  }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <div className="flex items-start gap-4">
-                    {result.medal === "bronze" ? (
-                      <Medal className="w-8 h-8 text-amber-600 mt-1" />
-                    ) : (
-                      <Target className="w-8 h-8 text-amber-600 mt-1" />
-                    )}
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {result.medal === "bronze" ? (
+                        <Medal className="w-8 h-8 text-amber-600 mt-1" />
+                      ) : (
+                        <Target className="w-8 h-8 text-amber-600 mt-1" />
+                      )}
+                    </motion.div>
                     <div className="flex-1">
                       <h3
                         className={clsx(
@@ -439,24 +589,26 @@ export default function PodoliCompetitionClient25() {
                         </span>
                       </h3>
                       <div className="flex items-center gap-2 mb-2">
-                        <span
+                        <motion.span
                           className={clsx(
                             "px-2 py-1 rounded text-xs font-semibold",
                             result.medal === "bronze"
                               ? "bg-amber-600 text-white"
                               : "bg-gray-600 text-white"
                           )}
+                          whileHover={{ scale: 1.05 }}
                         >
                           {locale === "en" ? result.resultEn : result.result}
-                        </span>
-                        <span
+                        </motion.span>
+                        <motion.span
                           className={clsx(
                             "text-sm transition-colors duration-300",
                             isDarkMode ? "text-gray-300" : "text-gray-600"
                           )}
+                          whileHover={{ scale: 1.05 }}
                         >
                           {result.time}
-                        </span>
+                        </motion.span>
                       </div>
                       <p
                         className={clsx(
@@ -470,10 +622,10 @@ export default function PodoliCompetitionClient25() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Video Section */}
           <motion.div
@@ -546,34 +698,72 @@ export default function PodoliCompetitionClient25() {
           </motion.div>
 
           {/* Championship Highlights */}
-          <div className="mt-16 text-center">
-            <h2
+          <motion.div
+            className="mt-16 text-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.2,
+                },
+              },
+            }}
+          >
+            <motion.h2
               className={clsx(
                 "text-4xl font-bold mb-8 transition-colors duration-300",
                 isDarkMode ? "text-white" : "text-gray-900"
               )}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
             >
               {t("highlights.title")}
-            </h2>
-            <div
+            </motion.h2>
+            <motion.div
               className={clsx(
                 "rounded-2xl p-8 transition-colors duration-300",
                 isDarkMode
                   ? "bg-gradient-to-r from-amber-900/30 to-blue-900/30"
                   : "bg-gradient-to-r from-amber-50 to-blue-50"
               )}
+              variants={{
+                hidden: { opacity: 0, scale: 0.9 },
+                visible: { opacity: 1, scale: 1 },
+              }}
+              whileHover={{ scale: 1.02, y: -5 }}
             >
               <div className="max-w-3xl mx-auto">
-                <p
+                <motion.p
                   className={clsx(
                     "text-xl leading-relaxed mb-6 transition-colors duration-300",
                     isDarkMode ? "text-gray-300" : "text-gray-700"
                   )}
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
                 >
                   {t("highlights.description")}
-                </p>
-                <div className="flex items-center justify-center gap-4">
-                  <Award className="w-8 h-8 text-amber-600" />
+                </motion.p>
+                <motion.div
+                  className="flex items-center justify-center gap-4"
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 360 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Award className="w-8 h-8 text-amber-600" />
+                  </motion.div>
                   <span
                     className={clsx(
                       "text-lg font-semibold transition-colors duration-300",
@@ -582,10 +772,10 @@ export default function PodoliCompetitionClient25() {
                   >
                     {t("highlights.experience")}
                   </span>
-                </div>
+                </motion.div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </div>

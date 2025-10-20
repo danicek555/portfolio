@@ -150,11 +150,14 @@
   "Footer": {
     "contact": "Kontakt",
     "socialMedia": "Sociální sítě",
-    "swimmingStatistics": "Plavecké statistiky",
+    "swimmingStatistics": "České plavecké statistiky",
     "swimmingStatistics2": "SwimCloud",
     "about": "Daniel Mitka",
     "aboutDescription": "Vášnivý vývojář a nadšenec do plavání. ",
-    "copyright": "© {year} Daniel Mitka. Všechna práva vyhrazena."
+    "copyright": "© {year} Daniel Mitka. Všechna práva vyhrazena.",
+    "facebookTooltip": "Sledujte mě na Facebooku",
+    "instagramTooltip": "Podívejte se na můj Instagram",
+    "swimcloudTooltip": "Zobrazit mé plavecké časy na SwimCloud"
   },
   "Australia": {
     "hero": {

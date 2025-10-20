@@ -162,7 +162,7 @@ const Projects: React.FC = () => {
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.15 }}
           className="grid gap-12"
         >
           {projects.map((project, i) => (
@@ -319,12 +319,11 @@ const Projects: React.FC = () => {
                                 duration: 0.4,
                               }}
                               viewport={{ once: true }}
-                              whileHover={{ scale: 1.1 }}
                               className={clsx(
-                                "px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300",
+                                "px-4 py-2 rounded-full text-sm font-medium",
                                 isDarkMode
-                                  ? "bg-gray-700 text-gray-300 group-hover:bg-gray-600"
-                                  : "bg-gray-200 text-gray-700 group-hover:bg-gray-300"
+                                  ? "bg-gray-700 text-gray-300"
+                                  : "bg-gray-200 text-gray-700"
                               )}
                             >
                               {tech}
@@ -335,9 +334,25 @@ const Projects: React.FC = () => {
                         <motion.div
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.6, duration: 0.6 }}
                           viewport={{ once: true }}
-                          className="inline-flex items-center text-green-600 font-semibold text-lg group-hover:text-green-700 transition-colors duration-300"
+                          whileHover={{
+                            x: 4,
+                            y: -2,
+                            transition: {
+                              type: "spring",
+                              stiffness: 600,
+                              damping: 25,
+                              duration: 0.2,
+                            },
+                          }}
+                          transition={{
+                            delay: 0,
+                            duration: 0.2,
+                            type: "spring",
+                            stiffness: 600,
+                            damping: 25,
+                          }}
+                          className="inline-flex items-center text-green-600 font-semibold text-lg hover:text-green-700"
                         >
                           {t("visitWebsite")}
                           <motion.svg
@@ -345,12 +360,6 @@ const Projects: React.FC = () => {
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
-                            whileHover={{ x: 4, y: -2 }}
-                            transition={{
-                              type: "spring",
-                              stiffness: 400,
-                              damping: 20,
-                            }}
                           >
                             <path
                               strokeLinecap="round"
@@ -486,9 +495,8 @@ const Projects: React.FC = () => {
                           whileInView={{ opacity: 1, scale: 1 }}
                           transition={{ delay: index * 0.1, duration: 0.3 }}
                           viewport={{ once: true }}
-                          whileHover={{ scale: 1.1 }}
                           className={clsx(
-                            "px-2 py-1 rounded text-xs font-medium transition-colors duration-300",
+                            "px-2 py-1 rounded text-xs font-medium",
                             isDarkMode
                               ? "bg-gray-700 text-gray-300"
                               : "bg-gray-100 text-gray-700"

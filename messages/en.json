@@ -150,11 +150,14 @@
   "Footer": {
     "contact": "Contact",
     "socialMedia": "Social Media",
-    "swimmingStatistics": "Swimming Statistics",
+    "swimmingStatistics": "Czech Swimming Statistics",
     "swimmingStatistics2": "SwimCloud",
     "about": "Daniel Mitka",
     "aboutDescription": "Passionate developer and swimming enthusiast.",
-    "copyright": "© {year} Daniel Mitka. All rights reserved."
+    "copyright": "© {year} Daniel Mitka. All rights reserved.",
+    "facebookTooltip": "Follow me on Facebook",
+    "instagramTooltip": "Check out my Instagram",
+    "swimcloudTooltip": "View my swimming times on SwimCloud"
   },
   "Australia": {
     "hero": {

@@ -257,7 +257,13 @@ const Competitions: React.FC = () => {
       )}
     >
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-8 sm:mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-8 sm:mb-12"
+        >
           <h3 className="text-green-500 text-xs sm:text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">
             {t("badge")}
           </h3>
@@ -269,184 +275,191 @@ const Competitions: React.FC = () => {
           >
             {t("title")}
           </h2>
-        </div>
+        </motion.div>
 
-        {hasMoreThanMax ? (
-          // Slider Layout for more competitions than can fit
-          <div className="relative">
-            {/* Slider Container with touch support */}
-            <div
-              className="overflow-hidden py-2 sm:py-4 md:py-8 select-none"
-              onWheel={handleWheel}
-              data-competitions-container
-              style={{
-                touchAction: "pan-y pinch-zoom",
-                overscrollBehavior: "contain",
-                willChange: "transform",
-                transform: "translateZ(0)", // Force hardware acceleration
-              }}
-            >
-              <motion.div
-                className="flex gap-4 sm:gap-6 md:gap-8 select-none"
-                drag="x"
-                dragConstraints={{
-                  left: -(competitions.length - slidesToShow) * 400, // Approximate slide width
-                  right: 0,
-                }}
-                dragElastic={0.05}
-                dragMomentum={false}
-                dragTransition={{ bounceStiffness: 300, bounceDamping: 30 }}
-                onDragEnd={(_, info) => {
-                  const threshold = 50;
-                  if (info.offset.x > threshold && !isAtStart) {
-                    prevSlide();
-                  } else if (info.offset.x < -threshold && !isAtEnd) {
-                    nextSlide();
-                  }
-                }}
-                animate={{
-                  x: `calc(-${currentSlide * (100 / slidesToShow)}% - ${
-                    currentSlide * (isMobile ? 1 : 2)
-                  }rem)`,
-                }}
-                transition={{
-                  type: "tween",
-                  duration: 0.25,
-                  ease: [0.25, 0.46, 0.45, 0.94], // Custom easing for smoother motion
-                }}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          {hasMoreThanMax ? (
+            // Slider Layout for more competitions than can fit
+            <div className="relative">
+              {/* Slider Container with touch support */}
+              <div
+                className="overflow-hidden py-2 sm:py-4 md:py-8 select-none"
+                onWheel={handleWheel}
+                data-competitions-container
                 style={{
-                  userSelect: "none",
-                  WebkitUserSelect: "none",
-                  MozUserSelect: "none",
-                  msUserSelect: "none",
+                  touchAction: "pan-y pinch-zoom",
+                  overscrollBehavior: "contain",
                   willChange: "transform",
-                  backfaceVisibility: "hidden",
-                  WebkitBackfaceVisibility: "hidden",
+                  transform: "translateZ(0)", // Force hardware acceleration
                 }}
               >
-                {competitions.map((comp, index) => (
-                  <div
-                    key={index}
+                <motion.div
+                  className="flex gap-4 sm:gap-6 md:gap-8 select-none"
+                  drag="x"
+                  dragConstraints={{
+                    left: -(competitions.length - slidesToShow) * 400, // Approximate slide width
+                    right: 0,
+                  }}
+                  dragElastic={0.05}
+                  dragMomentum={false}
+                  dragTransition={{ bounceStiffness: 300, bounceDamping: 30 }}
+                  onDragEnd={(_, info) => {
+                    const threshold = 50;
+                    if (info.offset.x > threshold && !isAtStart) {
+                      prevSlide();
+                    } else if (info.offset.x < -threshold && !isAtEnd) {
+                      nextSlide();
+                    }
+                  }}
+                  animate={{
+                    x: `calc(-${currentSlide * (100 / slidesToShow)}% - ${
+                      currentSlide * (isMobile ? 1 : 2)
+                    }rem)`,
+                  }}
+                  transition={{
+                    type: "tween",
+                    duration: 0.25,
+                    ease: [0.25, 0.46, 0.45, 0.94], // Custom easing for smoother motion
+                  }}
+                  style={{
+                    userSelect: "none",
+                    WebkitUserSelect: "none",
+                    MozUserSelect: "none",
+                    msUserSelect: "none",
+                    willChange: "transform",
+                    backfaceVisibility: "hidden",
+                    WebkitBackfaceVisibility: "hidden",
+                  }}
+                >
+                  {competitions.map((comp, index) => (
+                    <div
+                      key={index}
+                      className={clsx(
+                        "flex-shrink-0",
+                        slidesToShow === 1
+                          ? "w-full"
+                          : slidesToShow === 2
+                          ? "w-1/2"
+                          : "w-full md:w-1/3"
+                      )}
+                    >
+                      {renderCompetitionCard(comp, index)}
+                    </div>
+                  ))}
+                </motion.div>
+              </div>
+
+              {/* Navigation Arrows for larger screens */}
+              {!isMobile && (
+                <>
+                  <button
+                    onClick={prevSlide}
+                    disabled={isAtStart}
                     className={clsx(
-                      "flex-shrink-0",
-                      slidesToShow === 1
-                        ? "w-full"
-                        : slidesToShow === 2
-                        ? "w-1/2"
-                        : "w-full md:w-1/3"
+                      "absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 z-10",
+                      isAtStart
+                        ? "opacity-50 cursor-not-allowed"
+                        : "hover:scale-110",
+                      isDarkMode
+                        ? "bg-gray-700 text-white"
+                        : "bg-white text-gray-800 shadow-lg",
+                      !isAtStart &&
+                        (isDarkMode ? "hover:bg-gray-600" : "hover:bg-gray-50")
                     )}
                   >
-                    {renderCompetitionCard(comp, index)}
-                  </div>
+                    ←
+                  </button>
+                  <button
+                    onClick={nextSlide}
+                    disabled={isAtEnd}
+                    className={clsx(
+                      "absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 z-10",
+                      isAtEnd
+                        ? "opacity-50 cursor-not-allowed"
+                        : "hover:scale-110",
+                      isDarkMode
+                        ? "bg-gray-700 text-white"
+                        : "bg-white text-gray-800 shadow-lg",
+                      !isAtEnd &&
+                        (isDarkMode ? "hover:bg-gray-600" : "hover:bg-gray-50")
+                    )}
+                  >
+                    →
+                  </button>
+                </>
+              )}
+
+              {/* Slide Indicators */}
+              <div className="flex justify-center mt-6 sm:mt-8 space-x-2">
+                {Array.from({
+                  length: competitions.length - slidesToShow + 1,
+                }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={clsx(
+                      "w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300",
+                      currentSlide === index
+                        ? "bg-green-500 scale-110"
+                        : isDarkMode
+                        ? "bg-gray-600 hover:bg-gray-500"
+                        : "bg-gray-300 hover:bg-gray-400"
+                    )}
+                  />
                 ))}
-              </motion.div>
-            </div>
+              </div>
 
-            {/* Navigation Arrows for larger screens */}
-            {!isMobile && (
-              <>
-                <button
-                  onClick={prevSlide}
-                  disabled={isAtStart}
+              {/* Competition Counter */}
+              <div className="text-center mt-3 sm:mt-4">
+                <span
                   className={clsx(
-                    "absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 z-10",
-                    isAtStart
-                      ? "opacity-50 cursor-not-allowed"
-                      : "hover:scale-110",
-                    isDarkMode
-                      ? "bg-gray-700 text-white"
-                      : "bg-white text-gray-800 shadow-lg",
-                    !isAtStart &&
-                      (isDarkMode ? "hover:bg-gray-600" : "hover:bg-gray-50")
+                    "text-xs sm:text-sm transition-colors duration-300",
+                    isDarkMode ? "text-gray-400" : "text-gray-600"
                   )}
                 >
-                  ←
-                </button>
-                <button
-                  onClick={nextSlide}
-                  disabled={isAtEnd}
+                  {currentSlide + 1} -{" "}
+                  {Math.min(currentSlide + slidesToShow, competitions.length)}{" "}
+                  of {competitions.length} competitions
+                </span>
+              </div>
+
+              {/* Navigation Help */}
+              <div className="text-center mt-2">
+                <span
                   className={clsx(
-                    "absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 z-10",
-                    isAtEnd
-                      ? "opacity-50 cursor-not-allowed"
-                      : "hover:scale-110",
-                    isDarkMode
-                      ? "bg-gray-700 text-white"
-                      : "bg-white text-gray-800 shadow-lg",
-                    !isAtEnd &&
-                      (isDarkMode ? "hover:bg-gray-600" : "hover:bg-gray-50")
+                    "text-xs transition-colors duration-300",
+                    isDarkMode ? "text-gray-500" : "text-gray-500"
                   )}
                 >
-                  →
-                </button>
-              </>
-            )}
-
-            {/* Slide Indicators */}
-            <div className="flex justify-center mt-6 sm:mt-8 space-x-2">
-              {Array.from({
-                length: competitions.length - slidesToShow + 1,
-              }).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  className={clsx(
-                    "w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300",
-                    currentSlide === index
-                      ? "bg-green-500 scale-110"
-                      : isDarkMode
-                      ? "bg-gray-600 hover:bg-gray-500"
-                      : "bg-gray-300 hover:bg-gray-400"
-                  )}
-                />
-              ))}
+                  {isMobile
+                    ? "Swipe to navigate"
+                    : "Drag to navigate • Use ← → keys • Trackpad scroll"}
+                </span>
+              </div>
             </div>
-
-            {/* Competition Counter */}
-            <div className="text-center mt-3 sm:mt-4">
-              <span
-                className={clsx(
-                  "text-xs sm:text-sm transition-colors duration-300",
-                  isDarkMode ? "text-gray-400" : "text-gray-600"
-                )}
-              >
-                {currentSlide + 1} -{" "}
-                {Math.min(currentSlide + slidesToShow, competitions.length)} of{" "}
-                {competitions.length} competitions
-              </span>
+          ) : (
+            // Regular Grid Layout for fewer competitions
+            <div
+              className={clsx(
+                "grid gap-4 sm:gap-6 md:gap-8",
+                competitions.length === 1
+                  ? "grid-cols-1 max-w-md mx-auto"
+                  : competitions.length === 2
+                  ? "grid-cols-1 sm:grid-cols-2"
+                  : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+              )}
+            >
+              {competitions.map((comp, index) =>
+                renderCompetitionCard(comp, index)
+              )}
             </div>
-
-            {/* Navigation Help */}
-            <div className="text-center mt-2">
-              <span
-                className={clsx(
-                  "text-xs transition-colors duration-300",
-                  isDarkMode ? "text-gray-500" : "text-gray-500"
-                )}
-              >
-                {isMobile
-                  ? "Swipe to navigate"
-                  : "Drag to navigate • Use ← → keys • Trackpad scroll"}
-              </span>
-            </div>
-          </div>
-        ) : (
-          // Regular Grid Layout for fewer competitions
-          <div
-            className={clsx(
-              "grid gap-4 sm:gap-6 md:gap-8",
-              competitions.length === 1
-                ? "grid-cols-1 max-w-md mx-auto"
-                : competitions.length === 2
-                ? "grid-cols-1 sm:grid-cols-2"
-                : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-            )}
-          >
-            {competitions.map((comp, index) =>
-              renderCompetitionCard(comp, index)
-            )}
-          </div>
-        )}
+          )}
+        </motion.div>
       </div>
     </section>
   );

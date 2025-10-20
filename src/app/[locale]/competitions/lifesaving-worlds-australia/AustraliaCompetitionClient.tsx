@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Award, MapPin, Calendar, Users } from "lucide-react";
 import { useTheme } from "../../../../components/ThemeProvider";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 import clsx from "clsx";
 
 export default function AustraliaCompetitionClient() {
@@ -60,43 +61,138 @@ export default function AustraliaCompetitionClient() {
         </div>
 
         <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <span className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider">
+          <motion.div
+            className="flex items-center justify-center gap-3 mb-6"
+            initial={{ opacity: 0, y: -30, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{
+              duration: 1.2,
+              type: "spring",
+              stiffness: 100,
+              damping: 15,
+            }}
+          >
+            <motion.span
+              className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider"
+              whileHover={{
+                scale: 1.1,
+                rotate: 3,
+                boxShadow: "0 10px 25px rgba(59, 130, 246, 0.5)",
+              }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
+            >
               {t("hero.badge1")}
-            </span>
-            <span className="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+            </motion.span>
+            <motion.span
+              className="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold"
+              whileHover={{
+                scale: 1.1,
+                rotate: -3,
+                boxShadow: "0 10px 25px rgba(220, 38, 38, 0.5)",
+              }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
+            >
               {t("hero.badge2")}
-            </span>
-          </div>
+            </motion.span>
+          </motion.div>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-            {t("hero.title")}
-            <span className="block text-yellow-400">{t("hero.subtitle")}</span>
-          </h1>
+          <motion.h1
+            className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
+            initial={{ opacity: 0, y: 50, rotateX: -15 }}
+            animate={{ opacity: 1, y: 0, rotateX: 0 }}
+            transition={{
+              duration: 1.5,
+              type: "spring",
+              stiffness: 80,
+              damping: 12,
+            }}
+          >
+            <motion.span
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{
+                duration: 1.2,
+                type: "spring",
+                stiffness: 100,
+              }}
+            >
+              {t("hero.title")}
+            </motion.span>
+            <motion.span
+              className="block text-yellow-400"
+              initial={{ opacity: 0, x: 50, scale: 0.8 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{
+                duration: 1.2,
+                type: "spring",
+                stiffness: 100,
+              }}
+            >
+              {t("hero.subtitle")}
+            </motion.span>
+          </motion.h1>
 
-          <div
+          <motion.div
             className={clsx(
               "rounded-2xl p-8 inline-flex items-center gap-6 shadow-2xl transition-colors duration-300",
               isDarkMode
                 ? "bg-gray-800/95 text-white"
                 : "bg-white/95 text-gray-900"
             )}
+            initial={{ opacity: 0, scale: 0.7, rotateY: -20 }}
+            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+            transition={{
+              duration: 1.3,
+              type: "spring",
+              stiffness: 80,
+              damping: 15,
+            }}
+            whileHover={{
+              scale: 1.05,
+              y: -10,
+              rotateY: 5,
+              boxShadow: "0 25px 50px rgba(0, 0, 0, 0.3)",
+            }}
           >
-            <div className="text-6xl">🥈</div>
+            <motion.div
+              className="text-6xl"
+              animate={{
+                rotate: [0, 10, -10, 0],
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                repeatDelay: 2,
+                ease: "easeInOut",
+              }}
+            >
+              🥈
+            </motion.div>
             <div className="text-left">
-              <h3 className="text-2xl font-bold mb-2">
+              <motion.h3
+                className="text-2xl font-bold mb-2"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.5, duration: 0.8 }}
+              >
                 {t("hero.eventTitle")}
-              </h3>
-              <p
+              </motion.h3>
+              <motion.p
                 className={clsx(
                   "text-lg transition-colors duration-300",
                   isDarkMode ? "text-gray-300" : "text-gray-600"
                 )}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.7, duration: 0.8 }}
               >
                 {t("hero.partner")}
-              </p>
+              </motion.p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -104,14 +200,57 @@ export default function AustraliaCompetitionClient() {
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           {/* Event Info */}
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <div
+          <motion.div
+            className="grid md:grid-cols-3 gap-8 mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+          >
+            <motion.div
               className={clsx(
                 "flex items-center gap-4 p-6 rounded-xl transition-colors duration-300",
                 isDarkMode ? "bg-gray-800" : "bg-gray-50"
               )}
+              variants={{
+                hidden: { opacity: 0, x: -100, rotateY: -90 },
+                visible: {
+                  opacity: 1,
+                  x: 0,
+                  rotateY: 0,
+                  transition: {
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 15,
+                  },
+                },
+              }}
+              whileHover={{
+                scale: 1.05,
+                y: -8,
+                rotateY: 5,
+                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
+              }}
+              transition={{ duration: 0.3 }}
             >
-              <MapPin className="w-8 h-8 text-blue-600" />
+              <motion.div
+                whileHover={{
+                  scale: 1.2,
+                  rotate: 360,
+                  color: "#3b82f6",
+                }}
+                transition={{ duration: 0.6 }}
+              >
+                <MapPin className="w-8 h-8 text-blue-600" />
+              </motion.div>
               <div>
                 <h3
                   className={clsx(
@@ -130,14 +269,43 @@ export default function AustraliaCompetitionClient() {
                   {t("info.locationValue")}
                 </p>
               </div>
-            </div>
-            <div
+            </motion.div>
+            <motion.div
               className={clsx(
                 "flex items-center gap-4 p-6 rounded-xl transition-colors duration-300",
                 isDarkMode ? "bg-gray-800" : "bg-gray-50"
               )}
+              variants={{
+                hidden: { opacity: 0, y: 100, scale: 0.8 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: {
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 15,
+                  },
+                },
+              }}
+              whileHover={{
+                scale: 1.05,
+                y: -8,
+                rotateX: 5,
+                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
+              }}
+              transition={{ duration: 0.3 }}
             >
-              <Calendar className="w-8 h-8 text-blue-600" />
+              <motion.div
+                whileHover={{
+                  scale: 1.2,
+                  rotate: 360,
+                  color: "#3b82f6",
+                }}
+                transition={{ duration: 0.6 }}
+              >
+                <Calendar className="w-8 h-8 text-blue-600" />
+              </motion.div>
               <div>
                 <h3
                   className={clsx(
@@ -156,14 +324,43 @@ export default function AustraliaCompetitionClient() {
                   {t("info.dateValue")}
                 </p>
               </div>
-            </div>
-            <div
+            </motion.div>
+            <motion.div
               className={clsx(
                 "flex items-center gap-4 p-6 rounded-xl transition-colors duration-300",
                 isDarkMode ? "bg-gray-800" : "bg-gray-50"
               )}
+              variants={{
+                hidden: { opacity: 0, x: 100, rotateY: 90 },
+                visible: {
+                  opacity: 1,
+                  x: 0,
+                  rotateY: 0,
+                  transition: {
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 15,
+                  },
+                },
+              }}
+              whileHover={{
+                scale: 1.05,
+                y: -8,
+                rotateY: -5,
+                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
+              }}
+              transition={{ duration: 0.3 }}
             >
-              <Users className="w-8 h-8 text-blue-600" />
+              <motion.div
+                whileHover={{
+                  scale: 1.2,
+                  rotate: 360,
+                  color: "#3b82f6",
+                }}
+                transition={{ duration: 0.6 }}
+              >
+                <Users className="w-8 h-8 text-blue-600" />
+              </motion.div>
               <div>
                 <h3
                   className={clsx(
@@ -182,8 +379,8 @@ export default function AustraliaCompetitionClient() {
                   {t("info.categoryValue")}
                 </p>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Story */}
           <div className="grid lg:grid-cols-2 gap-12 mb-16">
@@ -236,42 +433,117 @@ export default function AustraliaCompetitionClient() {
           </div>
 
           {/* Achievements Grid */}
-          <div>
-            <h2
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: { opacity: 0, y: 50 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 1,
+                  type: "spring",
+                  stiffness: 80,
+                  damping: 15,
+                },
+              },
+            }}
+          >
+            <motion.h2
               className={clsx(
                 "text-4xl font-bold mb-8 text-center transition-colors duration-300",
                 isDarkMode ? "text-white" : "text-gray-900"
               )}
+              variants={{
+                hidden: { opacity: 0, y: 30, scale: 0.9 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: {
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 15,
+                  },
+                },
+              }}
             >
               {t("results.title")}
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            </motion.h2>
+            <motion.div
+              className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.1,
+                  },
+                },
+              }}
+            >
               {achievements.map((achievement, index) => (
-                <div
+                <motion.div
                   key={index}
                   className={clsx(
-                    "p-6 rounded-xl transition-all duration-300 hover:scale-105",
+                    "p-6 rounded-xl transition-all duration-300",
                     achievement.isSilver
                       ? isDarkMode
                         ? "bg-gradient-to-br from-gray-700/50 to-gray-600/50 border-2 border-gray-400"
                         : "bg-gradient-to-br from-gray-100 to-gray-200 border-2 border-gray-300"
                       : isDarkMode
-                      ? "bg-gray-800 hover:bg-gray-700"
-                      : "bg-gray-50 hover:bg-gray-100"
+                      ? "bg-gray-800"
+                      : "bg-gray-50"
                   )}
+                  variants={{
+                    hidden: { opacity: 0, y: 50, scale: 0.8, rotateX: -20 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                      rotateX: 0,
+                      transition: {
+                        type: "spring",
+                        stiffness: 100,
+                        damping: 15,
+                      },
+                    },
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                    y: -8,
+                    rotateY: 5,
+                    boxShadow: "0 20px 40px rgba(0, 0, 0, 0.15)",
+                  }}
                 >
                   <div className="text-center">
                     {achievement.isSilver && (
-                      <Award className="w-8 h-8 text-gray-500 mx-auto mb-2" />
+                      <motion.div
+                        whileHover={{
+                          scale: 1.2,
+                          rotate: 360,
+                          color: "#6b7280",
+                        }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        <Award className="w-8 h-8 text-gray-500 mx-auto mb-2" />
+                      </motion.div>
                     )}
-                    <span
+                    <motion.span
                       className={clsx(
                         "text-4xl font-bold block mb-3",
                         achievement.isSilver ? "text-gray-500" : "text-blue-600"
                       )}
+                      whileHover={{
+                        scale: 1.2,
+                        rotate: 10,
+                        color: achievement.isSilver ? "#9ca3af" : "#2563eb",
+                      }}
                     >
                       {achievement.position}
-                    </span>
+                    </motion.span>
                     <h3
                       className={clsx(
                         "font-bold mb-2 transition-colors duration-300",
@@ -289,23 +561,85 @@ export default function AustraliaCompetitionClient() {
                       {achievement.description}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Photo Gallery */}
-          <div className="mt-16">
-            <h2
+          <motion.div
+            className="mt-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: { opacity: 0, y: 50 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 1,
+                  type: "spring",
+                  stiffness: 80,
+                  damping: 15,
+                },
+              },
+            }}
+          >
+            <motion.h2
               className={clsx(
                 "text-4xl font-bold mb-8 text-center transition-colors duration-300",
                 isDarkMode ? "text-white" : "text-gray-900"
               )}
+              variants={{
+                hidden: { opacity: 0, y: 30, scale: 0.9 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: {
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 15,
+                  },
+                },
+              }}
             >
               {t("gallery.title")}
-            </h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="relative h-64 rounded-xl overflow-hidden group">
+            </motion.h2>
+            <motion.div
+              className="grid md:grid-cols-3 gap-6"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.1,
+                  },
+                },
+              }}
+            >
+              <motion.div
+                className="relative h-64 rounded-xl overflow-hidden group"
+                variants={{
+                  hidden: { opacity: 0, scale: 0.8, rotateY: -20 },
+                  visible: {
+                    opacity: 1,
+                    scale: 1,
+                    rotateY: 0,
+                    transition: {
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 15,
+                    },
+                  },
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  rotateY: 5,
+                  boxShadow: "0 20px 40px rgba(0, 0, 0, 0.2)",
+                }}
+              >
                 <Image
                   src="/zapadPhoto.jpg"
                   alt="Championship moment 1"
@@ -313,8 +647,28 @@ export default function AustraliaCompetitionClient() {
                   className="object-cover group-hover:scale-110 transition-transform duration-300"
                   priority
                 />
-              </div>
-              <div className="relative h-64 rounded-xl overflow-hidden group">
+              </motion.div>
+              <motion.div
+                className="relative h-64 rounded-xl overflow-hidden group"
+                variants={{
+                  hidden: { opacity: 0, scale: 0.8, y: 50 },
+                  visible: {
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    transition: {
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 15,
+                    },
+                  },
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  y: -5,
+                  boxShadow: "0 20px 40px rgba(0, 0, 0, 0.2)",
+                }}
+              >
                 <Image
                   src="/behaciPhoto_temp.jpg"
                   alt="Championship moment 2"
@@ -323,8 +677,28 @@ export default function AustraliaCompetitionClient() {
                   style={{ objectPosition: "center 20%" }}
                   priority
                 />
-              </div>
-              <div className="relative h-64 rounded-xl overflow-hidden group">
+              </motion.div>
+              <motion.div
+                className="relative h-64 rounded-xl overflow-hidden group"
+                variants={{
+                  hidden: { opacity: 0, scale: 0.8, rotateY: 20 },
+                  visible: {
+                    opacity: 1,
+                    scale: 1,
+                    rotateY: 0,
+                    transition: {
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 15,
+                    },
+                  },
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  rotateY: -5,
+                  boxShadow: "0 20px 40px rgba(0, 0, 0, 0.2)",
+                }}
+              >
                 <Image
                   src="/ausFoto_temp.jpg"
                   alt="Championship team photo"
@@ -332,9 +706,9 @@ export default function AustraliaCompetitionClient() {
                   className="object-cover group-hover:scale-110 transition-transform duration-300"
                   priority
                 />
-              </div>
-            </div>
-          </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </div>
