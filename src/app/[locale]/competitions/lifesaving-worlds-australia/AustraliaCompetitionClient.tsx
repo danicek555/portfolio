@@ -176,7 +176,7 @@ export default function AustraliaCompetitionClient() {
                 className="text-2xl font-bold mb-2"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.5, duration: 0.8 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
               >
                 {t("hero.eventTitle")}
               </motion.h3>
@@ -187,7 +187,7 @@ export default function AustraliaCompetitionClient() {
                 )}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.7, duration: 0.8 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
               >
                 {t("hero.partner")}
               </motion.p>

@@ -84,16 +84,20 @@ export default async function LocaleLayout({
 
   return (
     <div
-      className={`${roboto.variable} ${montserrat.variable}`}
+      className={`${roboto.variable} ${montserrat.variable} overflow-x-hidden`}
       style={{
         fontFamily:
           "var(--font-roboto), var(--font-montserrat), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        width: "100%",
+        maxWidth: "100vw",
+        position: "relative",
+        overflowX: "hidden",
       }}
     >
       <NextIntlClientProvider messages={messages}>
         <ThemeProvider>
           <Navbar />
-          <main>{children}</main>
+          <main className="overflow-x-hidden">{children}</main>
           <Footer />
           <DarkModeToggle />
           <LanguageToggle />

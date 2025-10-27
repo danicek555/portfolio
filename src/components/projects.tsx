@@ -123,7 +123,7 @@ const Projects: React.FC = () => {
     <section
       id="work"
       className={clsx(
-        "py-16 px-8 transition-colors duration-300",
+        "py-16 px-8 transition-colors duration-300 overflow-x-hidden",
         isDarkMode ? "bg-gray-900" : "bg-white"
       )}
     >
@@ -162,8 +162,8 @@ const Projects: React.FC = () => {
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
-          viewport={{ once: true, amount: 0.15 }}
-          className="grid gap-12"
+          viewport={{ once: true, amount: 0.05 }}
+          className="grid gap-8 md:gap-12"
         >
           {projects.map((project, i) => (
             <motion.div key={i} variants={fadeInUp}>
@@ -183,14 +183,14 @@ const Projects: React.FC = () => {
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
                     className={clsx(
-                      "rounded-3xl p-8 md:p-16 transition-all duration-500 relative",
+                      "rounded-3xl p-3 md:p-6 lg:p-12 transition-all duration-500 relative",
                       isDarkMode
                         ? "bg-gray-800 group-hover:bg-gray-700"
                         : "bg-gray-100 group-hover:bg-gray-150"
                     )}
                   >
                     {/* Question Mark Help Icon for this project */}
-                    <div className="absolute bottom-4 right-4 z-10">
+                    <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 z-10 hidden md:block">
                       <div className="relative">
                         {/* Tooltip */}
                         {hoveredProjectIndex === i && (
@@ -235,7 +235,7 @@ const Projects: React.FC = () => {
                           aria-label="Helpful tips about this project"
                         >
                           <svg
-                            className="w-6 h-6"
+                            className="w-5 h-5 md:w-6 md:h-6"
                             fill="currentColor"
                             viewBox="0 0 512 512"
                             xmlns="http://www.w3.org/2000/svg"
@@ -246,7 +246,7 @@ const Projects: React.FC = () => {
                         </motion.button>
                       </div>
                     </div>
-                    <div className="flex flex-col lg:flex-row items-center gap-12">
+                    <div className="flex flex-col lg:flex-row items-center gap-4 md:gap-8 lg:gap-12">
                       {/* Project Info */}
                       <motion.div
                         variants={slideInLeft}
@@ -257,11 +257,20 @@ const Projects: React.FC = () => {
                       >
                         <h3
                           className={clsx(
-                            "text-4xl md:text-5xl font-bold mb-6 transition-colors duration-300",
+                            "text-2xl md:text-3xl lg:text-5xl font-bold mb-3 md:mb-5 transition-colors duration-300",
                             isDarkMode ? "text-white" : "text-gray-900"
                           )}
                         >
-                          {project.title}
+                          {project.title.startsWith("BETA!") ? (
+                            <>
+                              <span className="block">BETA!</span>
+                              <span className="block">
+                                {project.title.replace("BETA! ", "")}
+                              </span>
+                            </>
+                          ) : (
+                            project.title
+                          )}
                         </h3>
                         {project.title.includes("BETA!") && (
                           <motion.div
@@ -294,7 +303,7 @@ const Projects: React.FC = () => {
                         )}
                         <p
                           className={clsx(
-                            "text-xl mb-8 leading-relaxed max-w-2xl transition-colors duration-300",
+                            "text-sm md:text-base lg:text-xl mb-4 md:mb-6 leading-relaxed max-w-2xl transition-colors duration-300",
                             isDarkMode ? "text-gray-300" : "text-gray-600"
                           )}
                         >
@@ -307,7 +316,7 @@ const Projects: React.FC = () => {
                           whileInView={{ opacity: 1 }}
                           transition={{ delay: 0.4, duration: 0.6 }}
                           viewport={{ once: true }}
-                          className="flex flex-wrap justify-center lg:justify-start gap-3 mb-8"
+                          className="flex flex-wrap justify-center lg:justify-start gap-2 md:gap-3 mb-4 md:mb-6"
                         >
                           {project.technologies.map((tech, index) => (
                             <motion.span
@@ -320,10 +329,10 @@ const Projects: React.FC = () => {
                               }}
                               viewport={{ once: true }}
                               className={clsx(
-                                "px-4 py-2 rounded-full text-sm font-medium",
+                                "px-3 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium transition-colors duration-200 cursor-pointer",
                                 isDarkMode
-                                  ? "bg-gray-700 text-gray-300"
-                                  : "bg-gray-200 text-gray-700"
+                                  ? "bg-gray-600 text-gray-100 hover:bg-gray-500"
+                                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                               )}
                             >
                               {tech}
@@ -352,11 +361,11 @@ const Projects: React.FC = () => {
                             stiffness: 600,
                             damping: 25,
                           }}
-                          className="inline-flex items-center text-green-600 font-semibold text-lg hover:text-green-700"
+                          className="inline-flex items-center text-green-600 font-semibold text-base md:text-lg hover:text-green-700"
                         >
                           {t("visitWebsite")}
                           <motion.svg
-                            className="w-5 h-5 ml-2"
+                            className="w-4 h-4 md:w-5 md:h-5 ml-2"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -417,7 +426,7 @@ const Projects: React.FC = () => {
                   )}
                 >
                   {/* Question Mark Help Icon for this project */}
-                  <div className="absolute bottom-3 right-3 z-10">
+                  <div className="absolute bottom-3 right-3 z-10 hidden md:block">
                     <div className="relative">
                       {/* Tooltip */}
                       {hoveredProjectIndex === i && (
@@ -496,10 +505,10 @@ const Projects: React.FC = () => {
                           transition={{ delay: index * 0.1, duration: 0.3 }}
                           viewport={{ once: true }}
                           className={clsx(
-                            "px-2 py-1 rounded text-xs font-medium",
+                            "px-2 py-1 rounded text-xs font-medium transition-colors duration-200 cursor-pointer",
                             isDarkMode
-                              ? "bg-gray-700 text-gray-300"
-                              : "bg-gray-100 text-gray-700"
+                              ? "bg-gray-600 text-gray-100 hover:bg-gray-500"
+                              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                           )}
                         >
                           {tech}
