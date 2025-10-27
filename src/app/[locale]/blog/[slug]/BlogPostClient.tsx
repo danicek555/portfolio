@@ -2,7 +2,6 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { BlogPost } from "../../../../lib/blogPosts";
 import InteractionsClient from "./InteractionsClient";
@@ -30,7 +29,19 @@ export default function BlogPostClient({
             href="/blog"
             className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
             <span className="text-sm font-medium">{t("backToBlog")}</span>
           </Link>
 
@@ -40,7 +51,19 @@ export default function BlogPostClient({
                 href={`/blog/${prevPost.slug}`}
                 className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
               >
-                <ArrowLeft className="w-4 h-4" />
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
                 <span className="text-sm hidden sm:inline">
                   {t("previous")}
                 </span>
@@ -52,7 +75,19 @@ export default function BlogPostClient({
                 className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
               >
                 <span className="text-sm hidden sm:inline">{t("next")}</span>
-                <ArrowRight className="w-4 h-4" />
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
               </Link>
             )}
           </div>
