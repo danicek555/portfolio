@@ -1,10 +1,30 @@
 import { Metadata } from "next";
 import Script from "next/script";
+import dynamic from "next/dynamic";
 import Hero from "../../components/hero";
-import About from "../../components/about";
-import Competitions from "../../components/competitions";
-import Projects from "../../components/projects";
 import { generatePersonSchema, createJsonLd } from "../../lib/schema";
+
+// Dynamically import below-the-fold components for code splitting
+const About = dynamic(() => import("../../components/about"), {
+  loading: () => (
+    <div className="animate-pulse bg-gray-100 dark:bg-gray-800 h-96" />
+  ),
+  ssr: true,
+});
+
+const Competitions = dynamic(() => import("../../components/competitions"), {
+  loading: () => (
+    <div className="animate-pulse bg-gray-100 dark:bg-gray-800 h-96" />
+  ),
+  ssr: true,
+});
+
+const Projects = dynamic(() => import("../../components/projects"), {
+  loading: () => (
+    <div className="animate-pulse bg-gray-100 dark:bg-gray-800 h-96" />
+  ),
+  ssr: true,
+});
 
 // Environment variables for metadata
 const siteUrl =
@@ -179,7 +199,10 @@ export default async function HomePage({
         }}
       />
 
+      {/* Render Hero immediately (above the fold) */}
       <Hero />
+
+      {/* Dynamically loaded below-the-fold sections */}
       <About />
       <Competitions />
       <Projects />

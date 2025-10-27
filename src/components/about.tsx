@@ -121,7 +121,8 @@ const About: React.FC = () => {
                 width={500}
                 height={600}
                 className="rounded-lg object-cover w-full h-auto"
-                priority
+                quality={85}
+                loading="eager"
               />
             </motion.div>
 

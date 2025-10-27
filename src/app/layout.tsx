@@ -225,6 +225,21 @@ export default function RootLayout({
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
         />
+        {/* Preload critical assets */}
+        <link
+          rel="preload"
+          href="/skokDoVody.jpg"
+          as="image"
+          fetchPriority="high"
+        />
+        <link rel="preload" href="/profilovaFotka.jpg" as="image" />
+        {/* Preconnect to external resources */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
         {/* Schema.org JSON-LD Structured Data */}
         <Script
           id="schema-org"

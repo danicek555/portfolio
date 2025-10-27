@@ -210,7 +210,9 @@ const Competitions: React.FC = () => {
               ? "object-center"
               : "object-[50%_30%]"
           )}
-          priority
+          quality={85}
+          loading={index < 3 ? "eager" : "lazy"}
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
       <div className="p-3 sm:p-4 md:p-6">

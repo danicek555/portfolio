@@ -14,11 +14,12 @@ export const montserrat = Montserrat({
   ],
   preload: true,
   adjustFontFallback: true,
+  // Optimize font loading - remove latin-ext for faster loading
 });
 
 export const roboto = Roboto({
   subsets: ["latin"],
-  weight: ["300", "400", "700", "900"],
+  weight: ["400", "700"], // Reduced from 300, 400, 700, 900 to only needed weights
   display: "swap",
   variable: "--font-roboto",
   fallback: [

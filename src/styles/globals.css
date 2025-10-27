@@ -3,6 +3,13 @@
 /* Make Tailwind's `dark:` variant respond to the `.dark` class instead of system preference */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Optimize font rendering */
+* {
+  font-display: swap;
+}
+
+/* Remove unused font weights - optimize font loading */
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -28,55 +35,41 @@ img {
 }
 
 html {
-  background: #ffffff !important;
-  background-color: #ffffff !important;
+  background: #ffffff;
+  background-color: #ffffff;
   transition: background-color 0.3s ease;
   overflow-x: hidden;
   width: 100%;
   position: relative;
   touch-action: pan-y;
   overscroll-behavior: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Force Safari to start with white background regardless of theme state */
-html:not(.dark) {
-  background: #ffffff !important;
-  background-color: #ffffff !important;
-}
-
-/* Safari-specific initial background fix */
-html[data-theme="dark"] {
-  background: #ffffff !important;
-  background-color: #ffffff !important;
 }
 
 html.dark {
-  background: #1f2937 !important;
-  background-color: #1f2937 !important;
+  background: #1f2937;
+  background-color: #1f2937;
   --background: #1f2937;
   --foreground: #ededed;
 }
 
 body {
-  background: #ffffff !important;
-  background-color: #ffffff !important;
+  background: #ffffff;
+  background-color: #ffffff;
   color: #171717;
   font-family: Arial, Helvetica, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
   min-height: 100vh;
-  overflow-x: hidden !important;
-  width: 100% !important;
-  max-width: 100vw !important;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
   position: relative;
   touch-action: pan-y;
   overscroll-behavior: none;
-  -webkit-overflow-scrolling: touch;
 }
 
 html.dark body {
-  background: #1f2937 !important;
-  background-color: #1f2937 !important;
+  background: #1f2937;
+  background-color: #1f2937;
   color: #ededed;
 }
 
@@ -90,49 +83,8 @@ html.dark body {
 }
 
 html.dark #__next {
-  background: #1f2937 !important;
-  background-color: #1f2937 !important;
-}
-
-/* Safari-specific override for initial load */
-@supports (-webkit-touch-callout: none) {
-  html {
-    background: #ffffff !important;
-    background-color: #ffffff !important;
-  }
-
-  /* Override any dark theme on initial load in Safari */
-  html[data-theme="dark"] {
-    background: #ffffff !important;
-    background-color: #ffffff !important;
-  }
-
-  html.dark {
-    background: #1f2937 !important;
-    background-color: #1f2937 !important;
-  }
-}
-
-/* Force Safari to show white background immediately on page load */
-html,
-body {
-  background: #ffffff !important;
-  background-color: #ffffff !important;
-}
-
-/* Override any system dark mode preference for initial load */
-@media (prefers-color-scheme: dark) {
-  html,
-  body {
-    background: #ffffff !important;
-    background-color: #ffffff !important;
-  }
-}
-
-html.dark,
-html.dark body {
-  background: #1f2937 !important;
-  background-color: #1f2937 !important;
+  background: #1f2937;
+  background-color: #1f2937;
 }
 
 /* Line clamp utilities for text truncation */
