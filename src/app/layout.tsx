@@ -8,6 +8,7 @@ import {
 } from "../lib/schema";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { CookiebotScrollGuard } from "../components/CookiebotScrollGuard";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
@@ -303,6 +304,7 @@ export default function RootLayout({
           fontFamily: "var(--font-roboto), var(--font-montserrat), sans-serif",
         }}
       >
+        <CookiebotScrollGuard />
         {children}
         <Analytics />
         <SpeedInsights />
