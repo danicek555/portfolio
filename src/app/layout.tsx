@@ -128,7 +128,9 @@ export const metadata = {
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
   },
-  manifest: `${siteUrl}/site.webmanifest`,
+  // Path-only so the manifest is always loaded from the document origin (avoids
+  // www vs apex mismatch: absolute other-host manifest makes start_url/scope invalid).
+  manifest: "/site.webmanifest",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
