@@ -1,0 +1,95 @@
+
+// Single video
+<VideoPlayer
+  videoId="Nm6LNRUCTCM"
+  title="Championship Highlights"
+  description="Watch the competition highlights..."
+  duration="5:30"
+  views="1.2K"
+/>
+
+// Video gallery for multiple videos
+<VideoGallery
+  title="Swimming Competition Videos"
+  subtitle="Experience my competitive swimming journey"
+  videos={[
+    {
+      id: "1",
+      videoId: "Nm6LNRUCTCM",
+      title: "Czech National Championship",
+      category: "Competition"
+    },
+    // Add more videos...
+  ]}
+  columns={2}
+/>
+
+
+
+
+
+I'll enhance your metadata with comprehensive SEO tags, Open Graph, Twitter cards, and more detailed information for your swimming portfolio:
+
+Perfect! I've created comprehensive, in-depth metadata for your layout file. Here's what I've added:
+
+## 🎯 **Enhanced SEO Metadata:**
+- **Dynamic titles** with template for page-specific titles
+- **Detailed description** highlighting both swimming and development skills
+- **Comprehensive keywords** covering swimming, competitions, and tech skills
+- **Author & publisher** information
+- **Advanced robots configuration** for search engines
+
+## 📱 **Social Media Optimization:**
+- **Open Graph tags** for Facebook, LinkedIn sharing
+- **Twitter Cards** for better Twitter sharing
+- **Multiple optimized images** for social previews
+- **Multi-language support** (English/Czech)
+
+## 🌐 **International & Accessibility:**
+- **Canonical URLs** for SEO best practices
+- **Language alternates** for EN/CS versions
+- **Theme colors** for light/dark mode
+- **Mobile optimization** (Apple Web App, viewport settings)
+
+## 🔧 **Technical Enhancements:**
+- **Format detection** disabled to prevent auto-linking
+- **Apple Web App** configuration for iOS
+- **Microsoft tile** configuration for Windows
+- **Search engine verification** placeholders
+
+## 📝 **To-Do for You:**
+1. **Update domain**: Replace `"https://danielmitka.com"` with your actual domain
+2. **Add Twitter handle**: Update `@danielmitka` with your real Twitter username
+3. **Add verification codes**: Uncomment and add Google/Yandex verification if needed
+
+This metadata will significantly improve:
+- **SEO rankings** in search results
+- **Social media sharing** appearance
+- **Mobile app-like experience** when saved to home screen
+- **International discoverability** with proper language tags
+
+Your site is now optimized for maximum visibility and professional appearance across all platforms! 🚀
+
+
+
+
+    {
+      title: t("projects.1.title"),
+      description: t("projects.1.description"),
+      technologies: ["NodeJS", "Javascript", "Puppeteer"],
+      link: "https://github.com/danicek555/Auto-Kupovani-Listku",
+      img: "/botTicketPortal.png",
+      type: "external",
+      featured: true,
+    },
+
+          {
+        "title": "Automatický bot pro nákup lístků na Ticketportal",
+        "description": "Bot, který automaticky nakupuje lístky na Ticketportal pro konkrétní událost s konkrétními vyhledávacími parametry."
+      }
+
+            {
+        "title": "Automatic Bot for Buying Tickets on Ticketportal",
+        "description": "A bot that automatically buys tickets on Ticketportal for a specific event with specific search parameters."
+      }
+

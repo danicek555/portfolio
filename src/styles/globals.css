@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+/* Make Tailwind's `dark:` variant respond to the `.dark` class instead of system preference */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Optimize font rendering */
+* {
+  font-display: swap;
+}
+
+/* Remove unused font weights - optimize font loading */
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-roboto), var(--font-montserrat), system-ui,
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas,
+    "Courier New", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+html {
+  background: #ffffff;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  touch-action: pan-y;
+  overscroll-behavior: none;
+}
+
+html.dark {
+  background: #1f2937;
+  background-color: #1f2937;
+  --background: #1f2937;
+  --foreground: #ededed;
+}
+
+body {
+  background: #ffffff;
+  background-color: #ffffff;
+  color: #171717;
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
+  touch-action: pan-y;
+  overscroll-behavior: none;
+}
+
+html.dark body {
+  background: #1f2937;
+  background-color: #1f2937;
+  color: #ededed;
+}
+
+/* Force Safari to respect background changes */
+#__next {
+  background: inherit;
+  background-color: inherit;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+html.dark #__next {
+  background: #1f2937;
+  background-color: #1f2937;
+}
+
+/* Line clamp utilities for text truncation */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

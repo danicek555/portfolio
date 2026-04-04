@@ -1,0 +1,577 @@
+{
+  "About": {
+    "badge": "VZESTUPUJÍCÍ HVĚZDA PLAVÁNÍ",
+    "title": "Držitel českého národního rekordu",
+    "description": "Daniel Mitka, 17letý elitní plavec ze SK Motorlet Praha, dosáhl pozoruhodných úspěchů v českém plavání. Jeho vrcholným úspěchem je vyplavání národního rekordu jako člen smíšené štafety 4x50m polohový závod na Zimním mistrovství 2022 v Mladé Boleslavi. Soutěží na nejvyšší národní úrovni a pravidelně každým rokem přispívá k výsledkům a týmovému úspěchu SK Motorlet Praha. Se svým prokázaným úspěchem v závodním plavání se nyní Daniel zaměřuje na plavání v týmu Colorado Hilltoppers při studiu v USA.",
+    "cta": "Kontaktujte mě"
+  },
+  "Hero": {
+    "subtitle": "Český juniorský mistr v plavání a medailista na mistrovství světa v záchranářství",
+    "cta": "Kontaktujte mě"
+  },
+  "Competitions": {
+    "badge": "ZÁVODNÍ PLAVÁNÍ",
+    "title": "Aktuální závodní výkony",
+    "cta": "Více informací ",
+    "competitions": [
+      {
+        "title": "Finále MČR družstev Ostrava 2025",
+        "description": "Elitní finále týmového mistrovství reprezentující Motorlet Praha na nejvyšší úrovni českého plaveckého závodění."
+      },
+      {
+        "title": "Slovenský pohár Šamorín 2024",
+        "description": "Mezinárodní plavecká soutěž předvádějící všestrannost napříč různými disciplínami na Slovensku."
+      },
+      {
+        "title": "Mistrovství světa v záchranářství 2024",
+        "description": "Sledujte Danielovu neuvěřitelnou cestu k titulu světového vicemistra v záchranářství."
+      },
+      {
+        "title": "České juniorské mistrovství v Podolí 2024",
+        "description": "Zažijte vrchol českého plaveckého závodění na prestižním mistrovství ČR v Podolí."
+      },
+      {
+        "title": "Mistrovství ČR 2025 OPEN Plzeň",
+        "description": "Velká mezinárodní plavecká soutěž v Plzni předvádějící elitní výkony napříč různými plaveckými disciplínami."
+      },
+      {
+        "title": "České juniorské mistrovství v Podolí 2025",
+        "description": "Prestižní juniorské mistrovství republiky konané v plaveckém areálu Podolí, představující budoucí hvězdy českého plavání."
+      }
+    ]
+  },
+  "Projects": {
+    "badge": "POČÍTAČOVÉ PROJEKTY",
+    "title": "Moje nedávné práce",
+    "visitWebsite": "Navštívit web",
+    "viewProject": "Zobrazit projekt ",
+    "betaWarning": "⚠️ BETA VERZE - Prosím nezadávejte žádné emaily, hesla a ani nic nerezervujte, protože je to stále ve vývoji!",
+    "projectTips": [
+      [
+        "🏢 Profesionální web pro Strunzova Pila představující služby apartmánů s moderním designem a uživatelsky přívětivým rozhraním.",
+        "⚡ Postaven s Next.js, React a TypeScriptem pro rychlé načítání a vynikající uživatelský zážitek.",
+        "🎯 Obsahuje responzivní design s Tailwind CSS zajišťující perfektní zobrazení na všech velikostech obrazovek.",
+        "🚀 Optimalizováno pro SEO a výkon s moderními best practices ve webovém vývoji."
+      ],
+      [
+        "📚 Interaktivní aplikace s kartičkami pro učení nových slov a frází se systémem opakování v intervalech.",
+        "🔐 Bezpečná autentizace uživatelů s bcrypt hashováním hesel a integrací Prisma databáze.",
+        "📧 Emailová funkcionalita pomocí Resend pro notifikace uživatelů a správu účtů.",
+        "🎯 Algoritmus opakování v intervalech pro optimalizaci efektivity učení a dlouhodobé retence."
+      ],
+      [
+        "🤖 Automatizovaný bot pro nákup lístků na Ticketportal s pokročilými vyhledávacími parametry a cílením na události.",
+        "🔧 Postaven s Node.js a Puppeteer pro spolehlivou webovou automatizaci a nákup lístků.",
+        "🛡️ Obsahuje zpracování ReCaptcha a pokročilé error handling pro robustní provoz.",
+        "⚙️ Konfigurovatelné vyhledávací parametry umožňující přizpůsobení pro různé události a preference."
+      ],
+      [
+        "💕 Romantický web s interaktivními srdci a krásnými animacemi počítající speciální okamžiky spolu.",
+        "🎨 Obsahuje vlastní CSS animace a responzivní design, který perfektně funguje na všech zařízeních.",
+        "💝 Postaven s čistým HTML, CSS a JavaScriptem pro optimální výkon a plynulý uživatelský zážitek.",
+        "📱 Mobile-first design zajišťující, že romantický zážitek je perfektní na telefonech a tabletech."
+      ]
+    ],
+    "projects": [
+      {
+        "title": "Můj Love Web",
+        "description": "Romantický web počítající dny spolu s interaktivními srdci a krásnými animacemi."
+      },
+      {
+        "title": "BETA! Strunzova Pila",
+        "description": "Profesionální web pro společnost Strunzova Pila představující jejich služby apartmánů."
+      },
+      {
+        "title": "Automatický bot pro nákup lístků na Ticketportal",
+        "description": "Bot, který automaticky nakupuje lístky na Ticketportal pro konkrétní událost s konkrétními vyhledávacími parametry."
+      },
+      {
+        "title": "BETA! Duocards Web Aplikace",
+        "description": "Web pro naučení nových slov a frází s flashcards."
+      }
+    ]
+  },
+  "Blog": {
+    "title": "Blog",
+    "description": "Krátké úvahy o mé cestě do USA, tréninku a životě.",
+    "backToHome": "Zpět domů",
+    "backToBlog": "Zpět na blog",
+    "previous": "Předchozí",
+    "next": "Další"
+  },
+  "Navbar": {
+    "home": "Domů",
+    "about": "O mně",
+    "competitions": "Závody",
+    "work": "Práce",
+    "blog": "Blog"
+  },
+  "Podoli2025": {
+    "hero": {
+      "badge1": "JUNIORSKÉ MISTROVSTVÍ",
+      "badge2": "2025",
+      "title": "České juniorské mistrovství",
+      "subtitle": "Podolí 2025",
+      "eventTitle": "Bronzová medaile",
+      "eventDescription": "Výjimečné výsledky na prestižním juniorském mistrovství v Praze"
+    },
+    "info": {
+      "location": "Místo",
+      "locationValue": "Plavecký komplex Podolí, Praha",
+      "date": "Datum",
+      "dateValue": "13.-15. června 2025",
+      "level": "Úroveň",
+      "levelValue": "Juniorské mistrovství republiky",
+      "achievement": "Úspěch",
+      "achievementValue": "Bronzová medaile 400m PZ"
+    },
+    "story": {
+      "title": "Víkend mistrovství k zapamatování",
+      "paragraph1": "České juniorské mistrovství 2025 v Podolí bylo definujícím okamžikem v Danielově plavecké kariéře. Závodění proti nejlepším juniorům v zemi předvedl Daniel výjimečnou všestrannost napříč různými disciplínami.",
+      "highlight": "Bronzová medaile v 400m polohovém závodě - nejnáročnější plavecké disciplíně, která testuje všechny čtyři styly.",
+      "paragraph2": "Toto prestižní mistrovství spojilo nejlepší juniorské plavce z celé České republiky, přičemž Daniel reprezentoval SK Motorlet Praha s rozlišováním. Jeho výkon napříč různými disciplínami demonstroval nejen technické dovednosti, ale i mentální odolnost a soutěživého ducha."
+    },
+    "results": {
+      "title": "Výsledky soutěže"
+    },
+    "videos": {
+      "title": "Videa ze soutěže",
+      "videoTitle": "Zvýraznění závodu",
+      "videoDescription": "{event} - {result} ({time}) - {description}",
+      "comingSoon": "Videa brzy k dispozici",
+      "description": "Zvýraznění a závodní záběry z mistrovství budou brzy k dispozici zde."
+    },
+    "highlights": {
+      "title": "Zvýraznění mistrovství",
+      "description": "Toto mistrovství představuje vrchol juniorského plavání v České republice. Danielův bronzový výkon v 400m polohovém závodě, spolu se silnými výkony v dalších disciplínách, demonstruje jeho potenciál jako jednoho z nejslibnějších mladých plavců v zemi.",
+      "experience": "Víkend, který představil budoucnost českého plavání"
+    }
+  },
+  "Footer": {
+    "contact": "Kontakt",
+    "socialMedia": "Sociální sítě",
+    "swimmingStatistics": "České plavecké statistiky",
+    "swimmingStatistics2": "SwimCloud",
+    "about": "Daniel Mitka",
+    "aboutDescription": "Vášnivý vývojář a nadšenec do plavání. ",
+    "copyright": "© {year} Daniel Mitka. Všechna práva vyhrazena.",
+    "facebookTooltip": "Sledujte mě na Facebooku",
+    "instagramTooltip": "Podívejte se na můj Instagram",
+    "swimcloudTooltip": "Zobrazit mé plavecké časy na SwimCloud"
+  },
+  "Australia": {
+    "hero": {
+      "badge1": "Mezinárodní úspěch",
+      "badge2": "Doporučené",
+      "title": "Stříbrná medaile na MS 2024",
+      "subtitle": "Mistrovství světa v záchranářství",
+      "eventTitle": "Hod lanem",
+      "partner": "S partnerem Adamem Pekařem"
+    },
+    "info": {
+      "location": "Lokalita",
+      "locationValue": "Gold Coast, Austrálie",
+      "date": "Datum",
+      "dateValue": "2024",
+      "category": "Kategorie",
+      "categoryValue": "Juniorská kategorie"
+    },
+    "story": {
+      "title": "Příběh mistrovství",
+      "paragraph1": "Na prestižním Mistrovství světa v záchranářství 2024 na Gold Coast v Austrálii předvedl Daniel Mitka výjimečnou zručnost v mnoha disciplínách a hrdě reprezentoval Českou republiku v juniorské kategorii.",
+      "highlight": "Vrcholným momentem mistrovství bylo získání stříbrné medaile v disciplíně Hod lanem, kde perfektní synchronizace Daniela a Adama Pekaře předvedla českou excelentnost na mezinárodní scéně.",
+      "paragraph2": "Tento úspěch představuje nejen individuální dovednost, ale také vyvrcholení let oddaného tréninku a týmové práce, které umístily české záchranářství na světovou mapu."
+    },
+    "results": {
+      "title": "Výsledky soutěže",
+      "achievements": [
+        {
+          "position": "2.",
+          "event": "Hod lanem",
+          "description": "Stříbrná medaile s Adamem Pekařem"
+        },
+        {
+          "position": "4.",
+          "event": "Štafeta záchranné trubice",
+          "description": "Předstihnutí týmů z Nového Zélandu a Jižní Afriky"
+        },
+        {
+          "position": "6.",
+          "event": "Štafeta 4x25 figurína",
+          "description": "Výjimečná týmová práce a přesnost"
+        },
+        {
+          "position": "14.",
+          "event": "Beach Sprint",
+          "description": "Individuální excelence na písku"
+        }
+      ]
+    },
+    "gallery": {
+      "title": "Momenty mistrovství"
+    }
+  },
+  "Ostrava": {
+    "hero": {
+      "badge1": "Týmové mistrovství",
+      "badge2": "Finále",
+      "title": "MČR Družstev Finále",
+      "subtitle": "Ostrava 2025",
+      "teamName": "Motorlet Praha",
+      "teamDescription": "Finále 1. a 2. ligy"
+    },
+    "info": {
+      "location": "Lokalita",
+      "locationValue": "Ostrava, Česká republika",
+      "date": "Datum",
+      "dateValue": "22.-23. března 2025",
+      "level": "Úroveň",
+      "levelValue": "Elitní týmové mistrovství"
+    },
+    "story": {
+      "title": "Elitní týmové mistrovství",
+      "paragraph1": "Finále týmového mistrovství v Ostravě představuje vrchol českého klubového plavání, kde se probojují pouze nejlepší týmy po náročných semifinálových soutěžích. Motorlet Praha si místo vybojoval výjimečnými výkony v předchozích kolech.",
+      "quote": "Postupujeme do finále, které se bude konat 22.-23. března v Ostravě - slavíme úspěšnou semifinálovou kampaň, která přivedla jak mužský, tak ženský tým na elitní úroveň.",
+      "paragraph2": "Finále předvedlo Danielovu všestrannost v několika disciplínách, přispíval důležitými body k celkovému týmovému úspěchu Motorlet Praha v této prestižní soutěži."
+    },
+    "teamAchievements": {
+      "title": "Týmové úspěchy",
+      "achievements": [
+        {
+          "category": "Mužský tým",
+          "result": "8. místo",
+          "description": "Soutěž na elitní úrovni"
+        },
+        {
+          "category": "Ženský tým",
+          "result": "8. místo",
+          "description": "Silný týmový výkon"
+        },
+        {
+          "category": "Kvalifikace",
+          "result": "Postup do finále",
+          "description": "Úspěšný semifinálový výkon"
+        }
+      ]
+    },
+    "individualResults": {
+      "title": "Danielovy individuální výsledky",
+      "events": [
+        {
+          "event": "100m volný způsob",
+          "time": "0:55.68",
+          "points": "578 bodů",
+          "placement": "15. místo",
+          "category": "Celkově",
+          "description": "Sprintová technika volného způsobu"
+        },
+        {
+          "event": "400m polohový závod",
+          "time": "4:49.75",
+          "points": "586 bodů",
+          "placement": "6. místo",
+          "category": "Celkově",
+          "description": "Všechny čtyři způsoby kombinované - nejlepší individuální výsledek"
+        },
+        {
+          "event": "200m volný způsob",
+          "time": "2:00.81",
+          "points": "601 bodů",
+          "placement": "8. místo",
+          "category": "Celkově",
+          "description": "Střední vzdálenost volného způsobu"
+        },
+        {
+          "event": "200m polohový závod",
+          "time": "2:15.61",
+          "points": "594 bodů",
+          "placement": "8. místo",
+          "category": "Celkově",
+          "description": "Technický vícezpůsobový závod"
+        }
+      ]
+    },
+    "eventVideos": {
+      "title": "Videa ze závodů",
+      "videoTitle": "Finále týmového mistrovství Ostrava 2025",
+      "videoDescription": "Sledujte Danielův výkon v {event} na finále týmového mistrovství v Ostravě. Finální čas: {time}, zisk {points} bodů a umístění na {placement}."
+    },
+    "statistics": {
+      "competitionOverview": {
+        "title": "Přehled soutěže",
+        "eventsCompeted": "Soutěžené disciplíny:",
+        "eventsCompetedValue": "4 individuální",
+        "bestPlacement": "Nejlepší umístění:",
+        "bestPlacementValue": "6. místo",
+        "highestPoints": "Nejvyšší bodový zisk:",
+        "highestPointsValue": "601 bodů"
+      },
+      "teamPerformance": {
+        "title": "Týmový výkon",
+        "mensTeam": "Mužský tým:",
+        "mensTeamValue": "8. místo",
+        "womensTeam": "Ženský tým:",
+        "womensTeamValue": "8. místo",
+        "overallResult": "Celkový výsledek:",
+        "overallResultValue": "Zlepšení"
+      }
+    },
+    "highlights": {
+      "title": "Dopad mistrovství",
+      "description": "Finále týmového mistrovství v Ostravě předvedlo sílu českého klubového plavání, kdy Motorlet Praha dosáhl solidních výsledků v mužské i ženské kategorii. Danielův příspěvek ve čtyřech individuálních disciplínách prokázal jeho všestrannost a odhodlání k týmovému úspěchu.",
+      "experience": "Zkušenost z finále elitního týmového mistrovství"
+    }
+  },
+  "Samorin": {
+    "hero": {
+      "badge1": "Mezinárodní soutěž",
+      "badge2": "2024",
+      "title": "Slovenský pohár",
+      "subtitle": "Šamorín 2024",
+      "eventTitle": "Plavecká excelence",
+      "eventDescription": "Účast ve více disciplínách"
+    },
+    "info": {
+      "location": "Lokalita",
+      "locationValue": "Šamorín, Slovensko",
+      "date": "Datum",
+      "dateValue": "25. října 2024",
+      "competition": "Soutěž",
+      "competitionValue": "Slovenský pohár"
+    },
+    "story": {
+      "title": "Mezinárodní zkušenost",
+      "paragraph1": "Slovenský pohár v Šamoríně 25. října 2024 byl ukázkou všestrannosti, kde Daniel Mitka soutěžil v pěti různých plaveckých disciplínách a předvedl technickou zdatnost jak ve volném způsobu, tak v polohových závodech.",
+      "highlight": "Vynikající výkony zahrnovaly silný čas 0:52.82 na 100m volného způsobu a konzistentní polohové závody na 100m, 200m a 400m vzdálenostech, prokazující výbornou techniku a vytrvalost.",
+      "paragraph2": "Soutěž zahrnovala různé disciplíny od sprintových vzdáleností po náročný 400m polohový závod, testující rychlost i technické zvládnutí všech čtyř závodních plaveckých způsobů."
+    },
+    "events": {
+      "title": "Soutěžené disciplíny",
+      "eventsList": [
+        {
+          "event": "100m polohový závod",
+          "time": "0:58.53",
+          "description": "Osobní rekord ve všech čtyřech plaveckých způsobech"
+        },
+        {
+          "event": "200m volný způsob",
+          "time": "1:54.80",
+          "description": "Silný výkon na střední vzdálenosti"
+        },
+        {
+          "event": "400m polohový závod",
+          "time": "4:36.38",
+          "description": "Náročná dlouhá polohová disciplína"
+        },
+        {
+          "event": "200m polohový závod",
+          "time": "2:06.65",
+          "description": "Technická přesnost napříč všemi způsoby"
+        },
+        {
+          "event": "100m volný způsob",
+          "time": "0:52.82",
+          "description": "Sprintový výkon volného způsobu"
+        }
+      ]
+    }
+  },
+  "Podoli": {
+    "hero": {
+      "badge1": "Národní mistrovství",
+      "badge2": "Česká republika",
+      "title": "České národní mistrovství",
+      "subtitle": "v plavání 2024",
+      "eventTitle": "MČR Podolí",
+      "eventDescription": "Reprezentace České republiky"
+    },
+    "info": {
+      "location": "Lokalita",
+      "locationValue": "Podolí, Praha",
+      "date": "Datum",
+      "dateValue": "2024",
+      "level": "Úroveň",
+      "levelValue": "Národní mistrovství"
+    },
+    "story": {
+      "title": "Excelence národní soutěže",
+      "paragraph1": "České národní mistrovství v plavání (MČR) v Podolí představuje vrchol domácí plavecké soutěže, kde nejlepší plavci národa soutěží o národní tituly a rekordy.",
+      "highlight": "Soutěžení na této úrovni vyžaduje nejen technickou dokonalost, ale také mentální sílu pro výkon pod tlakem reprezentace regionu na nejvyšší národní úrovni.",
+      "paragraph2": "Toto mistrovství slouží jako klíčový odrazový můstek pro mezinárodní soutěže a demonstruje Danielovo odhodlání dosáhnout dokonalosti v českém plavání."
+    },
+    "events": {
+      "title": "Mistrovské disciplíny",
+      "eventsList": [
+        {
+          "event": "50m volný způsob",
+          "result": "Finále",
+          "time": "25.00",
+          "description": "Rozplavby: 25.14 | Finále: 25.00 - Silný sprintový výkon"
+        },
+        {
+          "event": "200m polohový závod",
+          "result": "Rozplavby",
+          "time": "2:11.91",
+          "description": "Rozplavby: 2:11.91 | Finále: 2:11.92 - Všechny čtyři způsoby kombinované"
+        },
+        {
+          "event": "200m volný způsob",
+          "result": "Finále",
+          "time": "1:57.72",
+          "description": "Rozplavby: 2:00.50 | Finále: 1:57.72 - Výborné zlepšení ve finále"
+        },
+        {
+          "event": "100m prsa",
+          "result": "Finále",
+          "time": "1:07.99",
+          "description": "Rozplavby: 1:09.01 | Finále: 1:07.99 - Silný technický výkon"
+        },
+        {
+          "event": "400m polohový závod",
+          "result": "Finále",
+          "time": "4:44.39",
+          "description": "Rozplavby: 4:44.39 - Dlouhá polohová výzva"
+        },
+        {
+          "event": "200m prsa",
+          "result": "Rozplavby",
+          "time": "2:32.03",
+          "description": "Rozplavby: 2:32.03 | Finále: 2:33.19 - Technický závod v prsa"
+        }
+      ]
+    },
+    "highlights": {
+      "title": "Mistrovská zkušenost",
+      "description": "České národní mistrovství v plavání v Podolí poskytlo neocenitelnou příležitost soutěžit proti elitním plavcům země v zařízení světové třídy.",
+      "experience": "Zkušenost ze soutěže na národní úrovni"
+    }
+  },
+  "Plzen": {
+    "hero": {
+      "badge1": "Czech Open",
+      "badge2": "Mistrovství",
+      "title": "Plzeň Czech Open Mistrovství",
+      "subtitle": "Plzeň 2024",
+      "teamName": "Motorlet Praha",
+      "teamDescription": "Mezinárodní soutěž"
+    },
+    "info": {
+      "location": "Místo",
+      "locationValue": "Plzeň, Česká republika",
+      "date": "Datum",
+      "dateValue": "12-14. dubna 2024",
+      "level": "Úroveň",
+      "levelValue": "Mezinárodní mistrovství"
+    },
+    "story": {
+      "title": "Mezinárodní plavecká soutěž",
+      "paragraph1": "Plzeň Czech Open Mistrovství představuje jednu z nejprestižnějších mezinárodních plaveckých soutěží v České republice, přitahující elitní plavce z celé Evropy. Událost předvádí nejvyšší úroveň závodního plavání s výjimečnými výkony.",
+      "quote": "Závodění proti mezinárodním talentům v Plzni poskytlo neocenitelné zkušenosti a příležitosti testovat dovednosti proti nejlepším evropským plavcům.",
+      "paragraph2": "Daniel prokázal pozoruhodnou všestrannost a odhodlání během celé soutěže, dosáhl osobních rekordů a přispěl k silné mezinárodní přítomnosti Motorletu Praha."
+    },
+    "teamAchievements": {
+      "title": "Úspěchy v soutěži",
+      "achievements": [
+        {
+          "category": "Individuální výkon",
+          "result": "Osobní rekordy",
+          "description": "Dosaženo více osobních rekordů"
+        },
+        {
+          "category": "Zastoupení týmu",
+          "result": "Motorlet Praha",
+          "description": "Silná mezinárodní přítomnost"
+        },
+        {
+          "category": "Mezinárodní úroveň",
+          "result": "Evropská soutěž",
+          "description": "Závodění proti top plavcům"
+        }
+      ]
+    },
+    "individualResults": {
+      "title": "Danielovy individuální výsledky",
+      "events": [
+        {
+          "event": "50m Volný způsob",
+          "time": "0:25.47",
+          "points": "612 bodů",
+          "placement": "12. místo",
+          "category": "Celkově",
+          "description": "Sprintový volný způsob"
+        },
+        {
+          "event": "100m Polohový závod",
+          "time": "1:05.82",
+          "points": "598 bodů",
+          "placement": "9. místo",
+          "category": "Celkově",
+          "description": "Technický krátký polohový - nejlepší výsledek"
+        },
+        {
+          "event": "100m Volný způsob",
+          "time": "0:56.12",
+          "points": "571 bodů",
+          "placement": "14. místo",
+          "category": "Celkově",
+          "description": "Střední volný způsob"
+        },
+        {
+          "event": "200m Polohový závod",
+          "time": "2:16.45",
+          "points": "589 bodů",
+          "placement": "11. místo",
+          "category": "Celkově",
+          "description": "Dlouhý polohový závod"
+        }
+      ]
+    },
+    "eventVideos": {
+      "title": "Videa ze soutěže",
+      "videoTitle": "Plzeň Czech Open Mistrovství 2024",
+      "videoDescription": "Sledujte Danielův výkon v disciplíně {event} na Plzeň Czech Open Mistrovství. Finální čas: {time}, získané body: {points} a umístění {placement}."
+    },
+    "statistics": {
+      "competitionOverview": {
+        "title": "Přehled soutěže",
+        "eventsCompeted": "Disciplíny:",
+        "eventsCompetedValue": "4 Individuální",
+        "bestPlacement": "Nejlepší umístění:",
+        "bestPlacementValue": "9. místo",
+        "highestPoints": "Nejvíce bodů:",
+        "highestPointsValue": "612 bodů"
+      },
+      "teamPerformance": {
+        "title": "Mezinárodní zkušenost",
+        "internationalLevel": "Úroveň soutěže:",
+        "internationalLevelValue": "Evropské mistrovství",
+        "personalBests": "Osobní rekordy:",
+        "personalBestsValue": "2 Dosaženo",
+        "overallResult": "Celkový výsledek:",
+        "overallResultValue": "Silný výkon"
+      }
+    }
+  },
+  "NotFound": {
+    "title": "Ups! Stránka nebyla nalezena",
+    "subtitle": "404",
+    "description": "Vypadá to, že jste zaplavali do neznámých vod! Stránka, kterou hledáte, neexistuje.",
+    "features": [
+      {
+        "title": "Ztratili jste se?",
+        "description": "Nebojte se, i ti nejlepší plavci občas udělají špatnou zatáčku v bazénu."
+      },
+      {
+        "title": "Vraťte se zpět",
+        "description": "Pojďme vás vrátit zpět do hlavní soutěžní oblasti, kde se odehrává veškerá akce."
+      },
+      {
+        "title": "Prozkoumejte více",
+        "description": "Zatímco jste zde, podívejte se na moje plavecké úspěchy, závody a projekty."
+      }
+    ],
+    "homeButton": "Návrat domů",
+    "competitionsButton": "Zobrazit závody",
+    "funFact": "Zajímavost: Daniel se nikdy neztratil v plaveckém bazénu! 🏊‍♂️"
+  }
+}

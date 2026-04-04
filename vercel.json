@@ -1,0 +1,13 @@
+{
+  "buildCommand": "npm run build",
+  "installCommand": "npm install --legacy-peer-deps",
+  "framework": "nextjs",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://www.danielmitka.com/$1",
+      "permanent": true,
+      "has": [{ "type": "host", "value": "danielmitka.com" }]
+    }
+  ]
+}
