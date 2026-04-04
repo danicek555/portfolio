@@ -303,6 +303,16 @@ export default function RootLayout({
           fontFamily: "var(--font-roboto), var(--font-montserrat), sans-serif",
         }}
       >
+        {/* Google Tag Manager (noscript) — for users without JS */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-W2CRC6GL"
+            height={0}
+            width={0}
+            style={{ display: "none", visibility: "hidden" }}
+            title="Google Tag Manager"
+          />
+        </noscript>
         {children}
         <Analytics />
         <SpeedInsights />
