@@ -7,7 +7,7 @@ import {
   generateMultipleSchemas,
 } from "../lib/schema";
 import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { CookiebotScrollGuard } from "../components/CookiebotScrollGuard";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
@@ -229,7 +229,6 @@ export default function RootLayout({
           as="image"
           fetchPriority="high"
         />
-        <link rel="preload" href="/profilovaFotka.jpg" as="image" />
         {/* Preconnect to external resources */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -313,9 +312,9 @@ export default function RootLayout({
             title="Google Tag Manager"
           />
         </noscript>
+        <CookiebotScrollGuard />
         {children}
         <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );
