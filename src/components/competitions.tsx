@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "./ThemeProvider";
@@ -133,54 +133,41 @@ const Competitions: React.FC = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [hasMoreThanMax, isMobile, nextSlide, prevSlide, isAtStart, isAtEnd]);
 
-  // Prevent browser's default horizontal scroll behavior
+  const carouselWheelRef = useRef<HTMLDivElement>(null);
+
+  // Native non-passive wheel on the carousel only (React's onWheel is often passive).
+  // Never preventDefault unless the gesture is clearly horizontal — otherwise Chrome
+  // won't scroll the page when the pointer is over this section.
   useEffect(() => {
-    const handleWheel = (event: Event) => {
-      const wheelEvent = event as WheelEvent;
-      if (Math.abs(wheelEvent.deltaX) > Math.abs(wheelEvent.deltaY)) {
-        event.preventDefault();
-      }
+    const el = carouselWheelRef.current;
+    if (!el || !hasMoreThanMax || isMobile) return;
+
+    const onWheel = (e: WheelEvent) => {
+      if (isTransitioning) return;
+
+      const absX = Math.abs(e.deltaX);
+      const absY = Math.abs(e.deltaY);
+      const mostlyHorizontal = absX > absY * 2 && absX > 40;
+      if (!mostlyHorizontal) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (e.deltaX > 0 && !isAtEnd) nextSlide();
+      else if (e.deltaX < 0 && !isAtStart) prevSlide();
     };
 
-    const container = document.querySelector("[data-competitions-container]");
-    if (container) {
-      container.addEventListener("wheel", handleWheel, { passive: false });
-      return () => container.removeEventListener("wheel", handleWheel);
-    }
-  }, []);
-
-  // Handle wheel events for trackpad scrolling
-  const handleWheel = useCallback(
-    (event: React.WheelEvent) => {
-      if (!hasMoreThanMax || isMobile || isTransitioning) return;
-
-      const deltaX = event.deltaX;
-      const deltaY = event.deltaY;
-
-      // Only prevent default if there's significant horizontal movement
-      // Higher threshold to ensure one section per scroll gesture
-      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        // Move only one section per scroll gesture
-        if (deltaX > 0 && !isAtEnd) {
-          nextSlide();
-        } else if (deltaX < 0 && !isAtStart) {
-          prevSlide();
-        }
-      }
-    },
-    [
-      hasMoreThanMax,
-      isMobile,
-      isTransitioning,
-      nextSlide,
-      prevSlide,
-      isAtStart,
-      isAtEnd,
-    ]
-  );
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, [
+    hasMoreThanMax,
+    isMobile,
+    isTransitioning,
+    isAtStart,
+    isAtEnd,
+    nextSlide,
+    prevSlide,
+  ]);
 
   const renderCompetitionCard = (comp: Competition, index: number) => (
     <motion.div
@@ -290,14 +277,14 @@ const Competitions: React.FC = () => {
             <div className="relative">
               {/* Slider Container with touch support */}
               <div
+                ref={carouselWheelRef}
                 className="overflow-hidden py-2 sm:py-4 md:py-8 select-none"
-                onWheel={handleWheel}
                 data-competitions-container
                 style={{
                   touchAction: "pan-y pinch-zoom",
-                  overscrollBehavior: "contain",
+                  overscrollBehaviorY: "auto",
                   willChange: "transform",
-                  transform: "translateZ(0)", // Force hardware acceleration
+                  transform: "translateZ(0)",
                 }}
               >
                 <motion.div
