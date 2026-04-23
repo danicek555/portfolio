@@ -17,7 +17,6 @@ function hasVisibleConsentDialog(): boolean {
     "[id*='cookie-consent']",
     "[class*='cookie-consent']",
     "[data-testid*='cookie']",
-    "[aria-modal='true'][role='dialog']",
   ];
 
   return selectors.some((selector) => {
