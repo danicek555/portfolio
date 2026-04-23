@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "./ThemeProvider";
@@ -18,9 +17,6 @@ type Competition = {
 const Competitions: React.FC = () => {
   const { isDarkMode } = useTheme();
   const t = useTranslations("Competitions");
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const competitions: Competition[] = [
     {
@@ -61,166 +57,14 @@ const Competitions: React.FC = () => {
     },
   ];
 
-  // Responsive slides to show
-  const [slidesToShow, setSlidesToShow] = useState(3);
-
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      if (width < 768) {
-        setSlidesToShow(1);
-        setIsMobile(true);
-      } else if (width < 1024) {
-        setSlidesToShow(2);
-        setIsMobile(false);
-      } else {
-        setSlidesToShow(3);
-        setIsMobile(false);
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const hasMoreThanMax = competitions.length > slidesToShow;
-  const maxSlide = competitions.length - slidesToShow;
-  const isAtStart = currentSlide === 0;
-  const isAtEnd = currentSlide >= maxSlide;
-
-  const nextSlide = useCallback(() => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentSlide((prev) => {
-      const newSlide = prev + 1;
-      // Stop at the boundary instead of wrapping
-      return newSlide > maxSlide ? prev : newSlide;
-    });
-    // Reset transition flag after animation duration
-    setTimeout(() => setIsTransitioning(false), 250);
-  }, [maxSlide, isTransitioning]);
-
-  const prevSlide = useCallback(() => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentSlide((prev) => {
-      const newSlide = prev - 1;
-      // Stop at the boundary instead of wrapping
-      return newSlide < 0 ? prev : newSlide;
-    });
-    // Reset transition flag after animation duration
-    setTimeout(() => setIsTransitioning(false), 250);
-  }, [isTransitioning]);
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-  };
-
-  // Keyboard navigation
-  useEffect(() => {
-    if (!hasMoreThanMax || isMobile) return;
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "ArrowLeft" && !isAtStart) {
-        prevSlide();
-      } else if (event.key === "ArrowRight" && !isAtEnd) {
-        nextSlide();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [hasMoreThanMax, isMobile, nextSlide, prevSlide, isAtStart, isAtEnd]);
-
-  const carouselWheelRef = useRef<HTMLDivElement>(null);
-
-  // --- NEW: capture-phase listener to allow native vertical scrolling ---
-  // This prevents later handlers (including library/draggable listeners)
-  // from hijacking vertical wheel/trackpad gestures when the pointer is over
-  // the carousel container. We only intercept events that start over the
-  // carousel; primarily-vertical gestures are allowed to scroll the page.
-  useEffect(() => {
-    const el = carouselWheelRef.current;
-    if (!el) return;
-
-    const captureHandler = (e: WheelEvent) => {
-      // Only act if the wheel event started over the carousel element
-      const target = e.target as Node | null;
-      if (!target || !el.contains(target)) return;
-
-      const absX = Math.abs(e.deltaX);
-      const absY = Math.abs(e.deltaY);
-
-      // If it's primarily vertical, stop propagation in capture phase so
-      // later listeners (that convert wheel into horizontal drag) do not run.
-      // This allows the browser to perform native vertical scrolling.
-      if (absY > absX) {
-        // stop other (bubbling/capture) listeners from receiving this event
-        // while still letting the default (native scroll) happen.
-        e.stopImmediatePropagation();
-        return;
-      }
-      // Otherwise (primarily horizontal) — do nothing and let existing handlers run.
-    };
-
-    // Add in capture phase. passive:true to avoid blocking default behavior;
-    // we only stop propagation for vertical gestures, not preventDefault.
-    window.addEventListener("wheel", captureHandler, {
-      capture: true,
-      passive: true,
-    });
-    return () => {
-      window.removeEventListener("wheel", captureHandler, {
-        capture: true,
-        passive: true,
-      } as EventListenerOptions);
-    };
-  }, [carouselWheelRef]);
-
-  // Native non-passive wheel on the carousel only (React's onWheel is often passive).
-  // Never preventDefault unless the gesture is clearly horizontal — otherwise Chrome
-  // won't scroll the page when the pointer is over this section.
-  useEffect(() => {
-    const el = carouselWheelRef.current;
-    if (!el || !hasMoreThanMax || isMobile) return;
-
-    const onWheel = (e: WheelEvent) => {
-      if (isTransitioning) return;
-
-      const absX = Math.abs(e.deltaX);
-      const absY = Math.abs(e.deltaY);
-      const mostlyHorizontal = absX > absY * 2 && absX > 40;
-      if (!mostlyHorizontal) return;
-
-      e.preventDefault();
-      e.stopPropagation();
-
-      if (e.deltaX > 0 && !isAtEnd) nextSlide();
-      else if (e.deltaX < 0 && !isAtStart) prevSlide();
-    };
-
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => el.removeEventListener("wheel", onWheel);
-  }, [
-    hasMoreThanMax,
-    isMobile,
-    isTransitioning,
-    isAtStart,
-    isAtEnd,
-    nextSlide,
-    prevSlide,
-  ]);
-
   const renderCompetitionCard = (comp: Competition, index: number) => (
     <motion.div
       key={index}
       className={clsx(
         "rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 select-none",
         isDarkMode ? "bg-gray-700" : "bg-white",
-        hasMoreThanMax ? "min-w-0 flex-shrink-0" : "",
       )}
-      whileHover={{ scale: isMobile ? 1 : 1.02 }}
+      whileHover={{ scale: 1.02 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
       style={{
         userSelect: "none",
@@ -315,182 +159,20 @@ const Competitions: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          {hasMoreThanMax ? (
-            // Slider Layout for more competitions than can fit
-            <div className="relative">
-              {/* Slider Container with touch support */}
-              <div
-                ref={carouselWheelRef}
-                className="overflow-hidden py-2 sm:py-4 md:py-8 select-none"
-                data-competitions-container
-                style={{
-                  touchAction: "pan-y pinch-zoom",
-                  overscrollBehaviorY: "auto",
-                  willChange: "transform",
-                  transform: "translateZ(0)",
-                }}
-              >
-                <motion.div
-                  className="flex gap-4 sm:gap-6 md:gap-8 select-none"
-                  drag="x"
-                  dragConstraints={{
-                    left: -(competitions.length - slidesToShow) * 400, // Approximate slide width
-                    right: 0,
-                  }}
-                  dragElastic={0.05}
-                  dragMomentum={false}
-                  dragTransition={{ bounceStiffness: 300, bounceDamping: 30 }}
-                  onDragEnd={(_, info) => {
-                    const threshold = 50;
-                    if (info.offset.x > threshold && !isAtStart) {
-                      prevSlide();
-                    } else if (info.offset.x < -threshold && !isAtEnd) {
-                      nextSlide();
-                    }
-                  }}
-                  animate={{
-                    x: `calc(-${currentSlide * (100 / slidesToShow)}% - ${
-                      currentSlide * (isMobile ? 1 : 2)
-                    }rem)`,
-                  }}
-                  transition={{
-                    type: "tween",
-                    duration: 0.25,
-                    ease: [0.25, 0.46, 0.45, 0.94], // Custom easing for smoother motion
-                  }}
-                  style={{
-                    userSelect: "none",
-                    WebkitUserSelect: "none",
-                    MozUserSelect: "none",
-                    msUserSelect: "none",
-                    willChange: "transform",
-                    backfaceVisibility: "hidden",
-                    WebkitBackfaceVisibility: "hidden",
-                  }}
-                >
-                  {competitions.map((comp, index) => (
-                    <div
-                      key={index}
-                      className={clsx(
-                        "flex-shrink-0",
-                        slidesToShow === 1
-                          ? "w-full"
-                          : slidesToShow === 2
-                            ? "w-1/2"
-                            : "w-full md:w-1/3",
-                      )}
-                    >
-                      {renderCompetitionCard(comp, index)}
-                    </div>
-                  ))}
-                </motion.div>
-              </div>
-
-              {/* Navigation Arrows for larger screens */}
-              {!isMobile && (
-                <>
-                  <button
-                    onClick={prevSlide}
-                    disabled={isAtStart}
-                    className={clsx(
-                      "absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 z-10",
-                      isAtStart
-                        ? "opacity-50 cursor-not-allowed"
-                        : "hover:scale-110",
-                      isDarkMode
-                        ? "bg-gray-700 text-white"
-                        : "bg-white text-gray-800 shadow-lg",
-                      !isAtStart &&
-                        (isDarkMode ? "hover:bg-gray-600" : "hover:bg-gray-50"),
-                    )}
-                  >
-                    ←
-                  </button>
-                  <button
-                    onClick={nextSlide}
-                    disabled={isAtEnd}
-                    className={clsx(
-                      "absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 z-10",
-                      isAtEnd
-                        ? "opacity-50 cursor-not-allowed"
-                        : "hover:scale-110",
-                      isDarkMode
-                        ? "bg-gray-700 text-white"
-                        : "bg-white text-gray-800 shadow-lg",
-                      !isAtEnd &&
-                        (isDarkMode ? "hover:bg-gray-600" : "hover:bg-gray-50"),
-                    )}
-                  >
-                    →
-                  </button>
-                </>
-              )}
-
-              {/* Slide Indicators */}
-              <div className="flex justify-center mt-6 sm:mt-8 space-x-2">
-                {Array.from({
-                  length: competitions.length - slidesToShow + 1,
-                }).map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => goToSlide(index)}
-                    className={clsx(
-                      "w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300",
-                      currentSlide === index
-                        ? "bg-green-500 scale-110"
-                        : isDarkMode
-                          ? "bg-gray-600 hover:bg-gray-500"
-                          : "bg-gray-300 hover:bg-gray-400",
-                    )}
-                  />
-                ))}
-              </div>
-
-              {/* Competition Counter */}
-              <div className="text-center mt-3 sm:mt-4">
-                <span
-                  className={clsx(
-                    "text-xs sm:text-sm transition-colors duration-300",
-                    isDarkMode ? "text-gray-400" : "text-gray-600",
-                  )}
-                >
-                  {currentSlide + 1} -{" "}
-                  {Math.min(currentSlide + slidesToShow, competitions.length)}{" "}
-                  of {competitions.length} competitions
-                </span>
-              </div>
-
-              {/* Navigation Help */}
-              <div className="text-center mt-2">
-                <span
-                  className={clsx(
-                    "text-xs transition-colors duration-300",
-                    isDarkMode ? "text-gray-500" : "text-gray-500",
-                  )}
-                >
-                  {isMobile
-                    ? "Swipe to navigate"
-                    : "Drag to navigate • Use ← → keys • Trackpad scroll"}
-                </span>
-              </div>
-            </div>
-          ) : (
-            // Regular Grid Layout for fewer competitions
-            <div
-              className={clsx(
-                "grid gap-4 sm:gap-6 md:gap-8",
-                competitions.length === 1
-                  ? "grid-cols-1 max-w-md mx-auto"
-                  : competitions.length === 2
-                    ? "grid-cols-1 sm:grid-cols-2"
-                    : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
-              )}
-            >
-              {competitions.map((comp, index) =>
-                renderCompetitionCard(comp, index),
-              )}
-            </div>
-          )}
+          <div
+            className={clsx(
+              "grid gap-4 sm:gap-6 md:gap-8",
+              competitions.length === 1
+                ? "grid-cols-1 max-w-md mx-auto"
+                : competitions.length === 2
+                  ? "grid-cols-1 sm:grid-cols-2"
+                  : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+            )}
+          >
+            {competitions.map((comp, index) =>
+              renderCompetitionCard(comp, index),
+            )}
+          </div>
         </motion.div>
       </div>
     </section>
