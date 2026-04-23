@@ -275,8 +275,12 @@ export default function RootLayout({
         <Script id="theme-mode" strategy="beforeInteractive">
           {`
             (function () {
+              var safeGet = function (storage, key) {
+                if (!storage || typeof storage.getItem !== 'function') return null;
+                return storage.getItem(key);
+              };
               try {
-                var theme = sessionStorage.getItem('preserveTheme') ?? localStorage.getItem('darkMode');
+                var theme = safeGet(window.sessionStorage, 'preserveTheme') ?? safeGet(window.localStorage, 'darkMode');
                 var isDark = theme ? JSON.parse(theme) : false;
                 
                 // Store the theme preference but don't set the class immediately
@@ -288,7 +292,9 @@ export default function RootLayout({
                 }
                 
                 // Clean up sessionStorage
-                sessionStorage.removeItem('preserveTheme');
+                if (window.sessionStorage && typeof window.sessionStorage.removeItem === 'function') {
+                  window.sessionStorage.removeItem('preserveTheme');
+                }
               } catch (e) {
                 // Fallback: remove theme attribute if there's an error
                 document.documentElement.removeAttribute('data-theme');

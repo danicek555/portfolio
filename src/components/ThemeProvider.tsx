@@ -33,10 +33,15 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    const safeGet = (storage: Storage | undefined, key: string) => {
+      if (!storage || typeof storage.getItem !== "function") return null;
+      return storage.getItem(key);
+    };
+
     // Check saved theme preference after mount
     const saved =
-      sessionStorage.getItem("preserveTheme") ??
-      localStorage.getItem("darkMode");
+      safeGet(window.sessionStorage, "preserveTheme") ??
+      safeGet(window.localStorage, "darkMode");
 
     let isDark = false;
     if (saved !== null) {
@@ -57,7 +62,9 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
 
   useEffect(() => {
     if (!isMounted) return;
-    localStorage.setItem("darkMode", JSON.stringify(isDarkMode));
+    if (typeof window.localStorage?.setItem === "function") {
+      window.localStorage.setItem("darkMode", JSON.stringify(isDarkMode));
+    }
     document.documentElement.classList.toggle("dark", isDarkMode);
   }, [isDarkMode, isMounted]);
 

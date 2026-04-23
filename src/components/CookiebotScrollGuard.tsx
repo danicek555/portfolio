@@ -2,14 +2,28 @@
 
 import { useEffect } from "react";
 
-function cookiebotBannerVisible(): boolean {
-  const dialog = document.getElementById("CybotCookiebotDialog");
-  if (!dialog) return false;
-  const rect = dialog.getBoundingClientRect();
+function elementVisible(el: Element): boolean {
+  const rect = el.getBoundingClientRect();
   if (rect.width < 8 || rect.height < 8) return false;
-  const s = getComputedStyle(dialog);
-  if (s.display === "none" || s.visibility === "hidden") return false;
-  return true;
+  const s = getComputedStyle(el);
+  return s.display !== "none" && s.visibility !== "hidden" && s.opacity !== "0";
+}
+
+function hasVisibleConsentDialog(): boolean {
+  const selectors = [
+    "#CybotCookiebotDialog",
+    "[id*='cookiebot']",
+    "[class*='cookiebot']",
+    "[id*='cookie-consent']",
+    "[class*='cookie-consent']",
+    "[data-testid*='cookie']",
+    "[aria-modal='true'][role='dialog']",
+  ];
+
+  return selectors.some((selector) => {
+    const nodes = Array.from(document.querySelectorAll(selector));
+    return nodes.some((node) => elementVisible(node));
+  });
 }
 
 function documentScrollLocked(): boolean {
@@ -25,8 +39,10 @@ function documentScrollLocked(): boolean {
 
 function clearCookiebotScrollLock() {
   document.body.style.removeProperty("overflow");
+  document.body.style.removeProperty("overflow-y");
   document.body.style.removeProperty("position");
   document.documentElement.style.removeProperty("overflow");
+  document.documentElement.style.removeProperty("overflow-y");
   document.documentElement.style.removeProperty("position");
 }
 
@@ -34,12 +50,15 @@ function clearCookiebotScrollLock() {
 export function CookiebotScrollGuard() {
   useEffect(() => {
     const tryFix = () => {
-      if (cookiebotBannerVisible()) return;
+      if (hasVisibleConsentDialog()) return;
       if (!documentScrollLocked()) return;
       clearCookiebotScrollLock();
     };
 
-    const delays = [800, 2000, 4000].map((ms) => window.setTimeout(tryFix, ms));
+    const delays = [300, 800, 1500, 2500, 4000, 7000].map((ms) =>
+      window.setTimeout(tryFix, ms),
+    );
+    const interval = window.setInterval(tryFix, 5000);
 
     const obs = new MutationObserver(tryFix);
     obs.observe(document.body, {
@@ -53,6 +72,7 @@ export function CookiebotScrollGuard() {
 
     return () => {
       delays.forEach(clearTimeout);
+      clearInterval(interval);
       obs.disconnect();
     };
   }, []);
