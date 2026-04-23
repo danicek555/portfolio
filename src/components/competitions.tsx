@@ -135,6 +135,49 @@ const Competitions: React.FC = () => {
 
   const carouselWheelRef = useRef<HTMLDivElement>(null);
 
+  // --- NEW: capture-phase listener to allow native vertical scrolling ---
+  // This prevents later handlers (including library/draggable listeners)
+  // from hijacking vertical wheel/trackpad gestures when the pointer is over
+  // the carousel container. We only intercept events that start over the
+  // carousel; primarily-vertical gestures are allowed to scroll the page.
+  useEffect(() => {
+    const el = carouselWheelRef.current;
+    if (!el) return;
+
+    const captureHandler = (e: WheelEvent) => {
+      // Only act if the wheel event started over the carousel element
+      const target = e.target as Node | null;
+      if (!target || !el.contains(target)) return;
+
+      const absX = Math.abs(e.deltaX);
+      const absY = Math.abs(e.deltaY);
+
+      // If it's primarily vertical, stop propagation in capture phase so
+      // later listeners (that convert wheel into horizontal drag) do not run.
+      // This allows the browser to perform native vertical scrolling.
+      if (absY > absX) {
+        // stop other (bubbling/capture) listeners from receiving this event
+        // while still letting the default (native scroll) happen.
+        e.stopImmediatePropagation();
+        return;
+      }
+      // Otherwise (primarily horizontal) — do nothing and let existing handlers run.
+    };
+
+    // Add in capture phase. passive:true to avoid blocking default behavior;
+    // we only stop propagation for vertical gestures, not preventDefault.
+    window.addEventListener("wheel", captureHandler, {
+      capture: true,
+      passive: true,
+    });
+    return () => {
+      window.removeEventListener("wheel", captureHandler, {
+        capture: true,
+        passive: true,
+      } as EventListenerOptions);
+    };
+  }, [carouselWheelRef]);
+
   // Native non-passive wheel on the carousel only (React's onWheel is often passive).
   // Never preventDefault unless the gesture is clearly horizontal — otherwise Chrome
   // won't scroll the page when the pointer is over this section.
@@ -175,7 +218,7 @@ const Competitions: React.FC = () => {
       className={clsx(
         "rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 select-none",
         isDarkMode ? "bg-gray-700" : "bg-white",
-        hasMoreThanMax ? "min-w-0 flex-shrink-0" : ""
+        hasMoreThanMax ? "min-w-0 flex-shrink-0" : "",
       )}
       whileHover={{ scale: isMobile ? 1 : 1.02 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -195,7 +238,7 @@ const Competitions: React.FC = () => {
             "object-cover",
             comp.img === "/samorin.jpg" || comp.img === "/ausFoto_temp.jpg"
               ? "object-center"
-              : "object-[50%_30%]"
+              : "object-[50%_30%]",
           )}
           quality={85}
           loading={index < 3 ? "eager" : "lazy"}
@@ -206,7 +249,7 @@ const Competitions: React.FC = () => {
         <h3
           className={clsx(
             "text-lg sm:text-xl font-bold mb-2 sm:mb-3 transition-colors duration-300",
-            isDarkMode ? "text-white" : "text-gray-800"
+            isDarkMode ? "text-white" : "text-gray-800",
           )}
         >
           {comp.title}
@@ -214,7 +257,7 @@ const Competitions: React.FC = () => {
         <p
           className={clsx(
             "mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base transition-colors duration-300",
-            isDarkMode ? "text-gray-300" : "text-gray-600"
+            isDarkMode ? "text-gray-300" : "text-gray-600",
           )}
         >
           {comp.description}
@@ -242,7 +285,7 @@ const Competitions: React.FC = () => {
       id="competitions"
       className={clsx(
         "py-12 sm:py-16 px-4 sm:px-8 transition-colors duration-300",
-        isDarkMode ? "bg-gray-800" : "bg-gray-50"
+        isDarkMode ? "bg-gray-800" : "bg-gray-50",
       )}
     >
       <div className="max-w-7xl mx-auto">
@@ -259,7 +302,7 @@ const Competitions: React.FC = () => {
           <h2
             className={clsx(
               "text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8 transition-colors duration-300",
-              isDarkMode ? "text-white" : "text-gray-800"
+              isDarkMode ? "text-white" : "text-gray-800",
             )}
           >
             {t("title")}
@@ -333,8 +376,8 @@ const Competitions: React.FC = () => {
                         slidesToShow === 1
                           ? "w-full"
                           : slidesToShow === 2
-                          ? "w-1/2"
-                          : "w-full md:w-1/3"
+                            ? "w-1/2"
+                            : "w-full md:w-1/3",
                       )}
                     >
                       {renderCompetitionCard(comp, index)}
@@ -358,7 +401,7 @@ const Competitions: React.FC = () => {
                         ? "bg-gray-700 text-white"
                         : "bg-white text-gray-800 shadow-lg",
                       !isAtStart &&
-                        (isDarkMode ? "hover:bg-gray-600" : "hover:bg-gray-50")
+                        (isDarkMode ? "hover:bg-gray-600" : "hover:bg-gray-50"),
                     )}
                   >
                     ←
@@ -375,7 +418,7 @@ const Competitions: React.FC = () => {
                         ? "bg-gray-700 text-white"
                         : "bg-white text-gray-800 shadow-lg",
                       !isAtEnd &&
-                        (isDarkMode ? "hover:bg-gray-600" : "hover:bg-gray-50")
+                        (isDarkMode ? "hover:bg-gray-600" : "hover:bg-gray-50"),
                     )}
                   >
                     →
@@ -396,8 +439,8 @@ const Competitions: React.FC = () => {
                       currentSlide === index
                         ? "bg-green-500 scale-110"
                         : isDarkMode
-                        ? "bg-gray-600 hover:bg-gray-500"
-                        : "bg-gray-300 hover:bg-gray-400"
+                          ? "bg-gray-600 hover:bg-gray-500"
+                          : "bg-gray-300 hover:bg-gray-400",
                     )}
                   />
                 ))}
@@ -408,7 +451,7 @@ const Competitions: React.FC = () => {
                 <span
                   className={clsx(
                     "text-xs sm:text-sm transition-colors duration-300",
-                    isDarkMode ? "text-gray-400" : "text-gray-600"
+                    isDarkMode ? "text-gray-400" : "text-gray-600",
                   )}
                 >
                   {currentSlide + 1} -{" "}
@@ -422,7 +465,7 @@ const Competitions: React.FC = () => {
                 <span
                   className={clsx(
                     "text-xs transition-colors duration-300",
-                    isDarkMode ? "text-gray-500" : "text-gray-500"
+                    isDarkMode ? "text-gray-500" : "text-gray-500",
                   )}
                 >
                   {isMobile
@@ -439,12 +482,12 @@ const Competitions: React.FC = () => {
                 competitions.length === 1
                   ? "grid-cols-1 max-w-md mx-auto"
                   : competitions.length === 2
-                  ? "grid-cols-1 sm:grid-cols-2"
-                  : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                    ? "grid-cols-1 sm:grid-cols-2"
+                    : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
               )}
             >
               {competitions.map((comp, index) =>
-                renderCompetitionCard(comp, index)
+                renderCompetitionCard(comp, index),
               )}
             </div>
           )}
