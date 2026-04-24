@@ -25,6 +25,30 @@ const Competitions: React.FC = () => {
 
   const competitions: Competition[] = [
     {
+      title: t("competitions.6.title"),
+      description: t("competitions.6.description"),
+      link: "/competitions/invitational-2026",
+      img: "/ostrava1.jpg",
+    },
+    {
+      title: t("competitions.7.title"),
+      description: t("competitions.7.description"),
+      link: "/competitions/pioneer-open-2026",
+      img: "/mcrplzen252.jpg",
+    },
+    {
+      title: t("competitions.8.title"),
+      description: t("competitions.8.description"),
+      link: "/competitions/colorado-senior-meet-2026",
+      img: "/mcr2025.jpg",
+    },
+    {
+      title: t("competitions.9.title"),
+      description: t("competitions.9.description"),
+      link: "/competitions/speedo-sectionals-2026",
+      img: "/podoliFoto.jpg",
+    },
+    {
       title: t("competitions.5.title"),
       description: t("competitions.5.description"),
       link: "/competitions/czech-junior-nationals-2025",
