@@ -45,7 +45,6 @@
     "title": "My Recent Works",
     "visitWebsite": "Visit Website",
     "viewProject": "View Project >",
-    "betaWarning": "⚠️ BETA VERSION - Please do not enter any emails, passwords and do not reserve anything because this is still in development!",
     "projectTips": [
       [
         "🏢 Professional website for Strunzova Pila showcasing apartment services with modern design and user-friendly interface.",
@@ -78,7 +77,7 @@
         "description": "A romantic website counting days together with interactive hearts and beautiful animations."
       },
       {
-        "title": "BETA! Strunzova Pila Website",
+        "title": "Strunzova Pila Website",
         "description": "A professional website for Strunzova Pila company showcasing their apartment services."
       },
       {
@@ -86,7 +85,7 @@
         "description": "A bot that automatically buys tickets on Ticketportal for a specific event with specific search parameters."
       },
       {
-        "title": "BETA! Duocards Website",
+        "title": "Duocards Website",
         "description": "A website for learning new words and phrases with flashcards."
       }
     ]

@@ -31,11 +31,8 @@ const Projects: React.FC = () => {
     if (!projectTips || projectTips.length === 0) {
       return "💡 Check out this project for more details!";
     }
-    // Map project indices to tip arrays
-    // projects[0] = "My Love Website" -> projectTips[0] (array of 4 tips)
-    // projects[1] = "BETA! Strunzova Pila" -> projectTips[1] (array of 4 tips)
-    // projects[2] = "Automatic Bot" -> projectTips[2] (array of 4 tips)
-    // projects[3] = "BETA! Duocards" -> projectTips[3] (array of 4 tips)
+    // Map project indices to tip arrays.
+    // Extra tips remain safely addressable via modulo fallback below.
     const projectTipArray = projectTips[projectIndex % projectTips.length];
     if (!projectTipArray || projectTipArray.length === 0) {
       return "💡 Check out this project for more details!";
@@ -78,15 +75,6 @@ const Projects: React.FC = () => {
       technologies: ["NodeJS", "Javascript", "Puppeteer", "ReCaptcha"],
       link: "",
       img: "/macbook_autobot.png",
-      type: "external",
-      featured: true,
-    },
-    {
-      title: t("projects.0.title"),
-      description: t("projects.0.description"),
-      technologies: ["HTML", "CSS", "JavaScript"],
-      link: "https://daniel.mitka.cz/terka/",
-      img: "/lovewebsitemockup2.png",
       type: "external",
       featured: true,
     },
@@ -261,46 +249,8 @@ const Projects: React.FC = () => {
                             isDarkMode ? "text-white" : "text-gray-900"
                           )}
                         >
-                          {project.title.startsWith("BETA!") ? (
-                            <>
-                              <span className="block">BETA!</span>
-                              <span className="block">
-                                {project.title.replace("BETA! ", "")}
-                              </span>
-                            </>
-                          ) : (
-                            project.title
-                          )}
+                          {project.title}
                         </h3>
-                        {project.title.includes("BETA!") && (
-                          <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.2, duration: 0.5 }}
-                            viewport={{ once: true }}
-                            className={clsx(
-                              "mb-6 p-4 rounded-lg border-l-4 border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20",
-                              isDarkMode ? "text-yellow-200" : "text-yellow-800"
-                            )}
-                          >
-                            <div className="flex items-center">
-                              <svg
-                                className="w-5 h-5 mr-2 flex-shrink-0"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                              <span className="font-medium text-sm">
-                                {t("betaWarning")}
-                              </span>
-                            </div>
-                          </motion.div>
-                        )}
                         <p
                           className={clsx(
                             "text-sm md:text-base lg:text-xl mb-4 md:mb-6 leading-relaxed max-w-2xl transition-colors duration-300",
@@ -523,35 +473,6 @@ const Projects: React.FC = () => {
                     >
                       {project.title}
                     </h3>
-                    {project.title.includes("BETA!") && (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.2, duration: 0.5 }}
-                        viewport={{ once: true }}
-                        className={clsx(
-                          "mb-4 p-3 rounded-lg border-l-4 border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20",
-                          isDarkMode ? "text-yellow-200" : "text-yellow-800"
-                        )}
-                      >
-                        <div className="flex items-center">
-                          <svg
-                            className="w-4 h-4 mr-2 flex-shrink-0"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                          <span className="font-medium text-xs">
-                            {t("betaWarning")}
-                          </span>
-                        </div>
-                      </motion.div>
-                    )}
                     <p
                       className={clsx(
                         "mb-4 leading-relaxed transition-colors duration-300",

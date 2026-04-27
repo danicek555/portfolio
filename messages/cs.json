@@ -45,7 +45,6 @@
     "title": "Moje nedávné práce",
     "visitWebsite": "Navštívit web",
     "viewProject": "Zobrazit projekt ",
-    "betaWarning": "⚠️ BETA VERZE - Prosím nezadávejte žádné emaily, hesla a ani nic nerezervujte, protože je to stále ve vývoji!",
     "projectTips": [
       [
         "🏢 Profesionální web pro Strunzova Pila představující služby apartmánů s moderním designem a uživatelsky přívětivým rozhraním.",
@@ -78,7 +77,7 @@
         "description": "Romantický web počítající dny spolu s interaktivními srdci a krásnými animacemi."
       },
       {
-        "title": "BETA! Strunzova Pila",
+        "title": "Strunzova Pila",
         "description": "Profesionální web pro společnost Strunzova Pila představující jejich služby apartmánů."
       },
       {
@@ -86,7 +85,7 @@
         "description": "Bot, který automaticky nakupuje lístky na Ticketportal pro konkrétní událost s konkrétními vyhledávacími parametry."
       },
       {
-        "title": "BETA! Duocards Web Aplikace",
+        "title": "Duocards Web Aplikace",
         "description": "Web pro naučení nových slov a frází s flashcards."
       }
     ]
