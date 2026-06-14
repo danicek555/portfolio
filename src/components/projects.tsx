@@ -64,7 +64,7 @@ const Projects: React.FC = () => {
       title: t("projects.3.title"),
       description: t("projects.3.description"),
       technologies: ["React", "Prisma SQL", "Resend", "Bcrypt"],
-      link: "https://duocards-five.vercel.app/",
+      link: "https://duocards.xyz/",
       img: "/macbook_duocards.png",
       type: "external",
       featured: true,
