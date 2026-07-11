@@ -14,6 +14,7 @@ type MeetSummaryClientProps = {
   highlights: string[];
   results: Array<{ event: string; time: string; placement?: string }>;
   sourceUrl: string;
+  upcoming?: boolean;
 };
 
 export default function MeetSummaryClient({
@@ -26,6 +27,7 @@ export default function MeetSummaryClient({
   highlights,
   results,
   sourceUrl,
+  upcoming = false,
 }: MeetSummaryClientProps) {
   const { isDarkMode } = useTheme();
 
@@ -43,6 +45,11 @@ export default function MeetSummaryClient({
           <p className="uppercase tracking-wider text-sm text-green-300 mb-2">
             {subtitle}
           </p>
+          {upcoming && (
+            <span className="inline-flex mb-3 rounded-full bg-yellow-500/90 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-900">
+              Upcoming
+            </span>
+          )}
           <h1 className="text-4xl md:text-6xl font-bold leading-tight">{title}</h1>
           <p className="mt-4 text-base md:text-lg text-gray-100">
             {location} | {date}
@@ -81,7 +88,9 @@ export default function MeetSummaryClient({
             isDarkMode ? "bg-gray-800 border-gray-700" : "bg-gray-50 border-gray-200",
           )}
         >
-          <h3 className="text-xl font-semibold mb-4">Results Snapshot</h3>
+          <h3 className="text-xl font-semibold mb-4">
+            {upcoming ? "Meet Details" : "Results Snapshot"}
+          </h3>
           <div className="space-y-3">
             {results.map((result) => (
               <div key={`${result.event}-${result.time}`} className="rounded-lg p-3 bg-black/5 dark:bg-white/5">
@@ -99,7 +108,7 @@ export default function MeetSummaryClient({
             rel="noreferrer"
             className="inline-flex mt-5 text-green-500 hover:text-green-600 font-medium"
           >
-            View on Swimcloud →
+            {upcoming ? "View meet information →" : "View official results →"}
           </a>
         </aside>
       </section>

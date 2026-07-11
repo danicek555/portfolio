@@ -25,10 +25,34 @@ const Competitions: React.FC = () => {
 
   const competitions: Competition[] = [
     {
-      title: t("competitions.6.title"),
-      description: t("competitions.6.description"),
-      link: "/competitions/invitational-2026",
-      img: "/ostrava1.jpg",
+      title: t("competitions.13.title"),
+      description: t("competitions.13.description"),
+      link: "/competitions/speedo-junior-nationals-2026",
+      img: "/podoliFoto.jpg",
+    },
+    {
+      title: t("competitions.12.title"),
+      description: t("competitions.12.description"),
+      link: "/competitions/czech-open-nationals-2026",
+      img: "/mcrplzen252.jpg",
+    },
+    {
+      title: t("competitions.11.title"),
+      description: t("competitions.11.description"),
+      link: "/competitions/praha-2026",
+      img: "/podoliFoto.jpg",
+    },
+    {
+      title: t("competitions.10.title"),
+      description: t("competitions.10.description"),
+      link: "/competitions/czech-junior-nationals-2026",
+      img: "/mcr2025.jpg",
+    },
+    {
+      title: t("competitions.9.title"),
+      description: t("competitions.9.description"),
+      link: "/competitions/speedo-sectionals-2026",
+      img: "/podoliFoto.jpg",
     },
     {
       title: t("competitions.7.title"),
@@ -37,16 +61,16 @@ const Competitions: React.FC = () => {
       img: "/mcrplzen252.jpg",
     },
     {
+      title: t("competitions.6.title"),
+      description: t("competitions.6.description"),
+      link: "/competitions/invitational-2026",
+      img: "/ostrava1.jpg",
+    },
+    {
       title: t("competitions.8.title"),
       description: t("competitions.8.description"),
       link: "/competitions/colorado-senior-meet-2026",
       img: "/mcr2025.jpg",
-    },
-    {
-      title: t("competitions.9.title"),
-      description: t("competitions.9.description"),
-      link: "/competitions/speedo-sectionals-2026",
-      img: "/podoliFoto.jpg",
     },
     {
       title: t("competitions.5.title"),
