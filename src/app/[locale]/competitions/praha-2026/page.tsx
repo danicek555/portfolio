@@ -27,7 +27,7 @@ export default async function Praha2026Page({
       subtitle={cs ? "Mezinárodní plavecké závody" : "International Swimming Meet"}
       location={cs ? "Praha – Podolí, Česká republika" : "Prague – Podolí, Czech Republic"}
       date={cs ? "13.–14. června 2026" : "June 13–14, 2026"}
-      image="/podoliFoto.jpg"
+      image="/praha2026/podium.jpg"
       summary={
         cs
           ? "PRAHA 2026 je mezinárodní mítink na venkovním 50m bazénu v Podolí. Daniel reprezentoval SK Motorlet Praha v prsou, motýlku, volném způsobu i polohovém závodě a předvedl silné výkony napříč celým programem."

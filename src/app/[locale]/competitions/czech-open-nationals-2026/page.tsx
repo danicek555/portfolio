@@ -28,7 +28,7 @@ export default async function CzechOpenNationals2026Page({
       subtitle={cs ? "Nadcházející závod" : "Upcoming Meet"}
       location={cs ? "Praha – Podolí, Česká republika" : "Prague – Podolí, Czech Republic"}
       date={cs ? "25.–28. června 2026" : "June 25–28, 2026"}
-      image="/mcrplzen252.jpg"
+      image="/mcrOpen2026/start-block.jpg"
       summary={
         cs
           ? "Letní mistrovství České republiky OPEN na 50m bazénu v Podolí je jedním z největších domácích mítinků sezóny. Daniel se na tento závod připravuje po PRAHA 2026 s cílem startovat v silném poli napříč prsů, polohového závodu a volného způsobu."

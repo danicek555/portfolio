@@ -27,7 +27,7 @@ export default async function PioneerOpen2026Page({
       subtitle={cs ? "Regionální otevřený mítink" : "Regional Open Meet"}
       location={cs ? "Colorado, USA" : "Colorado, USA"}
       date={cs ? "2026" : "2026"}
-      image="/mcrplzen252.jpg"
+      image="/sectionals2026/tops_picture.jpg"
       summary={
         cs
           ? "Pioneer Open je kvalitní otevřený závod v Coloradu, kde se závodí s vysokou intenzitou. Tento mítink sloužil jako test rychlosti a závodní připravenosti."

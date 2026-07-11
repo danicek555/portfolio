@@ -27,7 +27,7 @@ export default async function SpeedoSectionals2026Page({
       subtitle={cs ? "Elitní sectional závod" : "Elite Sectional Meet"}
       location={cs ? "USA" : "USA"}
       date={cs ? "2026" : "2026"}
-      image="/podoliFoto.jpg"
+      image="/sectionals2026/celebration.jpg"
       summary={
         cs
           ? "Speedo Sectionals patří mezi velmi náročné závody s elitní konkurencí. Cílem bylo potvrdit výkonnost pod tlakem a bojovat o kvalitní časy."
