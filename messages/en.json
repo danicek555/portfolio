@@ -1,12 +1,39 @@
 {
   "About": {
-    "badge": "RISING STAR SWIMMER",
-    "title": "Czech National Record Holder",
-    "description": "Daniel Mitka, a 17-year-old elite swimmer from SK Motorlet Praha, has achieved remarkable success in Czech swimming. His standout achievement is setting a national record as part of the mixed 4x50m medley relay at the 2022 Winter Championships in Mladá Boleslav. Competing at the highest national level, Daniel contributes every year to the performance and overall success of SK Motorlet Praha. With his proven track record in competitive swimming, he is now focusingon swimming in the Colorado Hilltoppers team while pursuing his studies in the USA.",
+    "badge": "COLLEGE SWIMMER",
+    "title": "Georgia Tech & SK Motorlet Praha",
+    "description": "Daniel Mitka is a 17-year-old elite swimmer verbally committed to the Georgia Institute of Technology, where he will swim and study in the ACC. He is currently in his second year training and competing in the United States while still representing SK Motorlet Praha at major meets in Czechia — from junior nationals to international events in Prague. A national record holder in the mixed 4x50m medley relay from the 2022 Winter Championships in Mladá Boleslav, Daniel balances his season between racing in America and his home club in Czech swimming.",
     "cta": "Get in touch"
   },
+  "GeorgiaTech": {
+    "badge": "Verbal Commitment",
+    "title": "Committed to Georgia Tech",
+    "classHighSchool": "Class of 2027",
+    "classCollege": "College Class of 2031",
+    "commitment": {
+      "p1": "I am incredibly honored and excited to announce my verbal commitment to swim and study at the Georgia Institute of Technology!",
+      "p2": "This journey wouldn't have been possible without the support of so many people who have shaped me along the way. Thank you to my family for their unwavering support through every early morning and every long meet weekend — your belief in me means everything.",
+      "p3": "Thank you to my coaches and teammates at SK Motorlet Praha for building the foundation of my swimming career in the Czech Republic, and to my coaches and supporters in the United States for helping me grow every day during my training abroad.",
+      "p4": "A huge thank you to the Georgia Tech coaching staff for believing in me and giving me this incredible opportunity. I can't wait to be part of the Yellow Jacket family, compete in the ACC at the McAuley Aquatic Center, and represent Georgia Tech on the national stage.",
+      "p5": "Go Jackets! 🐝🐝🐝"
+    },
+    "pbs": {
+      "breast200": "200 Breast",
+      "breast200Time": "2:02.09",
+      "breast100": "100 Breast",
+      "breast100Time": "55.49",
+      "im200": "200 IM",
+      "im200Time": "2:10.47",
+      "im400": "400 IM",
+      "im400Time": "3:59.33"
+    },
+    "imageAlt": "Daniel Mitka — Georgia Tech swimming commit",
+    "photoCaption": "Daniel Mitka",
+    "photoSubcaption": "Future Yellow Jacket · College Class of 2031",
+    "cta": "Georgia Tech Swimming & Diving"
+  },
   "Hero": {
-    "subtitle": "Czech Youth Swimming Champion & Lifesaving Medalist",
+    "subtitle": "International Swimmer & Lifesaving Medalist",
     "cta": "Get in touch"
   },
   "Competitions": {
@@ -53,6 +80,22 @@
       {
         "title": "Speedo Sectionals 2026",
         "description": "Elite sectional competition experience against top swimmers, targeting personal bests and national-level race standards."
+      },
+      {
+        "title": "Czech Junior & U22 Nationals 2026",
+        "description": "National junior championship in Ústí nad Labem with strong final swims in the 200m freestyle and 200m individual medley."
+      },
+      {
+        "title": "PRAHA 2026",
+        "description": "International swimming meet at Podolí in Prague, featuring standout breaststroke and IM performances for SK Motorlet Praha."
+      },
+      {
+        "title": "Czech Nationals Open 2026",
+        "description": "Upcoming Czech Open National Championships at Podolí, Prague — June 25–28, 2026."
+      },
+      {
+        "title": "Speedo Junior National Championships 2026",
+        "description": "Upcoming USA Swimming junior national meet in Irvine, California — August 3–7, 2026."
       }
     ]
   },

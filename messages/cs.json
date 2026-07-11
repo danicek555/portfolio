@@ -1,12 +1,39 @@
 {
   "About": {
-    "badge": "VZESTUPUJÍCÍ HVĚZDA PLAVÁNÍ",
-    "title": "Držitel českého národního rekordu",
-    "description": "Daniel Mitka, 17letý elitní plavec ze SK Motorlet Praha, dosáhl pozoruhodných úspěchů v českém plavání. Jeho vrcholným úspěchem je vyplavání národního rekordu jako člen smíšené štafety 4x50m polohový závod na Zimním mistrovství 2022 v Mladé Boleslavi. Soutěží na nejvyšší národní úrovni a pravidelně každým rokem přispívá k výsledkům a týmovému úspěchu SK Motorlet Praha. Se svým prokázaným úspěchem v závodním plavání se nyní Daniel zaměřuje na plavání v týmu Colorado Hilltoppers při studiu v USA.",
+    "badge": "VYSOKOŠKOLSKÝ PLAVEC",
+    "title": "Georgia Tech & SK Motorlet Praha",
+    "description": "Daniel Mitka je 17letý elitní plavec s verbálním závazkem k Georgia Institute of Technology, kde bude plavat a studovat v ACC. Aktuálně trénuje a závodí ve druhém roce ve Spojených státech a zároveň reprezentuje SK Motorlet Praha na významných mítincích v Česku — od juniorského mistrovství republiky po mezinárodní závody v Praze. Jako držitel národního rekordu ve smíšené štafetě 4x50m polohový závod z Zimního mistrovství 2022 v Mladé Boleslavi rozděluje sezónu mezi závody v Americe a domovským klubem v českém plavání.",
     "cta": "Kontaktujte mě"
   },
+  "GeorgiaTech": {
+    "badge": "Verbální závazek",
+    "title": "Zavázán k Georgia Tech",
+    "classHighSchool": "Ročník 2027",
+    "classCollege": "Vysokoškolský ročník 2031",
+    "commitment": {
+      "p1": "S obrovskou hrdostí a radostí oznamuji svůj verbální závazek plavat a studovat na Georgia Institute of Technology!",
+      "p2": "Tato cesta by nebyla možná bez podpory tolika lidí, kteří mě formovali. Děkuji své rodině za neochvějnou podporu při každém brzkém ranním tréninku a každém dlouhém závodním víkendu — vaše víra ve mě pro mě znamená všechno.",
+      "p3": "Děkuji svým trenérům a spoluplavcům ze SK Motorlet Praha za to, že mi vybudovali základy plavecké kariéry v České republice, a svým trenérům a podporovatelům ve Spojených státech za to, že mě každý den posouvají dál během tréninku v zahraničí.",
+      "p4": "Obrovské díky patří trenérskému štábu Georgia Tech za to, že ve mně věří a dali mi tuto neuvěřitelnou příležitost. Nemůžu se dočkat, až budu součástí rodiny Yellow Jackets, budu soutěžit v ACC v McAuley Aquatic Center a reprezentovat Georgia Tech na národní úrovni.",
+      "p5": "Go Jackets! 🐝🐝🐝"
+    },
+    "pbs": {
+      "breast200": "200 prsa",
+      "breast200Time": "2:02.09",
+      "breast100": "100 prsa",
+      "breast100Time": "55.49",
+      "im200": "200 polohový",
+      "im200Time": "2:10.47",
+      "im400": "400 polohový",
+      "im400Time": "3:59.33"
+    },
+    "imageAlt": "Daniel Mitka — závazek k plavání na Georgia Tech",
+    "photoCaption": "Daniel Mitka",
+    "photoSubcaption": "Budoucí Yellow Jacket · Vysokoškolský ročník 2031",
+    "cta": "Georgia Tech Swimming & Diving"
+  },
   "Hero": {
-    "subtitle": "Český juniorský mistr v plavání a medailista na mistrovství světa v záchranářství",
+    "subtitle": "Mezinárodní plavec a medailista v záchranářství",
     "cta": "Kontaktujte mě"
   },
   "Competitions": {
@@ -53,6 +80,22 @@
       {
         "title": "Speedo Sectionals 2026",
         "description": "Elitní zkušenost ze sectional závodů proti nejlepším plavcům s cílem zlepšit osobní rekordy a závodní standard."
+      },
+      {
+        "title": "Mistrovství ČR juniorů a U22 2026",
+        "description": "Národní juniorské mistrovství v Ústí nad Labem se silnými finálovými výkony na 200m volným způsobem a 200m polohovém závodě."
+      },
+      {
+        "title": "PRAHA 2026",
+        "description": "Mezinárodní plavecký mítink v Podolí v Praze s výraznými výkony v prsou a polohovém závodě za SK Motorlet Praha."
+      },
+      {
+        "title": "Mistrovství ČR OPEN 2026",
+        "description": "Nadcházející letní mistrovství ČR OPEN v Podolí v Praze — 25.–28. června 2026."
+      },
+      {
+        "title": "Speedo Junior Nationals 2026",
+        "description": "Nadcházející juniorské mistrovství USA Swimming v Irvine, Kalifornie — 3.–7. srpna 2026."
       }
     ]
   },

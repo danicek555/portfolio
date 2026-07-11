@@ -12,6 +12,14 @@ const About = dynamic(() => import("../../components/about"), {
   ssr: true,
 });
 
+const GeorgiaTechCommitment = dynamic(
+  () => import("../../components/georgia-tech"),
+  {
+    loading: () => <div className="animate-pulse bg-[#003057] h-96" />,
+    ssr: true,
+  },
+);
+
 const Competitions = dynamic(() => import("../../components/competitions"), {
   loading: () => (
     <div className="animate-pulse bg-gray-100 dark:bg-gray-800 h-96" />
@@ -204,6 +212,7 @@ export default async function HomePage({
 
       {/* Dynamically loaded below-the-fold sections */}
       <About />
+      <GeorgiaTechCommitment />
       <Competitions />
       <Projects />
     </>
