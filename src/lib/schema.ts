@@ -96,8 +96,7 @@ export interface WebSiteSchema {
 
 // Environment variables for consistent data
 const getBaseData = () => ({
-  siteUrl:
-    process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com",
   siteName: process.env.NEXT_PUBLIC_SITE_NAME || "Daniel Mitka Portfolio",
   authorName: process.env.NEXT_PUBLIC_AUTHOR_NAME || "Daniel Mitka",
   twitterHandle: process.env.NEXT_PUBLIC_TWITTER_HANDLE || "@MitkaDaniel",
@@ -392,7 +391,7 @@ export function generateSportsEventSchema(
     level: "International" | "National" | "Regional";
     organizer?: string;
   },
-  locale: string = "en"
+  locale: string = "en",
 ): SportsEventSchema {
   const location: PlaceSchema = {
     "@type": "SportsActivityLocation",
@@ -517,7 +516,7 @@ export function createJsonLd(
     | PersonSchema
     | SportsEventSchema
     | WebSiteSchema
-    | Record<string, unknown>
+    | Record<string, unknown>,
 ): string {
   return JSON.stringify(schema, null, 2);
 }
