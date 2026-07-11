@@ -32,7 +32,7 @@ export default async function SpeedoJuniorNationals2026Page({
       subtitle={cs ? "Nadcházející závod" : "Upcoming Meet"}
       location={cs ? "Irvine, Kalifornie, USA" : "Irvine, California, USA"}
       date={cs ? "3.–7. srpna 2026" : "August 3–7, 2026"}
-      image="/podoliFoto.jpg"
+      image="/sectionals2026/pre-race.jpg"
       summary={
         cs
           ? "Speedo Junior National Championships jsou vrcholným letním juniorským mítinkem USA Swimming na 50m bazénu. Daniel se připravuje na start v Irvine, kde se sjede nejsilnější juniorská konkurence v zemi."

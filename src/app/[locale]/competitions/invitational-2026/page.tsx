@@ -27,7 +27,7 @@ export default async function Invitational2026Page({
       subtitle={cs ? "Pozvánkový závod" : "Invitational Meet"}
       location={cs ? "Denver, Colorado, USA" : "Denver, Colorado, USA"}
       date={cs ? "2026" : "2026"}
-      image="/ostrava1.jpg"
+      image="/sectionals2026/tops-team.jpg"
       summary={
         cs
           ? "Denver Invitational byl důležitý závod na začátku sezóny, zaměřený na kvalitu provedení a závodní rytmus. Výsledky z tohoto mítinku pomohly nastavit další tréninkové cíle před vrcholem sezóny."

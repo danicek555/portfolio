@@ -31,7 +31,7 @@ export default async function CzechJuniorNationals2026Page({
       subtitle={cs ? "Národní juniorské mistrovství" : "National Junior Championship"}
       location={cs ? "Ústí nad Labem, Česká republika" : "Ústí nad Labem, Czech Republic"}
       date={cs ? "28.–31. května 2026" : "May 28–31, 2026"}
-      image="/mcr2025.jpg"
+      image="/mcrJunior2026/diplom.jpg"
       summary={
         cs
           ? "Letní mistrovství ČR juniorů a U22 v Ústí nad Labem bylo důležitým vrcholem domácí sezóny. Daniel startoval v širokém programu sprintů i středních tratí a ve finále potvrdil silnou formu zejména na 200m volným způsobem a 200m polohovém závodě."

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useTheme } from "./ThemeProvider";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import clsx from "clsx";
 
 const GeorgiaTechCommitment: React.FC = () => {
   const { isDarkMode } = useTheme();
@@ -14,7 +15,6 @@ const GeorgiaTechCommitment: React.FC = () => {
     t("commitment.p2"),
     t("commitment.p3"),
     t("commitment.p4"),
-    t("commitment.p5"),
   ];
 
   const personalBests = [
@@ -27,106 +27,60 @@ const GeorgiaTechCommitment: React.FC = () => {
   return (
     <section
       id="georgia-tech"
-      className="relative py-20 px-8 overflow-hidden"
-      style={{
-        background: isDarkMode
-          ? "linear-gradient(135deg, #001a33 0%, #003057 50%, #001428 100%)"
-          : "linear-gradient(135deg, #003057 0%, #004080 60%, #003057 100%)",
-      }}
+      className={clsx(
+        "py-16 px-8 transition-colors duration-300",
+        isDarkMode ? "bg-gray-900" : "bg-white"
+      )}
     >
-      <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23EAAA00' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      />
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-[#EAAA00] opacity-[0.06] blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-[#EAAA00] opacity-[0.04] blur-3xl pointer-events-none" />
-
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <span
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest"
-            style={{
-              background: "rgba(234, 170, 0, 0.15)",
-              color: "#EAAA00",
-              border: "1px solid rgba(234, 170, 0, 0.3)",
-              fontFamily: "'Roboto', sans-serif",
-            }}
-          >
-            🐝 {t("badge")}
-          </span>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Photo column */}
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left Column - Image */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
-            className="relative max-w-md mx-auto lg:mx-0 lg:sticky lg:top-24"
+            className="relative max-w-xl mx-auto lg:mx-0"
           >
-            <div
-              className="absolute -inset-1 rounded-2xl opacity-60"
-              style={{
-                background:
-                  "linear-gradient(135deg, #EAAA00 0%, #B3A369 50%, #EAAA00 100%)",
-              }}
-            />
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-              className="relative overflow-hidden rounded-2xl"
-            >
-              <Image
-                src="/profilovaFotka.jpg"
-                alt={t("imageAlt")}
-                width={500}
-                height={620}
-                className="w-full h-auto object-cover"
-                quality={90}
-              />
-              <div
-                className="absolute bottom-0 inset-x-0 px-5 py-4"
-                style={{
-                  background:
-                    "linear-gradient(to top, rgba(0, 48, 87, 0.95) 0%, transparent 100%)",
+            <div className="relative">
+              <motion.div
+                whileHover={{
+                  scale: 1.05,
+                  rotateY: 5,
+                  transition: { duration: 0.4 },
                 }}
+                className="relative overflow-hidden rounded-lg"
               >
-                <p className="text-[#EAAA00] text-xs font-bold uppercase tracking-wider">
-                  {t("photoCaption")}
-                </p>
-                <p className="text-white text-sm font-semibold mt-0.5">
-                  {t("photoSubcaption")}
-                </p>
-              </div>
-            </motion.div>
+                <Image
+                  src="/commitment/gt-commitment.jpg"
+                  alt={t("imageAlt")}
+                  width={659}
+                  height={879}
+                  className="rounded-lg object-cover w-full h-auto"
+                  quality={85}
+                />
+                <div className="absolute bottom-0 inset-x-0 px-5 py-4 bg-gradient-to-t from-black/80 to-transparent">
+                  <p className="text-green-400 text-xs font-bold uppercase tracking-wider">
+                    {t("photoCaption")}
+                  </p>
+                  <p className="text-white text-sm font-semibold mt-0.5">
+                    {t("photoSubcaption")}
+                  </p>
+                </div>
+              </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              viewport={{ once: true }}
-              className="absolute -top-4 -right-4 w-16 h-16 rounded-full flex items-center justify-center shadow-xl"
-              style={{ background: "#EAAA00" }}
-            >
-              <span
-                className="text-[#003057] font-black text-xl"
-                style={{ fontFamily: "'Roboto', sans-serif" }}
-              >
-                GT
-              </span>
-            </motion.div>
+              {/* Floating accent element */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                viewport={{ once: true }}
+                className="absolute -bottom-4 -right-4 w-20 h-20 bg-green-500 rounded-full opacity-20"
+              />
+            </div>
 
-            {/* Personal bests below photo on mobile, stays with photo on desktop */}
-            <div className="mt-6 grid grid-cols-2 gap-3">
+            {/* Personal bests below photo */}
+            <div className="mt-8 grid grid-cols-2 gap-4">
               {personalBests.map((pb, i) => (
                 <motion.div
                   key={pb.event}
@@ -134,17 +88,19 @@ const GeorgiaTechCommitment: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.08 * i }}
                   viewport={{ once: true }}
-                  className="rounded-xl px-4 py-3 text-center"
-                  style={{
-                    background: "rgba(255, 255, 255, 0.06)",
-                    border: "1px solid rgba(234, 170, 0, 0.25)",
-                  }}
+                  className={clsx(
+                    "rounded-lg px-4 py-3 text-center shadow-lg transition-colors duration-300",
+                    isDarkMode ? "bg-gray-700" : "bg-white"
+                  )}
                 >
-                  <p className="text-[#EAAA00] text-xs font-bold uppercase tracking-wider mb-1">
+                  <p className="text-green-500 text-xs font-bold uppercase tracking-wider mb-1">
                     {pb.event}
                   </p>
                   <p
-                    className="text-white text-lg font-bold tabular-nums"
+                    className={clsx(
+                      "text-lg font-bold tabular-nums transition-colors duration-300",
+                      isDarkMode ? "text-white" : "text-gray-800"
+                    )}
                     style={{ fontFamily: "'Roboto', sans-serif" }}
                   >
                     {pb.time}
@@ -154,89 +110,113 @@ const GeorgiaTechCommitment: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Commitment text column */}
+          {/* Right Column - Text Content */}
           <motion.div
             initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
-            className="space-y-5"
+            className="space-y-4"
           >
-            <h2
-              className="text-3xl md:text-4xl font-bold leading-tight text-white"
+            <motion.span
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="text-green-500 uppercase text-xs font-bold tracking-wider"
+              style={{ fontWeight: 700, fontFamily: "'Roboto', sans-serif" }}
+            >
+              🐝 {t("badge")}
+            </motion.span>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+              className={clsx(
+                "text-3xl font-bold leading-tight transition-colors duration-300",
+                isDarkMode ? "text-white" : "text-black"
+              )}
               style={{ fontWeight: 700, fontFamily: "'Roboto', sans-serif" }}
             >
               {t("title")}
-            </h2>
+            </motion.h2>
 
-            <div
-              className="flex flex-wrap gap-2"
-            >
+            <div className="flex flex-wrap gap-2">
               <span
-                className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
-                style={{
-                  background: "rgba(234, 170, 0, 0.2)",
-                  color: "#EAAA00",
-                  border: "1px solid rgba(234, 170, 0, 0.35)",
-                }}
+                className={clsx(
+                  "inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider transition-colors duration-300",
+                  isDarkMode
+                    ? "bg-green-500/15 text-green-400 border border-green-500/30"
+                    : "bg-green-50 text-green-600 border border-green-200"
+                )}
               >
                 {t("classHighSchool")}
               </span>
               <span
-                className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
-                style={{
-                  background: "rgba(255, 255, 255, 0.08)",
-                  color: "#fff",
-                  border: "1px solid rgba(255, 255, 255, 0.15)",
-                }}
+                className={clsx(
+                  "inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider transition-colors duration-300",
+                  isDarkMode
+                    ? "bg-gray-800 text-gray-300 border border-gray-700"
+                    : "bg-gray-100 text-gray-600 border border-gray-200"
+                )}
               >
                 {t("classCollege")}
               </span>
             </div>
 
-            <div
-              className="rounded-2xl px-6 py-6 space-y-4"
-              style={{
-                background: "rgba(0, 0, 0, 0.2)",
-                border: "1px solid rgba(234, 170, 0, 0.15)",
-              }}
+            {commitmentParagraphs.map((paragraph, i) => (
+              <motion.p
+                key={i}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 * i }}
+                viewport={{ once: true }}
+                className={clsx(
+                  "leading-relaxed transition-colors duration-300",
+                  i === 0
+                    ? clsx(
+                        "text-lg font-semibold",
+                        isDarkMode ? "text-white" : "text-gray-800"
+                      )
+                    : clsx(
+                        "text-base",
+                        isDarkMode ? "text-gray-300" : "text-gray-600"
+                      )
+                )}
+              >
+                {paragraph}
+              </motion.p>
+            ))}
+
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="text-green-500 text-lg font-bold tracking-wide"
+              style={{ fontFamily: "'Roboto', sans-serif" }}
             >
-              {commitmentParagraphs.map((paragraph, i) => (
-                <motion.p
-                  key={i}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.08 * i }}
-                  viewport={{ once: true }}
-                  className={
-                    i === 0
-                      ? "text-[#EAAA00] text-lg font-semibold leading-relaxed"
-                      : "text-blue-100 text-base leading-relaxed"
-                  }
-                >
-                  {paragraph}
-                </motion.p>
-              ))}
-            </div>
+              {t("commitment.p5")}
+            </motion.p>
 
             <motion.a
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.03, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              href="https://ramblinwreck.com/sports/swimming-and-diving/"
+              whileHover={{
+                x: 4,
+                transition: { duration: 0.2 },
+              }}
+              href="https://ramblinwreck.com/sports/c-swim/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-sm transition-all duration-300"
-              style={{
-                background: "#EAAA00",
-                color: "#003057",
-                fontFamily: "'Roboto', sans-serif",
-              }}
+              className="text-green-500 hover:text-green-600 font-medium inline-flex items-center transition-colors duration-300 text-sm sm:text-base"
             >
-              {t("cta")} →
+              {t("cta")}
+              <span className="ml-1">→</span>
             </motion.a>
           </motion.div>
         </div>
