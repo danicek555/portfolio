@@ -62,7 +62,7 @@ export default async function SpeedoJuniorNationals2026Page({
         },
         {
           event: cs ? "Tým" : "Team",
-          time: cs ? "Georgia Tech commit" : "Georgia Tech commit",
+          time: "University of Denver Hilltoppers",
         },
       ]}
       sourceUrl="https://www.usaswimming.org/events"

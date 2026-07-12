@@ -17,6 +17,7 @@ import {
   ExternalLink,
   MapPin,
   Medal,
+  Mountain,
   TrendingUp,
   Trophy,
 } from "lucide-react";
@@ -45,9 +46,15 @@ export type MeetShowcaseProps = {
     medal?: "gold" | "silver" | "bronze";
     pb?: boolean;
     progression?: Array<{ stage: string; time: string; pb?: boolean }>;
+    /** Cumulative split times, final leg included (e.g. 50 m → 31.44, 100 m → 1:05.89). */
+    splits?: Array<{ distance: string; time: string; label?: string }>;
+    /** Altitude-adjusted (sea-level equivalent) time, e.g. "1:49.19". */
+    adjusted?: string;
   }>;
+  /** Note shown as a hero chip, e.g. "Denver · 1 600 m n. m." */
+  altitudeNote?: string;
   highlights: string[];
-  gallery: Array<{ src: string; caption: string }>;
+  gallery: Array<{ src: string; caption: string; objectPosition?: string }>;
   videos?: MeetVideo[];
   links: Array<{ label: string; url: string }>;
 };
@@ -87,6 +94,13 @@ function formatDelta(delta: number, cs: boolean): string {
   const sign = delta <= 0 ? "−" : "+";
   const value = Math.abs(delta).toFixed(2);
   return `${sign}${cs ? value.replace(".", ",") : value} s`;
+}
+
+function formatSeconds(total: number): string {
+  if (total < 60) return total.toFixed(2);
+  const minutes = Math.floor(total / 60);
+  const rest = total - minutes * 60;
+  return `${minutes}:${rest.toFixed(2).padStart(5, "0")}`;
 }
 
 /** Animated count-up for stat values such as "3.", "2×" or "50 m". */
@@ -198,6 +212,7 @@ export default function MeetShowcase({
   subtitle,
   location,
   dateLabel,
+  altitudeNote,
   heroImage,
   intro,
   stats,
@@ -219,6 +234,9 @@ export default function MeetShowcase({
     highlights: cs ? "Zajímavosti" : "Highlights",
     links: cs ? "Odkazy" : "Links",
     pb: cs ? "OSOBNÍ REKORD" : "PERSONAL BEST",
+    splits: cs ? "Mezičasy" : "Splits",
+    lap: cs ? "úsek" : "lap",
+    adjusted: cs ? "Přepočet ≈" : "Sea level ≈",
     medal: cs
       ? { gold: "Zlato", silver: "Stříbro", bronze: "Bronz" }
       : { gold: "Gold", silver: "Silver", bronze: "Bronze" },
@@ -271,12 +289,15 @@ export default function MeetShowcase({
     visible: { scaleX: 1, opacity: 1, transition: { duration: 0.8, ease: EASE } },
   };
 
+  const hasGallery = gallery.length > 0;
+  const hasVideos = Boolean(videos && videos.length > 0);
+  let sectionIndex = 2;
   const sectionNumbers = {
     results: "01",
     highlights: "02",
-    moments: "03",
-    videos: "04",
-    links: videos && videos.length > 0 ? "05" : "04",
+    moments: hasGallery ? String(++sectionIndex).padStart(2, "0") : "",
+    videos: hasVideos ? String(++sectionIndex).padStart(2, "0") : "",
+    links: String(++sectionIndex).padStart(2, "0"),
   };
 
   const renderProgression = (
@@ -363,6 +384,85 @@ export default function MeetShowcase({
     </div>
   );
 
+  const renderSplits = (
+    splits: NonNullable<MeetShowcaseProps["results"][number]["splits"]>,
+  ) => {
+    const laps = splits.map((split, index) => {
+      const current = parseTimeToSeconds(split.time);
+      const previous =
+        index > 0 ? parseTimeToSeconds(splits[index - 1].time) : 0;
+      const lap =
+        current !== null && previous !== null ? current - previous : null;
+      return { ...split, lap };
+    });
+    const validLaps = laps
+      .map((lap) => lap.lap)
+      .filter((lap): lap is number => lap !== null);
+    const fastest = validLaps.length > 1 ? Math.min(...validLaps) : null;
+
+    return (
+      <div className="mt-6">
+        <p
+          className={clsx(
+            "flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em]",
+            mutedText,
+          )}
+        >
+          <span aria-hidden className="h-px w-6 bg-green-500/60" />
+          {labels.splits}
+        </p>
+        <div
+          className={clsx(
+            "mt-3 flex divide-x overflow-x-auto rounded-xl border",
+            hairline,
+            isDarkMode ? "divide-white/10" : "divide-black/10",
+          )}
+        >
+          {laps.map((split, index) => (
+            <motion.div
+              key={split.distance}
+              initial={{ opacity: 0, y: reduced ? 0 : 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-5% 0px" }}
+              transition={{ duration: 0.45, ease: EASE, delay: index * 0.06 }}
+              className="min-w-[84px] flex-1 px-3 py-2.5 text-center"
+            >
+              <p
+                className={clsx(
+                  "text-[10px] font-bold uppercase tracking-widest",
+                  mutedText,
+                )}
+              >
+                {split.distance} m{split.label ? ` · ${split.label}` : ""}
+              </p>
+              <p
+                className={clsx(
+                  "mt-1 text-sm font-bold tabular-nums",
+                  isDarkMode ? "text-white" : "text-gray-900",
+                )}
+                style={ROBOTO}
+              >
+                {split.time}
+              </p>
+              {split.lap !== null && (
+                <p
+                  className={clsx(
+                    "mt-0.5 text-[11px] font-semibold tabular-nums",
+                    fastest !== null && split.lap === fastest
+                      ? "text-green-500"
+                      : mutedText,
+                  )}
+                >
+                  {formatSeconds(split.lap)}
+                </p>
+              )}
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div
       className={clsx(
@@ -447,6 +547,9 @@ export default function MeetShowcase({
             {[
               { icon: MapPin, text: location },
               { icon: Calendar, text: dateLabel },
+              ...(altitudeNote
+                ? [{ icon: Mountain, text: altitudeNote }]
+                : []),
             ].map(({ icon: Icon, text }) => (
               <span
                 key={text}
@@ -640,6 +743,19 @@ export default function MeetShowcase({
                   >
                     {result.finalTime}
                   </p>
+                  {result.adjusted && (
+                    <p
+                      className={clsx(
+                        "mt-1 text-xs font-semibold uppercase tracking-wider",
+                        mutedText,
+                      )}
+                    >
+                      {labels.adjusted}{" "}
+                      <span className="tabular-nums text-green-500">
+                        {result.adjusted}
+                      </span>
+                    </p>
+                  )}
                 </div>
 
                 {result.progression && (
@@ -648,6 +764,12 @@ export default function MeetShowcase({
                   </div>
                 )}
               </div>
+            );
+            const innerWithSplits = (
+              <>
+                {inner}
+                {result.splits && renderSplits(result.splits)}
+              </>
             );
 
             if (medal) {
@@ -678,7 +800,7 @@ export default function MeetShowcase({
                         MEDAL_THEME[medal].text,
                       )}
                     />
-                    {inner}
+                    {innerWithSplits}
                   </div>
                 </motion.div>
               );
@@ -697,7 +819,7 @@ export default function MeetShowcase({
                   isDarkMode ? "hover:bg-white/[0.03]" : "hover:bg-black/[0.02]",
                 )}
               >
-                {inner}
+                {innerWithSplits}
               </motion.div>
             );
           })}
@@ -742,6 +864,7 @@ export default function MeetShowcase({
       </section>
 
       {/* GALLERY — asymmetric mosaic on desktop, scroll-snap strip on mobile */}
+      {hasGallery && (
       <section className="mx-auto max-w-6xl px-6 pb-16 md:pb-24">
         <SectionHeader
           number={sectionNumbers.moments}
@@ -778,6 +901,11 @@ export default function MeetShowcase({
                       ? "(max-width: 768px) 78vw, 66vw"
                       : "(max-width: 768px) 78vw, 33vw"
                   }
+                  style={
+                    photo.objectPosition
+                      ? { objectPosition: photo.objectPosition }
+                      : undefined
+                  }
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 />
                 <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-4 pt-12 transition-all duration-300 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
@@ -793,6 +921,7 @@ export default function MeetShowcase({
           })}
         </div>
       </section>
+      )}
 
       {/* VIDEOS — rendered only when at least one video exists */}
       {videos && videos.length > 0 && (
