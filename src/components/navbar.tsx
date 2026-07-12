@@ -16,6 +16,7 @@ const NAV_ITEMS: NavItem[] = [
   { key: "home", href: "/#home" },
   { key: "about", href: "/#about" },
   { key: "competitions", href: "/#competitions" },
+  { key: "progression", href: "/#progression" },
   { key: "work", href: "/#work" },
   { key: "blog", href: "/blog" },
 ];

@@ -167,7 +167,8 @@
     "about": "O mně",
     "competitions": "Závody",
     "work": "Práce",
-    "blog": "Blog"
+    "blog": "Blog",
+    "progression": "Vývoj"
   },
   "Podoli2025": {
     "hero": {
@@ -636,5 +637,29 @@
     "homeButton": "Návrat domů",
     "competitionsButton": "Zobrazit závody",
     "funFact": "Zajímavost: Daniel se nikdy neztratil v plaveckém bazénu! 🏊‍♂️"
+  },
+  "Progression": {
+    "badge": "VÝKONNOSTNÍ VÝVOJ",
+    "title": "Jak jdou časy dolů",
+    "subtitle": "Všechny starty v hlavních disciplínách — český dlouhý i krátký bazén a americké yardy. Najeďte na bod pro detail závodu, nebo si vyfiltrujte jen osobní rekordy.",
+    "pbOnly": "Jen zlepšení",
+    "noData": "Pro tuto kombinaci zatím nejsou žádné starty.",
+    "events": {
+      "200IM": "200 PZ",
+      "400IM": "400 PZ",
+      "100BR": "100 prsa",
+      "200BR": "200 prsa"
+    },
+    "courses": {
+      "LCM": "50 m (LCM)",
+      "SCM": "25 m (SCM)",
+      "SCY": "25 y (SCY)"
+    },
+    "stats": {
+      "best": "Osobní rekord",
+      "improvement": "Celkové zlepšení",
+      "swims": "Startů",
+      "span": "Sezóny"
+    }
   }
 }

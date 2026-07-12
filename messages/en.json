@@ -167,7 +167,8 @@
     "about": "About",
     "competitions": "Competitions",
     "work": "Work",
-    "blog": "Blog"
+    "blog": "Blog",
+    "progression": "Progression"
   },
   "Podoli2025": {
     "hero": {
@@ -636,5 +637,29 @@
     "homeButton": "Return to Home",
     "competitionsButton": "View Competitions",
     "funFact": "Fun fact: Daniel has never gotten lost in a swimming pool! 🏊‍♂️"
+  },
+  "Progression": {
+    "badge": "PERFORMANCE PROGRESSION",
+    "title": "How My Times Are Dropping",
+    "subtitle": "Every race from my main events — Czech long and short course plus American yards. Hover over a point for meet details, or filter to personal-best swims only.",
+    "pbOnly": "Improvements only",
+    "noData": "No swims recorded for this combination yet.",
+    "events": {
+      "200IM": "200 IM",
+      "400IM": "400 IM",
+      "100BR": "100 Breast",
+      "200BR": "200 Breast"
+    },
+    "courses": {
+      "LCM": "50 m (LCM)",
+      "SCM": "25 m (SCM)",
+      "SCY": "25 y (SCY)"
+    },
+    "stats": {
+      "best": "Personal best",
+      "improvement": "Total drop",
+      "swims": "Races",
+      "span": "Seasons"
+    }
   }
 }
