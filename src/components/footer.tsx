@@ -75,39 +75,11 @@ const Footer: React.FC = () => {
     <footer
       id="footer"
       className={clsx(
-        "relative overflow-hidden transition-colors duration-300",
+        "transition-colors duration-300",
         isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black",
       )}
     >
-      {/* Animated swimming-lane accent line */}
-      <motion.div
-        className="h-0.5 origin-left bg-green-500"
-        initial={{ scaleX: reduced ? 1 : 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={{ once: true, margin: "-5% 0px" }}
-        transition={{ duration: 1, ease: EASE }}
-      />
-
-      {/* Faint drifting wave watermark */}
-      {!reduced && (
-        <motion.div
-          aria-hidden
-          className="pointer-events-none absolute -right-8 -top-10 text-green-500/10"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, ease: EASE }}
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0], rotate: [0, 3, 0] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Waves className="h-40 w-40" />
-          </motion.div>
-        </motion.div>
-      )}
-
-      <div className="relative max-w-6xl mx-auto px-6 py-10">
+      <div className="max-w-6xl mx-auto px-6 py-10">
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
           variants={container}

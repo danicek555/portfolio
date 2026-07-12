@@ -27,6 +27,13 @@ const Competitions = dynamic(() => import("../../components/competitions"), {
   ssr: true,
 });
 
+const Progression = dynamic(() => import("../../components/progression"), {
+  loading: () => (
+    <div className="animate-pulse bg-gray-100 dark:bg-gray-800 h-96" />
+  ),
+  ssr: true,
+});
+
 const Projects = dynamic(() => import("../../components/projects"), {
   loading: () => (
     <div className="animate-pulse bg-gray-100 dark:bg-gray-800 h-96" />
@@ -214,6 +221,7 @@ export default async function HomePage({
       <About />
       <GeorgiaTechCommitment />
       <Competitions />
+      <Progression />
       <Projects />
     </>
   );
