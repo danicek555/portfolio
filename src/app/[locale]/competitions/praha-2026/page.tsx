@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import MeetSummaryClient from "../../../../components/MeetSummaryClient";
+import MeetShowcase from "../../../../components/MeetShowcase";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
@@ -7,7 +7,7 @@ const siteUrl =
 export const metadata: Metadata = {
   title: "PRAHA 2026 - Daniel Mitka",
   description:
-    "Daniel Mitka's results from the international PRAHA 2026 swimming meet at Podolí, Prague.",
+    "PRAHA 2026 international meet at Podolí: four long-course personal bests and two podium finishes.",
   alternates: {
     canonical: `${siteUrl}/competitions/praha-2026`,
   },
@@ -22,58 +22,97 @@ export default async function Praha2026Page({
   const cs = locale === "cs";
 
   return (
-    <MeetSummaryClient
+    <MeetShowcase
+      badge={cs ? "Mezinárodní mítink" : "International Invitational"}
       title="PRAHA 2026"
-      subtitle={cs ? "Mezinárodní plavecké závody" : "International Swimming Meet"}
-      location={cs ? "Praha – Podolí, Česká republika" : "Prague – Podolí, Czech Republic"}
-      date={cs ? "13.–14. června 2026" : "June 13–14, 2026"}
-      image="/praha2026/podium.jpg"
-      summary={
+      subtitle={cs ? "Venkovní 50m bazén · Podolí" : "Outdoor 50m pool · Podolí"}
+      location={cs ? "Praha – Podolí" : "Prague – Podolí"}
+      dateLabel={cs ? "13.–14. června 2026" : "June 13–14, 2026"}
+      heroImage="/praha2026/tops-wall.jpg"
+      intro={
         cs
-          ? "PRAHA 2026 je mezinárodní mítink na venkovním 50m bazénu v Podolí. Daniel reprezentoval SK Motorlet Praha v prsou, motýlku, volném způsobu i polohovém závodě a předvedl silné výkony napříč celým programem."
-          : "PRAHA 2026 is an international meet at the outdoor 50m pool in Podolí. Daniel represented SK Motorlet Praha across breaststroke, butterfly, freestyle, and individual medley with strong performances throughout the meet."
+          ? "Mezinárodní generálka na domácí šampionát. Dva dny na venkovním bazénu v Podolí přinesly čtyři osobní rekordy v dlouhém bazénu a dvě umístění na stupních vítězů."
+          : "An international tune-up for the national championships. Two days at Podolí's outdoor pool brought four long-course personal bests and two podium finishes."
       }
+      stats={[
+        {
+          value: "2×",
+          label: cs ? "stupně vítězů" : "podium finishes",
+          medal: true,
+        },
+        { value: "4", label: cs ? "osobní rekordy (50m)" : "long-course PBs" },
+        { value: "5", label: cs ? "disciplín" : "events raced" },
+      ]}
+      results={[
+        {
+          event: cs ? "100 m prsa" : "100m Breaststroke",
+          finalTime: "1:05.89",
+          pb: true,
+          placement: cs ? "vítězství v rozplavbě" : "won the heat",
+        },
+        {
+          event: cs ? "400 m polohový závod" : "400m Individual Medley",
+          finalTime: "4:37.17",
+          pb: true,
+        },
+        {
+          event: cs ? "100 m motýlek" : "100m Butterfly",
+          finalTime: "58.15",
+          pb: true,
+        },
+        {
+          event: cs ? "400 m volný způsob" : "400m Freestyle",
+          finalTime: "4:11.03",
+          pb: true,
+        },
+        {
+          event: cs ? "200 m polohový závod" : "200m Individual Medley",
+          finalTime: "2:08.83",
+          placement: cs ? "vítězství v rozplavbě" : "won the heat",
+        },
+      ]}
       highlights={
         cs
           ? [
-              "100m prsa: 1:05.89 – vítězství v rozplavbě.",
-              "200m polohový závod: 2:08.83 – vítězství v rozplavbě.",
-              "400m volný způsob: 4:11.03 a 400m polohový závod: 4:37.17.",
+              "Čtyři osobní rekordy v dlouhém bazénu.",
+              "Dvakrát na stupních vítězů.",
+              "Ideální příprava na MČR OPEN o dva týdny později.",
             ]
           : [
-              "100m breaststroke: 1:05.89 – 1st in the heat.",
-              "200m IM: 2:08.83 – 1st in the heat.",
-              "400m freestyle: 4:11.03 and 400m IM: 4:37.17.",
+              "Four long-course personal bests.",
+              "Two podium finishes.",
+              "Ideal preparation for the Czech Open Nationals two weeks later.",
             ]
       }
-      results={[
+      gallery={[
         {
-          event: cs ? "100m prsa" : "100m Breaststroke",
-          time: "1:05.89",
-          placement: cs ? "1. rozplavba" : "1st heat",
+          src: "/praha2026/podium.jpg",
+          caption: cs ? "Stupně vítězů" : "On the podium",
         },
         {
-          event: cs ? "200m polohový závod" : "200m IM",
-          time: "2:08.83",
-          placement: cs ? "1. rozplavba" : "1st heat",
+          src: "/praha2026/podium-red.jpg",
+          caption: cs ? "Druhé místo" : "Second place",
         },
         {
-          event: cs ? "100m motýlek" : "100m Butterfly",
-          time: "58.15",
-          placement: cs ? "1. rozplavba" : "1st heat",
+          src: "/praha2026/podium-black.jpg",
+          caption: cs ? "Další medailový ceremoniál" : "Another medal ceremony",
         },
         {
-          event: cs ? "400m volný způsob" : "400m Freestyle",
-          time: "4:11.03",
-          placement: cs ? "1. rozplavba" : "1st heat",
+          src: "/praha2026/podium-trio.jpg",
+          caption: cs ? "Medailisté" : "Medalists",
         },
         {
-          event: cs ? "400m polohový závod" : "400m IM",
-          time: "4:37.17",
-          placement: cs ? "2. rozplavba" : "2nd heat",
+          src: "/praha2026/tops-wall.jpg",
+          caption: cs ? "U stěny po závodě" : "At the wall after the race",
         },
       ]}
-      sourceUrl="https://vysledky.czechswimming.cz/souteze/10550"
+      videos={[]}
+      links={[
+        {
+          label: cs ? "Oficiální výsledky" : "Official results",
+          url: "https://vysledky.czechswimming.cz/souteze/10550",
+        },
+      ]}
     />
   );
 }

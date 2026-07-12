@@ -14,7 +14,7 @@ const Hero: React.FC = () => {
       id="home"
       className="relative h-screen flex items-center justify-center md:justify-start px-6 md:px-20 overflow-hidden"
       style={{
-        backgroundImage: "url('/skokDoVody.jpg')",
+        backgroundImage: "url('/mcrOpen2026/hero-start.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
