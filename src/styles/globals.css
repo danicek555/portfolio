@@ -100,3 +100,8 @@ html.dark #__next {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Offset for the sticky navbar when smooth-scrolling to page sections */
+section[id] {
+  scroll-margin-top: 4.5rem;
+}

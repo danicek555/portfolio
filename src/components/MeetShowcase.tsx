@@ -956,7 +956,7 @@ export default function MeetShowcase({
                     <video
                       controls
                       preload="metadata"
-                      className="aspect-video w-full rounded-2xl bg-black shadow-2xl"
+                      className="max-h-[70vh] w-full rounded-2xl bg-black shadow-2xl"
                       src={video.src}
                     />
                     <figcaption
