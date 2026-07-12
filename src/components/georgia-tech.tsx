@@ -56,7 +56,7 @@ const GeorgiaTechCommitment: React.FC = () => {
                   alt={t("imageAlt")}
                   width={659}
                   height={879}
-                  className="rounded-lg object-cover w-full h-auto"
+                  className="rounded-lg object-cover w-full aspect-[3/4]"
                   quality={85}
                 />
                 <div className="absolute bottom-0 inset-x-0 px-5 py-4 bg-gradient-to-t from-black/80 to-transparent">
