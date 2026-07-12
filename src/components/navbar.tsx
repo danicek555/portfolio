@@ -108,8 +108,8 @@ const Navbar: React.FC = () => {
                     exit={{ opacity: 0 }}
                     transition={{
                       type: "spring",
-                      stiffness: 400,
-                      damping: 32,
+                      stiffness: 240,
+                      damping: 30,
                     }}
                   />
                 )}
@@ -147,27 +147,27 @@ const Navbar: React.FC = () => {
       <button
         onClick={toggleMenu}
         className={clsx(
-          "md:hidden flex flex-col items-center justify-center w-8 h-8 space-y-1 transition-all duration-300",
+          "md:hidden flex flex-col items-center justify-center w-8 h-8 space-y-1 transition-all duration-500",
           isDarkMode ? "text-white" : "text-black"
         )}
       >
         <span
           className={clsx(
-            "block w-6 h-0.5 transition-all duration-300",
+            "block w-6 h-0.5 transition-all duration-500",
             isDarkMode ? "bg-white" : "bg-black",
             isMenuOpen ? "rotate-45 translate-y-2" : ""
           )}
         />
         <span
           className={clsx(
-            "block w-6 h-0.5 transition-all duration-300",
+            "block w-6 h-0.5 transition-all duration-500",
             isDarkMode ? "bg-white" : "bg-black",
             isMenuOpen ? "opacity-0" : ""
           )}
         />
         <span
           className={clsx(
-            "block w-6 h-0.5 transition-all duration-300",
+            "block w-6 h-0.5 transition-all duration-500",
             isDarkMode ? "bg-white" : "bg-black",
             isMenuOpen ? "-rotate-45 -translate-y-2" : ""
           )}
@@ -177,7 +177,7 @@ const Navbar: React.FC = () => {
       {/* Mobile menu */}
       <div
         className={clsx(
-          "md:hidden absolute top-full left-0 w-full transition-all duration-300 ease-in-out",
+          "md:hidden absolute top-full left-0 w-full transition-all duration-500 ease-in-out",
           isDarkMode
             ? "bg-gray-800 border-gray-700"
             : "bg-white border-gray-200",

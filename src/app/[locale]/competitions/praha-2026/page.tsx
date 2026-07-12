@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import MeetShowcase from "../../../../components/MeetShowcase";
+import MeetRecap from "../../../../components/MeetRecap";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
@@ -22,7 +22,7 @@ export default async function Praha2026Page({
   const cs = locale === "cs";
 
   return (
-    <MeetShowcase
+    <MeetRecap
       badge={cs ? "Mezinárodní mítink" : "International Invitational"}
       title="PRAHA 2026"
       subtitle={cs ? "Venkovní 50m bazén · Podolí" : "Outdoor 50m pool · Podolí"}
