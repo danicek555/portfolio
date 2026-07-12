@@ -8,176 +8,190 @@ import {
   Instagram,
   Waves,
 } from "lucide-react";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { useTheme } from "./ThemeProvider";
 import { useTranslations } from "next-intl";
 import clsx from "clsx";
 
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 const Footer: React.FC = () => {
   const { isDarkMode } = useTheme();
   const t = useTranslations("Footer");
+  const reduced = useReducedMotion() ?? false;
+
+  const container: Variants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.14, delayChildren: 0.1 },
+    },
+  };
+  const column: Variants = {
+    hidden: { opacity: 0, y: reduced ? 0 : 28 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+  };
+  const link: Variants = {
+    hidden: { opacity: 0, x: reduced ? 0 : -8 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.45, ease: EASE } },
+  };
+
+  const iconHover = reduced
+    ? undefined
+    : { scale: 1.18, y: -3, transition: { type: "spring" as const, stiffness: 320, damping: 18 } };
+  const iconTap = reduced ? undefined : { scale: 0.9 };
+
+  const socials = [
+    {
+      href: "https://www.facebook.com/dan.mitka.5",
+      label: "Facebook",
+      icon: Facebook,
+      tooltip: t("facebookTooltip"),
+      external: true,
+    },
+    {
+      href: "https://www.instagram.com/dan_mitka",
+      label: "Instagram",
+      icon: Instagram,
+      tooltip: t("instagramTooltip"),
+      external: false,
+    },
+    {
+      href: "https://www.swimcloud.com/swimmer/1828936",
+      label: "Swimcloud",
+      icon: Waves,
+      tooltip: t("swimcloudTooltip"),
+      external: true,
+    },
+  ];
+
+  const linkClass = clsx(
+    "flex items-center transition-colors duration-200",
+    isDarkMode
+      ? "text-gray-300 hover:text-white"
+      : "text-gray-600 hover:text-gray-800",
+  );
 
   return (
     <footer
       id="footer"
       className={clsx(
-        "transition-colors duration-300",
-        isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+        "relative overflow-hidden transition-colors duration-300",
+        isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black",
       )}
     >
-      <div className="max-w-6xl mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* Animated swimming-lane accent line */}
+      <motion.div
+        className="h-0.5 origin-left bg-green-500"
+        initial={{ scaleX: reduced ? 1 : 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true, margin: "-5% 0px" }}
+        transition={{ duration: 1, ease: EASE }}
+      />
+
+      {/* Faint drifting wave watermark */}
+      {!reduced && (
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute -right-8 -top-10 text-green-500/10"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2, ease: EASE }}
+        >
+          <motion.div
+            animate={{ y: [0, 10, 0], rotate: [0, 3, 0] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Waves className="h-40 w-40" />
+          </motion.div>
+        </motion.div>
+      )}
+
+      <div className="relative max-w-6xl mx-auto px-6 py-10">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-10% 0px" }}
+        >
           {/* Contact Information */}
-          <div>
+          <motion.div variants={column}>
             <h3 className="text-lg font-semibold mb-4">{t("contact")}</h3>
-            <div className="space-y-3">
-              <a
+            <motion.div className="space-y-3" variants={container}>
+              <motion.a
                 href="mailto:danmitka@gmail.com"
-                className={clsx(
-                  "flex items-center transition-colors duration-200",
-                  isDarkMode
-                    ? "text-gray-300 hover:text-white"
-                    : "text-gray-600 hover:text-gray-800"
-                )}
+                className={linkClass}
+                variants={link}
               >
                 <Mail className="w-4 h-4 mr-2" />
                 danmitka@gmail.com
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="tel:+420735872528"
-                className={clsx(
-                  "flex items-center transition-colors duration-200",
-                  isDarkMode
-                    ? "text-gray-300 hover:text-white"
-                    : "text-gray-600 hover:text-gray-800"
-                )}
+                className={linkClass}
+                variants={link}
               >
                 <Phone className="w-4 h-4 mr-2" />
                 +420 735 872 528
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="https://vysledky.czechswimming.cz/lide/59887000"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={clsx(
-                  "flex items-center transition-colors duration-200",
-                  isDarkMode
-                    ? "text-gray-300 hover:text-white"
-                    : "text-gray-600 hover:text-gray-800"
-                )}
+                className={linkClass}
+                variants={link}
               >
                 <ExternalLink className="w-4 h-4 mr-2" />
                 {t("swimmingStatistics")}
-              </a>
-            </div>
-          </div>
+              </motion.a>
+            </motion.div>
+          </motion.div>
 
           {/* Social Media */}
-          <div>
+          <motion.div variants={column}>
             <h3 className="text-lg font-semibold mb-4">{t("socialMedia")}</h3>
             <div className="flex space-x-4">
-              <div className="relative group">
-                <a
-                  href="https://www.facebook.com/dan.mitka.5"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={clsx(
-                    "transition-colors duration-200",
-                    isDarkMode
-                      ? "text-gray-300 hover:text-white"
-                      : "text-gray-600 hover:text-gray-800"
-                  )}
-                  aria-label="Facebook"
-                >
-                  <Facebook className="w-6 h-6" />
-                </a>
-                <div
-                  className={clsx(
-                    "absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 rounded-lg text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10",
-                    isDarkMode
-                      ? "bg-gray-700 text-white"
-                      : "bg-gray-800 text-white"
-                  )}
-                >
-                  {t("facebookTooltip")}
+              {socials.map(({ href, label, icon: Icon, tooltip, external }) => (
+                <div key={label} className="relative group">
+                  <motion.a
+                    href={href}
+                    target="_blank"
+                    {...(external ? { rel: "noopener noreferrer" } : {})}
+                    className={clsx(
+                      "inline-flex transition-colors duration-200",
+                      isDarkMode
+                        ? "text-gray-300 hover:text-white"
+                        : "text-gray-600 hover:text-gray-800",
+                    )}
+                    aria-label={label}
+                    whileHover={iconHover}
+                    whileTap={iconTap}
+                  >
+                    <Icon className="w-6 h-6" />
+                  </motion.a>
                   <div
                     className={clsx(
-                      "absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2",
+                      "absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 rounded-lg text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10",
                       isDarkMode
-                        ? "border-l-transparent border-r-transparent border-t-gray-700"
-                        : "border-l-transparent border-r-transparent border-t-gray-800"
+                        ? "bg-gray-700 text-white"
+                        : "bg-gray-800 text-white",
                     )}
-                  ></div>
+                  >
+                    {tooltip}
+                    <div
+                      className={clsx(
+                        "absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2",
+                        isDarkMode
+                          ? "border-l-transparent border-r-transparent border-t-gray-700"
+                          : "border-l-transparent border-r-transparent border-t-gray-800",
+                      )}
+                    ></div>
+                  </div>
                 </div>
-              </div>
-              <div className="relative group">
-                <a
-                  href="https://www.instagram.com/dan_mitka"
-                  target="_blank"
-                  className={clsx(
-                    "transition-colors duration-200",
-                    isDarkMode
-                      ? "text-gray-300 hover:text-white"
-                      : "text-gray-600 hover:text-gray-800"
-                  )}
-                  aria-label="Instagram"
-                >
-                  <Instagram className="w-6 h-6" />
-                </a>
-                <div
-                  className={clsx(
-                    "absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 rounded-lg text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10",
-                    isDarkMode
-                      ? "bg-gray-700 text-white"
-                      : "bg-gray-800 text-white"
-                  )}
-                >
-                  {t("instagramTooltip")}
-                  <div
-                    className={clsx(
-                      "absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2",
-                      isDarkMode
-                        ? "border-l-transparent border-r-transparent border-t-gray-700"
-                        : "border-l-transparent border-r-transparent border-t-gray-800"
-                    )}
-                  ></div>
-                </div>
-              </div>
-              <div className="relative group">
-                <a
-                  href="https://www.swimcloud.com/swimmer/1828936"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={clsx(
-                    "transition-colors duration-200",
-                    isDarkMode
-                      ? "text-gray-300 hover:text-white"
-                      : "text-gray-600 hover:text-gray-800"
-                  )}
-                  aria-label="Swimcloud"
-                >
-                  <Waves className="w-6 h-6" />
-                </a>
-                <div
-                  className={clsx(
-                    "absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 rounded-lg text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10",
-                    isDarkMode
-                      ? "bg-gray-700 text-white"
-                      : "bg-gray-800 text-white"
-                  )}
-                >
-                  {t("swimcloudTooltip")}
-                  <div
-                    className={clsx(
-                      "absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2",
-                      isDarkMode
-                        ? "border-l-transparent border-r-transparent border-t-gray-700"
-                        : "border-l-transparent border-r-transparent border-t-gray-800"
-                    )}
-                  ></div>
-                </div>
-              </div>
+              ))}
             </div>
-            <a
+            <motion.a
               href="https://steroid.danielmitka.com"
               target="_blank"
               rel="noopener noreferrer"
@@ -185,44 +199,49 @@ const Footer: React.FC = () => {
                 "mt-3 inline-flex items-center transition-colors duration-200",
                 isDarkMode
                   ? "text-gray-300 hover:text-white"
-                  : "text-gray-600 hover:text-gray-800"
+                  : "text-gray-600 hover:text-gray-800",
               )}
+              variants={link}
             >
               <ExternalLink className="w-4 h-4 mr-2" />
               steroid.danielmitka.com
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
 
           {/* About */}
-          <div>
+          <motion.div variants={column}>
             <h3 className="text-lg font-semibold mb-4">{t("about")}</h3>
             <p
               className={clsx(
                 "text-sm leading-relaxed",
-                isDarkMode ? "text-gray-300" : "text-gray-600"
+                isDarkMode ? "text-gray-300" : "text-gray-600",
               )}
             >
               {t("aboutDescription")}
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Bottom Section */}
-        <div
+        <motion.div
           className={clsx(
             "border-t mt-8 pt-6 text-center",
-            isDarkMode ? "border-gray-600" : "border-gray-200"
+            isDarkMode ? "border-gray-600" : "border-gray-200",
           )}
+          initial={{ opacity: 0, y: reduced ? 0 : 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-5% 0px" }}
+          transition={{ duration: 0.6, ease: EASE, delay: 0.2 }}
         >
           <p
             className={clsx(
               "text-sm",
-              isDarkMode ? "text-gray-400" : "text-gray-500"
+              isDarkMode ? "text-gray-400" : "text-gray-500",
             )}
           >
             {t("copyright", { year: new Date().getFullYear() })}
           </p>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

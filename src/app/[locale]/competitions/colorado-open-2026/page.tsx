@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import MeetShowcase from "../../../../components/MeetShowcase";
+import MeetRecap from "../../../../components/MeetRecap";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
@@ -22,7 +22,7 @@ export default async function ColoradoOpen2026Page({
   const cs = locale === "cs";
 
   return (
-    <MeetShowcase
+    <MeetRecap
       badge={cs ? "Limit splněn" : "Cut Achieved"}
       title="CO TOPS Colorado Open"
       subtitle={
