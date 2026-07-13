@@ -41,10 +41,11 @@ const MeetPager: React.FC = () => {
   const index = MEETS.findIndex((m) => m.slug === slug);
   if (index === -1) return null; // not a known meet detail page
 
-  // List is newest-first, so the meet below (index + 1) is chronologically
-  // earlier ("Previous") and the one above (index - 1) is later ("Next").
-  const prev = MEETS[index + 1];
-  const next = MEETS[index - 1];
+  // List is newest-first. Per design the newer neighbour (index - 1) sits on
+  // the LEFT labelled "Next"; the older neighbour (index + 1) is on the RIGHT
+  // labelled "Previous".
+  const newer = MEETS[index - 1];
+  const older = MEETS[index + 1];
 
   const link = (slugPart: string) => `/${locale}/competitions/${slugPart}`;
 
@@ -67,18 +68,18 @@ const MeetPager: React.FC = () => {
       )}
     >
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3 sm:px-8">
-        {/* Left column — Previous (newer meet, up the list). Equal-width side
-            columns keep the "all meets" button perfectly centered. */}
+        {/* Left column — Next (newer meet). Equal-width side columns keep the
+            "all meets" button perfectly centered. */}
         <div className="flex min-w-0 flex-1 justify-start">
-          {prev && (
-            <Link href={link(prev.slug)} className={sideClass}>
+          {newer && (
+            <Link href={link(newer.slug)} className={sideClass}>
               <ChevronLeft className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:-translate-x-0.5" />
               <span className="flex min-w-0 flex-col leading-tight">
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-green-500">
-                  {locale === "cs" ? "Předchozí" : "Previous"}
+                  {locale === "cs" ? "Další" : "Next"}
                 </span>
                 <span className="hidden truncate text-sm font-medium sm:inline">
-                  {t(`competitions.${prev.i}.title`)}
+                  {t(`competitions.${newer.i}.title`)}
                 </span>
               </span>
             </Link>
@@ -101,19 +102,19 @@ const MeetPager: React.FC = () => {
           </span>
         </Link>
 
-        {/* Right column — Next (older meet, down the list) */}
+        {/* Right column — Previous (older meet) */}
         <div className="flex min-w-0 flex-1 justify-end">
-          {next && (
+          {older && (
             <Link
-              href={link(next.slug)}
+              href={link(older.slug)}
               className={clsx(sideClass, "text-right")}
             >
               <span className="flex min-w-0 flex-col items-end leading-tight">
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-green-500">
-                  {locale === "cs" ? "Další" : "Next"}
+                  {locale === "cs" ? "Předchozí" : "Previous"}
                 </span>
                 <span className="hidden truncate text-sm font-medium sm:inline">
-                  {t(`competitions.${next.i}.title`)}
+                  {t(`competitions.${older.i}.title`)}
                 </span>
               </span>
               <ChevronRight className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" />

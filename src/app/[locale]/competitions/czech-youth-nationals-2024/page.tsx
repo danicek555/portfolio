@@ -4,13 +4,13 @@ import { buildMeetMetadata } from "../../../../lib/meetSeo";
 import PodoliCompetitionClient from "./PodoliCompetitionClient";
 
 const slug = "czech-youth-nationals-2024";
-const title = "Czech Nationals 2024 (Podolí) — Daniel Mitka";
+const title = "Czech Junior Summer Championship 2024 — Daniel Mitka";
 const description =
-  "Daniel Mitka at the 2024 Czech National Championships at Podolí, Prague — long-course national racing for SK Motorlet Praha.";
+  "Daniel Mitka at the 2024 Czech Junior Summer Championship at Podolí, Prague (May 24–26) — long-course junior national racing for SK Motorlet Praha.";
 const keywords = [
   "Daniel Mitka",
-  "Czech Nationals 2024",
-  "MČR 2024",
+  "Czech Junior Summer Championship 2024",
+  "Letní MČR juniorů 2024",
   "Podolí",
   "Prague swimming",
   "long course",
@@ -47,10 +47,10 @@ export default async function PodoliCompetitionPage({
       <MeetJsonLd
         id="czech-youth-nationals-2024"
         locale={locale}
-        name="Czech National Championships 2024 (Podolí)"
-        description="Czech national long-course championships at Podolí, Prague."
-        startDate="2024-07-04"
-        endDate="2024-07-07"
+        name="Czech Junior Summer Championship 2024"
+        description="Czech junior summer long-course championship at Podolí, Prague."
+        startDate="2024-05-24"
+        endDate="2024-05-26"
         venue="Plavecký stadion Podolí"
         city="Prague"
         country="Czech Republic"

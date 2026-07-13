@@ -73,7 +73,7 @@ const Projects: React.FC = () => {
       title: t("projects.2.title"),
       description: t("projects.2.description"),
       technologies: ["NodeJS", "Javascript", "Puppeteer", "ReCaptcha"],
-      link: "",
+      link: "https://github.com/danicek555",
       img: "/macbook_autobot.png",
       type: "external",
       featured: true,

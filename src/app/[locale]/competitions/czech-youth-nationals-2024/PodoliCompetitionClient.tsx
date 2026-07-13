@@ -30,7 +30,7 @@ export default function PodoliCompetitionClient() {
         <div className="absolute inset-0">
           <Image
             src="/podoliFoto.jpg"
-            alt="Czech National Swimming Championship 2024"
+            alt="Czech Junior Summer Championship 2024"
             fill
             className="object-cover"
             priority

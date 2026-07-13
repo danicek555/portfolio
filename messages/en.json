@@ -55,8 +55,8 @@
         "description": "Witness Daniel's incredible journey to becoming a World Vice-champion in lifesaving."
       },
       {
-        "title": "Czech National Swimming Championship 2024",
-        "description": "Experience the pinnacle of Czech swimming competition at the prestigious MCR Podolí championship."
+        "title": "Czech Junior Summer Championship 2024",
+        "description": "Long-course junior national championship at Podolí, Prague — heats and finals across six events."
       },
       {
         "title": "Czech National Swimming Championship 2025",
@@ -221,7 +221,8 @@
     "copyright": "© {year} Daniel Mitka. All rights reserved.",
     "facebookTooltip": "Follow me on Facebook",
     "instagramTooltip": "Check out my Instagram",
-    "swimcloudTooltip": "View my swimming times on SwimCloud"
+    "swimcloudTooltip": "View my swimming times on SwimCloud",
+    "githubTooltip": "Check out my code on GitHub"
   },
   "Australia": {
     "hero": {
@@ -442,24 +443,24 @@
   },
   "Podoli": {
     "hero": {
-      "badge1": "National Championship",
+      "badge1": "Junior Championship",
       "badge2": "Czech Republic",
-      "title": "Czech National Swimming",
+      "title": "Czech Junior Summer",
       "subtitle": "Championship 2024",
-      "eventTitle": "MCR Podolí",
+      "eventTitle": "Junior Summer Nationals · Podolí",
       "eventDescription": "Representing Czech Republic"
     },
     "info": {
       "location": "Location",
       "locationValue": "Podolí, Prague",
       "date": "Date",
-      "dateValue": "2024",
+      "dateValue": "24–26 May 2024",
       "level": "Level",
-      "levelValue": "National Championship"
+      "levelValue": "Junior National Championship"
     },
     "story": {
       "title": "National Competition Excellence",
-      "paragraph1": "The Czech National Swimming Championship (MCR) in Podolí represents the pinnacle of domestic swimming competition, where the nation's best swimmers compete for national titles and records.",
+      "paragraph1": "The Czech Junior Summer Championship in Podolí is one of the season's peak domestic meets, where the country's best junior swimmers race for national titles and records.",
       "highlight": "Competing at this level demands not only technical excellence but also mental fortitude to perform under the pressure of representing your region at the highest national standard.",
       "paragraph2": "This championship serves as a crucial stepping stone for international competitions and demonstrates Daniel's commitment to achieving excellence in Czech swimming."
     },
@@ -506,7 +507,7 @@
     },
     "highlights": {
       "title": "Championship Experience",
-      "description": "The Czech National Swimming Championship in Podolí provided an invaluable opportunity to compete against the country's elite swimmers in a world-class facility.",
+      "description": "The Czech Junior Summer Championship in Podolí offered an invaluable chance to race the country's top juniors in a world-class facility.",
       "experience": "National Level Competition Experience"
     }
   },

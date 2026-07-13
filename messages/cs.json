@@ -55,8 +55,8 @@
         "description": "Sledujte Danielovu neuvěřitelnou cestu k titulu světového vicemistra v záchranářství."
       },
       {
-        "title": "České juniorské mistrovství v Podolí 2024",
-        "description": "Zažijte vrchol českého plaveckého závodění na prestižním mistrovství ČR v Podolí."
+        "title": "Letní mistrovství ČR juniorů 2024",
+        "description": "Juniorské mistrovství ČR na dlouhém bazéně v Podolí — rozplavby a finále v šesti disciplínách."
       },
       {
         "title": "Mistrovství ČR 2025 OPEN Plzeň",
@@ -221,7 +221,8 @@
     "copyright": "© {year} Daniel Mitka. Všechna práva vyhrazena.",
     "facebookTooltip": "Sledujte mě na Facebooku",
     "instagramTooltip": "Podívejte se na můj Instagram",
-    "swimcloudTooltip": "Zobrazit mé plavecké časy na SwimCloud"
+    "swimcloudTooltip": "Zobrazit mé plavecké časy na SwimCloud",
+    "githubTooltip": "Můj kód na GitHubu"
   },
   "Australia": {
     "hero": {
@@ -442,24 +443,24 @@
   },
   "Podoli": {
     "hero": {
-      "badge1": "Národní mistrovství",
+      "badge1": "Mistrovství juniorů",
       "badge2": "Česká republika",
-      "title": "České národní mistrovství",
-      "subtitle": "v plavání 2024",
-      "eventTitle": "MČR Podolí",
+      "title": "Letní mistrovství ČR",
+      "subtitle": "juniorů 2024",
+      "eventTitle": "Letní MČR juniorů · Podolí",
       "eventDescription": "Reprezentace České republiky"
     },
     "info": {
       "location": "Lokalita",
       "locationValue": "Podolí, Praha",
       "date": "Datum",
-      "dateValue": "2024",
+      "dateValue": "24.–26. května 2024",
       "level": "Úroveň",
-      "levelValue": "Národní mistrovství"
+      "levelValue": "Juniorské mistrovství ČR"
     },
     "story": {
       "title": "Excelence národní soutěže",
-      "paragraph1": "České národní mistrovství v plavání (MČR) v Podolí představuje vrchol domácí plavecké soutěže, kde nejlepší plavci národa soutěží o národní tituly a rekordy.",
+      "paragraph1": "Letní mistrovství ČR juniorů v Podolí patří k vrcholům domácí juniorské plavecké sezóny, kde nejlepší junioři závodí o národní tituly a rekordy.",
       "highlight": "Soutěžení na této úrovni vyžaduje nejen technickou dokonalost, ale také mentální sílu pro výkon pod tlakem reprezentace regionu na nejvyšší národní úrovni.",
       "paragraph2": "Toto mistrovství slouží jako klíčový odrazový můstek pro mezinárodní soutěže a demonstruje Danielovo odhodlání dosáhnout dokonalosti v českém plavání."
     },
@@ -506,7 +507,7 @@
     },
     "highlights": {
       "title": "Mistrovská zkušenost",
-      "description": "České národní mistrovství v plavání v Podolí poskytlo neocenitelnou příležitost soutěžit proti elitním plavcům země v zařízení světové třídy.",
+      "description": "Letní mistrovství ČR juniorů v Podolí nabídlo neocenitelnou příležitost změřit síly s nejlepšími juniory země v zařízení světové úrovně.",
       "experience": "Zkušenost ze soutěže na národní úrovni"
     }
   },

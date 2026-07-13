@@ -6,6 +6,7 @@ import {
   ExternalLink,
   Facebook,
   Instagram,
+  Github,
   Waves,
 } from "lucide-react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
@@ -54,6 +55,13 @@ const Footer: React.FC = () => {
       icon: Instagram,
       tooltip: t("instagramTooltip"),
       external: false,
+    },
+    {
+      href: "https://github.com/danicek555",
+      label: "GitHub",
+      icon: Github,
+      tooltip: t("githubTooltip"),
+      external: true,
     },
     {
       href: "https://www.swimcloud.com/swimmer/1828936",
