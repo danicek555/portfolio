@@ -27,7 +27,7 @@ export async function generateMetadata({
     "altitude swimming",
     "1:50.39",
   ],
-  image: "/sectionals2026/tops-duo.jpg",
+  image: "/ColoradoOpen/meet.jpg",
   publishedTime: "2026-01-25",
   });
 }
@@ -67,7 +67,7 @@ export default async function ColoradoOpen2026Page({
       location="Denver, Colorado"
       dateLabel={cs ? "23.–25. ledna 2026" : "January 23–25, 2026"}
       altitudeNote={cs ? "1 600 m n. m." : "5,280 ft altitude"}
-      heroImage="/sectionals2026/tops-duo.jpg"
+      heroImage="/ColoradoOpen/meet.jpg"
       intro={
         cs
           ? "Závod, kde to konečně cinklo. Dvoustovka polohově za 1:50.39 znamenala splnění limitu, který v prosinci na Pioneer Open těsně unikl. K tomu druhé individuální vítězství na 400 y polohově, osobní rekordy na 100 y znak i 100 y motýlek a čtyři vyhrané štafety s Hilltoppers."
@@ -140,7 +140,12 @@ export default async function ColoradoOpen2026Page({
               "Denver sits at 5,280 ft — times from 200Y up get an official altitude adjustment (−1.2 s per 200Y, −5 s per 400/500Y).",
             ]
       }
-      gallery={[]}
+      gallery={[
+        {
+          src: "/ColoradoOpen/selfie.jpg",
+          caption: cs ? "S týmem" : "With the team",
+        },
+      ]}
       links={[
         {
           label: cs ? "Výsledky na SwimCloud" : "Results on SwimCloud",

@@ -27,7 +27,7 @@ export async function generateMetadata({
     "Winter Juniors",
     "personal best",
   ],
-  image: "/sectionals2026/tops_picture.jpg",
+  image: "/pioneerOpen/poolside.jpg",
   publishedTime: "2025-12-07",
   });
 }
@@ -71,7 +71,7 @@ export default async function PioneerOpen2025Page({
       location="Denver, Colorado"
       dateLabel={cs ? "5.–7. prosince 2025" : "December 5–7, 2025"}
       altitudeNote={cs ? "1 600 m n. m." : "5,280 ft altitude"}
-      heroImage="/sectionals2026/tops_picture.jpg"
+      heroImage="/pioneerOpen/poolside.jpg"
       intro={
         cs
           ? "Prosincový útok na kvalifikaci na Speedo Winter Junior Championships. Limit nakonec o kousek unikl — velká škoda. O to víc ale platily obrovské posuny: tři osobní rekordy, tři stříbra z finále a jistota, že se limit blíží."

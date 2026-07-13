@@ -91,9 +91,10 @@ export default async function CzechJuniorNationals2026Page({
           finalTime: "1:55.31",
           placement: cs ? "2. místo" : "2nd place",
           medal: "silver",
+          pb: true,
           progression: [
             { stage: cs ? "Rozplavby" : "Heats", time: "1:56.69" },
-            { stage: cs ? "Finále" : "Final", time: "1:55.31" },
+            { stage: cs ? "Finále" : "Final", time: "1:55.31", pb: true },
           ],
           splits: [
             { distance: "50", time: "27.24" },
@@ -107,6 +108,10 @@ export default async function CzechJuniorNationals2026Page({
           finalTime: "2:06.50",
           placement: cs ? "2. místo" : "2nd place",
           medal: "silver",
+          progression: [
+            { stage: cs ? "Rozplavby" : "Heats", time: "2:06.02", pb: true },
+            { stage: cs ? "Finále" : "Final", time: "2:06.50" },
+          ],
           splits: [
             { distance: "50", time: "27.48", label: cs ? "M" : "FLY" },
             { distance: "100", time: "59.91", label: cs ? "Z" : "BK" },
@@ -118,6 +123,10 @@ export default async function CzechJuniorNationals2026Page({
           event: cs ? "100 m volný způsob" : "100m Freestyle",
           finalTime: "52.65",
           placement: cs ? "5. místo ve finále" : "5th in the final",
+          progression: [
+            { stage: cs ? "Rozplavby" : "Heats", time: "52.53", pb: true },
+            { stage: cs ? "Finále" : "Final", time: "52.65" },
+          ],
           splits: [
             { distance: "50", time: "25.36" },
             { distance: "100", time: "52.65" },
@@ -127,6 +136,10 @@ export default async function CzechJuniorNationals2026Page({
           event: cs ? "100 m prsa" : "100m Breaststroke",
           finalTime: "1:07.91",
           placement: cs ? "6. místo ve finále" : "6th in the final",
+          progression: [
+            { stage: cs ? "Rozplavby" : "Heats", time: "1:06.99", pb: true },
+            { stage: cs ? "Finále" : "Final", time: "1:07.91" },
+          ],
           splits: [
             { distance: "50", time: "31.84" },
             { distance: "100", time: "1:07.91" },
@@ -137,7 +150,7 @@ export default async function CzechJuniorNationals2026Page({
           finalTime: "30.85",
           placement: cs ? "8. místo ve finále" : "8th in the final",
           progression: [
-            { stage: cs ? "Rozplavby" : "Heats", time: "30.20" },
+            { stage: cs ? "Rozplavby" : "Heats", time: "30.20", pb: true },
             { stage: cs ? "Finále" : "Final", time: "30.85" },
           ],
         },
@@ -176,7 +189,7 @@ export default async function CzechJuniorNationals2026Page({
           caption: cs
             ? "Diplom za 2. místo na 200 m polohový závod — 2:06.50"
             : "Diploma for 2nd place in the 200m IM — 2:06.50",
-          objectPosition: "50% 38%",
+          contain: true,
         },
         {
           src: "/mcrJunior2026/venue-usti.jpg",
