@@ -37,8 +37,10 @@ export type MeetShowcaseProps = {
   location: string;
   dateLabel: string;
   heroImage: string;
-  /** Show the hero image whole (portrait-friendly) with a blurred fill instead of cropping. */
+  /** Show the hero image whole (portrait-friendly) on a solid dark backdrop instead of cropping. */
   heroContain?: boolean;
+  /** object-position for a cropped (cover) hero, e.g. "50% 52%" to keep faces in frame. */
+  heroPosition?: string;
   intro: string;
   stats: Array<{
     value: string;
