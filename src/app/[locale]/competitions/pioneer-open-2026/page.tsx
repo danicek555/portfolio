@@ -27,7 +27,7 @@ export async function generateMetadata({
     "Winter Juniors",
     "personal best",
   ],
-  image: "/pioneerOpen/poolside.jpg",
+  image: "/pioneerOpen/team.jpg",
   publishedTime: "2025-12-07",
   });
 }
@@ -71,7 +71,8 @@ export default async function PioneerOpen2025Page({
       location="Denver, Colorado"
       dateLabel={cs ? "5.–7. prosince 2025" : "December 5–7, 2025"}
       altitudeNote={cs ? "1 600 m n. m." : "5,280 ft altitude"}
-      heroImage="/pioneerOpen/poolside.jpg"
+      heroImage="/pioneerOpen/team.jpg"
+      heroContain
       intro={
         cs
           ? "Prosincový útok na kvalifikaci na Speedo Winter Junior Championships. Limit nakonec o kousek unikl — velká škoda. O to víc ale platily obrovské posuny: tři osobní rekordy, tři stříbra z finále a jistota, že se limit blíží."
@@ -150,7 +151,13 @@ export default async function PioneerOpen2025Page({
               "Denver sits at 5,280 ft — times from 200Y up get an official altitude adjustment (−1.2 s per 200Y, −5 s per 400/500Y).",
             ]
       }
-      gallery={[]}
+      gallery={[
+        {
+          src: "/pioneerOpen/poolside.jpg",
+          caption: cs ? "U bazénu s týmem" : "Poolside with the team",
+          contain: true,
+        },
+      ]}
       links={[
         {
           label: cs ? "Výsledky na SwimCloud" : "Results on SwimCloud",

@@ -37,6 +37,8 @@ export type MeetShowcaseProps = {
   location: string;
   dateLabel: string;
   heroImage: string;
+  /** Show the hero image whole (portrait-friendly) with a blurred fill instead of cropping. */
+  heroContain?: boolean;
   intro: string;
   stats: Array<{
     value: string;
