@@ -27,7 +27,7 @@ export async function generateMetadata({
     "yards swimming",
     "personal best",
   ],
-  image: "/sectionals2026/tops-team.jpg",
+  image: "/invitationalDenver/arena.jpg",
   publishedTime: "2025-11-09",
   });
 }
@@ -67,7 +67,7 @@ export default async function DenverInvitational2025Page({
       location="Denver, Colorado"
       dateLabel={cs ? "7.–9. listopadu 2025" : "November 7–9, 2025"}
       altitudeNote={cs ? "1 600 m n. m." : "5,280 ft altitude"}
-      heroImage="/sectionals2026/tops-team.jpg"
+      heroImage="/invitationalDenver/arena.jpg"
       intro={
         cs
           ? "Úplně první závod v USA — a zároveň úplně první start v pětadvacetiyardovém bazénu. Tři dny seznamování s americkým formátem závodění, novým týmem a novým prostředím, ze kterých se téměř každý start proměnil v osobní rekord."
@@ -136,7 +136,12 @@ export default async function DenverInvitational2025Page({
               "Denver sits at 5,280 ft — times from 200Y up get an official altitude adjustment (−1.2 s per 200Y, −5 s per 400/500Y).",
             ]
       }
-      gallery={[]}
+      gallery={[
+        {
+          src: "/invitationalDenver/team-selfie.jpg",
+          caption: cs ? "S týmem před závodem" : "With the team before racing",
+        },
+      ]}
       links={[
         {
           label: cs ? "Výsledky na SwimCloud" : "Results on SwimCloud",

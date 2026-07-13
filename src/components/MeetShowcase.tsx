@@ -60,7 +60,13 @@ export type MeetShowcaseProps = {
   /** Note shown as a hero chip, e.g. "Denver · 1 600 m n. m." */
   altitudeNote?: string;
   highlights: string[];
-  gallery: Array<{ src: string; caption: string; objectPosition?: string }>;
+  gallery: Array<{
+    src: string;
+    caption: string;
+    objectPosition?: string;
+    /** Show the whole image (letterboxed) instead of cropping to fill. */
+    contain?: boolean;
+  }>;
   videos?: MeetVideo[];
   links: Array<{ label: string; url: string }>;
 };
@@ -146,21 +152,11 @@ function StatValue({ value, reduced }: { value: string; reduced: boolean }) {
 }
 
 /** Small green pill with a soft, infinitely pulsing ring. */
-function PbBadge({ label, reduced }: { label: string; reduced: boolean }) {
+function PbBadge({ label }: { label: string }) {
   return (
-    <span className="relative inline-flex">
-      {!reduced && (
-        <motion.span
-          aria-hidden
-          className="absolute inset-0 rounded-full bg-green-500/50"
-          animate={{ scale: [1, 1.35], opacity: [0.5, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
-        />
-      )}
-      <span className="relative inline-flex items-center gap-1 rounded-full bg-green-500 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
-        <TrendingUp className="h-3 w-3" />
-        {label}
-      </span>
+    <span className="inline-flex items-center gap-1 rounded-full bg-green-500 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
+      <TrendingUp className="h-3 w-3" />
+      {label}
     </span>
   );
 }
@@ -751,7 +747,7 @@ export default function MeetShowcase({
                         {result.placement}
                       </span>
                     )}
-                    {result.pb && <PbBadge label={labels.pb} reduced={reduced} />}
+                    {result.pb && <PbBadge label={labels.pb} />}
                   </div>
                 </div>
 
@@ -914,8 +910,10 @@ export default function MeetShowcase({
                 }}
                 className={clsx(
                   "group relative w-[78vw] max-w-sm shrink-0 snap-center overflow-hidden rounded-2xl md:w-auto md:max-w-none md:shrink",
-                  "aspect-[4/3]",
-                  isLead && "md:col-span-2 md:row-span-2 md:aspect-auto",
+                  isLead && "md:col-span-2 md:row-span-2",
+                  photo.contain
+                    ? "aspect-[4/3] bg-black"
+                    : clsx("aspect-[4/3]", isLead && "md:aspect-auto"),
                 )}
               >
                 <Image
@@ -928,11 +926,16 @@ export default function MeetShowcase({
                       : "(max-width: 768px) 78vw, 33vw"
                   }
                   style={
-                    photo.objectPosition
+                    photo.objectPosition && !photo.contain
                       ? { objectPosition: photo.objectPosition }
                       : undefined
                   }
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  className={clsx(
+                    "transition-transform duration-700 ease-out",
+                    photo.contain
+                      ? "object-contain"
+                      : "object-cover group-hover:scale-[1.03]",
+                  )}
                 />
                 <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-4 pt-12 transition-all duration-300 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
                   <span className="block text-[10px] font-bold uppercase tracking-[0.25em] text-green-400">

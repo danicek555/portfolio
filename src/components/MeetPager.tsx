@@ -64,25 +64,26 @@ const MeetPager: React.FC = () => {
         "backdrop-blur supports-[backdrop-filter]:bg-opacity-80",
       )}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-8">
-        {/* Previous (newer meet, up the list) */}
-        {prev ? (
-          <Link href={link(prev.slug)} className={sideClass}>
-            <ChevronLeft className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:-translate-x-0.5" />
-            <span className="flex min-w-0 flex-col leading-tight">
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-green-500">
-                {locale === "cs" ? "Předchozí" : "Previous"}
+      <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3 sm:px-8">
+        {/* Left column — Previous (newer meet, up the list). Equal-width side
+            columns keep the "all meets" button perfectly centered. */}
+        <div className="flex min-w-0 flex-1 justify-start">
+          {prev && (
+            <Link href={link(prev.slug)} className={sideClass}>
+              <ChevronLeft className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:-translate-x-0.5" />
+              <span className="flex min-w-0 flex-col leading-tight">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-green-500">
+                  {locale === "cs" ? "Předchozí" : "Previous"}
+                </span>
+                <span className="hidden truncate text-sm font-medium sm:inline">
+                  {t(`competitions.${prev.i}.title`)}
+                </span>
               </span>
-              <span className="hidden truncate text-sm font-medium sm:inline">
-                {t(`competitions.${prev.i}.title`)}
-              </span>
-            </span>
-          </Link>
-        ) : (
-          <span aria-hidden className="w-4" />
-        )}
+            </Link>
+          )}
+        </div>
 
-        {/* All meets */}
+        {/* Center — All meets (always centred) */}
         <Link
           href={`/${locale}#competitions`}
           className={clsx(
@@ -98,25 +99,25 @@ const MeetPager: React.FC = () => {
           </span>
         </Link>
 
-        {/* Next (older meet, down the list) */}
-        {next ? (
-          <Link
-            href={link(next.slug)}
-            className={clsx(sideClass, "justify-end text-right")}
-          >
-            <span className="flex min-w-0 flex-col items-end leading-tight">
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-green-500">
-                {locale === "cs" ? "Další" : "Next"}
+        {/* Right column — Next (older meet, down the list) */}
+        <div className="flex min-w-0 flex-1 justify-end">
+          {next && (
+            <Link
+              href={link(next.slug)}
+              className={clsx(sideClass, "text-right")}
+            >
+              <span className="flex min-w-0 flex-col items-end leading-tight">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-green-500">
+                  {locale === "cs" ? "Další" : "Next"}
+                </span>
+                <span className="hidden truncate text-sm font-medium sm:inline">
+                  {t(`competitions.${next.i}.title`)}
+                </span>
               </span>
-              <span className="hidden truncate text-sm font-medium sm:inline">
-                {t(`competitions.${next.i}.title`)}
-              </span>
-            </span>
-            <ChevronRight className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" />
-          </Link>
-        ) : (
-          <span aria-hidden className="w-4" />
-        )}
+              <ChevronRight className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" />
+            </Link>
+          )}
+        </div>
       </div>
     </nav>
   );

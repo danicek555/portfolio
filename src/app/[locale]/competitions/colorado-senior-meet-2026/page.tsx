@@ -27,7 +27,7 @@ export async function generateMetadata({
     "altitude swimming",
     "personal best",
   ],
-  image: "/sectionals2026/tops-duo.jpg",
+  image: "/seniorMeet/poolside.jpg",
   publishedTime: "2026-02-22",
   });
 }
@@ -71,7 +71,7 @@ export default async function ColoradoSeniorMeet2026Page({
       location="Denver, Colorado"
       dateLabel={cs ? "20.–22. února 2026" : "February 20–22, 2026"}
       altitudeNote={cs ? "1 600 m n. m." : "5,280 ft altitude"}
-      heroImage="/sectionals2026/tops-duo.jpg"
+      heroImage="/seniorMeet/poolside.jpg"
       intro={
         cs
           ? "Generálka měsíc před Sectionals — a stoprocentní bilance. Tři starty, tři vítězství: obě prsařské tratě v tehdejších osobních rekordech a k tomu 400 y polohový závod. Poslední ostrý test formy před vrcholem yardové sezóny."

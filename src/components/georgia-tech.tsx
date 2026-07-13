@@ -229,13 +229,13 @@ const GeorgiaTechCommitment: React.FC = () => {
             >
               <p
                 className={clsx(
-                  "text-xs font-bold uppercase tracking-widest mb-3",
-                  isDarkMode ? "text-gray-400" : "text-gray-500",
+                  "text-[10px] font-bold uppercase tracking-widest mb-2",
+                  isDarkMode ? "text-gray-500" : "text-gray-400",
                 )}
               >
                 {t("mediaTitle")}
               </p>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 {[
                   {
                     outlet: "SwimSwam",
@@ -255,24 +255,24 @@ const GeorgiaTechCommitment: React.FC = () => {
                     href={article.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ x: 4 }}
+                    whileHover={{ x: 3 }}
                     transition={{ duration: 0.2 }}
                     className={clsx(
-                      "group flex items-start gap-3 rounded-lg px-4 py-3 transition-colors duration-300",
+                      "group flex items-start gap-2.5 rounded-md px-3 py-1.5 transition-colors duration-300",
                       isDarkMode
-                        ? "bg-gray-800 hover:bg-gray-700"
+                        ? "bg-gray-800/60 hover:bg-gray-800"
                         : "bg-gray-50 hover:bg-gray-100",
                     )}
                   >
-                    <span className="mt-0.5 shrink-0 rounded bg-green-500/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-green-500">
+                    <span className="mt-px shrink-0 rounded bg-green-500/15 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-green-500">
                       {article.outlet}
                     </span>
                     <span
                       className={clsx(
-                        "text-sm font-medium leading-snug transition-colors",
+                        "text-xs font-medium leading-snug transition-colors",
                         isDarkMode
-                          ? "text-gray-200 group-hover:text-white"
-                          : "text-gray-700 group-hover:text-black",
+                          ? "text-gray-300 group-hover:text-white"
+                          : "text-gray-600 group-hover:text-black",
                       )}
                     >
                       {article.title}
