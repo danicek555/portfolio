@@ -28,7 +28,7 @@ export async function generateMetadata({
     "long course swimming",
     "Podolí Prague",
   ],
-  image: "/mcrOpen2026/start-block.jpg",
+  image: "/mcrOpen2026/dive-start.jpg",
   publishedTime: "2026-06-28",
   });
 }
@@ -67,7 +67,7 @@ export default async function CzechOpenNationals2026Page({
       }
       location={cs ? "Praha – Podolí" : "Prague – Podolí"}
       dateLabel={cs ? "25.–28. června 2026" : "June 25–28, 2026"}
-      heroImage="/mcrOpen2026/wall.jpg"
+      heroImage="/mcrOpen2026/dive-start.jpg"
       intro={
         cs
           ? "Domácí vrchol sezóny na venkovním padesátimetrovém bazénu v Podolí. Čtyři dny závodů v nejsilnější domácí konkurenci a extrémním vedru přes 40 °C, pět finálových startů a bronzová medaile na 400 m polohový závod."
@@ -177,13 +177,23 @@ export default async function CzechOpenNationals2026Page({
           objectPosition: "50% 20%",
         },
         {
+          src: "/mcrOpen2026/start-block.jpg",
+          caption: cs ? "Soustředění před startem" : "Focused before the start",
+          objectPosition: "50% 15%",
+        },
+        {
+          src: "/mcrOpen2026/towel.jpg",
+          caption: cs ? "Chvíle klidu před závodem" : "A quiet moment before the race",
+          objectPosition: "50% 20%",
+        },
+        {
           src: "/mcrOpen2026/ceremony.jpg",
           caption: cs ? "Medailový ceremoniál" : "Medal ceremony",
         },
         {
-          src: "/mcrOpen2026/start-block.jpg",
-          caption: cs ? "Soustředění před startem" : "Focused before the start",
-          objectPosition: "50% 15%",
+          src: "/mcrOpen2026/wall.jpg",
+          caption: cs ? "U stěny po dohmatu" : "At the wall after the race",
+          objectPosition: "50% 55%",
         },
       ]}
       videos={[]}

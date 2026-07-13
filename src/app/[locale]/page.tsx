@@ -108,7 +108,7 @@ export async function generateMetadata({
       siteName: siteName,
       images: [
         {
-          url: `${siteUrl}/openGraphImage.png`,
+          url: `${siteUrl}/og-cover.png`,
           width: 1200,
           height: 630,
           alt: "Daniel Mitka - Professional swimming athlete and developer",
@@ -124,7 +124,7 @@ export async function generateMetadata({
       title: "Daniel Mitka - Czech Swimming Champion & Developer",
       description:
         "Czech Youth Swimming Champion & lifesaving medalist. Competitive swimmer with international experience. Full-stack developer.",
-      images: [`${siteUrl}/openGraphImage.png`],
+      images: [`${siteUrl}/og-cover.png`],
       creator: process.env.NEXT_PUBLIC_TWITTER_HANDLE || "@MitkaDaniel",
     },
 

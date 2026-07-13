@@ -24,7 +24,7 @@ export function buildMeetMetadata(opts: {
   const csUrl = `${siteUrl}/cs/competitions/${opts.slug}`;
   // Self-referencing canonical per locale (falls back to English).
   const url = opts.locale === "cs" ? csUrl : enUrl;
-  const imagePath = opts.image ?? "/openGraphImage.png";
+  const imagePath = opts.image ?? "/og-cover.png";
   const imageUrl = imagePath.startsWith("http")
     ? imagePath
     : `${siteUrl}${imagePath}`;

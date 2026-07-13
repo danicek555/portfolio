@@ -4,7 +4,7 @@ import {
   Mail,
   Phone,
   ExternalLink,
-  Facebook,
+  Linkedin,
   Instagram,
   Github,
   Waves,
@@ -43,10 +43,10 @@ const Footer: React.FC = () => {
 
   const socials = [
     {
-      href: "https://www.facebook.com/dan.mitka.5",
-      label: "Facebook",
-      icon: Facebook,
-      tooltip: t("facebookTooltip"),
+      href: "https://www.linkedin.com/in/daniel-mitka-b90595215/",
+      label: "LinkedIn",
+      icon: Linkedin,
+      tooltip: t("linkedinTooltip"),
       external: true,
     },
     {

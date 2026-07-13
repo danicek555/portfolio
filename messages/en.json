@@ -34,7 +34,7 @@
     "mediaTitle": "In the media"
   },
   "Hero": {
-    "subtitle": "International Swimmer & Lifesaving Medalist",
+    "subtitle": "International Swimmer, Lifesaving Medalist & Full-Stack Developer",
     "cta": "Get in touch"
   },
   "Competitions": {
@@ -222,7 +222,8 @@
     "facebookTooltip": "Follow me on Facebook",
     "instagramTooltip": "Check out my Instagram",
     "swimcloudTooltip": "View my swimming times on SwimCloud",
-    "githubTooltip": "Check out my code on GitHub"
+    "githubTooltip": "Check out my code on GitHub",
+    "linkedinTooltip": "Connect with me on LinkedIn"
   },
   "Australia": {
     "hero": {

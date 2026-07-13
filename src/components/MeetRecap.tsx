@@ -375,7 +375,7 @@ export default function MeetRecap({
                   <motion.div
                     key={result.event}
                     className={clsx(
-                      "rounded-xl border p-6 transition-all duration-300 hover:shadow-lg",
+                      "min-w-0 rounded-xl border p-6 transition-all duration-300 hover:shadow-lg",
                       result.medal
                         ? MEDAL_CARD[isDarkMode ? "dark" : "light"][
                             result.medal
@@ -536,12 +536,12 @@ export default function MeetRecap({
               >
                 {labels.gallery}
               </motion.p>
-              <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+              <div className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
                 {gallery.map((photo) => (
                   <motion.figure
                     key={photo.src}
                     variants={itemReveal}
-                    className="relative aspect-[4/3] overflow-hidden rounded-xl"
+                    className="relative aspect-[4/3] w-[80vw] max-w-sm shrink-0 snap-center overflow-hidden rounded-xl md:w-auto md:max-w-none md:shrink"
                   >
                     {photo.contain && (
                       // Blurred, zoomed copy of the same photo fills the frame

@@ -34,7 +34,7 @@
     "mediaTitle": "V médiích"
   },
   "Hero": {
-    "subtitle": "Mezinárodní plavec a medailista v záchranářství",
+    "subtitle": "Mezinárodní plavec, medailista v záchranářství a full-stack vývojář",
     "cta": "Kontaktujte mě"
   },
   "Competitions": {
@@ -222,7 +222,8 @@
     "facebookTooltip": "Sledujte mě na Facebooku",
     "instagramTooltip": "Podívejte se na můj Instagram",
     "swimcloudTooltip": "Zobrazit mé plavecké časy na SwimCloud",
-    "githubTooltip": "Můj kód na GitHubu"
+    "githubTooltip": "Můj kód na GitHubu",
+    "linkedinTooltip": "Spojme se na LinkedInu"
   },
   "Australia": {
     "hero": {

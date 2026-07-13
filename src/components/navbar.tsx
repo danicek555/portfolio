@@ -13,12 +13,10 @@ const SCROLL_OFFSET = 72;
 type NavItem = { key: string; href: string };
 
 const NAV_ITEMS: NavItem[] = [
-  { key: "home", href: "/#home" },
   { key: "about", href: "/#about" },
   { key: "competitions", href: "/#competitions" },
   { key: "progression", href: "/#progression" },
   { key: "work", href: "/#work" },
-  { key: "blog", href: "/blog" },
 ];
 
 const Navbar: React.FC = () => {
@@ -166,6 +164,31 @@ const Navbar: React.FC = () => {
             </svg>
           </a>
         </li>
+        <li>
+          <a
+            href="https://www.linkedin.com/in/daniel-mitka-b90595215/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className={clsx(
+              "flex items-center transition-colors no-underline font-bold",
+              isDarkMode ? "hover:text-gray-300" : "hover:text-gray-600"
+            )}
+            style={{ fontWeight: 700 }}
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect width="4" height="12" x="2" y="9" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+          </a>
+        </li>
       </ul>
 
       {/* Mobile hamburger menu button */}
@@ -282,6 +305,34 @@ const Navbar: React.FC = () => {
                 <path d="M9 18c-4.51 2-5-2-7-2" />
               </svg>
               GitHub
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/daniel-mitka-b90595215/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMenu}
+              className={clsx(
+                "flex items-center px-4 py-4 transition-colors no-underline font-bold",
+                isDarkMode
+                  ? "hover:bg-gray-700 text-white"
+                  : "hover:bg-gray-50 text-black"
+              )}
+              style={{ fontWeight: 700 }}
+            >
+              <svg
+                className="w-6 h-6 mr-3"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect width="4" height="12" x="2" y="9" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+              LinkedIn
             </a>
           </li>
         </ul>

@@ -172,7 +172,6 @@ export default async function Praha2026Page({
           caption: cs ? "U stěny po závodě" : "At the wall after the race",
         },
       ]}
-      videos={[]}
       links={[
         {
           label: cs ? "Oficiální výsledky" : "Official results",
