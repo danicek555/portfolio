@@ -150,6 +150,7 @@ export default async function ColoradoOpen2026Page({
         {
           src: "/ColoradoOpen/selfie.jpg",
           caption: cs ? "S týmem" : "With the team",
+          contain: true,
         },
       ]}
       links={[

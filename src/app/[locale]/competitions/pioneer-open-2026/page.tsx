@@ -72,7 +72,7 @@ export default async function PioneerOpen2025Page({
       dateLabel={cs ? "5.–7. prosince 2025" : "December 5–7, 2025"}
       altitudeNote={cs ? "1 600 m n. m." : "5,280 ft altitude"}
       heroImage="/pioneerOpen/team.jpg"
-      heroContain
+      heroPosition="50% 50%"
       intro={
         cs
           ? "Prosincový útok na kvalifikaci na Speedo Winter Junior Championships. Limit nakonec o kousek unikl — velká škoda. O to víc ale platily obrovské posuny: tři osobní rekordy, tři stříbra z finále a jistota, že se limit blíží."
@@ -152,6 +152,11 @@ export default async function PioneerOpen2025Page({
             ]
       }
       gallery={[
+        {
+          src: "/pioneerOpen/team.jpg",
+          caption: cs ? "S týmem" : "With the team",
+          contain: true,
+        },
         {
           src: "/pioneerOpen/poolside.jpg",
           caption: cs ? "U bazénu s týmem" : "Poolside with the team",

@@ -82,6 +82,7 @@ export default function MeetRecap({
   dateLabel,
   heroImage,
   heroContain,
+  heroPosition,
   intro,
   stats,
   results,
@@ -134,36 +135,34 @@ export default function MeetRecap({
     >
       {/* Hero */}
       <section className="relative flex h-[90vh] min-h-[540px] items-center justify-center overflow-hidden text-white">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-neutral-950">
           {heroContain ? (
-            <>
-              {/* Blurred fill so a whole portrait photo has no empty bars */}
-              <Image
-                src={heroImage}
-                alt=""
-                aria-hidden
-                fill
-                className="scale-110 object-cover blur-2xl"
-                priority
-              />
-              <Image
-                src={heroImage}
-                alt={title}
-                fill
-                className="object-contain"
-                priority
-              />
-            </>
+            // Whole photo, centered on a solid dark backdrop (no blur, no crop)
+            <Image
+              src={heroImage}
+              alt={title}
+              fill
+              className="object-contain"
+              priority
+            />
           ) : (
             <Image
               src={heroImage}
               alt={title}
               fill
               className="object-cover"
+              style={heroPosition ? { objectPosition: heroPosition } : undefined}
               priority
             />
           )}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+          <div
+            className={clsx(
+              "absolute inset-0",
+              heroContain
+                ? "bg-gradient-to-b from-black/50 via-transparent to-black/70"
+                : "bg-gradient-to-b from-black/70 via-black/50 to-black/80",
+            )}
+          />
         </div>
 
         <div className="relative z-20 mx-auto max-w-4xl px-6 text-center">

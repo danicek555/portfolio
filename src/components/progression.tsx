@@ -383,7 +383,7 @@ const Progression: React.FC = () => {
               {hovered && (
                 <div
                   className={clsx(
-                    "absolute z-10 w-52 -translate-x-1/2 rounded-xl px-4 py-3 pr-7 text-left shadow-xl",
+                    "absolute z-10 w-52 -translate-x-1/2 rounded-xl py-3 pl-7 pr-7 text-left shadow-xl",
                     isDarkMode
                       ? "bg-gray-900 border border-gray-700"
                       : "bg-white border border-gray-200",
@@ -426,13 +426,13 @@ const Progression: React.FC = () => {
                         });
                       }}
                       className={clsx(
-                        "absolute -left-3 top-1/2 -translate-y-1/2 rounded-full border p-1 shadow-md transition-colors",
+                        "absolute left-1 top-1/2 -translate-y-1/2 p-0.5 transition-colors",
                         isDarkMode
-                          ? "border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white"
-                          : "border-gray-200 bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-900",
+                          ? "text-gray-500 hover:text-white"
+                          : "text-gray-400 hover:text-gray-900",
                       )}
                     >
-                      <ChevronLeft className="h-4 w-4" />
+                      <ChevronLeft className="h-3.5 w-3.5" />
                     </button>
                   )}
                   {/* Next point (newer swim) */}
@@ -451,13 +451,13 @@ const Progression: React.FC = () => {
                         });
                       }}
                       className={clsx(
-                        "absolute -right-3 top-1/2 -translate-y-1/2 rounded-full border p-1 shadow-md transition-colors",
+                        "absolute right-1 top-1/2 -translate-y-1/2 p-0.5 transition-colors",
                         isDarkMode
-                          ? "border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white"
-                          : "border-gray-200 bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-900",
+                          ? "text-gray-500 hover:text-white"
+                          : "text-gray-400 hover:text-gray-900",
                       )}
                     >
-                      <ChevronRight className="h-4 w-4" />
+                      <ChevronRight className="h-3.5 w-3.5" />
                     </button>
                   )}
                   <p

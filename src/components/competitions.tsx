@@ -69,12 +69,14 @@ const Competitions: React.FC = () => {
       description: t("competitions.14.description"),
       link: "/competitions/colorado-open-2026",
       img: "/ColoradoOpen/church.jpg",
+      imgPosition: "50% 20%",
     },
     {
       title: t("competitions.7.title"),
       description: t("competitions.7.description"),
       link: "/competitions/pioneer-open-2026",
       img: "/pioneerOpen/team.jpg",
+      imgPosition: "50% 55%",
     },
     {
       title: t("competitions.6.title"),
