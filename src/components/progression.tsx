@@ -1,8 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { TrendingDown } from "lucide-react";
+import { TrendingDown, X } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 import { useTranslations, useLocale } from "next-intl";
 import clsx from "clsx";
@@ -15,6 +16,7 @@ type Swim = {
   location?: string;
   place?: string;
   round?: string;
+  slug?: string;
 };
 
 type EventKey = keyof typeof progressionData;
@@ -39,10 +41,27 @@ function formatDate(date: string, locale: string): string {
   });
 }
 
+const FROM_YEAR = "2022";
+const ROUND_RANK: Record<string, number> = { PRE: 0, SEM: 1, FIN: 2 };
+
 const Progression: React.FC = () => {
   const { isDarkMode } = useTheme();
   const t = useTranslations("Progression");
   const locale = useLocale();
+  const router = useRouter();
+  const cs = locale === "cs";
+
+  const openMeet = (slug?: string) => {
+    if (slug) router.push(`/${locale}/competitions/${slug}`);
+  };
+
+  const roundLabel = (code?: string) => {
+    if (!code) return "";
+    const map: Record<string, string> = cs
+      ? { PRE: "rozplavby", SEM: "semifinále", FIN: "finále" }
+      : { PRE: "prelims", SEM: "semis", FIN: "final" };
+    return map[code] ?? "";
+  };
 
   const [eventKey, setEventKey] = useState<EventKey>("200IM");
   const [courseKey, setCourseKey] = useState<CourseKey>("LCM");
@@ -54,10 +73,15 @@ const Progression: React.FC = () => {
   } | null>(null);
 
   const swims = useMemo(() => {
-    const raw = (progressionData[eventKey] as Record<string, Swim[]>)[
-      courseKey
-    ] as Swim[];
-    const sorted = [...raw].sort((a, b) => a.date.localeCompare(b.date));
+    const raw = (
+      (progressionData[eventKey] as Record<string, Swim[]>)[courseKey] as Swim[]
+    ).filter((s) => s.date >= FROM_YEAR);
+    // Chronological order; within a single day prelims come before finals.
+    const sorted = [...raw].sort((a, b) =>
+      a.date === b.date
+        ? (ROUND_RANK[a.round ?? ""] ?? 0) - (ROUND_RANK[b.round ?? ""] ?? 0)
+        : a.date.localeCompare(b.date),
+    );
     let best = Infinity;
     const marked = sorted.map((swim) => {
       const pb = swim.secs < best;
@@ -90,6 +114,20 @@ const Progression: React.FC = () => {
     const y = (secs: number) => top + ((hi - secs) / (hi - lo)) * innerH;
 
     const points = swims.map((swim) => ({ swim, px: x(swim.date), py: y(swim.secs) }));
+    // Spread same-day swims (prelims/finals) horizontally so they don't stack.
+    const byDate = new Map<string, typeof points>();
+    points.forEach((p) => {
+      const arr = byDate.get(p.swim.date) ?? [];
+      arr.push(p);
+      byDate.set(p.swim.date, arr);
+    });
+    byDate.forEach((arr) => {
+      if (arr.length < 2) return;
+      const spacing = 12;
+      arr.forEach((p, i) => {
+        p.px += (i - (arr.length - 1) / 2) * spacing;
+      });
+    });
     const path = points
       .map((p, i) => `${i === 0 ? "M" : "L"}${p.px.toFixed(1)},${p.py.toFixed(1)}`)
       .join(" ");
@@ -227,6 +265,7 @@ const Progression: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.15 }}
           viewport={{ once: true }}
+          onMouseLeave={() => setHovered(null)}
           className={clsx(
             "relative rounded-2xl p-4 sm:p-6 transition-colors duration-300",
             isDarkMode ? "bg-gray-800" : "bg-gray-50 shadow-sm",
@@ -239,7 +278,6 @@ const Progression: React.FC = () => {
                 className="w-full"
                 role="img"
                 aria-label={t("title")}
-                onMouseLeave={() => setHovered(null)}
               >
                 {/* Grid + Y axis */}
                 {chart.yTicks.map((tick) => (
@@ -290,37 +328,52 @@ const Progression: React.FC = () => {
                   transition={{ duration: 1.1, ease: "easeOut" }}
                 />
                 {/* Points */}
-                {chart.points.map(({ swim, px, py }, i) => (
-                  <motion.circle
-                    key={`${swim.date}-${swim.secs}-${i}`}
-                    cx={px}
-                    cy={py}
-                    r={swim.pb ? 5.5 : 4}
-                    fill={
-                      swim.pb ? "#22c55e" : isDarkMode ? "#4b5563" : "#d1d5db"
-                    }
-                    stroke={isDarkMode ? "#1f2937" : "#ffffff"}
-                    strokeWidth={1.5}
-                    className="cursor-pointer"
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: 0.15 + i * 0.02 }}
-                    onMouseEnter={() =>
-                      setHovered({
-                        x: (px / CHART.width) * 100,
-                        y: (py / CHART.height) * 100,
-                        swim,
-                      })
-                    }
-                  />
-                ))}
+                {chart.points.map(({ swim, px, py }, i) => {
+                  const active =
+                    hovered?.swim.date === swim.date &&
+                    hovered?.swim.secs === swim.secs;
+                  return (
+                    <g key={`${swim.date}-${swim.secs}-${i}`}>
+                      <motion.circle
+                        cx={px}
+                        cy={py}
+                        r={(swim.pb ? 5.5 : 4) * (active ? 1.5 : 1)}
+                        fill={
+                          swim.pb ? "#22c55e" : isDarkMode ? "#4b5563" : "#d1d5db"
+                        }
+                        stroke={isDarkMode ? "#1f2937" : "#ffffff"}
+                        strokeWidth={1.5}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3, delay: 0.15 + i * 0.02 }}
+                        style={{ pointerEvents: "none" }}
+                      />
+                      {/* Larger invisible hit area for easier hover/click */}
+                      <circle
+                        cx={px}
+                        cy={py}
+                        r={14}
+                        fill="transparent"
+                        className={swim.slug ? "cursor-pointer" : "cursor-default"}
+                        onMouseEnter={() =>
+                          setHovered({
+                            x: (px / CHART.width) * 100,
+                            y: (py / CHART.height) * 100,
+                            swim,
+                          })
+                        }
+                        onClick={() => openMeet(swim.slug)}
+                      />
+                    </g>
+                  );
+                })}
               </svg>
 
               {/* Tooltip */}
               {hovered && (
                 <div
                   className={clsx(
-                    "pointer-events-none absolute z-10 w-52 -translate-x-1/2 rounded-xl px-4 py-3 text-left shadow-xl",
+                    "absolute z-10 w-52 -translate-x-1/2 rounded-xl px-4 py-3 pr-7 text-left shadow-xl",
                     isDarkMode
                       ? "bg-gray-900 border border-gray-700"
                       : "bg-white border border-gray-200",
@@ -331,6 +384,22 @@ const Progression: React.FC = () => {
                     transform: "translate(-50%, -100%)",
                   }}
                 >
+                  <button
+                    type="button"
+                    aria-label={cs ? "Zavřít" : "Close"}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setHovered(null);
+                    }}
+                    className={clsx(
+                      "absolute right-1.5 top-1.5 rounded-full p-0.5 transition-colors",
+                      isDarkMode
+                        ? "text-gray-500 hover:text-white hover:bg-gray-800"
+                        : "text-gray-400 hover:text-gray-900 hover:bg-gray-100",
+                    )}
+                  >
+                    <X className="h-3.5 w-3.5" />
+                  </button>
                   <p
                     className={clsx(
                       "text-lg font-bold tabular-nums",
@@ -363,9 +432,16 @@ const Progression: React.FC = () => {
                     )}
                   >
                     {formatDate(hovered.swim.date, locale)}
-                    {hovered.swim.place ? ` · ${hovered.swim.place}` : ""}
-                    {hovered.swim.round ? ` · ${hovered.swim.round}` : ""}
+                    {hovered.swim.place
+                      ? ` · ${hovered.swim.place}${cs ? " místo" : ""}`
+                      : ""}
+                    {hovered.swim.round ? ` · ${roundLabel(hovered.swim.round)}` : ""}
                   </p>
+                  {hovered.swim.slug && (
+                    <p className="mt-1.5 text-[11px] font-bold text-green-500">
+                      {cs ? "→ Zobrazit závod" : "→ View meet"}
+                    </p>
+                  )}
                 </div>
               )}
             </>
@@ -421,6 +497,15 @@ const Progression: React.FC = () => {
             ))}
           </motion.div>
         )}
+
+        <p
+          className={clsx(
+            "mt-6 text-center text-xs",
+            isDarkMode ? "text-gray-500" : "text-gray-400",
+          )}
+        >
+          {t("note")}
+        </p>
       </div>
     </section>
   );

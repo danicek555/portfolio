@@ -85,14 +85,15 @@ export default async function LocaleLayout({
 
   return (
     <div
-      className={`${roboto.variable} ${montserrat.variable} overflow-x-hidden`}
+      className={`${roboto.variable} ${montserrat.variable}`}
       style={{
         fontFamily:
           "var(--font-roboto), var(--font-montserrat), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
         width: "100%",
         maxWidth: "100vw",
-        position: "relative",
-        overflowX: "hidden",
+        // `clip` prevents horizontal scroll without creating a scroll container,
+        // which would break the navbar's `position: sticky`.
+        overflowX: "clip",
       }}
     >
       <NextIntlClientProvider messages={messages}>

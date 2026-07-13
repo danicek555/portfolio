@@ -76,7 +76,7 @@ const Footer: React.FC = () => {
       id="footer"
       className={clsx(
         "transition-colors duration-300",
-        isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black",
+        isDarkMode ? "bg-gray-900 text-white" : "bg-white text-black",
       )}
     >
       <div className="max-w-6xl mx-auto px-6 py-10">

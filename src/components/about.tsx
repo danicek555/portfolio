@@ -28,7 +28,7 @@ const About: React.FC = () => {
       id="about"
       className={clsx(
         "py-16 px-8 transition-colors duration-300",
-        isDarkMode ? "bg-gray-900" : "bg-white"
+        isDarkMode ? "bg-gray-800" : "bg-gray-50"
       )}
     >
       <div className="max-w-6xl mx-auto">
