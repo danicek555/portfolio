@@ -541,11 +541,21 @@ export default function MeetRecap({
                   <motion.figure
                     key={photo.src}
                     variants={itemReveal}
-                    className={clsx(
-                      "relative aspect-[4/3] overflow-hidden rounded-xl",
-                      photo.contain && "bg-black",
-                    )}
+                    className="relative aspect-[4/3] overflow-hidden rounded-xl"
                   >
+                    {photo.contain && (
+                      // Blurred, zoomed copy of the same photo fills the frame
+                      // behind the whole (letterboxed) image instead of a flat
+                      // black backdrop.
+                      <Image
+                        src={photo.src}
+                        alt=""
+                        aria-hidden
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="scale-110 object-cover blur-2xl"
+                      />
+                    )}
                     <Image
                       src={photo.src}
                       alt={photo.caption}
@@ -611,12 +621,24 @@ export default function MeetRecap({
                         />
                       ) : (
                         <figure>
-                          <video
-                            controls
-                            preload="metadata"
-                            className="max-h-[70vh] w-full rounded-xl bg-black shadow-lg"
-                            src={video.src}
-                          />
+                          <div className="relative flex justify-center overflow-hidden rounded-xl bg-black shadow-lg">
+                            {video.poster && (
+                              // eslint-disable-next-line @next/next/no-img-element
+                              <img
+                                src={video.poster}
+                                alt=""
+                                aria-hidden
+                                className="absolute inset-0 h-full w-full scale-110 object-cover blur-2xl"
+                              />
+                            )}
+                            <video
+                              controls
+                              preload="metadata"
+                              poster={video.poster}
+                              className="relative z-10 max-h-[70vh] w-auto max-w-full"
+                              src={video.src}
+                            />
+                          </div>
                           <figcaption
                             className={clsx(
                               "mt-3 text-sm font-semibold",

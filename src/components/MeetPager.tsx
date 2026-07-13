@@ -41,8 +41,10 @@ const MeetPager: React.FC = () => {
   const index = MEETS.findIndex((m) => m.slug === slug);
   if (index === -1) return null; // not a known meet detail page
 
-  const prev = MEETS[index - 1];
-  const next = MEETS[index + 1];
+  // List is newest-first, so the meet below (index + 1) is chronologically
+  // earlier ("Previous") and the one above (index - 1) is later ("Next").
+  const prev = MEETS[index + 1];
+  const next = MEETS[index - 1];
 
   const link = (slugPart: string) => `/${locale}/competitions/${slugPart}`;
 

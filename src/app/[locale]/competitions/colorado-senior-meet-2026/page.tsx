@@ -130,6 +130,7 @@ export default async function ColoradoSeniorMeet2026Page({
         {
           type: "local",
           src: "/seniorMeet/race-video.mp4",
+          poster: "/seniorMeet/race-poster.jpg",
           title: cs
             ? "Momentka ze závodu — z ochozů s týmem"
             : "Race moment — poolside with the team",

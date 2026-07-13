@@ -68,7 +68,7 @@ export default async function ColoradoOpen2026Page({
       dateLabel={cs ? "23.–25. ledna 2026" : "January 23–25, 2026"}
       altitudeNote={cs ? "1 600 m n. m." : "5,280 ft altitude"}
       heroImage="/ColoradoOpen/church.jpg"
-      heroContain
+      heroPosition="50% 18%"
       intro={
         cs
           ? "Závod, kde to konečně cinklo. Dvoustovka polohově za 1:50.39 znamenala splnění limitu, který v prosinci na Pioneer Open těsně unikl. K tomu druhé individuální vítězství na 400 y polohově, osobní rekordy na 100 y znak i 100 y motýlek a čtyři vyhrané štafety s Hilltoppers."
