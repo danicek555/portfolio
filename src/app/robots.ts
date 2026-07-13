@@ -10,7 +10,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: [
         "/api/",
-        "/_next/",
         "/favicon.ico",
         "/android-chrome-*",
         "/apple-touch-icon.png",

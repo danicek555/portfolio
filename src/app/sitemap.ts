@@ -28,6 +28,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "lifesaving-worlds-australia",
   ];
 
+  // Primary image per competition, surfaced to Google via <image:image> so the
+  // photos can be indexed for Google Images (raw /public paths, not the
+  // /_next/image optimizer URLs).
+  const competitionImages: Record<string, string> = {
+    "colorado-open-2026": "/ColoradoOpen/church.jpg",
+    "colorado-senior-meet-2026": "/seniorMeet/poolside.jpg",
+    "czech-junior-nationals-2025": "/podoliFoto.jpg",
+    "czech-junior-nationals-2026": "/mcrJunior2026/diplom.jpg",
+    "czech-open-nationals-2025": "/plzen.jpg",
+    "czech-open-nationals-2026": "/mcrOpen2026/dive-start.jpg",
+    "czech-youth-nationals-2024": "/podoliFoto.jpg",
+    "invitational-2026": "/invitationalDenver/arena.jpg",
+    "lifesaving-worlds-australia": "/winPhoto.jpg",
+    "pioneer-open-2026": "/pioneerOpen/team.jpg",
+    "praha-2026": "/praha2026/podium.jpg",
+    "slovakia-cup-2024": "/samorin.jpg",
+    "speedo-junior-nationals-2026": "/juniors2026/woollett.jpg",
+    "speedo-sectionals-2026": "/sectionals2026/celebration.jpg",
+    "team-championship-finals-2025": "/ostrava1.jpg",
+  };
+
   // Base pages without fragments - only actual pages
   const basePages = [
     {
@@ -52,6 +73,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: page.changeFrequency,
       priority: page.priority,
+      images:
+        page.url === "" ? [`${baseUrl}/mcrOpen2026/hero-start.jpg`] : undefined,
       alternates: {
         languages: {
           en: `${baseUrl}/en${page.url}`,
@@ -66,6 +89,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: page.changeFrequency,
       priority: page.priority,
+      images:
+        page.url === "" ? [`${baseUrl}/mcrOpen2026/hero-start.jpg`] : undefined,
       alternates: {
         languages: {
           en: `${baseUrl}/en${page.url}`,
@@ -83,6 +108,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.7,
+      images: competitionImages[competition]
+        ? [`${baseUrl}${competitionImages[competition]}`]
+        : undefined,
       alternates: {
         languages: {
           en: `${baseUrl}/en/competitions/${competition}`,
@@ -97,6 +125,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.7,
+      images: competitionImages[competition]
+        ? [`${baseUrl}${competitionImages[competition]}`]
+        : undefined,
       alternates: {
         languages: {
           en: `${baseUrl}/en/competitions/${competition}`,

@@ -147,11 +147,6 @@ export default async function ColoradoOpen2026Page({
           caption: cs ? "Bazén DU během závodu" : "The DU pool during the meet",
           contain: true,
         },
-        {
-          src: "/ColoradoOpen/selfie.jpg",
-          caption: cs ? "S týmem" : "With the team",
-          contain: true,
-        },
       ]}
       links={[
         {

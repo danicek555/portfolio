@@ -151,18 +151,7 @@ export default async function PioneerOpen2025Page({
               "Denver sits at 5,280 ft — times from 200Y up get an official altitude adjustment (−1.2 s per 200Y, −5 s per 400/500Y).",
             ]
       }
-      gallery={[
-        {
-          src: "/pioneerOpen/team.jpg",
-          caption: cs ? "S týmem" : "With the team",
-          contain: true,
-        },
-        {
-          src: "/pioneerOpen/poolside.jpg",
-          caption: cs ? "U bazénu s týmem" : "Poolside with the team",
-          contain: true,
-        },
-      ]}
+      gallery={[]}
       links={[
         {
           label: cs ? "Výsledky na SwimCloud" : "Results on SwimCloud",
