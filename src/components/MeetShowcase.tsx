@@ -28,7 +28,7 @@ import VideoPlayer from "./VideoPlayer";
 
 export type MeetVideo =
   | { type: "youtube"; id: string; title: string }
-  | { type: "local"; src: string; title: string };
+  | { type: "local"; src: string; title: string; poster?: string };
 
 export type MeetShowcaseProps = {
   badge: string;
@@ -916,10 +916,26 @@ export default function MeetShowcase({
                   "group relative w-[78vw] max-w-sm shrink-0 snap-center overflow-hidden rounded-2xl md:w-auto md:max-w-none md:shrink",
                   isLead && "md:col-span-2 md:row-span-2",
                   photo.contain
-                    ? "aspect-[4/3] bg-black"
+                    ? "aspect-[4/3]"
                     : clsx("aspect-[4/3]", isLead && "md:aspect-auto"),
                 )}
               >
+                {photo.contain && (
+                  // Blurred, zoomed fill behind the whole (letterboxed) photo
+                  // instead of a flat black backdrop.
+                  <Image
+                    src={photo.src}
+                    alt=""
+                    aria-hidden
+                    fill
+                    sizes={
+                      isLead
+                        ? "(max-width: 768px) 78vw, 66vw"
+                        : "(max-width: 768px) 78vw, 33vw"
+                    }
+                    className="scale-110 object-cover blur-2xl"
+                  />
+                )}
                 <Image
                   src={photo.src}
                   alt={photo.caption}
