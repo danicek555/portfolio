@@ -81,6 +81,7 @@ export default function MeetRecap({
   location,
   dateLabel,
   heroImage,
+  heroContain,
   intro,
   stats,
   results,
@@ -134,13 +135,34 @@ export default function MeetRecap({
       {/* Hero */}
       <section className="relative flex h-[90vh] min-h-[540px] items-center justify-center overflow-hidden text-white">
         <div className="absolute inset-0">
-          <Image
-            src={heroImage}
-            alt={title}
-            fill
-            className="object-cover"
-            priority
-          />
+          {heroContain ? (
+            <>
+              {/* Blurred fill so a whole portrait photo has no empty bars */}
+              <Image
+                src={heroImage}
+                alt=""
+                aria-hidden
+                fill
+                className="scale-110 object-cover blur-2xl"
+                priority
+              />
+              <Image
+                src={heroImage}
+                alt={title}
+                fill
+                className="object-contain"
+                priority
+              />
+            </>
+          ) : (
+            <Image
+              src={heroImage}
+              alt={title}
+              fill
+              className="object-cover"
+              priority
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
         </div>
 
@@ -520,7 +542,10 @@ export default function MeetRecap({
                   <motion.figure
                     key={photo.src}
                     variants={itemReveal}
-                    className="relative aspect-[4/3] overflow-hidden rounded-xl"
+                    className={clsx(
+                      "relative aspect-[4/3] overflow-hidden rounded-xl",
+                      photo.contain && "bg-black",
+                    )}
                   >
                     <Image
                       src={photo.src}
@@ -528,11 +553,16 @@ export default function MeetRecap({
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
                       style={
-                        photo.objectPosition
+                        photo.objectPosition && !photo.contain
                           ? { objectPosition: photo.objectPosition }
                           : undefined
                       }
-                      className="object-cover transition-transform duration-500 hover:scale-105"
+                      className={clsx(
+                        "transition-transform duration-500",
+                        photo.contain
+                          ? "object-contain"
+                          : "object-cover hover:scale-105",
+                      )}
                     />
                     <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-4 py-3 text-sm font-medium text-white">
                       {photo.caption}

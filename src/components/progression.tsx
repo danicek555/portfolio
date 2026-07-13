@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { TrendingDown, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, TrendingDown, X } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 import { useTranslations, useLocale } from "next-intl";
 import clsx from "clsx";
@@ -70,6 +70,7 @@ const Progression: React.FC = () => {
   const [hovered, setHovered] = useState<{
     x: number;
     y: number;
+    i: number;
     swim: Swim & { pb: boolean };
   } | null>(null);
 
@@ -367,6 +368,7 @@ const Progression: React.FC = () => {
                           setHovered({
                             x: (px / CHART.width) * 100,
                             y: (py / CHART.height) * 100,
+                            i,
                             swim,
                           })
                         }
@@ -408,6 +410,56 @@ const Progression: React.FC = () => {
                   >
                     <X className="h-3.5 w-3.5" />
                   </button>
+                  {/* Previous point (older swim) */}
+                  {hovered.i > 0 && (
+                    <button
+                      type="button"
+                      aria-label={cs ? "Předchozí závod" : "Previous meet"}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const p = chart.points[hovered.i - 1];
+                        setHovered({
+                          x: (p.px / CHART.width) * 100,
+                          y: (p.py / CHART.height) * 100,
+                          i: hovered.i - 1,
+                          swim: p.swim,
+                        });
+                      }}
+                      className={clsx(
+                        "absolute -left-3 top-1/2 -translate-y-1/2 rounded-full border p-1 shadow-md transition-colors",
+                        isDarkMode
+                          ? "border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white"
+                          : "border-gray-200 bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-900",
+                      )}
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                    </button>
+                  )}
+                  {/* Next point (newer swim) */}
+                  {hovered.i < chart.points.length - 1 && (
+                    <button
+                      type="button"
+                      aria-label={cs ? "Další závod" : "Next meet"}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const p = chart.points[hovered.i + 1];
+                        setHovered({
+                          x: (p.px / CHART.width) * 100,
+                          y: (p.py / CHART.height) * 100,
+                          i: hovered.i + 1,
+                          swim: p.swim,
+                        });
+                      }}
+                      className={clsx(
+                        "absolute -right-3 top-1/2 -translate-y-1/2 rounded-full border p-1 shadow-md transition-colors",
+                        isDarkMode
+                          ? "border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white"
+                          : "border-gray-200 bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-900",
+                      )}
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </button>
+                  )}
                   <p
                     className={clsx(
                       "text-lg font-bold tabular-nums",

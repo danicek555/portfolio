@@ -58,7 +58,7 @@ export default async function DenverInvitational2025Page({
       />
       <MeetRecap
       badge={cs ? "První závod v USA" : "First Meet in the USA"}
-      title="CO TOPS Denver Invitational"
+      title="CO TOPS Denver Invitational 2025"
       subtitle={
         cs
           ? "První yardový závod · Hilltoppers"
@@ -136,12 +136,7 @@ export default async function DenverInvitational2025Page({
               "Denver sits at 5,280 ft — times from 200Y up get an official altitude adjustment (−1.2 s per 200Y, −5 s per 400/500Y).",
             ]
       }
-      gallery={[
-        {
-          src: "/invitationalDenver/team-selfie.jpg",
-          caption: cs ? "S týmem před závodem" : "With the team before racing",
-        },
-      ]}
+      gallery={[]}
       links={[
         {
           label: cs ? "Výsledky na SwimCloud" : "Results on SwimCloud",
