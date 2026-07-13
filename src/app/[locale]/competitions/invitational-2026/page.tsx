@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
 import MeetRecap from "../../../../components/MeetRecap";
 import MeetJsonLd from "../../../../components/MeetJsonLd";
 import { buildMeetMetadata } from "../../../../lib/meetSeo";
 
-export const metadata = buildMeetMetadata({
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildMeetMetadata({
+    locale,
   slug: "invitational-2026",
   title: "CO TOPS Denver Invitational 2025 — Daniel Mitka | First US Meet",
   description:
@@ -21,7 +29,8 @@ export const metadata = buildMeetMetadata({
   ],
   image: "/sectionals2026/tops-team.jpg",
   publishedTime: "2025-11-09",
-});
+  });
+}
 
 export default async function DenverInvitational2025Page({
   params,

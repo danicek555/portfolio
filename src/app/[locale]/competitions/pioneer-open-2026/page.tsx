@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
 import MeetRecap from "../../../../components/MeetRecap";
 import MeetJsonLd from "../../../../components/MeetJsonLd";
 import { buildMeetMetadata } from "../../../../lib/meetSeo";
 
-export const metadata = buildMeetMetadata({
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildMeetMetadata({
+    locale,
   slug: "pioneer-open-2026",
   title: "Pioneer Open 2025 — Daniel Mitka | Three Silvers in Denver",
   description:
@@ -21,7 +29,8 @@ export const metadata = buildMeetMetadata({
   ],
   image: "/sectionals2026/tops_picture.jpg",
   publishedTime: "2025-12-07",
-});
+  });
+}
 
 export default async function PioneerOpen2025Page({
   params,

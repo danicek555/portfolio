@@ -17,8 +17,13 @@ export function buildMeetMetadata(opts: {
   keywords: string[];
   image?: string;
   publishedTime?: string;
+  /** When provided, canonical & OG url self-reference this locale. */
+  locale?: string;
 }): Metadata {
-  const url = `${siteUrl}/competitions/${opts.slug}`;
+  const enUrl = `${siteUrl}/en/competitions/${opts.slug}`;
+  const csUrl = `${siteUrl}/cs/competitions/${opts.slug}`;
+  // Self-referencing canonical per locale (falls back to English).
+  const url = opts.locale === "cs" ? csUrl : enUrl;
   const imagePath = opts.image ?? "/openGraphImage.png";
   const imageUrl = imagePath.startsWith("http")
     ? imagePath
@@ -36,9 +41,11 @@ export function buildMeetMetadata(opts: {
     alternates: {
       canonical: url,
       languages: {
-        cs: `${siteUrl}/cs/competitions/${opts.slug}`,
-        en: `${siteUrl}/en/competitions/${opts.slug}`,
-        "x-default": `${siteUrl}/en/competitions/${opts.slug}`,
+        cs: csUrl,
+        en: enUrl,
+        "cs-CZ": csUrl,
+        "en-US": enUrl,
+        "x-default": enUrl,
       },
     },
     openGraph: {
@@ -47,6 +54,8 @@ export function buildMeetMetadata(opts: {
       url,
       siteName,
       type: "article",
+      locale: opts.locale === "cs" ? "cs_CZ" : "en_US",
+      alternateLocale: opts.locale === "cs" ? "en_US" : "cs_CZ",
       ...(opts.publishedTime ? { publishedTime: opts.publishedTime } : {}),
       images,
     },

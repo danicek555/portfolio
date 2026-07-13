@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
 import MeetRecap from "../../../../components/MeetRecap";
 import MeetJsonLd from "../../../../components/MeetJsonLd";
 import { buildMeetMetadata } from "../../../../lib/meetSeo";
 
-export const metadata = buildMeetMetadata({
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildMeetMetadata({
+    locale,
   slug: "colorado-open-2026",
   title: "CO TOPS Colorado Open 2026 — Daniel Mitka | Winter Juniors Cut",
   description:
@@ -21,7 +29,8 @@ export const metadata = buildMeetMetadata({
   ],
   image: "/sectionals2026/tops-duo.jpg",
   publishedTime: "2026-01-25",
-});
+  });
+}
 
 export default async function ColoradoOpen2026Page({
   params,

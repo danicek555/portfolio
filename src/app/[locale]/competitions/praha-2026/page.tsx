@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
 import MeetRecap from "../../../../components/MeetRecap";
 import MeetJsonLd from "../../../../components/MeetJsonLd";
 import { buildMeetMetadata } from "../../../../lib/meetSeo";
 
-export const metadata = buildMeetMetadata({
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildMeetMetadata({
+    locale,
   slug: "praha-2026",
   title: "PRAHA 2026 — Daniel Mitka | Four Long-Course PBs at Podolí",
   description:
@@ -21,7 +29,8 @@ export const metadata = buildMeetMetadata({
   ],
   image: "/praha2026/podium.jpg",
   publishedTime: "2026-06-14",
-});
+  });
+}
 
 export default async function Praha2026Page({
   params,
