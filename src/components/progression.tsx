@@ -13,6 +13,7 @@ type Swim = {
   date: string;
   secs: number;
   meet: string;
+  meetEn?: string;
   location?: string;
   place?: string;
   round?: string;
@@ -114,20 +115,27 @@ const Progression: React.FC = () => {
     const y = (secs: number) => top + ((hi - secs) / (hi - lo)) * innerH;
 
     const points = swims.map((swim) => ({ swim, px: x(swim.date), py: y(swim.secs) }));
-    // Spread same-day swims (prelims/finals) horizontally so they don't stack.
-    const byDate = new Map<string, typeof points>();
-    points.forEach((p) => {
-      const arr = byDate.get(p.swim.date) ?? [];
-      arr.push(p);
-      byDate.set(p.swim.date, arr);
-    });
-    byDate.forEach((arr) => {
-      if (arr.length < 2) return;
-      const spacing = 12;
-      arr.forEach((p, i) => {
-        p.px += (i - (arr.length - 1) / 2) * spacing;
-      });
-    });
+    // Same-day swims (prelims/finals): spread to the RIGHT of the date so the
+    // earlier point never moves left of the previous day's point.
+    const SAME_DAY_GAP = 11;
+    for (let i = 0; i < points.length; ) {
+      let j = i;
+      while (
+        j + 1 < points.length &&
+        points[j + 1].swim.date === points[i].swim.date
+      )
+        j++;
+      if (j > i) {
+        for (let k = i; k <= j; k++)
+          points[k].px = points[i].px + (k - i) * SAME_DAY_GAP;
+      }
+      i = j + 1;
+    }
+    // Enforce strictly increasing x so the line always reads as a function.
+    for (let i = 1; i < points.length; i++) {
+      if (points[i].px <= points[i - 1].px)
+        points[i].px = points[i - 1].px + 6;
+    }
     const path = points
       .map((p, i) => `${i === 0 ? "M" : "L"}${p.px.toFixed(1)},${p.py.toFixed(1)}`)
       .join(" ");
@@ -348,11 +356,11 @@ const Progression: React.FC = () => {
                         transition={{ duration: 0.3, delay: 0.15 + i * 0.02 }}
                         style={{ pointerEvents: "none" }}
                       />
-                      {/* Larger invisible hit area for easier hover/click */}
+                      {/* Small hit area — must be on the point to trigger */}
                       <circle
                         cx={px}
                         cy={py}
-                        r={14}
+                        r={7}
                         fill="transparent"
                         className={swim.slug ? "cursor-pointer" : "cursor-default"}
                         onMouseEnter={() =>
@@ -423,7 +431,9 @@ const Progression: React.FC = () => {
                       isDarkMode ? "text-gray-200" : "text-gray-700",
                     )}
                   >
-                    {hovered.swim.meet}
+                    {cs
+                      ? hovered.swim.meet
+                      : (hovered.swim.meetEn ?? hovered.swim.meet)}
                   </p>
                   <p
                     className={clsx(
@@ -438,9 +448,13 @@ const Progression: React.FC = () => {
                     {hovered.swim.round ? ` · ${roundLabel(hovered.swim.round)}` : ""}
                   </p>
                   {hovered.swim.slug && (
-                    <p className="mt-1.5 text-[11px] font-bold text-green-500">
+                    <button
+                      type="button"
+                      onClick={() => openMeet(hovered.swim.slug)}
+                      className="mt-1.5 text-[11px] font-bold text-green-500 hover:text-green-400 hover:underline"
+                    >
                       {cs ? "→ Zobrazit závod" : "→ View meet"}
-                    </p>
+                    </button>
                   )}
                 </div>
               )}

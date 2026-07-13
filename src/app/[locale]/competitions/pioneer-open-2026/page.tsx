@@ -1,17 +1,27 @@
-import type { Metadata } from "next";
 import MeetRecap from "../../../../components/MeetRecap";
+import MeetJsonLd from "../../../../components/MeetJsonLd";
+import { buildMeetMetadata } from "../../../../lib/meetSeo";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
-
-export const metadata: Metadata = {
-  title: "Pioneer Open 2025 - Daniel Mitka",
+export const metadata = buildMeetMetadata({
+  slug: "pioneer-open-2026",
+  title: "Pioneer Open 2025 — Daniel Mitka | Three Silvers in Denver",
   description:
-    "Pioneer Open, Dec 5-7, 2025, Denver: three silver medals, three personal bests and a narrow miss of the Winter Juniors cut.",
-  alternates: {
-    canonical: `${siteUrl}/competitions/pioneer-open-2026`,
-  },
-};
+    "Daniel Mitka at the Pioneer Open in Denver, Dec 5–7, 2025: three silver-medal finals and three personal bests (100y breast 56.14, 200y breast 2:03.57) for the University of Denver Hilltoppers — narrowly missing the Winter Juniors cut.",
+  keywords: [
+    "Daniel Mitka",
+    "Pioneer Open 2025",
+    "Denver swimming",
+    "100y breaststroke",
+    "200y breaststroke",
+    "200y IM",
+    "short course yards",
+    "University of Denver Hilltoppers",
+    "Winter Juniors",
+    "personal best",
+  ],
+  image: "/sectionals2026/tops_picture.jpg",
+  publishedTime: "2025-12-07",
+});
 
 export default async function PioneerOpen2025Page({
   params,
@@ -22,7 +32,26 @@ export default async function PioneerOpen2025Page({
   const cs = locale === "cs";
 
   return (
-    <MeetRecap
+    <>
+      <MeetJsonLd
+        id="pioneer-open-2026"
+        locale={locale}
+        name="Pioneer Open 2025"
+        description="Short-course-yards meet in Denver where Daniel Mitka won three silver medals and set three personal bests."
+        startDate="2025-12-05"
+        endDate="2025-12-07"
+        venue="Denver"
+        city="Denver"
+        country="United States"
+        region="Colorado"
+        level="Regional"
+        awards={[
+          "Silver — 100y Breaststroke (56.14)",
+          "Silver — 200y Breaststroke (2:03.57)",
+          "Silver — 200y IM",
+        ]}
+      />
+      <MeetRecap
       badge={cs ? "Útok na Winter Juniors" : "Chasing Winter Juniors"}
       title="Pioneer Open"
       subtitle={
@@ -116,9 +145,10 @@ export default async function PioneerOpen2025Page({
       links={[
         {
           label: cs ? "Výsledky na SwimCloud" : "Results on SwimCloud",
-          url: "https://www.swimcloud.com/swimmer/1828936/meets/",
+          url: "https://www.swimcloud.com/results/364267/swimmer/1828936/",
         },
       ]}
-    />
+      />
+    </>
   );
 }

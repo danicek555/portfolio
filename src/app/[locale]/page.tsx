@@ -2,7 +2,11 @@ import { Metadata } from "next";
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import Hero from "../../components/hero";
-import { generatePersonSchema, createJsonLd } from "../../lib/schema";
+import {
+  generatePersonSchema,
+  generateFAQSchema,
+  createJsonLd,
+} from "../../lib/schema";
 
 // Dynamically import below-the-fold components for code splitting
 const About = dynamic(() => import("../../components/about"), {
@@ -200,7 +204,9 @@ export default async function HomePage({
   // Combined schema for this page
   const combinedPageSchema = {
     "@context": "https://schema.org",
-    "@graph": [breadcrumbSchema, portfolioSchema],
+    // WebSite + Person are already emitted by the root layout, so only add
+    // the page-specific schemas here (breadcrumb, profile page, FAQ).
+    "@graph": [breadcrumbSchema, portfolioSchema, generateFAQSchema(locale)],
   };
 
   return (

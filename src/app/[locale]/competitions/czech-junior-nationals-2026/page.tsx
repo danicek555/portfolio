@@ -1,17 +1,27 @@
-import type { Metadata } from "next";
 import MeetShowcase from "../../../../components/MeetShowcase";
+import MeetJsonLd from "../../../../components/MeetJsonLd";
+import { buildMeetMetadata } from "../../../../lib/meetSeo";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
-
-export const metadata: Metadata = {
-  title: "Czech Junior & U22 Nationals 2026 - Daniel Mitka",
+export const metadata = buildMeetMetadata({
+  slug: "czech-junior-nationals-2026",
+  title: "Czech Junior & U22 Nationals 2026 — Daniel Mitka | Two Silvers",
   description:
-    "Two silver medals at the Czech Junior and U22 National Championships 2026 in Ústí nad Labem — 200m freestyle 1:55.31 and 200m IM 2:06.50, five A-finals across six events.",
-  alternates: {
-    canonical: `${siteUrl}/competitions/czech-junior-nationals-2026`,
-  },
-};
+    "Daniel Mitka at the 2026 Czech Junior & U22 National Championships in Ústí nad Labem, May 28–31: silver in the 200m freestyle (1:55.31) and 200m IM (2:06.50), plus five A-finals for SK Motorlet Praha.",
+  keywords: [
+    "Daniel Mitka",
+    "Czech Junior Nationals 2026",
+    "MČR juniorů 2026",
+    "U22 nationals",
+    "Ústí nad Labem",
+    "200m freestyle",
+    "200m IM",
+    "SK Motorlet Praha",
+    "Czech swimming",
+    "vicemistr ČR",
+  ],
+  image: "/mcrJunior2026/diplom.jpg",
+  publishedTime: "2026-05-31",
+});
 
 export default async function CzechJuniorNationals2026Page({
   params,
@@ -22,7 +32,25 @@ export default async function CzechJuniorNationals2026Page({
   const cs = locale === "cs";
 
   return (
-    <MeetShowcase
+    <>
+      <MeetJsonLd
+        id="czech-junior-nationals-2026"
+        locale={locale}
+        name="Czech Junior & U22 National Championships 2026"
+        description="Czech Junior and U22 long-course national championships in Ústí nad Labem. Daniel Mitka won two silver medals."
+        startDate="2026-05-28"
+        endDate="2026-05-31"
+        venue="Plavecký areál Klíše"
+        city="Ústí nad Labem"
+        country="Czech Republic"
+        region="Ústí nad Labem"
+        level="National"
+        awards={[
+          "Silver — 200m Freestyle (1:55.31)",
+          "Silver — 200m Individual Medley (2:06.50)",
+        ]}
+      />
+      <MeetShowcase
       badge={cs ? "Mistrovství ČR" : "National Championship"}
       title={cs ? "MČR juniorů a U22 2026" : "Czech Junior & U22 Nationals 2026"}
       subtitle={
@@ -43,6 +71,7 @@ export default async function CzechJuniorNationals2026Page({
           value: "2×",
           label: cs ? "stříbrné medaile" : "silver medals",
           medal: true,
+          medalTone: "silver",
         },
         { value: "5", label: cs ? "finálových startů" : "A-finals" },
         { value: "6", label: cs ? "disciplín" : "events raced" },
@@ -57,22 +86,42 @@ export default async function CzechJuniorNationals2026Page({
             { stage: cs ? "Rozplavby" : "Heats", time: "1:56.69" },
             { stage: cs ? "Finále" : "Final", time: "1:55.31" },
           ],
+          splits: [
+            { distance: "50", time: "27.24" },
+            { distance: "100", time: "56.06" },
+            { distance: "150", time: "1:25.56" },
+            { distance: "200", time: "1:55.31" },
+          ],
         },
         {
           event: cs ? "200 m polohový závod" : "200m Individual Medley",
           finalTime: "2:06.50",
           placement: cs ? "2. místo" : "2nd place",
           medal: "silver",
+          splits: [
+            { distance: "50", time: "27.48", label: cs ? "M" : "FLY" },
+            { distance: "100", time: "59.91", label: cs ? "Z" : "BK" },
+            { distance: "150", time: "1:36.09", label: cs ? "P" : "BR" },
+            { distance: "200", time: "2:06.50", label: cs ? "VZ" : "FR" },
+          ],
         },
         {
           event: cs ? "100 m volný způsob" : "100m Freestyle",
           finalTime: "52.65",
           placement: cs ? "5. místo ve finále" : "5th in the final",
+          splits: [
+            { distance: "50", time: "25.36" },
+            { distance: "100", time: "52.65" },
+          ],
         },
         {
           event: cs ? "100 m prsa" : "100m Breaststroke",
           finalTime: "1:07.91",
           placement: cs ? "6. místo ve finále" : "6th in the final",
+          splits: [
+            { distance: "50", time: "31.84" },
+            { distance: "100", time: "1:07.91" },
+          ],
         },
         {
           event: cs ? "50 m prsa" : "50m Breaststroke",
@@ -87,6 +136,12 @@ export default async function CzechJuniorNationals2026Page({
           event: cs ? "200 m prsa" : "200m Breaststroke",
           finalTime: "2:30.58",
           placement: cs ? "Rozplavby" : "Heats",
+          splits: [
+            { distance: "50", time: "34.20" },
+            { distance: "100", time: "1:11.93" },
+            { distance: "150", time: "1:51.03" },
+            { distance: "200", time: "2:30.58" },
+          ],
         },
       ]}
       highlights={
@@ -96,12 +151,14 @@ export default async function CzechJuniorNationals2026Page({
               "Pět finále A ze šesti startů, rychlé rozplavby ve večerních finále ještě zrychlil.",
               "V barvách SK Motorlet Praha potvrdil všestrannost: sprinterský kraul, prsa i polohový závod na špici českého juniorského pole.",
               "Vicemistr ČR na 200 m volný způsob a 200 m polohový závod.",
+              "Splněný limit SCM I.",
             ]
           : [
               "Silver in both the 200m freestyle (1:55.31) and the 200m individual medley (2:06.50) — twice just short of a national junior title.",
               "Five A-finals from six events, backing up fast heats with faster finals.",
               "Racing for SK Motorlet Praha, Daniel confirmed his versatility: sprint freestyle, breaststroke and medley at the sharp end of the national field.",
               "Vice-champion of the Czech Republic, 200m free & 200m IM.",
+              "Achieved the SCM I qualifying standard (Czech youth-programme level).",
             ]
       }
       gallery={[
@@ -110,6 +167,7 @@ export default async function CzechJuniorNationals2026Page({
           caption: cs
             ? "Diplom za 2. místo na 200 m polohový závod — 2:06.50"
             : "Diploma for 2nd place in the 200m IM — 2:06.50",
+          objectPosition: "50% 20%",
         },
         {
           src: "/mcrJunior2026/venue-usti.jpg",
@@ -124,7 +182,12 @@ export default async function CzechJuniorNationals2026Page({
           label: cs ? "Výsledky na SwimCloud" : "Results on SwimCloud",
           url: "https://www.swimcloud.com/swimmer/2805887/",
         },
+        {
+          label: cs ? "Článek SK Motorlet" : "SK Motorlet — article (Czech)",
+          url: "https://www.skmop.cz/view.php?cisloclanku=2026060201",
+        },
       ]}
-    />
+      />
+    </>
   );
 }

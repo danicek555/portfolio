@@ -1,17 +1,27 @@
-import type { Metadata } from "next";
 import MeetShowcase from "../../../../components/MeetShowcase";
+import MeetJsonLd from "../../../../components/MeetJsonLd";
+import { buildMeetMetadata } from "../../../../lib/meetSeo";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
-
-export const metadata: Metadata = {
-  title: "Four Corners Speedo Sectionals 2026 - Daniel Mitka",
+export const metadata = buildMeetMetadata({
+  slug: "speedo-sectionals-2026",
+  title: "Four Corners Speedo Sectionals 2026 — Daniel Mitka | 7 PBs",
   description:
-    "Seven personal bests and five top-8 finishes at the 2026 Four Corners Speedo Sectionals in Carmel, Indiana, racing for the University of Denver Hilltoppers.",
-  alternates: {
-    canonical: `${siteUrl}/competitions/speedo-sectionals-2026`,
-  },
-};
+    "Daniel Mitka at the 2026 Four Corners Speedo Sectional Championships in Carmel, Indiana, March 26–29: seven personal bests, five top-8 finals and three Junior Nationals cuts for the University of Denver Hilltoppers.",
+  keywords: [
+    "Daniel Mitka",
+    "Four Corners Speedo Sectionals 2026",
+    "Speedo Sectionals",
+    "Carmel Indiana",
+    "short course yards",
+    "Junior Nationals cut",
+    "100y breaststroke",
+    "200y IM",
+    "University of Denver Hilltoppers",
+    "personal best",
+  ],
+  image: "/sectionals2026/celebration.jpg",
+  publishedTime: "2026-03-29",
+});
 
 export default async function SpeedoSectionals2026Page({
   params,
@@ -22,7 +32,25 @@ export default async function SpeedoSectionals2026Page({
   const cs = locale === "cs";
 
   return (
-    <MeetShowcase
+    <>
+      <MeetJsonLd
+        id="speedo-sectionals-2026"
+        locale={locale}
+        name="Four Corners Speedo Sectional Championships 2026"
+        description="Short-course-yards sectional championships in Carmel, Indiana. Daniel Mitka set seven personal bests and earned three Junior Nationals cuts."
+        startDate="2026-03-26"
+        endDate="2026-03-29"
+        venue="Carmel"
+        city="Carmel"
+        country="United States"
+        region="Indiana"
+        level="Regional"
+        awards={[
+          "Seven personal bests",
+          "Three USA Swimming Junior Nationals cuts",
+        ]}
+      />
+      <MeetShowcase
       badge={cs ? "Americká sezóna" : "USA Racing Debut Season"}
       title="Four Corners Speedo Sectionals"
       subtitle={
@@ -173,10 +201,11 @@ export default async function SpeedoSectionals2026Page({
           caption: cs ? "S týmovým parťákem" : "With a teammate",
         },
         {
-          src: "/sectionals2026/tops-team.jpg",
+          src: "/sectionals2026/venue-pool.jpg",
           caption: cs
-            ? "Tým University of Denver Hilltoppers"
-            : "The University of Denver Hilltoppers squad",
+            ? "Bazén v Carmelu, Indiana"
+            : "The pool in Carmel, Indiana",
+          objectPosition: "50% 40%",
         },
         {
           src: "/sectionals2026/tops_picture.jpg",
@@ -186,20 +215,15 @@ export default async function SpeedoSectionals2026Page({
           src: "/sectionals2026/team-photo.jpg",
           caption: cs ? "Týmové foto na závodech" : "Team photo at the meet",
         },
-        {
-          src: "/sectionals2026/venue-pool.jpg",
-          caption: cs
-            ? "Bazén v Carmelu, Indiana"
-            : "The pool in Carmel, Indiana",
-        },
       ]}
       videos={[]}
       links={[
         {
           label: cs ? "Výsledky na SwimCloud" : "Results on SwimCloud",
-          url: "https://www.swimcloud.com/swimmer/1828936/meets/",
+          url: "https://www.swimcloud.com/results/363138/swimmer/1828936/",
         },
       ]}
-    />
+      />
+    </>
   );
 }

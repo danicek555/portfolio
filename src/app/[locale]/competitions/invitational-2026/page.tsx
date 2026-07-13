@@ -1,17 +1,27 @@
-import type { Metadata } from "next";
 import MeetRecap from "../../../../components/MeetRecap";
+import MeetJsonLd from "../../../../components/MeetJsonLd";
+import { buildMeetMetadata } from "../../../../lib/meetSeo";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
-
-export const metadata: Metadata = {
-  title: "CO TOPS Denver Invitational - Daniel Mitka",
+export const metadata = buildMeetMetadata({
+  slug: "invitational-2026",
+  title: "CO TOPS Denver Invitational 2025 — Daniel Mitka | First US Meet",
   description:
-    "CO TOPS Denver Invitational, Nov 7-9, 2025: Daniel's first meet in the USA and first short-course-yards meet ever — personal bests in nearly every event.",
-  alternates: {
-    canonical: `${siteUrl}/competitions/invitational-2026`,
-  },
-};
+    "Daniel Mitka's first meet in the USA and first short-course-yards competition ever — the CO TOPS Denver Invitational, Nov 7–9, 2025: personal bests in nearly every event for the University of Denver Hilltoppers.",
+  keywords: [
+    "Daniel Mitka",
+    "CO TOPS Denver Invitational",
+    "Denver swimming",
+    "first US meet",
+    "short course yards",
+    "100y breaststroke",
+    "200y IM",
+    "University of Denver Hilltoppers",
+    "yards swimming",
+    "personal best",
+  ],
+  image: "/sectionals2026/tops-team.jpg",
+  publishedTime: "2025-11-09",
+});
 
 export default async function DenverInvitational2025Page({
   params,
@@ -22,7 +32,22 @@ export default async function DenverInvitational2025Page({
   const cs = locale === "cs";
 
   return (
-    <MeetRecap
+    <>
+      <MeetJsonLd
+        id="invitational-2026"
+        locale={locale}
+        name="CO TOPS Denver Invitational 2025"
+        description="Daniel Mitka's first meet in the USA and first short-course-yards competition, held in Denver, with personal bests in nearly every event."
+        startDate="2025-11-07"
+        endDate="2025-11-09"
+        venue="Denver"
+        city="Denver"
+        country="United States"
+        region="Colorado"
+        level="Regional"
+        awards={["Personal bests in nearly every event"]}
+      />
+      <MeetRecap
       badge={cs ? "První závod v USA" : "First Meet in the USA"}
       title="CO TOPS Denver Invitational"
       subtitle={
@@ -50,15 +75,15 @@ export default async function DenverInvitational2025Page({
       results={[
         {
           event: cs ? "400 y polohový závod" : "400Y Individual Medley",
-          finalTime: "3:56.83",
+          finalTime: "4:01.83",
           pb: true,
-          adjusted: "3:51.83",
+          adjusted: "3:56.83",
         },
         {
           event: cs ? "200 y polohový závod" : "200Y Individual Medley",
-          finalTime: "1:51.17",
+          finalTime: "1:52.37",
           pb: true,
-          adjusted: "1:49.97",
+          adjusted: "1:51.17",
         },
         {
           event: cs ? "100 y prsa" : "100Y Breaststroke",
@@ -67,9 +92,9 @@ export default async function DenverInvitational2025Page({
         },
         {
           event: cs ? "200 y prsa" : "200Y Breaststroke",
-          finalTime: "2:05.66",
+          finalTime: "2:06.86",
           pb: true,
-          adjusted: "2:04.46",
+          adjusted: "2:05.66",
         },
         {
           event: cs ? "50 y volný způsob" : "50Y Freestyle",
@@ -83,8 +108,8 @@ export default async function DenverInvitational2025Page({
         },
         {
           event: cs ? "200 y volný způsob" : "200Y Freestyle",
-          finalTime: "1:40.74",
-          adjusted: "1:39.54",
+          finalTime: "1:41.94",
+          adjusted: "1:40.74",
         },
       ]}
       highlights={
@@ -106,9 +131,10 @@ export default async function DenverInvitational2025Page({
       links={[
         {
           label: cs ? "Výsledky na SwimCloud" : "Results on SwimCloud",
-          url: "https://www.swimcloud.com/swimmer/1828936/meets/",
+          url: "https://www.swimcloud.com/results/361256/swimmer/1828936/",
         },
       ]}
-    />
+      />
+    </>
   );
 }

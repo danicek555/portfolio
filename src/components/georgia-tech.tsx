@@ -218,6 +218,70 @@ const GeorgiaTechCommitment: React.FC = () => {
               {t("cta")}
               <span className="ml-1">→</span>
             </motion.a>
+
+            {/* In the media */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              viewport={{ once: true }}
+              className="pt-4"
+            >
+              <p
+                className={clsx(
+                  "text-xs font-bold uppercase tracking-widest mb-3",
+                  isDarkMode ? "text-gray-400" : "text-gray-500",
+                )}
+              >
+                {t("mediaTitle")}
+              </p>
+              <div className="space-y-2">
+                {[
+                  {
+                    outlet: "SwimSwam",
+                    title:
+                      "Czechia Native Daniel Mitka Sends Verbal To Georgia Tech For Fall 2027",
+                    url: "https://swimswam.com/czechia-native-daniel-mitka-sends-verbal-to-georgia-tech-for-fall-2027/",
+                  },
+                  {
+                    outlet: "Swimming World",
+                    title:
+                      "Czech Junior National Finalist Daniel Mitka Pledges 2027 Verbal to Georgia Tech",
+                    url: "https://www.swimmingworldmagazine.com/news/czech-junior-national-finalist-daniel-mitka-pledges-2027-verbal-to-georgia-tech/",
+                  },
+                ].map((article) => (
+                  <motion.a
+                    key={article.url}
+                    href={article.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ x: 4 }}
+                    transition={{ duration: 0.2 }}
+                    className={clsx(
+                      "group flex items-start gap-3 rounded-lg px-4 py-3 transition-colors duration-300",
+                      isDarkMode
+                        ? "bg-gray-800 hover:bg-gray-700"
+                        : "bg-gray-50 hover:bg-gray-100",
+                    )}
+                  >
+                    <span className="mt-0.5 shrink-0 rounded bg-green-500/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-green-500">
+                      {article.outlet}
+                    </span>
+                    <span
+                      className={clsx(
+                        "text-sm font-medium leading-snug transition-colors",
+                        isDarkMode
+                          ? "text-gray-200 group-hover:text-white"
+                          : "text-gray-700 group-hover:text-black",
+                      )}
+                    >
+                      {article.title}
+                      <span className="ml-1 text-green-500">↗</span>
+                    </span>
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

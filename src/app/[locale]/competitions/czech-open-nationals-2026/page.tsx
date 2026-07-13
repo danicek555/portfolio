@@ -1,17 +1,28 @@
-import type { Metadata } from "next";
 import MeetShowcase from "../../../../components/MeetShowcase";
+import MeetJsonLd from "../../../../components/MeetJsonLd";
+import { buildMeetMetadata } from "../../../../lib/meetSeo";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
-
-export const metadata: Metadata = {
-  title: "Czech Open Nationals 2026 - Daniel Mitka",
+export const metadata = buildMeetMetadata({
+  slug: "czech-open-nationals-2026",
+  title:
+    "Czech Open Nationals 2026 — Daniel Mitka | 400m IM Bronze at Podolí",
   description:
-    "Czech Open Nationals 2026 at Podolí: bronze in the 400m IM (4:38.84) and five final swims in extreme 40°C heat.",
-  alternates: {
-    canonical: `${siteUrl}/competitions/czech-open-nationals-2026`,
-  },
-};
+    "Daniel Mitka at the 2026 Czech Open Swimming Championships (Letní MČR OPEN) in Podolí, Prague, June 25–28, 2026: bronze in the 400m IM (4:38.84), five A-final swims and two personal bests for SK Motorlet Praha.",
+  keywords: [
+    "Daniel Mitka",
+    "Czech Open Nationals 2026",
+    "Letní MČR OPEN 2026",
+    "MČR Podolí 2026",
+    "400m IM",
+    "400 polohový závod",
+    "SK Motorlet Praha",
+    "Czech swimming championships",
+    "long course swimming",
+    "Podolí Prague",
+  ],
+  image: "/mcrOpen2026/start-block.jpg",
+  publishedTime: "2026-06-28",
+});
 
 export default async function CzechOpenNationals2026Page({
   params,
@@ -22,7 +33,22 @@ export default async function CzechOpenNationals2026Page({
   const cs = locale === "cs";
 
   return (
-    <MeetShowcase
+    <>
+      <MeetJsonLd
+        id="czech-open-nationals-2026"
+        locale={locale}
+        name="Czech Open Swimming Championships 2026 (Letní MČR OPEN)"
+        description="Czech Open long-course national championships at Podolí, Prague. Daniel Mitka won bronze in the 400m IM (4:38.84) with five A-final swims."
+        startDate="2026-06-25"
+        endDate="2026-06-28"
+        venue="Plavecký stadion Podolí"
+        city="Prague"
+        country="Czech Republic"
+        region="Prague"
+        level="National"
+        awards={["Bronze — 400m Individual Medley (4:38.84)"]}
+      />
+      <MeetShowcase
       badge={cs ? "Mistrovství České republiky" : "Czech National Championships"}
       title={cs ? "Letní MČR OPEN 2026" : "Czech Open Nationals 2026"}
       subtitle={
@@ -168,6 +194,7 @@ export default async function CzechOpenNationals2026Page({
           url: "https://www.skmop.cz/view.php?cisloclanku=2026062901",
         },
       ]}
-    />
+      />
+    </>
   );
 }
