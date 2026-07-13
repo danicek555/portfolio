@@ -1,17 +1,27 @@
-import type { Metadata } from "next";
 import MeetRecap from "../../../../components/MeetRecap";
+import MeetJsonLd from "../../../../components/MeetJsonLd";
+import { buildMeetMetadata } from "../../../../lib/meetSeo";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
-
-export const metadata: Metadata = {
-  title: "Colorado Senior Meet 2026 - Daniel Mitka",
+export const metadata = buildMeetMetadata({
+  slug: "colorado-senior-meet-2026",
+  title: "Colorado Senior Meet 2026 — Daniel Mitka | Three Wins in Denver",
   description:
-    "Colorado Senior Meet, Feb 20-22, 2026, Denver: three wins from three events — 100Y breast (55.49), 200Y breast (2:02.09) and 400Y IM (3:59.33).",
-  alternates: {
-    canonical: `${siteUrl}/competitions/colorado-senior-meet-2026`,
-  },
-};
+    "Daniel Mitka at the 2026 Colorado Senior Meet in Denver, Feb 20–22: three wins from three swims — 100y breast (55.49), 200y breast (2:02.09) and 400y IM (3:59.33) — for the University of Denver Hilltoppers.",
+  keywords: [
+    "Daniel Mitka",
+    "Colorado Senior Meet 2026",
+    "Denver swimming",
+    "short course yards",
+    "100y breaststroke",
+    "200y breaststroke",
+    "400y IM",
+    "University of Denver Hilltoppers",
+    "altitude swimming",
+    "personal best",
+  ],
+  image: "/sectionals2026/tops-duo.jpg",
+  publishedTime: "2026-02-22",
+});
 
 export default async function ColoradoSeniorMeet2026Page({
   params,
@@ -22,7 +32,26 @@ export default async function ColoradoSeniorMeet2026Page({
   const cs = locale === "cs";
 
   return (
-    <MeetRecap
+    <>
+      <MeetJsonLd
+        id="colorado-senior-meet-2026"
+        locale={locale}
+        name="Colorado Senior Meet 2026"
+        description="Short-course-yards championship meet in Denver. Daniel Mitka won all three of his events."
+        startDate="2026-02-20"
+        endDate="2026-02-22"
+        venue="Denver"
+        city="Denver"
+        country="United States"
+        region="Colorado"
+        level="Regional"
+        awards={[
+          "1st — 100y Breaststroke (55.49)",
+          "1st — 200y Breaststroke (2:02.09)",
+          "1st — 400y IM (3:59.33)",
+        ]}
+      />
+      <MeetRecap
       badge={cs ? "Šampionátní mítink" : "Championship-Level Meet"}
       title="Colorado Senior Meet"
       subtitle={
@@ -103,6 +132,7 @@ export default async function ColoradoSeniorMeet2026Page({
           url: "https://www.swimcloud.com/results/379806/",
         },
       ]}
-    />
+      />
+    </>
   );
 }

@@ -1,17 +1,27 @@
-import type { Metadata } from "next";
 import MeetRecap from "../../../../components/MeetRecap";
+import MeetJsonLd from "../../../../components/MeetJsonLd";
+import { buildMeetMetadata } from "../../../../lib/meetSeo";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
-
-export const metadata: Metadata = {
-  title: "PRAHA 2026 - Daniel Mitka",
+export const metadata = buildMeetMetadata({
+  slug: "praha-2026",
+  title: "PRAHA 2026 — Daniel Mitka | Four Long-Course PBs at Podolí",
   description:
-    "PRAHA 2026 international meet at Podolí: four long-course personal bests and two podium finishes.",
-  alternates: {
-    canonical: `${siteUrl}/competitions/praha-2026`,
-  },
-};
+    "Daniel Mitka at the PRAHA 2026 international meet, Podolí outdoor 50m pool, June 13–14, 2026: four long-course personal bests (100m breast 1:05.89, 400m IM 4:37.17) and two podium finishes for SK Motorlet Praha.",
+  keywords: [
+    "Daniel Mitka",
+    "PRAHA 2026",
+    "Podolí",
+    "long course swimming",
+    "100m breaststroke",
+    "400m IM",
+    "SK Motorlet Praha",
+    "Prague swimming meet",
+    "international swimming",
+    "osobní rekord",
+  ],
+  image: "/praha2026/podium.jpg",
+  publishedTime: "2026-06-14",
+});
 
 export default async function Praha2026Page({
   params,
@@ -22,7 +32,22 @@ export default async function Praha2026Page({
   const cs = locale === "cs";
 
   return (
-    <MeetRecap
+    <>
+      <MeetJsonLd
+        id="praha-2026"
+        locale={locale}
+        name="PRAHA 2026 International Swim Meet"
+        description="International long-course meet at Podolí, Prague, where Daniel Mitka set four long-course personal bests."
+        startDate="2026-06-13"
+        endDate="2026-06-14"
+        venue="Plavecký stadion Podolí"
+        city="Prague"
+        country="Czech Republic"
+        region="Prague"
+        level="International"
+        awards={["Two podium finishes"]}
+      />
+      <MeetRecap
       badge={cs ? "Mezinárodní mítink" : "International Invitational"}
       title="PRAHA 2026"
       subtitle={cs ? "Venkovní 50m bazén · Podolí" : "Outdoor 50m pool · Podolí"}
@@ -145,6 +170,7 @@ export default async function Praha2026Page({
           url: "https://vysledky.czechswimming.cz/souteze/10550",
         },
       ]}
-    />
+      />
+    </>
   );
 }

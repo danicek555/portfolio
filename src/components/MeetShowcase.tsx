@@ -38,7 +38,13 @@ export type MeetShowcaseProps = {
   dateLabel: string;
   heroImage: string;
   intro: string;
-  stats: Array<{ value: string; label: string; medal?: boolean }>;
+  stats: Array<{
+    value: string;
+    label: string;
+    medal?: boolean;
+    /** Medal accent colour for the stat tile; defaults to gold/amber. */
+    medalTone?: "gold" | "silver" | "bronze";
+  }>;
   results: Array<{
     event: string;
     finalTime: string;
@@ -620,16 +626,36 @@ export default function MeetShowcase({
                 <>
                   <span
                     aria-hidden
-                    className="absolute left-1/2 top-6 h-28 w-28 -translate-x-1/2 rounded-full bg-amber-400/15 blur-3xl"
+                    className={clsx(
+                      "absolute left-1/2 top-6 h-28 w-28 -translate-x-1/2 rounded-full blur-3xl",
+                      stat.medalTone === "silver"
+                        ? "bg-slate-400/20"
+                        : stat.medalTone === "bronze"
+                          ? "bg-amber-600/15"
+                          : "bg-amber-400/15",
+                    )}
                   />
-                  <Medal className="relative mx-auto mb-2 h-5 w-5 text-amber-500" />
+                  <Medal
+                    className={clsx(
+                      "relative mx-auto mb-2 h-5 w-5",
+                      stat.medalTone === "silver"
+                        ? "text-slate-400"
+                        : stat.medalTone === "bronze"
+                          ? "text-amber-600"
+                          : "text-amber-500",
+                    )}
+                  />
                 </>
               )}
               <p
                 className={clsx(
                   "relative text-5xl font-black md:text-6xl",
                   stat.medal
-                    ? "text-amber-500"
+                    ? stat.medalTone === "silver"
+                      ? "text-slate-400"
+                      : stat.medalTone === "bronze"
+                        ? "text-amber-600"
+                        : "text-amber-500"
                     : isDarkMode
                       ? "text-white"
                       : "text-black",

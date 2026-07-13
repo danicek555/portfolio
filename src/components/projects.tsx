@@ -124,7 +124,7 @@ const Projects: React.FC = () => {
       id="work"
       className={clsx(
         "py-16 px-8 transition-colors duration-300 overflow-x-hidden",
-        isDarkMode ? "bg-gray-800" : "bg-gray-50"
+        isDarkMode ? "bg-gray-900" : "bg-white"
       )}
     >
       <div className="max-w-7xl mx-auto">
@@ -185,8 +185,8 @@ const Projects: React.FC = () => {
                     className={clsx(
                       "rounded-3xl p-3 md:p-6 lg:p-12 transition-all duration-500 relative",
                       isDarkMode
-                        ? "bg-gray-700 group-hover:bg-gray-600"
-                        : "bg-white group-hover:bg-gray-100"
+                        ? "bg-gray-800 group-hover:bg-gray-700"
+                        : "bg-gray-100 group-hover:bg-gray-150"
                     )}
                   >
                     {/* Question Mark Help Icon for this project */}
@@ -421,7 +421,7 @@ const Projects: React.FC = () => {
                   className={clsx(
                     "rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform border relative",
                     isDarkMode
-                      ? "bg-gray-700 border-gray-600"
+                      ? "bg-gray-800 border-gray-700"
                       : "bg-white border-gray-100"
                   )}
                 >

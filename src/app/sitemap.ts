@@ -10,12 +10,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Define competition page slugs that exist in the app
   const competitions = [
+    // 2026 season
+    "czech-open-nationals-2026",
+    "praha-2026",
+    "czech-junior-nationals-2026",
+    "speedo-sectionals-2026",
+    "colorado-senior-meet-2026",
+    "colorado-open-2026",
+    "pioneer-open-2026",
+    "invitational-2026",
+    // 2024–2025
     "team-championship-finals-2025",
     "czech-open-nationals-2025",
-    "czech-youth-nationals-2024",
-    "lifesaving-worlds-australia",
-    "slovakia-cup-2024",
     "czech-junior-nationals-2025",
+    "czech-youth-nationals-2024",
+    "slovakia-cup-2024",
+    "lifesaving-worlds-australia",
   ];
 
   // Base pages without fragments - only actual pages

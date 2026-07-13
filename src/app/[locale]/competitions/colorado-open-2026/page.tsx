@@ -1,17 +1,27 @@
-import type { Metadata } from "next";
 import MeetRecap from "../../../../components/MeetRecap";
+import MeetJsonLd from "../../../../components/MeetJsonLd";
+import { buildMeetMetadata } from "../../../../lib/meetSeo";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
-
-export const metadata: Metadata = {
-  title: "CO TOPS Colorado Open 2026 - Daniel Mitka",
+export const metadata = buildMeetMetadata({
+  slug: "colorado-open-2026",
+  title: "CO TOPS Colorado Open 2026 — Daniel Mitka | Winter Juniors Cut",
   description:
-    "CO TOPS Colorado Open, Jan 23-25, 2026, Denver: the Winter Juniors standard finally achieved in the 200Y IM (1:50.39), two individual wins and four winning relays.",
-  alternates: {
-    canonical: `${siteUrl}/competitions/colorado-open-2026`,
-  },
-};
+    "Daniel Mitka at the 2026 CO TOPS Colorado Open in Denver, Jan 23–25: the Winter Juniors standard achieved in the 200y IM (1:50.39), two individual wins and four winning relays for the University of Denver Hilltoppers.",
+  keywords: [
+    "Daniel Mitka",
+    "CO TOPS Colorado Open 2026",
+    "Denver swimming",
+    "200y IM",
+    "400y IM",
+    "Winter Juniors cut",
+    "short course yards",
+    "University of Denver Hilltoppers",
+    "altitude swimming",
+    "1:50.39",
+  ],
+  image: "/sectionals2026/tops-duo.jpg",
+  publishedTime: "2026-01-25",
+});
 
 export default async function ColoradoOpen2026Page({
   params,
@@ -22,7 +32,22 @@ export default async function ColoradoOpen2026Page({
   const cs = locale === "cs";
 
   return (
-    <MeetRecap
+    <>
+      <MeetJsonLd
+        id="colorado-open-2026"
+        locale={locale}
+        name="CO TOPS Colorado Open 2026"
+        description="Short-course-yards meet in Denver where Daniel Mitka achieved the Winter Juniors standard in the 200y IM and won two individual events."
+        startDate="2026-01-23"
+        endDate="2026-01-25"
+        venue="Denver"
+        city="Denver"
+        country="United States"
+        region="Colorado"
+        level="Regional"
+        awards={["1st — 200y IM (1:50.39)", "1st — 400y IM (4:23.99)"]}
+      />
+      <MeetRecap
       badge={cs ? "Limit splněn" : "Cut Achieved"}
       title="CO TOPS Colorado Open"
       subtitle={
@@ -113,6 +138,7 @@ export default async function ColoradoOpen2026Page({
           url: "https://www.swimcloud.com/swimmer/1828936/meets/",
         },
       ]}
-    />
+      />
+    </>
   );
 }
