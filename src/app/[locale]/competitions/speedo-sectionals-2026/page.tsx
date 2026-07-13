@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
 import MeetShowcase from "../../../../components/MeetShowcase";
 import MeetJsonLd from "../../../../components/MeetJsonLd";
 import { buildMeetMetadata } from "../../../../lib/meetSeo";
 
-export const metadata = buildMeetMetadata({
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildMeetMetadata({
+    locale,
   slug: "speedo-sectionals-2026",
   title: "Four Corners Speedo Sectionals 2026 — Daniel Mitka | 7 PBs",
   description:
@@ -21,7 +29,8 @@ export const metadata = buildMeetMetadata({
   ],
   image: "/sectionals2026/celebration.jpg",
   publishedTime: "2026-03-29",
-});
+  });
+}
 
 export default async function SpeedoSectionals2026Page({
   params,

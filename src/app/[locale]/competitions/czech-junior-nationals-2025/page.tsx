@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import MeetJsonLd from "../../../../components/MeetJsonLd";
 import { buildMeetMetadata } from "../../../../lib/meetSeo";
 import PodoliCompetitionClient25 from "./PodoliCompetitionClient25";
@@ -19,13 +20,21 @@ const keywords = [
 ];
 const image = "/podoliFoto.jpg";
 
-export const metadata = buildMeetMetadata({
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildMeetMetadata({
+    locale,
   slug,
   title,
   description,
   keywords,
   image,
-});
+  });
+}
 
 export default async function PodoliCompetitionPage25({
   params,

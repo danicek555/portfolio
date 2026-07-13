@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
 import MeetRecap from "../../../../components/MeetRecap";
 import MeetJsonLd from "../../../../components/MeetJsonLd";
 import { buildMeetMetadata } from "../../../../lib/meetSeo";
 
-export const metadata = buildMeetMetadata({
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildMeetMetadata({
+    locale,
   slug: "colorado-senior-meet-2026",
   title: "Colorado Senior Meet 2026 — Daniel Mitka | Three Wins in Denver",
   description:
@@ -21,7 +29,8 @@ export const metadata = buildMeetMetadata({
   ],
   image: "/sectionals2026/tops-duo.jpg",
   publishedTime: "2026-02-22",
-});
+  });
+}
 
 export default async function ColoradoSeniorMeet2026Page({
   params,

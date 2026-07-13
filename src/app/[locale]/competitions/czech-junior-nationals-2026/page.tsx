@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
 import MeetShowcase from "../../../../components/MeetShowcase";
 import MeetJsonLd from "../../../../components/MeetJsonLd";
 import { buildMeetMetadata } from "../../../../lib/meetSeo";
 
-export const metadata = buildMeetMetadata({
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildMeetMetadata({
+    locale,
   slug: "czech-junior-nationals-2026",
   title: "Czech Junior & U22 Nationals 2026 — Daniel Mitka | Two Silvers",
   description:
@@ -21,7 +29,8 @@ export const metadata = buildMeetMetadata({
   ],
   image: "/mcrJunior2026/diplom.jpg",
   publishedTime: "2026-05-31",
-});
+  });
+}
 
 export default async function CzechJuniorNationals2026Page({
   params,
@@ -167,7 +176,7 @@ export default async function CzechJuniorNationals2026Page({
           caption: cs
             ? "Diplom za 2. místo na 200 m polohový závod — 2:06.50"
             : "Diploma for 2nd place in the 200m IM — 2:06.50",
-          objectPosition: "50% 20%",
+          objectPosition: "50% 38%",
         },
         {
           src: "/mcrJunior2026/venue-usti.jpg",

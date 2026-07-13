@@ -30,6 +30,8 @@ export async function generateMetadata({
   const currentUrl = `${siteUrl}/${locale}`;
 
   return {
+    // Base for resolving relative OG/canonical URLs across the site
+    metadataBase: new URL(siteUrl),
     // Set canonical URL for current locale
     alternates: {
       canonical: currentUrl,

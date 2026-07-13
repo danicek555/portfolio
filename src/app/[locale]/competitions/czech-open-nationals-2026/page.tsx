@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
 import MeetShowcase from "../../../../components/MeetShowcase";
 import MeetJsonLd from "../../../../components/MeetJsonLd";
 import { buildMeetMetadata } from "../../../../lib/meetSeo";
 
-export const metadata = buildMeetMetadata({
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildMeetMetadata({
+    locale,
   slug: "czech-open-nationals-2026",
   title:
     "Czech Open Nationals 2026 — Daniel Mitka | 400m IM Bronze at Podolí",
@@ -22,7 +30,8 @@ export const metadata = buildMeetMetadata({
   ],
   image: "/mcrOpen2026/start-block.jpg",
   publishedTime: "2026-06-28",
-});
+  });
+}
 
 export default async function CzechOpenNationals2026Page({
   params,

@@ -1,6 +1,9 @@
 import Script from "next/script";
 import { generateSportsEventSchema, createJsonLd } from "../lib/schema";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
+
 /**
  * Injects schema.org SportsEvent structured data for a meet page so the
  * competition can surface as a rich result in Google. Rendered from the
@@ -35,7 +38,7 @@ export default function MeetJsonLd({
   awards?: string[];
   sport?: string;
 }) {
-  const schema = generateSportsEventSchema(
+  const eventSchema = generateSportsEventSchema(
     {
       name,
       description,
@@ -49,11 +52,41 @@ export default function MeetJsonLd({
     locale,
   );
 
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: locale === "cs" ? "Domů" : "Home",
+        item: `${siteUrl}/${locale}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: locale === "cs" ? "Závody" : "Competitions",
+        item: `${siteUrl}/${locale}#competitions`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name,
+        item: `${siteUrl}/${locale}/competitions/${id}`,
+      },
+    ],
+  };
+
+  const graph = {
+    "@context": "https://schema.org",
+    "@graph": [eventSchema, breadcrumb],
+  };
+
   return (
     <Script
       id={`meet-schema-${id}`}
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: createJsonLd(schema) }}
+      dangerouslySetInnerHTML={{ __html: createJsonLd(graph) }}
     />
   );
 }

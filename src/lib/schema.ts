@@ -105,7 +105,8 @@ const getBaseData = () => ({
     "https://facebook.com/daniel.mitka",
   instagramProfile:
     process.env.NEXT_PUBLIC_INSTAGRAM_PROFILE ||
-    "https://instagram.com/daniel.mitka",
+    "https://www.instagram.com/dan_mitka",
+  swimcloudProfile: "https://www.swimcloud.com/swimmer/1828936/",
 });
 
 // Enhanced localized data with more SEO keywords
@@ -274,6 +275,7 @@ export function generatePersonSchema(locale: string = "en"): PersonSchema {
     twitterHandle,
     facebookProfile,
     instagramProfile,
+    swimcloudProfile,
   } = getBaseData();
   const localizedData = getLocalizedData(locale);
 
@@ -312,6 +314,7 @@ export function generatePersonSchema(locale: string = "en"): PersonSchema {
         : twitterHandle,
       facebookProfile,
       instagramProfile,
+      swimcloudProfile,
       `${siteUrl}/cs`,
       `${siteUrl}/en`,
     ],
