@@ -28,7 +28,7 @@ const About: React.FC = () => {
       id="about"
       className={clsx(
         "py-16 px-8 transition-colors duration-300",
-        isDarkMode ? "bg-gray-900" : "bg-white"
+        isDarkMode ? "bg-gray-800" : "bg-gray-50"
       )}
     >
       <div className="max-w-6xl mx-auto">
@@ -116,11 +116,11 @@ const About: React.FC = () => {
               className="overflow-hidden rounded-lg"
             >
               <Image
-                src="/profilovaFotka.jpg"
+                src="/mcrOpen2026/wall-closeup.jpg"
                 alt="Daniel Mitka swimming"
-                width={500}
-                height={600}
-                className="rounded-lg object-cover w-full h-auto"
+                width={900}
+                height={1200}
+                className="rounded-lg object-cover object-[35%_center] w-full aspect-[3/4]"
                 quality={85}
                 loading="eager"
               />

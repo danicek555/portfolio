@@ -1,12 +1,40 @@
 {
   "About": {
-    "badge": "RISING STAR SWIMMER",
-    "title": "Czech National Record Holder",
-    "description": "Daniel Mitka, a 17-year-old elite swimmer from SK Motorlet Praha, has achieved remarkable success in Czech swimming. His standout achievement is setting a national record as part of the mixed 4x50m medley relay at the 2022 Winter Championships in Mladá Boleslav. Competing at the highest national level, Daniel contributes every year to the performance and overall success of SK Motorlet Praha. With his proven track record in competitive swimming, he is now focusingon swimming in the Colorado Hilltoppers team while pursuing his studies in the USA.",
+    "badge": "COLLEGE SWIMMER",
+    "title": "Georgia Tech & Hilltoppers",
+    "description": "Daniel Mitka is a 17-year-old elite swimmer verbally committed to the Georgia Institute of Technology, where he will swim and study in the ACC. He currently trains and races for the University of Denver Hilltoppers in Colorado, and whenever he is back in Czechia he also swims for SK Motorlet Praha. A multiple-time medalist from the Czech national championships, he balances his season between racing in America and at home.",
     "cta": "Get in touch"
   },
+  "GeorgiaTech": {
+    "badge": "Verbal Commitment",
+    "title": "Committed to Georgia Tech",
+    "classHighSchool": "Class of 2027",
+    "classCollege": "College Class of 2031",
+    "commitment": {
+      "p1": "I am extremely excited to announce my verbal commitment to continue my academic and athletic career at the Georgia Institute of Technology.",
+      "p2": "First, I want to thank my parents for supporting me from the beginning, allowing me to move on my own at the age of 16, and helping me chase my dreams.",
+      "p3": "Thank you to Coach Shawn, Coach Todd, Coach Martina, Coach Sam, Ed, and Andrew for everything you have done for me.",
+      "p4": "Lastly, special thank you to Coach Iago for giving me this opportunity, and to the whole Georgia Tech community for welcoming me.",
+      "p5": "STING 'EM 🐝"
+    },
+    "pbs": {
+      "breast200": "200 Breast",
+      "breast200Time": "1:58.55",
+      "breast100": "100 Breast",
+      "breast100Time": "54.98",
+      "im200": "200 IM",
+      "im200Time": "1:47.43",
+      "im400": "400 IM",
+      "im400Time": "3:52.71"
+    },
+    "imageAlt": "Daniel Mitka — Georgia Tech swimming commit",
+    "photoCaption": "Daniel Mitka",
+    "photoSubcaption": "Future Yellow Jacket · College Class of 2031",
+    "cta": "Georgia Tech Swimming & Diving",
+    "mediaTitle": "In the media"
+  },
   "Hero": {
-    "subtitle": "Czech Youth Swimming Champion & Lifesaving Medalist",
+    "subtitle": "International Swimmer & Lifesaving Medalist",
     "cta": "Get in touch"
   },
   "Competitions": {
@@ -37,6 +65,42 @@
       {
         "title": "Czech Junior National Championship 2025",
         "description": "Prestigious junior national championship held at Podolí swimming complex, showcasing the future stars of Czech swimming."
+      },
+      {
+        "title": "CO TOPS Denver Invitational 2025",
+        "description": "The first meet in the USA and first yards meet ever — personal bests in nearly every event (Nov 2025)."
+      },
+      {
+        "title": "Pioneer Open 2025",
+        "description": "Three silver-medal finals and three personal bests in Denver — a narrow miss of the Winter Juniors cut."
+      },
+      {
+        "title": "Colorado Senior Meet 2026",
+        "description": "Championship-level meet in Denver with standout breaststroke performances, including 1st in 100 Breast and 200 Breast."
+      },
+      {
+        "title": "Four Corners Speedo Sectionals 2026",
+        "description": "Seven personal bests, five top-8 finishes and three Junior Nationals cuts in Carmel, Indiana, March 26–29, 2026."
+      },
+      {
+        "title": "Czech Junior & U22 Nationals 2026",
+        "description": "Two silver medals — 200m freestyle (1:55.31) and 200m IM (2:06.50) — plus five A-finals in Ústí nad Labem, May 28–31, 2026."
+      },
+      {
+        "title": "PRAHA 2026",
+        "description": "International meet at Podolí's outdoor 50m pool, June 13–14, 2026 — two podium finishes and four long-course personal bests."
+      },
+      {
+        "title": "Czech Nationals Open 2026",
+        "description": "Bronze in the 400m IM (4:38.84) and five final swims in extreme 40°C heat at the Czech summer nationals at Podolí, June 25–28, 2026."
+      },
+      {
+        "title": "Speedo Junior National Championships 2026",
+        "description": "Upcoming USA Swimming junior national meet in Irvine, California — August 3–7, 2026."
+      },
+      {
+        "title": "CO TOPS Colorado Open 2026",
+        "description": "The Winter Juniors standard finally achieved: 1:50.39 in the 200Y IM, two individual wins and four winning relays."
       }
     ]
   },
@@ -103,7 +167,8 @@
     "about": "About",
     "competitions": "Competitions",
     "work": "Work",
-    "blog": "Blog"
+    "blog": "Blog",
+    "progression": "Progression"
   },
   "Podoli2025": {
     "hero": {
@@ -572,5 +637,30 @@
     "homeButton": "Return to Home",
     "competitionsButton": "View Competitions",
     "funFact": "Fun fact: Daniel has never gotten lost in a swimming pool! 🏊‍♂️"
+  },
+  "Progression": {
+    "badge": "PERFORMANCE PROGRESSION",
+    "title": "How My Times Are Dropping",
+    "subtitle": "Every race from my main events — Czech long and short course plus American yards. Hover over a point for meet details, or filter to personal-best swims only.",
+    "pbOnly": "Improvements only",
+    "noData": "No swims recorded for this combination yet.",
+    "events": {
+      "200IM": "200 IM",
+      "400IM": "400 IM",
+      "100BR": "100 Breast",
+      "200BR": "200 Breast"
+    },
+    "courses": {
+      "LCM": "50 m (LCM)",
+      "SCM": "25 m (SCM)",
+      "SCY": "25 y (SCY)"
+    },
+    "stats": {
+      "best": "Personal best",
+      "improvement": "Total drop",
+      "swims": "Races",
+      "span": "Seasons"
+    },
+    "note": "Showing results from 2022. For meets with multiple swims a day, prelims and finals are shown separately."
   }
 }

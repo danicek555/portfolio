@@ -96,8 +96,7 @@ export interface WebSiteSchema {
 
 // Environment variables for consistent data
 const getBaseData = () => ({
-  siteUrl:
-    process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com",
   siteName: process.env.NEXT_PUBLIC_SITE_NAME || "Daniel Mitka Portfolio",
   authorName: process.env.NEXT_PUBLIC_AUTHOR_NAME || "Daniel Mitka",
   twitterHandle: process.env.NEXT_PUBLIC_TWITTER_HANDLE || "@MitkaDaniel",
@@ -106,7 +105,8 @@ const getBaseData = () => ({
     "https://facebook.com/daniel.mitka",
   instagramProfile:
     process.env.NEXT_PUBLIC_INSTAGRAM_PROFILE ||
-    "https://instagram.com/daniel.mitka",
+    "https://www.instagram.com/dan_mitka",
+  swimcloudProfile: "https://www.swimcloud.com/swimmer/1828936/",
 });
 
 // Enhanced localized data with more SEO keywords
@@ -275,6 +275,7 @@ export function generatePersonSchema(locale: string = "en"): PersonSchema {
     twitterHandle,
     facebookProfile,
     instagramProfile,
+    swimcloudProfile,
   } = getBaseData();
   const localizedData = getLocalizedData(locale);
 
@@ -313,6 +314,7 @@ export function generatePersonSchema(locale: string = "en"): PersonSchema {
         : twitterHandle,
       facebookProfile,
       instagramProfile,
+      swimcloudProfile,
       `${siteUrl}/cs`,
       `${siteUrl}/en`,
     ],
@@ -392,7 +394,7 @@ export function generateSportsEventSchema(
     level: "International" | "National" | "Regional";
     organizer?: string;
   },
-  locale: string = "en"
+  locale: string = "en",
 ): SportsEventSchema {
   const location: PlaceSchema = {
     "@type": "SportsActivityLocation",
@@ -517,7 +519,7 @@ export function createJsonLd(
     | PersonSchema
     | SportsEventSchema
     | WebSiteSchema
-    | Record<string, unknown>
+    | Record<string, unknown>,
 ): string {
   return JSON.stringify(schema, null, 2);
 }

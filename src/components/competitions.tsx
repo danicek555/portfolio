@@ -13,6 +13,7 @@ type Competition = {
   description: string;
   link: string;
   img: string;
+  imgPosition?: string;
 };
 
 const Competitions: React.FC = () => {
@@ -24,6 +25,65 @@ const Competitions: React.FC = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const competitions: Competition[] = [
+    {
+      title: t("competitions.13.title"),
+      description: t("competitions.13.description"),
+      link: "/competitions/speedo-junior-nationals-2026",
+      // Woollett Aquatics Center, Irvine — foto Brian MacIntosh (BMacZero),
+      // Wikimedia Commons, CC BY-SA 4.0
+      img: "/juniors2026/woollett.jpg",
+    },
+    {
+      title: t("competitions.12.title"),
+      description: t("competitions.12.description"),
+      link: "/competitions/czech-open-nationals-2026",
+      img: "/mcrOpen2026/start-block.jpg",
+      imgPosition: "50% 15%",
+    },
+    {
+      title: t("competitions.11.title"),
+      description: t("competitions.11.description"),
+      link: "/competitions/praha-2026",
+      img: "/praha2026/podium.jpg",
+    },
+    {
+      title: t("competitions.10.title"),
+      description: t("competitions.10.description"),
+      link: "/competitions/czech-junior-nationals-2026",
+      img: "/mcrJunior2026/diplom.jpg",
+    },
+    {
+      title: t("competitions.9.title"),
+      description: t("competitions.9.description"),
+      link: "/competitions/speedo-sectionals-2026",
+      img: "/sectionals2026/celebration.jpg",
+    },
+    {
+      title: t("competitions.8.title"),
+      description: t("competitions.8.description"),
+      link: "/competitions/colorado-senior-meet-2026",
+      img: "/seniorMeet/poolside.jpg",
+    },
+    {
+      title: t("competitions.14.title"),
+      description: t("competitions.14.description"),
+      link: "/competitions/colorado-open-2026",
+      img: "/ColoradoOpen/church.jpg",
+      imgPosition: "50% 20%",
+    },
+    {
+      title: t("competitions.7.title"),
+      description: t("competitions.7.description"),
+      link: "/competitions/pioneer-open-2026",
+      img: "/pioneerOpen/team.jpg",
+      imgPosition: "50% 55%",
+    },
+    {
+      title: t("competitions.6.title"),
+      description: t("competitions.6.description"),
+      link: "/competitions/invitational-2026",
+      img: "/invitationalDenver/arena.jpg",
+    },
     {
       title: t("competitions.5.title"),
       description: t("competitions.5.description"),
@@ -133,6 +193,9 @@ const Competitions: React.FC = () => {
               ? "object-center"
               : "object-[50%_30%]",
           )}
+          style={
+            comp.imgPosition ? { objectPosition: comp.imgPosition } : undefined
+          }
           quality={85}
           loading={index < 3 ? "eager" : "lazy"}
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"

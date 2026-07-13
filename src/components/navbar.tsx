@@ -3,13 +3,29 @@
 import Link from "next/link";
 import { useTheme } from "./ThemeProvider";
 import { useTranslations } from "next-intl";
+import { motion, AnimatePresence, animate } from "framer-motion";
 import clsx from "clsx";
 import { useState } from "react";
+
+/** Height of the sticky navbar used as scroll offset. */
+const SCROLL_OFFSET = 72;
+
+type NavItem = { key: string; href: string };
+
+const NAV_ITEMS: NavItem[] = [
+  { key: "home", href: "/#home" },
+  { key: "about", href: "/#about" },
+  { key: "competitions", href: "/#competitions" },
+  { key: "progression", href: "/#progression" },
+  { key: "work", href: "/#work" },
+  { key: "blog", href: "/blog" },
+];
 
 const Navbar: React.FC = () => {
   const { isDarkMode } = useTheme();
   const t = useTranslations("Navbar");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -18,6 +34,28 @@ const Navbar: React.FC = () => {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
+
+  /**
+   * Smooth-scroll to the section when it exists on the current page;
+   * otherwise fall back to regular navigation (e.g. from /competitions/*).
+   */
+  const handleAnchorClick =
+    (href: string, afterClick?: () => void) =>
+    (event: React.MouseEvent<HTMLAnchorElement>) => {
+      afterClick?.();
+      if (!href.startsWith("/#")) return;
+      const target = document.getElementById(href.slice(2));
+      if (!target) return;
+      event.preventDefault();
+      const top =
+        target.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+      animate(window.scrollY, Math.max(top, 0), {
+        duration: 0.85,
+        ease: [0.22, 1, 0.36, 1],
+        onUpdate: (value) => window.scrollTo(0, value),
+      });
+      window.history.pushState(null, "", href);
+    };
 
   return (
     <nav
@@ -41,71 +79,45 @@ const Navbar: React.FC = () => {
 
       {/* Desktop menu */}
       <ul
+        onMouseLeave={() => setHovered(null)}
         className={clsx(
           "hidden md:flex items-center space-x-8 font-montserrat text-lg",
           isDarkMode ? "text-white" : "text-black"
         )}
       >
-        <li>
-          <Link
-            href="/#home"
-            className={clsx(
-              "transition-colors no-underline font-bold",
-              isDarkMode ? "hover:text-gray-300" : "hover:text-gray-600"
-            )}
-            style={{ fontWeight: 700 }}
-          >
-            {t("home")}
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/#about"
-            className={clsx(
-              "transition-colors no-underline font-bold",
-              isDarkMode ? "hover:text-gray-300" : "hover:text-gray-600"
-            )}
-            style={{ fontWeight: 700 }}
-          >
-            {t("about")}
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/#competitions"
-            className={clsx(
-              "transition-colors no-underline font-bold",
-              isDarkMode ? "hover:text-gray-300" : "hover:text-gray-600"
-            )}
-            style={{ fontWeight: 700 }}
-          >
-            {t("competitions")}
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/#work"
-            className={clsx(
-              "transition-colors no-underline font-bold",
-              isDarkMode ? "hover:text-gray-300" : "hover:text-gray-600"
-            )}
-            style={{ fontWeight: 700 }}
-          >
-            {t("work")}
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/blog"
-            className={clsx(
-              "transition-colors no-underline font-bold",
-              isDarkMode ? "hover:text-gray-300" : "hover:text-gray-600"
-            )}
-            style={{ fontWeight: 700 }}
-          >
-            {t("blog")}
-          </Link>
-        </li>
+        {NAV_ITEMS.map((item) => (
+          <li key={item.key} className="relative">
+            <Link
+              href={item.href}
+              onClick={handleAnchorClick(item.href)}
+              onMouseEnter={() => setHovered(item.key)}
+              onFocus={() => setHovered(item.key)}
+              className={clsx(
+                "relative inline-block pb-1 transition-colors no-underline font-bold",
+                isDarkMode ? "hover:text-gray-300" : "hover:text-gray-600"
+              )}
+              style={{ fontWeight: 700 }}
+            >
+              {t(item.key)}
+              <AnimatePresence>
+                {hovered === item.key && (
+                  <motion.span
+                    layoutId="nav-underline"
+                    className="absolute inset-x-0 -bottom-0.5 h-0.5 rounded-full bg-green-500"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 240,
+                      damping: 30,
+                    }}
+                  />
+                )}
+              </AnimatePresence>
+            </Link>
+          </li>
+        ))}
         <li>
           <a
             href="https://www.instagram.com/dan_mitka"
@@ -136,27 +148,27 @@ const Navbar: React.FC = () => {
       <button
         onClick={toggleMenu}
         className={clsx(
-          "md:hidden flex flex-col items-center justify-center w-8 h-8 space-y-1 transition-all duration-300",
+          "md:hidden flex flex-col items-center justify-center w-8 h-8 space-y-1 transition-all duration-500",
           isDarkMode ? "text-white" : "text-black"
         )}
       >
         <span
           className={clsx(
-            "block w-6 h-0.5 transition-all duration-300",
+            "block w-6 h-0.5 transition-all duration-500",
             isDarkMode ? "bg-white" : "bg-black",
             isMenuOpen ? "rotate-45 translate-y-2" : ""
           )}
         />
         <span
           className={clsx(
-            "block w-6 h-0.5 transition-all duration-300",
+            "block w-6 h-0.5 transition-all duration-500",
             isDarkMode ? "bg-white" : "bg-black",
             isMenuOpen ? "opacity-0" : ""
           )}
         />
         <span
           className={clsx(
-            "block w-6 h-0.5 transition-all duration-300",
+            "block w-6 h-0.5 transition-all duration-500",
             isDarkMode ? "bg-white" : "bg-black",
             isMenuOpen ? "-rotate-45 -translate-y-2" : ""
           )}
@@ -166,7 +178,7 @@ const Navbar: React.FC = () => {
       {/* Mobile menu */}
       <div
         className={clsx(
-          "md:hidden absolute top-full left-0 w-full transition-all duration-300 ease-in-out",
+          "md:hidden absolute top-full left-0 w-full transition-all duration-500 ease-in-out",
           isDarkMode
             ? "bg-gray-800 border-gray-700"
             : "bg-white border-gray-200",
@@ -176,81 +188,23 @@ const Navbar: React.FC = () => {
         )}
       >
         <ul className="flex flex-col space-y-0 font-montserrat">
-          <li>
-            <Link
-              href="/#home"
-              onClick={closeMenu}
-              className={clsx(
-                "block px-4 py-4 transition-colors no-underline font-bold border-b",
-                isDarkMode
-                  ? "hover:bg-gray-700 border-gray-700 text-white"
-                  : "hover:bg-gray-50 border-gray-200 text-black"
-              )}
-              style={{ fontWeight: 700 }}
-            >
-              {t("home")}
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/#about"
-              onClick={closeMenu}
-              className={clsx(
-                "block px-4 py-4 transition-colors no-underline font-bold border-b",
-                isDarkMode
-                  ? "hover:bg-gray-700 border-gray-700 text-white"
-                  : "hover:bg-gray-50 border-gray-200 text-black"
-              )}
-              style={{ fontWeight: 700 }}
-            >
-              {t("about")}
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/#competitions"
-              onClick={closeMenu}
-              className={clsx(
-                "block px-4 py-4 transition-colors no-underline font-bold border-b",
-                isDarkMode
-                  ? "hover:bg-gray-700 border-gray-700 text-white"
-                  : "hover:bg-gray-50 border-gray-200 text-black"
-              )}
-              style={{ fontWeight: 700 }}
-            >
-              {t("competitions")}
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/#work"
-              onClick={closeMenu}
-              className={clsx(
-                "block px-4 py-4 transition-colors no-underline font-bold border-b",
-                isDarkMode
-                  ? "hover:bg-gray-700 border-gray-700 text-white"
-                  : "hover:bg-gray-50 border-gray-200 text-black"
-              )}
-              style={{ fontWeight: 700 }}
-            >
-              {t("work")}
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/blog"
-              onClick={closeMenu}
-              className={clsx(
-                "block px-4 py-4 transition-colors no-underline font-bold border-b",
-                isDarkMode
-                  ? "hover:bg-gray-700 border-gray-700 text-white"
-                  : "hover:bg-gray-50 border-gray-200 text-black"
-              )}
-              style={{ fontWeight: 700 }}
-            >
-              {t("blog")}
-            </Link>
-          </li>
+          {NAV_ITEMS.map((item) => (
+            <li key={item.key}>
+              <Link
+                href={item.href}
+                onClick={handleAnchorClick(item.href, closeMenu)}
+                className={clsx(
+                  "block px-4 py-4 transition-colors no-underline font-bold border-b",
+                  isDarkMode
+                    ? "hover:bg-gray-700 border-gray-700 text-white"
+                    : "hover:bg-gray-50 border-gray-200 text-black"
+                )}
+                style={{ fontWeight: 700 }}
+              >
+                {t(item.key)}
+              </Link>
+            </li>
+          ))}
           <li>
             <a
               href="https://www.instagram.com/dan_mitka"

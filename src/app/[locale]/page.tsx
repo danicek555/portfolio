@@ -2,7 +2,11 @@ import { Metadata } from "next";
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import Hero from "../../components/hero";
-import { generatePersonSchema, createJsonLd } from "../../lib/schema";
+import {
+  generatePersonSchema,
+  generateFAQSchema,
+  createJsonLd,
+} from "../../lib/schema";
 
 // Dynamically import below-the-fold components for code splitting
 const About = dynamic(() => import("../../components/about"), {
@@ -12,7 +16,22 @@ const About = dynamic(() => import("../../components/about"), {
   ssr: true,
 });
 
+const GeorgiaTechCommitment = dynamic(
+  () => import("../../components/georgia-tech"),
+  {
+    loading: () => <div className="animate-pulse bg-[#003057] h-96" />,
+    ssr: true,
+  },
+);
+
 const Competitions = dynamic(() => import("../../components/competitions"), {
+  loading: () => (
+    <div className="animate-pulse bg-gray-100 dark:bg-gray-800 h-96" />
+  ),
+  ssr: true,
+});
+
+const Progression = dynamic(() => import("../../components/progression"), {
   loading: () => (
     <div className="animate-pulse bg-gray-100 dark:bg-gray-800 h-96" />
   ),
@@ -185,7 +204,9 @@ export default async function HomePage({
   // Combined schema for this page
   const combinedPageSchema = {
     "@context": "https://schema.org",
-    "@graph": [breadcrumbSchema, portfolioSchema],
+    // WebSite + Person are already emitted by the root layout, so only add
+    // the page-specific schemas here (breadcrumb, profile page, FAQ).
+    "@graph": [breadcrumbSchema, portfolioSchema, generateFAQSchema(locale)],
   };
 
   return (
@@ -204,7 +225,9 @@ export default async function HomePage({
 
       {/* Dynamically loaded below-the-fold sections */}
       <About />
+      <GeorgiaTechCommitment />
       <Competitions />
+      <Progression />
       <Projects />
     </>
   );
