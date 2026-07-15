@@ -109,6 +109,81 @@
     "title": "My Recent Works",
     "visitWebsite": "Visit Website",
     "viewProject": "View Project >",
+    "showcase": {
+      "eyebrow": "Selected digital work / 2024—2025",
+      "count": "07 case studies",
+      "statementLead": "I design the interface.",
+      "statementAccent": "I engineer the experience.",
+      "intro": "Selected products shaped from the first layout to the last line of code—clear, useful and built with intent.",
+      "availability": "Open for ambitious projects",
+      "openProject": "Open project",
+      "capabilityOne": "Art direction",
+      "capabilityTwo": "Interface systems",
+      "capabilityThree": "Full-stack development",
+      "terms": {
+        "web": "Web",
+        "website": "Website",
+        "product": "Product",
+        "dataApp": "Data app",
+        "app3d": "3D app",
+        "hackathon": "Hackathon",
+        "system": "System",
+        "productDesign": "Product design",
+        "landingPage": "Landing page",
+        "responsiveDesign": "Responsive design",
+        "dashboard": "Dashboard",
+        "aiWorkflow": "AI workflow",
+        "authentication": "Authentication",
+        "dataInterface": "Data interface",
+        "search": "Search",
+        "filters": "Filters",
+        "bilingual": "Bilingual",
+        "globe3d": "3D globe",
+        "travelSets": "Travel sets",
+        "photos": "Photos",
+        "printing3d": "3D printing",
+        "automation": "Automation",
+        "data": "Data"
+      },
+      "strunzova": {
+        "discipline": "Hospitality / Web design",
+        "description": "A calm, conversion-focused hospitality website that turns a complex stay into a clear booking journey. Designed and developed end to end."
+      },
+      "duocards": {
+        "discipline": "EdTech / Full-stack product",
+        "description": "A focused learning product shaped from database to interface, with secure accounts, email workflows and a UI built for daily use."
+      },
+      "duocardsLanding": {
+        "title": "DuoCards Website",
+        "discipline": "EdTech / Product website",
+        "description": "The public face of DuoCards, presenting its AI flashcard experience through a clear product story and focused learning flow."
+      },
+      "duocardsApp": {
+        "title": "DuoCards App",
+        "discipline": "EdTech / Web application",
+        "description": "A focused workspace for creating, discovering and practising multilingual flashcard sets with AI-assisted tools."
+      },
+      "clubRecords": {
+        "title": "Motorlet Club Records",
+        "discipline": "Swimming / Data application",
+        "description": "A searchable bilingual explorer for SK MOP records across courses, disciplines, categories and swimmers."
+      },
+      "travelGlobe": {
+        "title": "My Travel Globe",
+        "discipline": "Travel / Interactive 3D",
+        "description": "An interactive globe for saving visited places and photos in personal travel sets."
+      },
+      "braille": {
+        "title": "Braille Learning Aid",
+        "discipline": "Accessibility / Hardware & software",
+        "description": "A hackathon-built tactile learning device combining a Micro:bit, custom 3D-printed hardware and a C# desktop app to make practising Braille more approachable."
+      },
+      "autobot": {
+        "title": "Ticket Autobot",
+        "discipline": "Automation / Engineering",
+        "description": "A purpose-built automation workflow engineered to monitor availability, process live data and act reliably when timing matters."
+      }
+    },
     "projectTips": [
       [
         "🏢 Professional website for Strunzova Pila showcasing apartment services with modern design and user-friendly interface.",
@@ -141,7 +216,7 @@
         "description": "A romantic website counting days together with interactive hearts and beautiful animations."
       },
       {
-        "title": "Strunzova Pila Website",
+        "title": "Strunzova Pila",
         "description": "A professional website for Strunzova Pila company showcasing their apartment services."
       },
       {
@@ -149,7 +224,7 @@
         "description": "A bot that automatically buys tickets on Ticketportal for a specific event with specific search parameters."
       },
       {
-        "title": "Duocards Website",
+        "title": "DuoCards",
         "description": "A website for learning new words and phrases with flashcards."
       }
     ]

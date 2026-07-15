@@ -1,517 +1,526 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { useTheme } from "./ThemeProvider";
+import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
 import clsx from "clsx";
-import { useState } from "react";
+import { useTheme } from "./ThemeProvider";
 
 type Project = {
+  number: string;
   title: string;
   description: string;
+  discipline: string;
+  year: string;
   technologies: string[];
   link: string;
-  img: string;
-  type: "internal" | "external";
-  featured?: boolean;
+  image: string;
+  secondaryImage?: string;
+  imageClassName: string;
+  emphasizedImage?: boolean;
+  layout: "wide" | "compact";
+  presentation: "screenshot" | "mockup" | "photo-pair";
+  palette: {
+    background: string;
+    foreground: string;
+    accent: string;
+  };
 };
 
-const Projects: React.FC = () => {
-  const { isDarkMode } = useTheme();
-  const t = useTranslations("Projects");
-  const [hoveredProjectIndex, setHoveredProjectIndex] = useState<number | null>(
-    null
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+function ArrowIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      className="h-5 w-5 md:h-6 md:w-6"
+    >
+      <path
+        d="M7 17 17 7M8 7h9v9"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
+}
 
-  const projectTips = t.raw("projectTips") as string[][];
+function ProjectCard({
+  project,
+  openLabel,
+  reducedMotion,
+  isDarkMode,
+}: {
+  project: Project;
+  openLabel: string;
+  reducedMotion: boolean;
+  isDarkMode: boolean;
+}) {
+  const isWide = project.layout === "wide";
 
-  const getProjectTip = (projectIndex: number) => {
-    if (!projectTips || projectTips.length === 0) {
-      return "💡 Check out this project for more details!";
-    }
-    // Map project indices to tip arrays.
-    // Extra tips remain safely addressable via modulo fallback below.
-    const projectTipArray = projectTips[projectIndex % projectTips.length];
-    if (!projectTipArray || projectTipArray.length === 0) {
-      return "💡 Check out this project for more details!";
-    }
-    // Get a random tip from this project's 4 tips
-    const randomTipIndex = Math.floor(Math.random() * projectTipArray.length);
-    return projectTipArray[randomTipIndex];
-  };
+  return (
+    <a
+      href={project.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${openLabel}: ${project.title}`}
+      className={
+        isWide
+          ? "group block h-full lg:col-span-2"
+          : "group block h-full"
+      }
+    >
+      <motion.article
+        className={[
+          "relative isolate flex h-full overflow-hidden rounded-[1.75rem] md:rounded-[2.5rem]",
+          "border shadow-[0_18px_52px_rgba(15,23,42,0.07)] transition-colors duration-300",
+          isDarkMode
+            ? "border-white/10 shadow-black/20 group-hover:border-white/20"
+            : "border-gray-200/80 group-hover:border-gray-300",
+          "focus-within:ring-2 focus-within:ring-[#c9ff48]",
+          isWide
+            ? "min-h-[34rem] flex-col lg:min-h-[42rem]"
+            : "min-h-[37rem] flex-col md:min-h-[41rem]",
+        ].join(" ")}
+        style={{
+          backgroundColor: isDarkMode ? "#1f2937" : project.palette.background,
+          color: isDarkMode ? "#ffffff" : project.palette.foreground,
+        }}
+        initial={{ opacity: 0, y: reducedMotion ? 0 : 36 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.12 }}
+        transition={{ duration: 0.55, ease: EASE }}
+      >
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 opacity-40"
+          style={{
+            backgroundImage: `linear-gradient(to right, ${
+              isDarkMode ? "rgba(255,255,255,.08)" : "rgba(15,23,42,.055)"
+            } 1px, transparent 1px), linear-gradient(to bottom, ${
+              isDarkMode ? "rgba(255,255,255,.08)" : "rgba(15,23,42,.055)"
+            } 1px, transparent 1px)`,
+            backgroundSize: isWide ? "48px 48px" : "36px 36px",
+            maskImage:
+              "linear-gradient(to bottom, rgba(0,0,0,.8), transparent 78%)",
+          }}
+        />
 
-  const handleMouseEnter = (projectIndex: number) => {
-    setHoveredProjectIndex(projectIndex);
-  };
+        <div
+          aria-hidden="true"
+          className={[
+            "absolute rounded-full blur-3xl",
+            isWide
+              ? "-right-20 top-36 h-72 w-72 md:h-[28rem] md:w-[28rem]"
+              : "-right-24 top-48 h-72 w-72",
+          ].join(" ")}
+          style={{ backgroundColor: project.palette.accent, opacity: 0.13 }}
+        />
 
-  const handleMouseLeave = () => {
-    setHoveredProjectIndex(null);
-  };
+        <div
+          className={[
+            "relative z-20 grid gap-7 p-6 sm:p-8 md:p-10",
+            isWide
+              ? "md:grid-cols-[minmax(0,1.35fr)_minmax(16rem,.65fr)] lg:p-12"
+              : "grid-cols-1",
+          ].join(" ")}
+        >
+          <div>
+            <div className="mb-6 flex items-center gap-3 text-[0.68rem] font-bold uppercase tracking-[0.2em] md:text-xs">
+              <span
+                className="inline-flex h-8 min-w-8 items-center justify-center rounded-full border px-2"
+                style={{
+                  borderColor: isDarkMode
+                    ? "rgba(255,255,255,.2)"
+                    : `${project.palette.accent}55`,
+                  color: isDarkMode ? "#ffffff" : project.palette.accent,
+                }}
+              >
+                {project.number}
+              </span>
+              <span>{project.discipline}</span>
+            </div>
+
+            <h3
+              className={[
+                "font-[var(--font-montserrat)] font-bold leading-[0.93] tracking-[-0.055em]",
+                isWide
+                  ? "max-w-3xl text-[clamp(2.8rem,7vw,6rem)]"
+                  : "text-[clamp(2.6rem,4.5vw,4.25rem)]",
+              ].join(" ")}
+            >
+              {project.title}
+            </h3>
+          </div>
+
+          <div
+            className={[
+              "flex flex-col",
+              isWide ? "md:items-end md:text-right" : "",
+            ].join(" ")}
+          >
+            <span className="mb-5 font-mono text-xs uppercase tracking-[0.18em] opacity-70">
+              {project.year}
+            </span>
+            <p
+              className={[
+                "max-w-md text-sm leading-relaxed opacity-80 sm:text-base",
+                isWide ? "md:max-w-sm" : "",
+              ].join(" ")}
+            >
+              {project.description}
+            </p>
+            <div
+              className={[
+                "mt-6 flex flex-wrap gap-x-4 gap-y-2",
+                isWide ? "md:justify-end" : "",
+              ].join(" ")}
+            >
+              {project.technologies.map((technology) => (
+                <span
+                  key={technology}
+                  className="font-mono text-[0.68rem] uppercase tracking-[0.12em] opacity-70"
+                >
+                  {technology}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div
+          className={[
+            "relative z-10 mt-auto flex items-end overflow-hidden",
+            isWide
+              ? project.emphasizedImage
+                ? "h-[20rem] px-2 pb-0 pt-2 sm:h-[27rem] sm:px-5 lg:h-[34rem] lg:px-10"
+                : "h-[18rem] px-3 pb-0 pt-4 sm:h-[23rem] sm:px-8 lg:h-[29rem] lg:px-16"
+              : "h-[20rem] px-3 pb-5 pt-8 sm:h-[24rem] sm:px-6",
+          ].join(" ")}
+        >
+          <div
+            className={`relative mx-auto flex h-full w-full items-end justify-center transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-[1.015] motion-reduce:transform-none motion-reduce:transition-none ${project.imageClassName}`}
+            style={{ transformOrigin: "50% 100%" }}
+          >
+            {project.presentation === "photo-pair" && project.secondaryImage ? (
+              <div className="flex h-full w-full items-end justify-center gap-3 sm:gap-5">
+                {[project.image, project.secondaryImage].map((image, index) => (
+                  <Image
+                    key={image}
+                    src={image}
+                    alt={`${project.title} ${index === 0 ? "prototype and team" : "hackathon presentation"}`}
+                    width={1536}
+                    height={2048}
+                    sizes="(max-width: 1024px) 45vw, 420px"
+                    className="h-auto max-h-full w-[calc(50%-0.375rem)] rounded-[1rem] border border-black/10 object-contain shadow-[0_20px_42px_rgba(15,23,42,.16)] sm:w-[calc(50%-0.625rem)] md:rounded-[1.4rem]"
+                  />
+                ))}
+              </div>
+            ) : project.presentation === "screenshot" ? (
+              <Image
+                src={project.image}
+                alt={`${project.title} interface preview`}
+                width={1470}
+                height={956}
+                sizes={
+                  isWide
+                    ? "(max-width: 1024px) 100vw, 760px"
+                    : "(max-width: 1024px) 100vw, 600px"
+                }
+                className={clsx(
+                  "max-h-full w-auto max-w-full rounded-[1rem] border object-contain shadow-[0_24px_48px_rgba(15,23,42,.16)] md:rounded-[1.4rem]",
+                  isDarkMode
+                    ? "border-white/15 bg-gray-950"
+                    : "border-gray-200 bg-white",
+                )}
+              />
+            ) : (
+              <Image
+                src={project.image}
+                alt={`${project.title} project preview`}
+                fill
+                sizes={
+                  isWide
+                    ? "(max-width: 1024px) 100vw, 1200px"
+                    : "(max-width: 1024px) 100vw, 650px"
+                }
+                className="object-contain drop-shadow-[0_24px_28px_rgba(0,0,0,0.26)]"
+              />
+            )}
+          </div>
+        </div>
+
+        <div
+          className={[
+            "absolute bottom-5 right-20 z-30 grid h-14 w-14 place-items-center rounded-full",
+            "text-white shadow-lg transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 motion-reduce:transform-none md:bottom-8 md:right-8 md:h-16 md:w-16",
+          ].join(" ")}
+          style={{ backgroundColor: project.palette.accent }}
+        >
+          <ArrowIcon />
+        </div>
+
+        <div
+          className="absolute inset-x-0 bottom-0 z-20 h-1 origin-left scale-x-0 transition-transform duration-700 ease-out group-hover:scale-x-100"
+          style={{ backgroundColor: project.palette.accent }}
+        />
+      </motion.article>
+    </a>
+  );
+}
+
+const Projects: React.FC = () => {
+  const t = useTranslations("Projects");
+  const { isDarkMode } = useTheme();
+  const reducedMotion = useReducedMotion() ?? false;
 
   const projects: Project[] = [
     {
+      number: "01",
       title: t("projects.1.title"),
-      description: t("projects.1.description"),
-      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+      description: t("showcase.strunzova.description"),
+      discipline: t("showcase.strunzova.discipline"),
+      year: `2025 — ${t("showcase.terms.web")}`,
+      technologies: ["Next.js", "TypeScript", "UI/UX", "SEO"],
       link: "https://strunzovapila.vercel.app",
-      img: "/strunzovapilamockup2.png",
-      type: "external",
-      featured: true,
-    },
-    {
-      title: t("projects.3.title"),
-      description: t("projects.3.description"),
-      technologies: ["React", "Prisma SQL", "Resend", "Bcrypt"],
-      link: "https://duocards.xyz/",
-      img: "/macbook_duocards.png",
-      type: "external",
-      featured: true,
-    },
-    {
-      title: t("projects.2.title"),
-      description: t("projects.2.description"),
-      technologies: ["NodeJS", "Javascript", "Puppeteer", "ReCaptcha"],
-      link: "https://github.com/danicek555",
-      img: "/macbook_autobot.png",
-      type: "external",
-      featured: true,
-    },
-  ];
-
-  // Animation variants
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: "easeOut" },
-  };
-
-  const staggerContainer = {
-    animate: {
-      transition: {
-        staggerChildren: 0.2,
+      image: "/strunzovapilamockup2.png",
+      imageClassName: "max-w-[78rem]",
+      emphasizedImage: true,
+      layout: "wide",
+      presentation: "mockup",
+      palette: {
+        background: "#faf9f7",
+        foreground: "#181613",
+        accent: "#b3392f",
       },
     },
-  };
-
-  const slideInLeft = {
-    initial: { opacity: 0, x: -60 },
-    animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.8, ease: "easeOut" },
-  };
-
-  const slideInRight = {
-    initial: { opacity: 0, x: 60 },
-    animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.8, ease: "easeOut" },
-  };
+    {
+      number: "02",
+      title: t("showcase.duocardsLanding.title"),
+      description: t("showcase.duocardsLanding.description"),
+      discipline: t("showcase.duocardsLanding.discipline"),
+      year: `2026 — ${t("showcase.terms.website")}`,
+      technologies: [
+        t("showcase.terms.productDesign"),
+        t("showcase.terms.landingPage"),
+        "i18n",
+        t("showcase.terms.responsiveDesign"),
+      ],
+      link: "https://www.duocards.xyz/",
+      image: "/work/Screenshot 2026-07-15 at 10.13.25.png",
+      imageClassName: "max-w-[43rem]",
+      layout: "compact",
+      presentation: "screenshot",
+      palette: {
+        background: "#f8f7ff",
+        foreground: "#172033",
+        accent: "#6657e8",
+      },
+    },
+    {
+      number: "03",
+      title: t("showcase.duocardsApp.title"),
+      description: t("showcase.duocardsApp.description"),
+      discipline: t("showcase.duocardsApp.discipline"),
+      year: `2026 — ${t("showcase.terms.product")}`,
+      technologies: [
+        t("showcase.terms.dashboard"),
+        t("showcase.terms.aiWorkflow"),
+        t("showcase.terms.authentication"),
+        t("showcase.terms.dataInterface"),
+      ],
+      link: "https://app.duocards.xyz/dashboard",
+      image: "/work/Screenshot 2026-07-15 at 10.14.54.png",
+      imageClassName: "max-w-[43rem]",
+      layout: "compact",
+      presentation: "screenshot",
+      palette: {
+        background: "#f6f8fc",
+        foreground: "#172033",
+        accent: "#4755c9",
+      },
+    },
+    {
+      number: "04",
+      title: t("showcase.clubRecords.title"),
+      description: t("showcase.clubRecords.description"),
+      discipline: t("showcase.clubRecords.discipline"),
+      year: `2026 — ${t("showcase.terms.dataApp")}`,
+      technologies: [
+        t("showcase.terms.dataInterface"),
+        t("showcase.terms.search"),
+        t("showcase.terms.filters"),
+        t("showcase.terms.bilingual"),
+      ],
+      link: "https://y-ten-bice-34.vercel.app/",
+      image: "/work/Screenshot 2026-07-15 at 10.15.48.png",
+      imageClassName: "max-w-[43rem]",
+      layout: "compact",
+      presentation: "screenshot",
+      palette: {
+        background: "#f5f8fd",
+        foreground: "#101a31",
+        accent: "#2878e8",
+      },
+    },
+    {
+      number: "05",
+      title: t("showcase.travelGlobe.title"),
+      description: t("showcase.travelGlobe.description"),
+      discipline: t("showcase.travelGlobe.discipline"),
+      year: `2026 — ${t("showcase.terms.app3d")}`,
+      technologies: [
+        t("showcase.terms.globe3d"),
+        t("showcase.terms.travelSets"),
+        t("showcase.terms.photos"),
+        t("showcase.terms.bilingual"),
+      ],
+      link: "https://vibecoding-five-xi.vercel.app/",
+      image: "/work/Screenshot 2026-07-15 at 10.16.18.png",
+      imageClassName: "max-w-[43rem]",
+      layout: "compact",
+      presentation: "screenshot",
+      palette: {
+        background: "#fff7f9",
+        foreground: "#24131a",
+        accent: "#f04f78",
+      },
+    },
+    {
+      number: "06",
+      title: t("showcase.braille.title"),
+      description: t("showcase.braille.description"),
+      discipline: t("showcase.braille.discipline"),
+      year: `2025 — ${t("showcase.terms.hackathon")}`,
+      technologies: [
+        "C# / WPF",
+        "Micro:bit",
+        "Python",
+        t("showcase.terms.printing3d"),
+      ],
+      link: "https://github.com/danicek555/PomuckaBraille-Hackathon2025",
+      image: "/work/braille-project.jpg",
+      secondaryImage: "/work/braille-presentation.jpg",
+      imageClassName: "max-w-[58rem]",
+      layout: "wide",
+      presentation: "photo-pair",
+      palette: {
+        background: "#fbfaef",
+        foreground: "#17180f",
+        accent: "#a6ad00",
+      },
+    },
+    {
+      number: "07",
+      title: t("showcase.autobot.title"),
+      description: t("showcase.autobot.description"),
+      discipline: t("showcase.autobot.discipline"),
+      year: `2024 — ${t("showcase.terms.system")}`,
+      technologies: [
+        "Node.js",
+        "Puppeteer",
+        t("showcase.terms.automation"),
+        t("showcase.terms.data"),
+      ],
+      link: "https://github.com/danicek555/Auto-Kupovani-Listku",
+      image: "/macbook_autobot.png",
+      imageClassName: "max-w-[78rem]",
+      emphasizedImage: true,
+      layout: "wide",
+      presentation: "mockup",
+      palette: {
+        background: "#f7faf4",
+        foreground: "#11120d",
+        accent: "#4d7c0f",
+      },
+    },
+  ];
 
   return (
     <section
       id="work"
       className={clsx(
-        "py-16 px-8 transition-colors duration-300 overflow-x-hidden",
-        isDarkMode ? "bg-gray-900" : "bg-white"
+        "relative overflow-hidden px-4 py-24 transition-colors duration-300 sm:px-6 md:py-32 lg:px-10 lg:py-36",
+        isDarkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900",
       )}
     >
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-50"
+        style={{
+          backgroundImage:
+            isDarkMode
+              ? "radial-gradient(circle at 20% 8%, rgba(74,222,128,.07), transparent 25%)"
+              : "radial-gradient(circle at 50% 0%, rgba(74,222,128,.055), transparent 28%)",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-7xl">
+        <motion.header
+          className="mx-auto mb-14 max-w-4xl text-center md:mb-20"
+          initial={{ opacity: 0, y: reducedMotion ? 0 : 36 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.8, ease: EASE }}
         >
-          <motion.h3
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-green-500 text-sm font-semibold uppercase tracking-wider mb-4"
-          >
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-green-50 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-green-600 dark:bg-green-500/10 dark:text-green-400">
+            <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
             {t("badge")}
-          </motion.h3>
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
+          </div>
+
+          <h2 className="font-[var(--font-montserrat)] text-4xl font-bold tracking-[-0.045em] sm:text-5xl md:text-6xl">
+            {t("title")}
+          </h2>
+          <p
             className={clsx(
-              "text-4xl md:text-5xl font-bold mb-8 transition-colors duration-300",
-              isDarkMode ? "text-white" : "text-gray-800"
+              "mx-auto mt-6 max-w-2xl text-base leading-relaxed md:text-lg",
+              isDarkMode ? "text-gray-300" : "text-gray-600",
             )}
           >
-            {t("title")}
-          </motion.h2>
-        </motion.div>
+            {t("showcase.statementLead")} {t("showcase.statementAccent")}{" "}
+            {t("showcase.intro")}
+          </p>
+          <div
+            className={clsx(
+              "mt-7 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em]",
+              isDarkMode ? "text-gray-300" : "text-gray-600",
+            )}
+          >
+            <span className="h-2 w-2 rounded-full bg-green-500 shadow-[0_0_14px_rgba(34,197,94,.5)]" />
+            {t("showcase.availability")}
+          </div>
+        </motion.header>
+
+        <div className="grid gap-5 md:gap-7 lg:grid-cols-2">
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.number}
+              project={project}
+              openLabel={t("showcase.openProject")}
+              reducedMotion={reducedMotion}
+              isDarkMode={isDarkMode}
+            />
+          ))}
+        </div>
 
         <motion.div
-          variants={staggerContainer}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.05 }}
-          className="grid gap-8 md:gap-12"
+          className={clsx(
+            "mt-14 grid gap-6 border-b border-t py-7 font-mono text-[0.68rem] uppercase tracking-[0.16em] sm:grid-cols-3 md:mt-20 md:text-xs",
+            isDarkMode
+              ? "border-white/15 text-gray-400"
+              : "border-gray-200 text-gray-500",
+          )}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: EASE }}
         >
-          {projects.map((project, i) => (
-            <motion.div key={i} variants={fadeInUp}>
-              {project.featured ? (
-                // Featured Project Design
-                <motion.a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block group cursor-pointer"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                    className={clsx(
-                      "rounded-3xl p-3 md:p-6 lg:p-12 transition-all duration-500 relative",
-                      isDarkMode
-                        ? "bg-gray-800 group-hover:bg-gray-700"
-                        : "bg-gray-100 group-hover:bg-gray-150"
-                    )}
-                  >
-                    {/* Question Mark Help Icon for this project */}
-                    <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 z-10 hidden md:block">
-                      <div className="relative">
-                        {/* Tooltip */}
-                        {hoveredProjectIndex === i && (
-                          <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className={clsx(
-                              "absolute bottom-12 right-0 w-72 p-4 rounded-xl shadow-2xl border backdrop-blur-sm",
-                              isDarkMode
-                                ? "bg-gray-800/95 border-gray-600 text-white"
-                                : "bg-white/95 border-gray-200 text-gray-800"
-                            )}
-                          >
-                            <div className="text-sm font-medium leading-relaxed">
-                              {getProjectTip(i)}
-                            </div>
-                            {/* Arrow pointing down */}
-                            <div
-                              className={clsx(
-                                "absolute top-full right-6 w-0 h-0 border-l-4 border-r-4 border-t-4",
-                                isDarkMode
-                                  ? "border-l-transparent border-r-transparent border-t-gray-800/95"
-                                  : "border-l-transparent border-r-transparent border-t-white/95"
-                              )}
-                            />
-                          </motion.div>
-                        )}
-
-                        {/* Question Mark Icon */}
-                        <motion.button
-                          onMouseEnter={() => handleMouseEnter(i)}
-                          onMouseLeave={handleMouseLeave}
-                          whileHover={{ scale: 1.2, rotate: 10 }}
-                          whileTap={{ scale: 0.9 }}
-                          transition={{
-                            type: "spring",
-                            stiffness: 300,
-                            damping: 20,
-                          }}
-                          className="text-green-500 hover:text-green-400"
-                          aria-label="Helpful tips about this project"
-                        >
-                          <svg
-                            className="w-5 h-5 md:w-6 md:h-6"
-                            fill="currentColor"
-                            viewBox="0 0 512 512"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path d="M396.138,85.295c-13.172-25.037-33.795-45.898-59.342-61.03C311.26,9.2,280.435,0.001,246.98,0.001 c-41.238-0.102-75.5,10.642-101.359,25.521c-25.962,14.826-37.156,32.088-37.156,32.088c-4.363,3.786-6.824,9.294-6.721,15.056 c0.118,5.77,2.775,11.186,7.273,14.784l35.933,28.78c7.324,5.864,17.806,5.644,24.875-0.518c0,0,4.414-7.978,18.247-15.88 c13.91-7.85,31.945-14.173,58.908-14.258c23.517-0.051,44.022,8.725,58.016,20.717c6.952,5.941,12.145,12.594,15.328,18.68 c3.208,6.136,4.379,11.5,4.363,15.574c-0.068,13.766-2.742,22.77-6.603,30.442c-2.945,5.729-6.789,10.813-11.738,15.744 c-7.384,7.384-17.398,14.207-28.634,20.479c-11.245,6.348-23.365,11.932-35.612,18.68c-13.978,7.74-28.77,18.858-39.701,35.544 c-5.449,8.249-9.71,17.686-12.416,27.641c-2.742,9.964-3.98,20.412-3.98,31.071c0,11.372,0,20.708,0,20.708 c0,10.719,8.69,19.41,19.41,19.41h46.762c10.719,0,19.41-8.691,19.41-19.41c0,0,0-9.336,0-20.708c0-4.107,0.467-6.755,0.917-8.436 c0.773-2.512,1.206-3.14,2.47-4.668c1.29-1.452,3.895-3.674,8.698-6.331c7.019-3.946,18.298-9.276,31.07-16.176 c19.121-10.456,42.367-24.646,61.972-48.062c9.752-11.686,18.374-25.758,24.323-41.968c6.001-16.21,9.242-34.431,9.226-53.96 C410.243,120.761,404.879,101.971,396.138,85.295z" />
-                            <path d="M228.809,406.44c-29.152,0-52.788,23.644-52.788,52.788c0,29.136,23.637,52.772,52.788,52.772 c29.136,0,52.763-23.636,52.763-52.772C281.572,430.084,257.945,406.44,228.809,406.44z" />
-                          </svg>
-                        </motion.button>
-                      </div>
-                    </div>
-                    <div className="flex flex-col lg:flex-row items-center gap-4 md:gap-8 lg:gap-12">
-                      {/* Project Info */}
-                      <motion.div
-                        variants={slideInLeft}
-                        initial="initial"
-                        whileInView="animate"
-                        viewport={{ once: true }}
-                        className="flex-1 text-center lg:text-left"
-                      >
-                        <h3
-                          className={clsx(
-                            "text-2xl md:text-3xl lg:text-5xl font-bold mb-3 md:mb-5 transition-colors duration-300",
-                            isDarkMode ? "text-white" : "text-gray-900"
-                          )}
-                        >
-                          {project.title}
-                        </h3>
-                        <p
-                          className={clsx(
-                            "text-sm md:text-base lg:text-xl mb-4 md:mb-6 leading-relaxed max-w-2xl transition-colors duration-300",
-                            isDarkMode ? "text-gray-300" : "text-gray-600"
-                          )}
-                        >
-                          {project.description}
-                        </p>
-
-                        {/* Technology Tags */}
-                        <motion.div
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          transition={{ delay: 0.4, duration: 0.6 }}
-                          viewport={{ once: true }}
-                          className="flex flex-wrap justify-center lg:justify-start gap-2 md:gap-3 mb-4 md:mb-6"
-                        >
-                          {project.technologies.map((tech, index) => (
-                            <motion.span
-                              key={index}
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              whileInView={{ opacity: 1, scale: 1 }}
-                              transition={{
-                                delay: 0.5 + index * 0.1,
-                                duration: 0.4,
-                              }}
-                              viewport={{ once: true }}
-                              className={clsx(
-                                "px-3 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium transition-colors duration-200 cursor-pointer",
-                                isDarkMode
-                                  ? "bg-gray-600 text-gray-100 hover:bg-gray-500"
-                                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                              )}
-                            >
-                              {tech}
-                            </motion.span>
-                          ))}
-                        </motion.div>
-
-                        <motion.div
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          whileHover={{
-                            x: 4,
-                            y: -2,
-                            transition: {
-                              type: "spring",
-                              stiffness: 600,
-                              damping: 25,
-                              duration: 0.2,
-                            },
-                          }}
-                          transition={{
-                            delay: 0,
-                            duration: 0.2,
-                            type: "spring",
-                            stiffness: 600,
-                            damping: 25,
-                          }}
-                          className="inline-flex items-center text-green-600 font-semibold text-base md:text-lg hover:text-green-700"
-                        >
-                          {t("visitWebsite")}
-                          <motion.svg
-                            className="w-4 h-4 md:w-5 md:h-5 ml-2"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                            />
-                          </motion.svg>
-                        </motion.div>
-                      </motion.div>
-
-                      {/* MacBook Image */}
-                      <motion.div
-                        variants={slideInRight}
-                        initial="initial"
-                        whileInView="animate"
-                        viewport={{ once: true }}
-                        className="flex-1 max-w-2xl"
-                      >
-                        <motion.div
-                          whileHover={{
-                            scale: 1.05,
-                            rotateY: 5,
-                            rotateX: 5,
-                          }}
-                          transition={{ duration: 0.4 }}
-                          className="relative"
-                        >
-                          <Image
-                            src={project.img}
-                            alt={project.title}
-                            width={800}
-                            height={500}
-                            className="w-full h-auto object-contain drop-shadow-2xl"
-                            priority
-                          />
-                        </motion.div>
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                </motion.a>
-              ) : (
-                // Regular Project Card for future projects
-                <motion.div
-                  whileHover={{
-                    y: -8,
-                    scale: 1.02,
-                    transition: { duration: 0.3 },
-                  }}
-                  className={clsx(
-                    "rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform border relative",
-                    isDarkMode
-                      ? "bg-gray-800 border-gray-700"
-                      : "bg-white border-gray-100"
-                  )}
-                >
-                  {/* Question Mark Help Icon for this project */}
-                  <div className="absolute bottom-3 right-3 z-10 hidden md:block">
-                    <div className="relative">
-                      {/* Tooltip */}
-                      {hoveredProjectIndex === i && (
-                        <motion.div
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          className={clsx(
-                            "absolute bottom-10 right-0 w-64 p-3 rounded-xl shadow-2xl border backdrop-blur-sm",
-                            isDarkMode
-                              ? "bg-gray-800/95 border-gray-600 text-white"
-                              : "bg-white/95 border-gray-200 text-gray-800"
-                          )}
-                        >
-                          <div className="text-xs font-medium leading-relaxed">
-                            {getProjectTip(i)}
-                          </div>
-                          {/* Arrow pointing down */}
-                          <div
-                            className={clsx(
-                              "absolute top-full right-4 w-0 h-0 border-l-3 border-r-3 border-t-3",
-                              isDarkMode
-                                ? "border-l-transparent border-r-transparent border-t-gray-800/95"
-                                : "border-l-transparent border-r-transparent border-t-white/95"
-                            )}
-                          />
-                        </motion.div>
-                      )}
-
-                      {/* Question Mark Icon */}
-                      <motion.button
-                        onMouseEnter={() => handleMouseEnter(i)}
-                        onMouseLeave={handleMouseLeave}
-                        whileHover={{ scale: 1.2, rotate: 10 }}
-                        whileTap={{ scale: 0.9 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 20,
-                        }}
-                        className="text-green-500 hover:text-green-400"
-                        aria-label="Helpful tips about this project"
-                      >
-                        <svg
-                          className="w-4 h-4"
-                          fill="currentColor"
-                          viewBox="0 0 512 512"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M396.138,85.295c-13.172-25.037-33.795-45.898-59.342-61.03C311.26,9.2,280.435,0.001,246.98,0.001 c-41.238-0.102-75.5,10.642-101.359,25.521c-25.962,14.826-37.156,32.088-37.156,32.088c-4.363,3.786-6.824,9.294-6.721,15.056 c0.118,5.77,2.775,11.186,7.273,14.784l35.933,28.78c7.324,5.864,17.806,5.644,24.875-0.518c0,0,4.414-7.978,18.247-15.88 c13.91-7.85,31.945-14.173,58.908-14.258c23.517-0.051,44.022,8.725,58.016,20.717c6.952,5.941,12.145,12.594,15.328,18.68 c3.208,6.136,4.379,11.5,4.363,15.574c-0.068,13.766-2.742,22.77-6.603,30.442c-2.945,5.729-6.789,10.813-11.738,15.744 c-7.384,7.384-17.398,14.207-28.634,20.479c-11.245,6.348-23.365,11.932-35.612,18.68c-13.978,7.74-28.77,18.858-39.701,35.544 c-5.449,8.249-9.71,17.686-12.416,27.641c-2.742,9.964-3.98,20.412-3.98,31.071c0,11.372,0,20.708,0,20.708 c0,10.719,8.69,19.41,19.41,19.41h46.762c10.719,0,19.41-8.691,19.41-19.41c0,0,0-9.336,0-20.708c0-4.107,0.467-6.755,0.917-8.436 c0.773-2.512,1.206-3.14,2.47-4.668c1.29-1.452,3.895-3.674,8.698-6.331c7.019-3.946,18.298-9.276,31.07-16.176 c19.121-10.456,42.367-24.646,61.972-48.062c9.752-11.686,18.374-25.758,24.323-41.968c6.001-16.21,9.242-34.431,9.226-53.96 C410.243,120.761,404.879,101.971,396.138,85.295z" />
-                          <path d="M228.809,406.44c-29.152,0-52.788,23.644-52.788,52.788c0,29.136,23.637,52.772,52.788,52.772 c29.136,0,52.763-23.636,52.763-52.772C281.572,430.084,257.945,406.44,228.809,406.44z" />
-                        </svg>
-                      </motion.button>
-                    </div>
-                  </div>
-                  <div className="relative h-64 md:h-80 overflow-hidden">
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.4 }}
-                    >
-                      <Image
-                        src={project.img}
-                        alt={project.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </motion.div>
-                  </div>
-                  <div className="p-6">
-                    <div className="flex flex-wrap gap-2 mb-3">
-                      {project.technologies.map((tech, index) => (
-                        <motion.span
-                          key={index}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: index * 0.1, duration: 0.3 }}
-                          viewport={{ once: true }}
-                          className={clsx(
-                            "px-2 py-1 rounded text-xs font-medium transition-colors duration-200 cursor-pointer",
-                            isDarkMode
-                              ? "bg-gray-600 text-gray-100 hover:bg-gray-500"
-                              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                          )}
-                        >
-                          {tech}
-                        </motion.span>
-                      ))}
-                    </div>
-                    <h3
-                      className={clsx(
-                        "text-xl font-bold mb-3 transition-colors duration-300",
-                        isDarkMode ? "text-white" : "text-gray-800"
-                      )}
-                    >
-                      {project.title}
-                    </h3>
-                    <p
-                      className={clsx(
-                        "mb-4 leading-relaxed transition-colors duration-300",
-                        isDarkMode ? "text-gray-300" : "text-gray-600"
-                      )}
-                    >
-                      {project.description}
-                    </p>
-                    <motion.div
-                      whileHover={{ x: 4 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 20,
-                      }}
-                    >
-                      {project.type === "internal" ? (
-                        <Link
-                          href={project.link}
-                          className="text-green-500 hover:text-green-600 font-medium inline-flex items-center"
-                        >
-                          {t("viewProject")}
-                        </Link>
-                      ) : (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-green-500 hover:text-green-600 font-medium inline-flex items-center"
-                        >
-                          {t("viewProject")}
-                        </a>
-                      )}
-                    </motion.div>
-                  </div>
-                </motion.div>
-              )}
-            </motion.div>
-          ))}
+          <span>01 / {t("showcase.capabilityOne")}</span>
+          <span>02 / {t("showcase.capabilityTwo")}</span>
+          <span>03 / {t("showcase.capabilityThree")}</span>
         </motion.div>
       </div>
     </section>

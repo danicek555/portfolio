@@ -109,6 +109,81 @@
     "title": "Moje nedávné práce",
     "visitWebsite": "Navštívit web",
     "viewProject": "Zobrazit projekt ",
+    "showcase": {
+      "eyebrow": "Vybraná digitální práce / 2024—2025",
+      "count": "07 případových studií",
+      "statementLead": "Navrhuji rozhraní.",
+      "statementAccent": "Stavím celý zážitek.",
+      "intro": "Vybrané produkty dotažené od prvního layoutu po poslední řádek kódu—srozumitelné, užitečné a vytvořené se záměrem.",
+      "availability": "Otevřený ambiciózním projektům",
+      "openProject": "Otevřít projekt",
+      "capabilityOne": "Vizuální směřování",
+      "capabilityTwo": "Systémy rozhraní",
+      "capabilityThree": "Full-stack vývoj",
+      "terms": {
+        "web": "Web",
+        "website": "Web",
+        "product": "Produkt",
+        "dataApp": "Datová aplikace",
+        "app3d": "3D aplikace",
+        "hackathon": "Hackathon",
+        "system": "Systém",
+        "productDesign": "Produktový design",
+        "landingPage": "Vstupní stránka",
+        "responsiveDesign": "Responzivní design",
+        "dashboard": "Přehled",
+        "aiWorkflow": "AI procesy",
+        "authentication": "Přihlašování",
+        "dataInterface": "Datové rozhraní",
+        "search": "Vyhledávání",
+        "filters": "Filtry",
+        "bilingual": "Dvojjazyčné",
+        "globe3d": "3D glóbus",
+        "travelSets": "Cestovní sady",
+        "photos": "Fotografie",
+        "printing3d": "3D tisk",
+        "automation": "Automatizace",
+        "data": "Data"
+      },
+      "strunzova": {
+        "discipline": "Hotelnictví / Webdesign",
+        "description": "Klidný web zaměřený na konverze, který mění složitý výběr pobytu v přehlednou cestu k rezervaci. Kompletní návrh i vývoj."
+      },
+      "duocards": {
+        "discipline": "EdTech / Full-stack produkt",
+        "description": "Soustředěný vzdělávací produkt vytvořený od databáze po rozhraní, s bezpečnými účty, e-mailovými procesy a UI pro každodenní používání."
+      },
+      "duocardsLanding": {
+        "title": "DuoCards Web",
+        "discipline": "EdTech / Produktový web",
+        "description": "Veřejná prezentace DuoCards, která srozumitelně představuje AI kartičky a princip celého učení."
+      },
+      "duocardsApp": {
+        "title": "DuoCards Aplikace",
+        "discipline": "EdTech / Webová aplikace",
+        "description": "Přehledné prostředí pro tvorbu, objevování a procvičování vícejazyčných sad kartiček s nástroji podporovanými AI."
+      },
+      "clubRecords": {
+        "title": "Rekordy Motorletu",
+        "discipline": "Plavání / Datová aplikace",
+        "description": "Vyhledávatelný dvojjazyčný přehled rekordů SK MOP podle bazénu, disciplíny, kategorie a plavce."
+      },
+      "travelGlobe": {
+        "title": "Můj cestovatelský glóbus",
+        "discipline": "Cestování / Interaktivní 3D",
+        "description": "Interaktivní glóbus pro ukládání navštívených míst a fotografií do osobních cestovatelských sad."
+      },
+      "braille": {
+        "title": "Pomůcka Braille",
+        "discipline": "Přístupnost / Hardware a software",
+        "description": "Hmatová výuková pomůcka vytvořená během hackathonu, která propojuje Micro:bit, vlastní 3D tištěný hardware a desktopovou aplikaci v C# pro přístupnější procvičování Braillova písma."
+      },
+      "autobot": {
+        "title": "Ticket Autobot",
+        "discipline": "Automatizace / Vývoj",
+        "description": "Specializovaný automatizační systém navržený pro sledování dostupnosti, zpracování živých dat a spolehlivé akce ve chvíli, kdy rozhoduje čas."
+      }
+    },
     "projectTips": [
       [
         "🏢 Profesionální web pro Strunzova Pila představující služby apartmánů s moderním designem a uživatelsky přívětivým rozhraním.",
@@ -149,7 +224,7 @@
         "description": "Bot, který automaticky nakupuje lístky na Ticketportal pro konkrétní událost s konkrétními vyhledávacími parametry."
       },
       {
-        "title": "Duocards Web Aplikace",
+        "title": "DuoCards",
         "description": "Web pro naučení nových slov a frází s flashcards."
       }
     ]
