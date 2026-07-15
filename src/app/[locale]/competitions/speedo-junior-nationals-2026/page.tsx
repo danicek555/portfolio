@@ -1,17 +1,31 @@
 import type { Metadata } from "next";
 import MeetSummaryClient from "../../../../components/MeetSummaryClient";
+import { buildMeetMetadata } from "../../../../lib/meetSeo";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
 
-export const metadata: Metadata = {
-  title: "Speedo Junior National Championships 2026 - Daniel Mitka",
-  description:
-    "Upcoming 2026 Speedo Junior National Championships in Irvine, California — August 3–7, 2026.",
-  alternates: {
-    canonical: `${siteUrl}/competitions/speedo-junior-nationals-2026`,
-  },
-};
+  return buildMeetMetadata({
+    locale,
+    slug: "speedo-junior-nationals-2026",
+    title: "Speedo Junior National Championships 2026 — Daniel Mitka",
+    description:
+      "Daniel Mitka's upcoming appearance at the Speedo Junior National Championships in Irvine, California, August 3–7, 2026.",
+    keywords: [
+      "Daniel Mitka",
+      "Speedo Junior Nationals 2026",
+      "USA Swimming",
+      "Irvine swimming",
+      "Junior Nationals",
+      "long course swimming",
+    ],
+    image: "/sectionals2026/pre-race.jpg",
+  });
+}
 
 export default async function SpeedoJuniorNationals2026Page({
   params,

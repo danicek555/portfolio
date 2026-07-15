@@ -9,14 +9,39 @@ import BlogListClient from "./BlogListClient";
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
 
-export const metadata: Metadata = {
-  title: "Blog - Daniel Mitka",
-  description:
-    "Personal stories, USA experiences, and thoughts from training and life.",
-  alternates: {
-    canonical: `${siteUrl}/blog`,
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const cs = locale === "cs";
+  const title = cs ? "Blog Daniela Mitky" : "Daniel Mitka's Blog";
+  const description = cs
+    ? "Osobní příběhy Daniela Mitky o životě v USA, plaveckém tréninku, závodech a programování."
+    : "Daniel Mitka's personal stories about life in the USA, swimming, competitions, and software development.";
+  const canonical = `${siteUrl}/${locale}/blog`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+      languages: {
+        cs: `${siteUrl}/cs/blog`,
+        en: `${siteUrl}/en/blog`,
+        "x-default": `${siteUrl}/en/blog`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      locale: cs ? "cs_CZ" : "en_US",
+      type: "website",
+    },
+  };
+}
 
 export default async function BlogIndex({
   params,

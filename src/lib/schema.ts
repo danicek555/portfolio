@@ -2,8 +2,11 @@
 
 export interface PersonSchema {
   "@context": "https://schema.org";
+  "@id": string;
   "@type": "Person";
   name: string;
+  alternateName?: string[];
+  identifier?: string;
   url: string;
   image: string;
   description: string;
@@ -87,11 +90,6 @@ export interface WebSiteSchema {
   description: string;
   publisher: PersonSchema;
   inLanguage: string[];
-  potentialAction?: {
-    "@type": "SearchAction";
-    target: string;
-    "query-input": string;
-  };
 }
 
 // Environment variables for consistent data
@@ -106,7 +104,15 @@ const getBaseData = () => ({
   instagramProfile:
     process.env.NEXT_PUBLIC_INSTAGRAM_PROFILE ||
     "https://www.instagram.com/dan_mitka",
-  swimcloudProfile: "https://www.swimcloud.com/swimmer/1828936/",
+  githubProfile:
+    process.env.NEXT_PUBLIC_GITHUB_PROFILE ||
+    "https://github.com/danicek555",
+  linkedinProfile:
+    process.env.NEXT_PUBLIC_LINKEDIN_PROFILE ||
+    "https://www.linkedin.com/in/daniel-mitka-b90595215/",
+  swimcloudProfile:
+    process.env.NEXT_PUBLIC_SWIMCLOUD_PROFILE ||
+    "https://www.swimcloud.com/swimmer/1828936/",
 });
 
 // Enhanced localized data with more SEO keywords
@@ -275,6 +281,8 @@ export function generatePersonSchema(locale: string = "en"): PersonSchema {
     twitterHandle,
     facebookProfile,
     instagramProfile,
+    githubProfile,
+    linkedinProfile,
     swimcloudProfile,
   } = getBaseData();
   const localizedData = getLocalizedData(locale);
@@ -298,8 +306,11 @@ export function generatePersonSchema(locale: string = "en"): PersonSchema {
 
   return {
     "@context": "https://schema.org",
+    "@id": `${siteUrl}/#daniel-mitka`,
     "@type": "Person",
     name: authorName,
+    alternateName: ["dan_mitka", "danicek555"],
+    identifier: "daniel-mitka",
     url: siteUrl,
     image: `${siteUrl}/profilovaFotka.jpg`,
     description: localizedData.description,
@@ -314,9 +325,9 @@ export function generatePersonSchema(locale: string = "en"): PersonSchema {
         : twitterHandle,
       facebookProfile,
       instagramProfile,
+      githubProfile,
+      linkedinProfile,
       swimcloudProfile,
-      `${siteUrl}/cs`,
-      `${siteUrl}/en`,
     ],
     knowsAbout: localizedData.knowsAbout,
     memberOf: [
@@ -367,11 +378,6 @@ export function generateWebSiteSchema(locale: string = "en"): WebSiteSchema {
       descriptions[locale as keyof typeof descriptions] || descriptions.en,
     publisher: generatePersonSchema(locale),
     inLanguage: ["en", "cs"],
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${siteUrl}/search?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
   };
 }
 

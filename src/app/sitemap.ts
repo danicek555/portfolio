@@ -5,8 +5,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL || "https://www.danielmitka.com";
 
-  // Get current date for lastModified
-  const currentDate = new Date();
+  // Keep these dates tied to real content changes. Using `new Date()` here
+  // would incorrectly tell crawlers that every URL changes on every request.
+  const homeLastModified = new Date("2026-07-15T00:00:00.000Z");
+  const latestBlogDate = new Date(
+    Math.max(...blogPosts.map((post) => new Date(post.date).getTime())),
+  );
 
   // Define competition page slugs that exist in the app
   const competitions = [
@@ -14,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "czech-open-nationals-2026",
     "praha-2026",
     "czech-junior-nationals-2026",
+    "speedo-junior-nationals-2026",
     "speedo-sectionals-2026",
     "colorado-senior-meet-2026",
     "colorado-open-2026",
@@ -27,6 +32,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "slovakia-cup-2024",
     "lifesaving-worlds-australia",
   ];
+
+  const competitionLastModified: Record<string, string> = {
+    "czech-open-nationals-2026": "2026-06-28",
+    "praha-2026": "2026-06-14",
+    "czech-junior-nationals-2026": "2026-05-31",
+    "speedo-junior-nationals-2026": "2026-07-15",
+    "speedo-sectionals-2026": "2026-03-29",
+    "colorado-senior-meet-2026": "2026-02-22",
+    "colorado-open-2026": "2026-01-25",
+    "pioneer-open-2026": "2025-12-07",
+    "invitational-2026": "2025-11-09",
+    "team-championship-finals-2025": "2025-03-23",
+    "czech-open-nationals-2025": "2025-05-18",
+    "czech-junior-nationals-2025": "2025-06-15",
+    "czech-youth-nationals-2024": "2024-05-26",
+    "slovakia-cup-2024": "2024-10-27",
+    "lifesaving-worlds-australia": "2024-08-11",
+  };
 
   // Primary image per competition, surfaced to Google via <image:image> so the
   // photos can be indexed for Google Images (raw /public paths, not the
@@ -55,11 +78,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: "",
       priority: 1.0,
       changeFrequency: "weekly" as const,
+      lastModified: homeLastModified,
     },
     {
       url: "/blog",
       priority: 0.8,
       changeFrequency: "weekly" as const,
+      lastModified: latestBlogDate,
     },
   ];
 
@@ -70,7 +95,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // English version
     sitemap.push({
       url: `${baseUrl}/en${page.url}`,
-      lastModified: currentDate,
+      lastModified: page.lastModified,
       changeFrequency: page.changeFrequency,
       priority: page.priority,
       images:
@@ -86,7 +111,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Czech version
     sitemap.push({
       url: `${baseUrl}/cs${page.url}`,
-      lastModified: currentDate,
+      lastModified: page.lastModified,
       changeFrequency: page.changeFrequency,
       priority: page.priority,
       images:
@@ -102,10 +127,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Add competition pages for both languages
   competitions.forEach((competition) => {
+    const lastModified = new Date(
+      `${competitionLastModified[competition]}T00:00:00.000Z`,
+    );
+
     // English version
     sitemap.push({
       url: `${baseUrl}/en/competitions/${competition}`,
-      lastModified: currentDate,
+      lastModified,
       changeFrequency: "monthly",
       priority: 0.7,
       images: competitionImages[competition]
@@ -122,7 +151,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Czech version
     sitemap.push({
       url: `${baseUrl}/cs/competitions/${competition}`,
-      lastModified: currentDate,
+      lastModified,
       changeFrequency: "monthly",
       priority: 0.7,
       images: competitionImages[competition]
@@ -142,7 +171,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // English version
     sitemap.push({
       url: `${baseUrl}/en/blog/${post.slug}`,
-      lastModified: currentDate,
+      lastModified: new Date(post.date),
       changeFrequency: "weekly",
       priority: 0.6,
       alternates: {
@@ -156,7 +185,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Czech version
     sitemap.push({
       url: `${baseUrl}/cs/blog/${post.slug}`,
-      lastModified: currentDate,
+      lastModified: new Date(post.date),
       changeFrequency: "weekly",
       priority: 0.6,
       alternates: {

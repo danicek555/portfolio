@@ -19,17 +19,25 @@ export async function generateMetadata({
   const posts = blogPostsByLocale[locale] ?? blogPostsByLocale["en"];
   const post = posts.find((p) => p.slug === slug);
   if (!post) return {};
+  const canonical = `${siteUrl}/${locale}/blog/${post.slug}`;
   return {
     title: `${post.title} - Blog - Daniel Mitka`,
     description: post.excerpt,
     alternates: {
-      canonical: `${siteUrl}/blog/${post.slug}`,
+      canonical,
+      languages: {
+        cs: `${siteUrl}/cs/blog/${post.slug}`,
+        en: `${siteUrl}/en/blog/${post.slug}`,
+        "x-default": `${siteUrl}/en/blog/${post.slug}`,
+      },
     },
     openGraph: {
       title: `${post.title} - Blog - Daniel Mitka`,
       description: post.excerpt,
-      url: `${siteUrl}/blog/${post.slug}`,
+      url: canonical,
       type: "article",
+      locale: locale === "cs" ? "cs_CZ" : "en_US",
+      publishedTime: post.date,
     },
   };
 }

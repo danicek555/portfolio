@@ -76,7 +76,7 @@ export default function GlobalNotFound() {
         name: "Return Home",
       },
       {
-        "@type": "SearchAction",
+        "@type": "ViewAction",
         target: `${siteUrl}/${locale}/#competitions`,
         name: "View Competitions",
       },

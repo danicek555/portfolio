@@ -57,32 +57,37 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const cs = locale === "cs";
+  const title = cs
+    ? "Daniel Mitka – český plavec a full-stack vývojář"
+    : "Daniel Mitka – Czech Swimmer & Full-Stack Developer";
+  const description = cs
+    ? "Oficiální portfolio Daniela Mitky, českého juniorského mistra v plavání, medailisty ze světového šampionátu v záchranářství a full-stack vývojáře."
+    : "Official portfolio of Daniel Mitka, Czech youth swimming champion, lifesaving world championship medalist, and full-stack developer.";
 
   return {
-    title: "Daniel Mitka - Czech Swimming Champion & Developer Portfolio",
-    description:
-      "Official portfolio of Daniel Mitka - Czech Youth Swimming Champion, lifesaving medalist, and full-stack developer. Explore my swimming achievements, competition highlights, and development projects.",
+    title,
+    description,
 
-    keywords: [
-      "Daniel Mitka portfolio",
-      "Czech swimming champion",
-      "youth swimming athlete",
-      "competitive swimmer Czech Republic",
-      "lifesaving medalist",
-      "swimming competitions Australia",
-      "Slovakia Cup swimming",
-      "Plzen swimming",
-      "Ostrava swimming",
-      "Samorin swimming",
-      "Podoli swimming",
-      "swimming athlete portfolio",
-      "sports achievements",
-      "full-stack developer",
-      "web developer portfolio",
-      "swimming and technology",
-      "Czech Republic athlete",
-      "competitive swimming portfolio",
-    ],
+    keywords: cs
+      ? [
+          "Daniel Mitka",
+          "český plavec",
+          "český mistr v plavání",
+          "SK Motorlet Praha",
+          "záchranářský sport",
+          "full-stack vývojář",
+          "Daniel Mitka výsledky",
+        ]
+      : [
+          "Daniel Mitka",
+          "Czech swimmer",
+          "Czech swimming champion",
+          "SK Motorlet Praha",
+          "lifesaving medalist",
+          "full-stack developer",
+          "Daniel Mitka results",
+        ],
 
     authors: [{ name: authorName }],
     creator: authorName,
@@ -101,9 +106,8 @@ export async function generateMetadata({
     },
 
     openGraph: {
-      title: "Daniel Mitka - Czech Swimming Champion & Developer",
-      description:
-        "Czech Youth Swimming Champion & lifesaving medalist. Competitive swimmer with international experience. Full-stack developer passionate about technology and sports.",
+      title,
+      description,
       url: `${siteUrl}/${locale}`,
       siteName: siteName,
       images: [
@@ -121,9 +125,8 @@ export async function generateMetadata({
 
     twitter: {
       card: "summary_large_image",
-      title: "Daniel Mitka - Czech Swimming Champion & Developer",
-      description:
-        "Czech Youth Swimming Champion & lifesaving medalist. Competitive swimmer with international experience. Full-stack developer.",
+      title,
+      description,
       images: [`${siteUrl}/og-cover.png`],
       creator: process.env.NEXT_PUBLIC_TWITTER_HANDLE || "@MitkaDaniel",
     },
@@ -182,7 +185,7 @@ export default async function HomePage({
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.com",
+        item: `${siteUrl}/${locale}`,
       },
     ],
   };
@@ -190,14 +193,16 @@ export default async function HomePage({
   // Portfolio page schema
   const portfolioSchema = {
     "@context": "https://schema.org",
+    "@id": `${siteUrl}/${locale}#profile-page`,
     "@type": "ProfilePage",
+    dateModified: "2026-07-15",
     mainEntity: personSchema,
     about: personSchema,
     description:
       locale === "cs"
         ? "Oficiální portfolio Daniela Mitky předvádějící plavecké úspěchy, závodní vrcholy a vývojové projekty."
         : "Official portfolio showcasing Daniel Mitka's swimming achievements, competition highlights, and development projects.",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://danielmitka.com",
+    url: `${siteUrl}/${locale}`,
     inLanguage: locale === "cs" ? "cs-CZ" : "en-US",
   };
 
