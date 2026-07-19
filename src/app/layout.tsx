@@ -7,6 +7,7 @@ import {
   generateMultipleSchemas,
 } from "../lib/schema";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { CookiebotScrollGuard } from "../components/CookiebotScrollGuard";
 
 const siteUrl =
@@ -301,6 +302,7 @@ export default function RootLayout({
         <CookiebotScrollGuard />
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
