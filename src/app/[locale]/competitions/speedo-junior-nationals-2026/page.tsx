@@ -14,7 +14,7 @@ export async function generateMetadata({
     slug: "speedo-junior-nationals-2026",
     title: "Speedo Junior National Championships 2026 — Daniel Mitka",
     description:
-      "Daniel Mitka's upcoming appearance at the Speedo Junior National Championships in Irvine, California, August 3–7, 2026.",
+      "Daniel Mitka reached the C finals of the 200m freestyle and 200m individual medley at the 2026 Speedo Junior National Championships in Irvine, California.",
     keywords: [
       "Daniel Mitka",
       "Speedo Junior Nationals 2026",
@@ -23,7 +23,7 @@ export async function generateMetadata({
       "Junior Nationals",
       "long course swimming",
     ],
-    image: "/sectionals2026/pre-race.jpg",
+    image: "/juniors2026/woollett.jpg",
   });
 }
 
@@ -37,49 +37,63 @@ export default async function SpeedoJuniorNationals2026Page({
 
   return (
     <MeetSummaryClient
-      upcoming
       title={
         cs
           ? "Speedo Junior Nationals 2026"
           : "Speedo Junior National Championships 2026"
       }
-      subtitle={cs ? "Nadcházející závod" : "Upcoming Meet"}
+      subtitle={cs ? "Juniorské mistrovství USA" : "USA Swimming Junior Nationals"}
       location={cs ? "Irvine, Kalifornie, USA" : "Irvine, California, USA"}
       date={cs ? "3.–7. srpna 2026" : "August 3–7, 2026"}
-      image="/sectionals2026/pre-race.jpg"
+      image="/juniors2026/woollett.jpg"
       summary={
         cs
-          ? "Speedo Junior National Championships jsou vrcholným letním juniorským mítinkem USA Swimming na 50m bazénu. Daniel se připravuje na start v Irvine, kde se sjede nejsilnější juniorská konkurence v zemi."
-          : "The Speedo Junior National Championships are USA Swimming's premier long-course summer junior meet. Daniel is preparing to compete in Irvine, racing against the nation's top junior field."
+          ? "Daniel reprezentoval University of Denver Hilltoppers na vrcholném letním juniorském mistrovství USA Swimming v Irvine. V konkurenci nejlepších amerických juniorů postoupil do finále C na 200 m volný způsob i 200 m polohový závod a pomohl štafetě TOPS na 4×200 m volný způsob k 10. místu."
+          : "Daniel represented the University of Denver Hilltoppers at USA Swimming's premier long-course summer junior championship in Irvine. Racing the nation's top junior field, he advanced to the C finals of both the 200m freestyle and 200m individual medley and helped TOPS place 10th in the 4x200m freestyle relay."
       }
       highlights={
         cs
           ? [
-              "Oficiální juniorské mistrovství USA Swimming — long course 50m.",
-              "Místo: William Woollett Jr. Aquatics Center, Irvine, CA.",
-              "Formát: 5 dní závodů, rozplavby dopoledne a finále večer.",
+              "Dvě finále C: 200 m volný způsob a 200 m polohový závod.",
+              "10. místo štafety TOPS na 4×200 m volný způsob v čase 7:38.85.",
+              "Šest individuálních startů na 50m bazénu za University of Denver Hilltoppers.",
             ]
           : [
-              "Official USA Swimming junior national championship — long course 50m.",
-              "Venue: William Woollett Jr. Aquatics Center, Irvine, CA.",
-              "Format: 5 days of racing with morning heats and evening finals.",
+              "Two C-final appearances: 200m freestyle and 200m individual medley.",
+              "10th in the 4x200m freestyle relay with TOPS in 7:38.85.",
+              "Six individual long-course events for the University of Denver Hilltoppers.",
             ]
       }
       results={[
         {
-          event: cs ? "Status" : "Status",
-          time: cs ? "Nadcházející" : "Upcoming",
+          event: cs ? "200 m polohový závod" : "200m Individual Medley",
+          time: "2:06.11",
+          placement: cs ? "5. místo ve finále C · rozplavby 2:06.38" : "5th in C final · 2:06.38 heats",
         },
         {
-          event: cs ? "Organizátor" : "Organizer",
-          time: "USA Swimming",
+          event: cs ? "200 m volný způsob" : "200m Freestyle",
+          time: "1:53.27",
+          placement: cs ? "7. místo ve finále C · rozplavby 1:52.61" : "7th in C final · 1:52.61 heats",
         },
         {
-          event: cs ? "Tým" : "Team",
-          time: "University of Denver Hilltoppers",
+          event: cs ? "4×200 m volný způsob" : "4x200m Freestyle Relay",
+          time: "7:38.85",
+          placement: cs ? "10. místo · Danielův úsek 1:54.50" : "10th · Daniel split 1:54.50",
+        },
+        {
+          event: cs ? "100 m prsa" : "100m Breaststroke",
+          time: "1:04.70",
+        },
+        {
+          event: cs ? "50 m prsa" : "50m Breaststroke",
+          time: "29.90",
+        },
+        {
+          event: cs ? "100 m volný způsob" : "100m Freestyle",
+          time: "52.80",
         },
       ]}
-      sourceUrl="https://www.usaswimming.org/events"
+      sourceUrl="https://www.omegatiming.com/2026/speedo-junior-national-champs-live-results"
     />
   );
 }

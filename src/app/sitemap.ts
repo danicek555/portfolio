@@ -37,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "czech-open-nationals-2026": "2026-06-28",
     "praha-2026": "2026-06-14",
     "czech-junior-nationals-2026": "2026-05-31",
-    "speedo-junior-nationals-2026": "2026-07-15",
+    "speedo-junior-nationals-2026": "2026-08-07",
     "speedo-sectionals-2026": "2026-03-29",
     "colorado-senior-meet-2026": "2026-02-22",
     "colorado-open-2026": "2026-01-25",

@@ -75,9 +75,9 @@ const czechMeetMetadata: Record<
       "Daniel Mitka na Four Corners Speedo Sectionals 2026 v Carmel: sedm osobních rekordů, pět finále do osmého místa a tři limity na Junior Nationals.",
   },
   "speedo-junior-nationals-2026": {
-    title: "Speedo Junior Nationals 2026 — Daniel Mitka",
+    title: "Speedo Junior Nationals 2026 — Daniel Mitka | Dvě finále C",
     description:
-      "Nadcházející start Daniela Mitky na Speedo Junior National Championships v Irvine v Kalifornii ve dnech 3.–7. srpna 2026.",
+      "Daniel Mitka na Speedo Junior Nationals 2026 v Irvine: finále C na 200 m volný způsob a 200 m polohový závod a 10. místo ve štafetě 4×200 m TOPS.",
   },
   "team-championship-finals-2025": {
     title: "MČR družstev 2025 v Ostravě — Daniel Mitka",
