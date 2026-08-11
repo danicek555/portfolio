@@ -210,7 +210,7 @@ export default async function SpeedoJuniorNationals2026Page({
           {
             src: "/summerJuniors/final-night.jpg",
             caption: cs ? "Tým TOPS v Irvine" : "TOPS in Irvine",
-            objectPosition: "50% 0%",
+            objectPosition: "50% 42%",
           },
           {
             src: "/summerJuniors/poolside.jpg",

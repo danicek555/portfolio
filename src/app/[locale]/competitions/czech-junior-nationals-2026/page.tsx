@@ -198,7 +198,92 @@ export default async function CzechJuniorNationals2026Page({
             : "The pool in Ústí nad Labem during the championships",
         },
       ]}
-      videos={[]}
+      videos={[
+        {
+          type: "youtube",
+          id: "jPIshaAJ_Js",
+          title: cs
+            ? "200 m volný způsob — rozplavby · 1:56.69"
+            : "200m Freestyle — Heats · 1:56.69",
+        },
+        {
+          type: "youtube",
+          id: "OCidzb56T7s",
+          title: cs
+            ? "200 m volný způsob — finále · 1:55.31"
+            : "200m Freestyle — Final · 1:55.31",
+        },
+        {
+          type: "youtube",
+          id: "Yciz7T2Kn4Q",
+          title: cs
+            ? "200 m polohový závod — rozplavby · 2:06.02"
+            : "200m Individual Medley — Heats · 2:06.02",
+        },
+        {
+          type: "youtube",
+          id: "i14UYp1AQ_A",
+          title: cs
+            ? "200 m polohový závod — finále · 2:06.50"
+            : "200m Individual Medley — Final · 2:06.50",
+        },
+        {
+          type: "youtube",
+          id: "uLCH3kLe9I8",
+          title: cs
+            ? "100 m volný způsob — rozplavby · 52.53"
+            : "100m Freestyle — Heats · 52.53",
+        },
+        {
+          type: "youtube",
+          id: "SGIqMn2dZOo",
+          title: cs
+            ? "100 m volný způsob — finále · 52.68"
+            : "100m Freestyle — Final · 52.68",
+        },
+        {
+          type: "youtube",
+          id: "02jTnglCjjE",
+          title: cs
+            ? "100 m prsa — rozplavby · 1:06.99"
+            : "100m Breaststroke — Heats · 1:06.99",
+        },
+        {
+          type: "youtube",
+          id: "Ubkfy8-u4Pc",
+          title: cs
+            ? "100 m prsa — finále · 1:07.91"
+            : "100m Breaststroke — Final · 1:07.91",
+        },
+        {
+          type: "youtube",
+          id: "kCn50pwjSs4",
+          title: cs
+            ? "50 m prsa — rozplavby · 30.20"
+            : "50m Breaststroke — Heats · 30.20",
+        },
+        {
+          type: "youtube",
+          id: "yicmpyYzqhQ",
+          title: cs
+            ? "50 m prsa — finále · 30.85"
+            : "50m Breaststroke — Final · 30.85",
+        },
+        {
+          type: "youtube",
+          id: "GPlOMU7n3Sg",
+          title: cs
+            ? "50 m volný způsob — rozplavby · 24.37"
+            : "50m Freestyle — Heats · 24.37",
+        },
+        {
+          type: "youtube",
+          id: "m_yWsMSfbs8",
+          title: cs
+            ? "200 m prsa — rozplavby · 2:30.58"
+            : "200m Breaststroke — Heats · 2:30.58",
+        },
+      ]}
       links={[
         {
           label: cs ? "Výsledky na SwimCloud" : "Results on SwimCloud",
