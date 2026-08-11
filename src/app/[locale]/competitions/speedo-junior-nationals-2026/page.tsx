@@ -210,7 +210,7 @@ export default async function SpeedoJuniorNationals2026Page({
           {
             src: "/summerJuniors/final-night.jpg",
             caption: cs ? "Tým TOPS v Irvine" : "TOPS in Irvine",
-            contain: true,
+            objectPosition: "50% 0%",
           },
           {
             src: "/summerJuniors/poolside.jpg",
@@ -226,6 +226,20 @@ export default async function SpeedoJuniorNationals2026Page({
           },
         ]}
         videos={[
+          {
+            type: "youtube",
+            id: "JcnfONfOEWg",
+            title: cs
+              ? "200 m volný způsob — rozplavby · 1:52.61"
+              : "200m Freestyle — Heats · 1:52.61",
+          },
+          {
+            type: "youtube",
+            id: "LCkHm4541nQ",
+            title: cs
+              ? "200 m volný způsob — finále C · 1:53.27"
+              : "200m Freestyle — C Final · 1:53.27",
+          },
           {
             type: "youtube",
             id: "9vSgTmvF1WU",
@@ -246,6 +260,13 @@ export default async function SpeedoJuniorNationals2026Page({
             title: cs
               ? "50 m prsa — rozplavby · 29.90"
               : "50m Breaststroke — Heats · 29.90",
+          },
+          {
+            type: "youtube",
+            id: "XtyTTB0EZ5w",
+            title: cs
+              ? "100 m prsa — rozplavby · 1:04.70"
+              : "100m Breaststroke — Heats · 1:04.70",
           },
           {
             type: "youtube",

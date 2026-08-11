@@ -1030,6 +1030,11 @@ export default function MeetShowcase({
             {videos.map((video, index) => (
               <motion.div
                 key={video.type === "youtube" ? video.id : video.src}
+                className={clsx(
+                  videos.length % 2 === 1 &&
+                    index === videos.length - 1 &&
+                    "md:col-span-2 md:mx-auto md:w-[calc(50%-0.75rem)]",
+                )}
                 initial={{ opacity: 0, y: reduced ? 0 : 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-10% 0px" }}
