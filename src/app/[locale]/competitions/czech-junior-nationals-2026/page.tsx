@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import MeetShowcase from "../../../../components/MeetShowcase";
 import MeetJsonLd from "../../../../components/MeetJsonLd";
 import { buildMeetMetadata } from "../../../../lib/meetSeo";
+import {
+  czechJuniorNationalsMedia,
+  getAllMeetImages,
+  localizeMediaText,
+} from "../../../../data/featuredMeetMedia";
 
 export async function generateMetadata({
   params,
@@ -14,7 +19,7 @@ export async function generateMetadata({
   slug: "czech-junior-nationals-2026",
   title: "Czech Junior & U22 Nationals 2026 — Daniel Mitka | Two Silvers",
   description:
-    "Daniel Mitka at the 2026 Czech Junior & U22 National Championships in Ústí nad Labem, May 28–31: silver in the 200m freestyle (1:55.31) and 200m IM (2:06.50), plus five A-finals for SK Motorlet Praha.",
+    "Daniel Mitka at the 2026 Czech Junior & U22 National Championships in Ústí nad Labem: two silver medals, five A-finals and seven events, including a 24.37 in the 50m freestyle.",
   keywords: [
     "Daniel Mitka",
     "Czech Junior Nationals 2026",
@@ -23,12 +28,18 @@ export async function generateMetadata({
     "Ústí nad Labem",
     "200m freestyle",
     "200m IM",
+    "50m freestyle 24.37",
+    "Czech Junior Nationals race videos",
+    "plavecká videa",
     "SK Motorlet Praha",
     "Czech swimming",
     "vicemistr ČR",
   ],
-  image: "/mcrJunior2026/diplom.jpg",
+  images: getAllMeetImages(czechJuniorNationalsMedia).map(
+    (image) => image.src,
+  ),
   publishedTime: "2026-05-31",
+  modifiedTime: "2026-08-11",
   });
 }
 
@@ -46,7 +57,7 @@ export default async function CzechJuniorNationals2026Page({
         id="czech-junior-nationals-2026"
         locale={locale}
         name="Czech Junior & U22 National Championships 2026"
-        description="Czech Junior and U22 long-course national championships in Ústí nad Labem. Daniel Mitka won two silver medals."
+        description="Czech Junior and U22 long-course national championships in Ústí nad Labem. Daniel Mitka won two silver medals, reached five A-finals and raced seven individual events."
         startDate="2026-05-28"
         endDate="2026-05-31"
         venue="Plavecký areál Klíše"
@@ -58,6 +69,15 @@ export default async function CzechJuniorNationals2026Page({
           "Silver — 200m Freestyle (1:55.31)",
           "Silver — 200m Individual Medley (2:06.50)",
         ]}
+        images={getAllMeetImages(czechJuniorNationalsMedia).map((image) => ({
+          src: image.src,
+          caption: localizeMediaText(image.caption, locale),
+        }))}
+        videos={czechJuniorNationalsMedia.videos.map((video) => ({
+          id: video.id,
+          title: localizeMediaText(video.title, locale),
+          uploadDate: video.uploadDate,
+        }))}
       />
       <MeetShowcase
       badge={cs ? "Mistrovství ČR" : "National Championship"}
@@ -72,8 +92,8 @@ export default async function CzechJuniorNationals2026Page({
       heroImage="/mcrJunior2026/venue-usti.jpg"
       intro={
         cs
-          ? "Letní mistrovství ČR juniorů a U22 v Ústí nad Labem bylo vrcholem domácí sezóny. Daniel během čtyř dnů absolvoval nabitý program šesti disciplín, probojoval se do pěti finále A a rychlé rozplavby dokázal ve večerních finále ještě zrychlit."
-          : "The Czech Junior and U22 National Championships in Ústí nad Labem were the highlight of the home season. Daniel raced a packed program of six events over four days and made five A-finals, backing up fast heats with even faster swims at night."
+          ? "Letní mistrovství ČR juniorů a U22 v Ústí nad Labem bylo vrcholem domácí sezóny. Daniel během čtyř dnů absolvoval nabitý program sedmi disciplín, probojoval se do pěti finále A a rychlé rozplavby dokázal ve večerních finále ještě zrychlit."
+          : "The Czech Junior and U22 National Championships in Ústí nad Labem were the highlight of the home season. Daniel raced a packed program of seven events over four days and made five A-finals, backing up fast heats with even faster swims at night."
       }
       stats={[
         {
@@ -83,7 +103,7 @@ export default async function CzechJuniorNationals2026Page({
           medalTone: "silver",
         },
         { value: "5", label: cs ? "finálových startů" : "A-finals" },
-        { value: "6", label: cs ? "disciplín" : "events raced" },
+        { value: "7", label: cs ? "disciplín" : "events raced" },
       ]}
       results={[
         {
@@ -155,6 +175,11 @@ export default async function CzechJuniorNationals2026Page({
           ],
         },
         {
+          event: cs ? "50 m volný způsob" : "50m Freestyle",
+          finalTime: "24.37",
+          placement: cs ? "Rozplavby" : "Heats",
+        },
+        {
           event: cs ? "200 m prsa" : "200m Breaststroke",
           finalTime: "2:30.58",
           placement: cs ? "Rozplavby" : "Heats",
@@ -170,14 +195,14 @@ export default async function CzechJuniorNationals2026Page({
         cs
           ? [
               "Stříbro na 200 m volný způsob (1:55.31) i na 200 m polohový závod (2:06.50) — dvakrát jen kousek od juniorského titulu.",
-              "Pět finále A ze šesti startů, rychlé rozplavby ve večerních finále ještě zrychlil.",
+              "Pět finále A ze sedmi startů, rychlé rozplavby ve večerních finále ještě zrychlil.",
               "V barvách SK Motorlet Praha potvrdil všestrannost: sprinterský kraul, prsa i polohový závod na špici českého juniorského pole.",
               "Vicemistr ČR na 200 m volný způsob a 200 m polohový závod.",
               "Splněný limit SCM I.",
             ]
           : [
               "Silver in both the 200m freestyle (1:55.31) and the 200m individual medley (2:06.50) — twice just short of a national junior title.",
-              "Five A-finals from six events, backing up fast heats with faster finals.",
+              "Five A-finals from seven events, backing up fast heats with faster finals.",
               "Racing for SK Motorlet Praha, Daniel confirmed his versatility: sprint freestyle, breaststroke and medley at the sharp end of the national field.",
               "Vice-champion of the Czech Republic, 200m free & 200m IM.",
               "Achieved the SCM I qualifying standard (Czech youth-programme level).",

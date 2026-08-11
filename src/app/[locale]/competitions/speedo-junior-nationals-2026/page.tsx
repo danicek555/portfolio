@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import MeetShowcase from "../../../../components/MeetShowcase";
 import MeetJsonLd from "../../../../components/MeetJsonLd";
 import { buildMeetMetadata } from "../../../../lib/meetSeo";
+import {
+  getAllMeetImages,
+  localizeMediaText,
+  summerJuniorNationalsMedia,
+} from "../../../../data/featuredMeetMedia";
 
 export async function generateMetadata({
   params,
@@ -13,7 +18,7 @@ export async function generateMetadata({
   return buildMeetMetadata({
     locale,
     slug: "speedo-junior-nationals-2026",
-    title: "Speedo Junior National Championships 2026 — Daniel Mitka",
+    title: "Speedo Junior Nationals 2026 — Daniel Mitka | TOPS 3rd",
     description:
       "Daniel Mitka helped the University of Denver Hilltoppers place 3rd in the combined team standings at the 2026 Speedo Junior National Championships, alongside two C finals and three relays.",
     keywords: [
@@ -24,9 +29,17 @@ export async function generateMetadata({
       "Junior Nationals",
       "University of Denver Hilltoppers",
       "long course swimming",
+      "Daniel Mitka USA swimming",
+      "Summer Junior Nationals race videos",
+      "TOPS third combined team standings",
+      "200m freestyle 1:52.61",
+      "200m individual medley 2:06.11",
     ],
-    image: "/summerJuniors/hero-team.jpg",
+    images: getAllMeetImages(summerJuniorNationalsMedia).map(
+      (image) => image.src,
+    ),
     publishedTime: "2026-08-07",
+    modifiedTime: "2026-08-11",
   });
 }
 
@@ -44,7 +57,7 @@ export default async function SpeedoJuniorNationals2026Page({
         id="speedo-junior-nationals-2026"
         locale={locale}
         name="Speedo Junior National Championships 2026"
-        description="USA Swimming's summer junior national championships in Irvine, California. Daniel Mitka reached two C finals and helped the University of Denver Hilltoppers place 10th in the 4x200m freestyle relay."
+        description="USA Swimming's summer junior national championships in Irvine, California. Daniel Mitka reached two C finals, raced three relays and helped the University of Denver Hilltoppers finish 3rd in the combined team standings."
         startDate="2026-08-03"
         endDate="2026-08-07"
         venue="William Woollett Jr. Aquatics Center"
@@ -58,6 +71,15 @@ export default async function SpeedoJuniorNationals2026Page({
           "C final — 200m Individual Medley",
           "10th — 4x200m Freestyle Relay",
         ]}
+        images={getAllMeetImages(summerJuniorNationalsMedia).map((image) => ({
+          src: image.src,
+          caption: localizeMediaText(image.caption, locale),
+        }))}
+        videos={summerJuniorNationalsMedia.videos.map((video) => ({
+          id: video.id,
+          title: localizeMediaText(video.title, locale),
+          uploadDate: video.uploadDate,
+        }))}
       />
       <MeetShowcase
         badge={cs ? "Juniorské mistrovství USA" : "USA Swimming Junior Nationals"}
@@ -202,7 +224,7 @@ export default async function SpeedoJuniorNationals2026Page({
         }
         gallery={[
           {
-            src: "/summerJuniors/IMG_6851-upright.jpg",
+            src: "/summerJuniors/IMG_6851-final.jpg",
             caption: cs
               ? "Závěrečný večer Summer Junior Nationals"
               : "Final night at Summer Junior Nationals",

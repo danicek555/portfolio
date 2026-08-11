@@ -27,7 +27,7 @@ const czechMeetMetadata: Record<
   "czech-junior-nationals-2026": {
     title: "MČR juniorů a U22 2026 — Daniel Mitka | Dvě stříbra",
     description:
-      "Daniel Mitka na MČR juniorů a U22 2026 v Ústí nad Labem: stříbro na 200 m volný způsob a 200 m polohově a pět finále A.",
+      "Daniel Mitka na MČR juniorů a U22 2026 v Ústí nad Labem: dvě stříbra, pět finále A a sedm disciplín včetně 50 m volný způsob za 24.37.",
   },
   "czech-open-nationals-2025": {
     title: "MČR OPEN 2025 v Plzni — Daniel Mitka",
@@ -97,7 +97,9 @@ export function buildMeetMetadata(opts: {
   description: string;
   keywords: string[];
   image?: string;
+  images?: string[];
   publishedTime?: string;
+  modifiedTime?: string;
   /** When provided, canonical & OG url self-reference this locale. */
   locale?: string;
 }): Metadata {
@@ -108,13 +110,13 @@ export function buildMeetMetadata(opts: {
   const csUrl = `${siteUrl}/cs/competitions/${opts.slug}`;
   // Self-referencing canonical per locale (falls back to English).
   const url = opts.locale === "cs" ? csUrl : enUrl;
-  const imagePath = opts.image ?? "/og-cover.png";
-  const imageUrl = imagePath.startsWith("http")
-    ? imagePath
-    : `${siteUrl}${imagePath}`;
-  const images = [
-    { url: imageUrl, width: 1200, height: 630, alt: title },
-  ];
+  const imagePaths = opts.images?.length
+    ? opts.images
+    : [opts.image ?? "/og-cover.png"];
+  const images = [...new Set(imagePaths)].map((imagePath) => ({
+    url: imagePath.startsWith("http") ? imagePath : `${siteUrl}${imagePath}`,
+    alt: title,
+  }));
 
   return {
     title,
@@ -141,6 +143,7 @@ export function buildMeetMetadata(opts: {
       locale: opts.locale === "cs" ? "cs_CZ" : "en_US",
       alternateLocale: opts.locale === "cs" ? "en_US" : "cs_CZ",
       ...(opts.publishedTime ? { publishedTime: opts.publishedTime } : {}),
+      ...(opts.modifiedTime ? { modifiedTime: opts.modifiedTime } : {}),
       images,
     },
     twitter: {

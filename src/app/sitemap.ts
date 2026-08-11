@@ -36,8 +36,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const competitionLastModified: Record<string, string> = {
     "czech-open-nationals-2026": "2026-06-28",
     "praha-2026": "2026-06-14",
-    "czech-junior-nationals-2026": "2026-05-31",
-    "speedo-junior-nationals-2026": "2026-08-07",
+    "czech-junior-nationals-2026": "2026-08-11",
+    "speedo-junior-nationals-2026": "2026-08-11",
     "speedo-sectionals-2026": "2026-03-29",
     "colorado-senior-meet-2026": "2026-02-22",
     "colorado-open-2026": "2026-01-25",
@@ -54,22 +54,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Primary image per competition, surfaced to Google via <image:image> so the
   // photos can be indexed for Google Images (raw /public paths, not the
   // /_next/image optimizer URLs).
-  const competitionImages: Record<string, string> = {
-    "colorado-open-2026": "/ColoradoOpen/church.jpg",
-    "colorado-senior-meet-2026": "/seniorMeet/poolside.jpg",
-    "czech-junior-nationals-2025": "/podoliFoto.jpg",
-    "czech-junior-nationals-2026": "/mcrJunior2026/diplom.jpg",
-    "czech-open-nationals-2025": "/plzen.jpg",
-    "czech-open-nationals-2026": "/mcrOpen2026/dive-start.jpg",
-    "czech-youth-nationals-2024": "/podoliFoto.jpg",
-    "invitational-2026": "/invitationalDenver/arena.jpg",
-    "lifesaving-worlds-australia": "/winPhoto.jpg",
-    "pioneer-open-2026": "/pioneerOpen/team.jpg",
-    "praha-2026": "/praha2026/podium.jpg",
-    "slovakia-cup-2024": "/samorin.jpg",
-    "speedo-junior-nationals-2026": "/summerJuniors/hero-team.jpg",
-    "speedo-sectionals-2026": "/sectionals2026/celebration.jpg",
-    "team-championship-finals-2025": "/ostrava1.jpg",
+  const competitionImages: Record<string, string[]> = {
+    "colorado-open-2026": ["/ColoradoOpen/church.jpg"],
+    "colorado-senior-meet-2026": ["/seniorMeet/poolside.jpg"],
+    "czech-junior-nationals-2025": ["/podoliFoto.jpg"],
+    "czech-junior-nationals-2026": [
+      "/mcrJunior2026/venue-usti.jpg",
+      "/mcrJunior2026/diplom.jpg",
+    ],
+    "czech-open-nationals-2025": ["/plzen.jpg"],
+    "czech-open-nationals-2026": ["/mcrOpen2026/dive-start.jpg"],
+    "czech-youth-nationals-2024": ["/podoliFoto.jpg"],
+    "invitational-2026": ["/invitationalDenver/arena.jpg"],
+    "lifesaving-worlds-australia": ["/winPhoto.jpg"],
+    "pioneer-open-2026": ["/pioneerOpen/team.jpg"],
+    "praha-2026": ["/praha2026/podium.jpg"],
+    "slovakia-cup-2024": ["/samorin.jpg"],
+    "speedo-junior-nationals-2026": [
+      "/summerJuniors/hero-team.jpg",
+      "/summerJuniors/IMG_6851-final.jpg",
+      "/summerJuniors/final-night.jpg",
+      "/summerJuniors/poolside.jpg",
+      "/summerJuniors/IMG_6745.JPG",
+    ],
+    "speedo-sectionals-2026": ["/sectionals2026/celebration.jpg"],
+    "team-championship-finals-2025": ["/ostrava1.jpg"],
   };
 
   // Base pages without fragments - only actual pages
@@ -137,9 +146,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "monthly",
       priority: 0.7,
-      images: competitionImages[competition]
-        ? [`${baseUrl}${competitionImages[competition]}`]
-        : undefined,
+      images: competitionImages[competition]?.map(
+        (image) => `${baseUrl}${image}`,
+      ),
       alternates: {
         languages: {
           en: `${baseUrl}/en/competitions/${competition}`,
@@ -154,9 +163,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "monthly",
       priority: 0.7,
-      images: competitionImages[competition]
-        ? [`${baseUrl}${competitionImages[competition]}`]
-        : undefined,
+      images: competitionImages[competition]?.map(
+        (image) => `${baseUrl}${image}`,
+      ),
       alternates: {
         languages: {
           en: `${baseUrl}/en/competitions/${competition}`,
