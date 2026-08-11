@@ -202,16 +202,15 @@ export default async function SpeedoJuniorNationals2026Page({
         }
         gallery={[
           {
-            src: "/summerJuniors/IMG_6851.JPG",
+            src: "/summerJuniors/IMG_6851-rotated.jpg",
             caption: cs
               ? "Závěrečný večer Summer Junior Nationals"
               : "Final night at Summer Junior Nationals",
-            objectPosition: "50% 25%",
           },
           {
             src: "/summerJuniors/final-night.jpg",
             caption: cs ? "Tým TOPS v Irvine" : "TOPS in Irvine",
-            objectPosition: "50% 20%",
+            contain: true,
           },
           {
             src: "/summerJuniors/poolside.jpg",
@@ -226,7 +225,36 @@ export default async function SpeedoJuniorNationals2026Page({
             objectPosition: "50% 35%",
           },
         ]}
-        videos={[]}
+        videos={[
+          {
+            type: "youtube",
+            id: "9vSgTmvF1WU",
+            title: cs
+              ? "200 m polohový závod — rozplavby · 2:06.38"
+              : "200m Individual Medley — Heats · 2:06.38",
+          },
+          {
+            type: "youtube",
+            id: "FlGoNhS8pYc",
+            title: cs
+              ? "200 m polohový závod — finále C · 2:06.11"
+              : "200m Individual Medley — C Final · 2:06.11",
+          },
+          {
+            type: "youtube",
+            id: "zgI-TC3amV8",
+            title: cs
+              ? "50 m prsa — rozplavby · 29.90"
+              : "50m Breaststroke — Heats · 29.90",
+          },
+          {
+            type: "youtube",
+            id: "nsMJWnsP5IE",
+            title: cs
+              ? "100 m volný způsob — rozplavby · 52.80"
+              : "100m Freestyle — Heats · 52.80",
+          },
+        ]}
         links={[
           {
             label: cs ? "Oficiální výsledky OMEGA" : "Official OMEGA results",
