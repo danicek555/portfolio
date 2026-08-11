@@ -52,6 +52,7 @@ export type MeetShowcaseProps = {
   results: Array<{
     event: string;
     finalTime: string;
+    group?: "relay";
     placement?: string;
     medal?: "gold" | "silver" | "bronze";
     pb?: boolean;
@@ -235,6 +236,8 @@ export default function MeetShowcase({
 
   const labels = {
     results: cs ? "Výsledky" : "Results",
+    individualEvents: cs ? "Individuální disciplíny" : "Individual events",
+    relays: cs ? "Štafety" : "Relays",
     moments: cs ? "Momenty" : "Moments",
     videos: cs ? "Videa" : "Videos",
     highlights: cs ? "Zajímavosti" : "Highlights",
@@ -297,6 +300,8 @@ export default function MeetShowcase({
 
   const hasGallery = gallery.length > 0;
   const hasVideos = Boolean(videos && videos.length > 0);
+  const firstRelayIndex = results.findIndex((result) => result.group === "relay");
+  const hasRelayResults = firstRelayIndex >= 0;
   let sectionIndex = 2;
   const sectionNumbers = {
     results: "01",
@@ -685,11 +690,29 @@ export default function MeetShowcase({
           isDarkMode={isDarkMode}
           reduced={reduced}
         />
+        {hasRelayResults && (
+          <motion.h3
+            initial={{ opacity: 0, y: reduced ? 0 : 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className={clsx(
+              "mb-4 text-sm font-bold uppercase tracking-[0.3em]",
+              mutedText,
+            )}
+          >
+            {labels.individualEvents}
+          </motion.h3>
+        )}
 
         <div className="space-y-6">
           {results.map((result, index) => {
-            const ordinal = String(index + 1).padStart(2, "0");
+            const groupIndex =
+              result.group === "relay" ? index - firstRelayIndex : index;
+            const ordinal = String(groupIndex + 1).padStart(2, "0");
             const medal = result.medal;
+            const isFirstRelay =
+              result.group === "relay" &&
+              (index === 0 || results[index - 1].group !== "relay");
             const inner = (
               <div className="md:grid md:grid-cols-12 md:items-center md:gap-6">
                 <div className="hidden md:block md:col-span-1">
@@ -833,20 +856,42 @@ export default function MeetShowcase({
             }
 
             return (
-              <motion.div
-                key={result.event}
-                variants={rowVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-10% 0px" }}
-                className={clsx(
-                  "border-b px-1 py-7 transition-colors duration-300 md:py-8",
-                  hairline,
-                  isDarkMode ? "hover:bg-white/[0.03]" : "hover:bg-black/[0.02]",
+              <Fragment key={result.event}>
+                {isFirstRelay && (
+                  <motion.div
+                    initial={{ opacity: 0, y: reduced ? 0 : 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="pt-12 md:pt-16"
+                  >
+                    <div className={clsx("mb-2 h-px", hairlineBg)} />
+                    <h3
+                      className={clsx(
+                        "pt-8 text-3xl font-black uppercase tracking-tight md:text-4xl",
+                        isDarkMode ? "text-white" : "text-black",
+                      )}
+                      style={ROBOTO}
+                    >
+                      {labels.relays}
+                    </h3>
+                  </motion.div>
                 )}
-              >
-                {innerWithSplits}
-              </motion.div>
+                <motion.div
+                  variants={rowVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-10% 0px" }}
+                  className={clsx(
+                    "border-b px-1 py-7 transition-colors duration-300 md:py-8",
+                    hairline,
+                    isDarkMode
+                      ? "hover:bg-white/[0.03]"
+                      : "hover:bg-black/[0.02]",
+                  )}
+                >
+                  {innerWithSplits}
+                </motion.div>
+              </Fragment>
             );
           })}
         </div>

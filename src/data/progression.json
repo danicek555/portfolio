@@ -268,6 +268,25 @@
         "round": "PRE",
         "slug": "czech-open-nationals-2026",
         "meetEn": "Czech Open Championship 2026"
+      },
+      {
+        "date": "2026-08-07",
+        "secs": 126.38,
+        "meet": "Speedo Junior National Championships 2026",
+        "location": "Irvine, California",
+        "round": "PRE",
+        "slug": "speedo-junior-nationals-2026",
+        "meetEn": "Speedo Junior National Championships 2026"
+      },
+      {
+        "date": "2026-08-07",
+        "secs": 126.11,
+        "meet": "Speedo Junior National Championships 2026",
+        "location": "Irvine, California",
+        "round": "FIN",
+        "slug": "speedo-junior-nationals-2026",
+        "place": "5. C",
+        "meetEn": "Speedo Junior National Championships 2026"
       }
     ],
     "SCM": [
@@ -832,6 +851,15 @@
         "location": "Praha - Podolí venkovní bazén",
         "slug": "praha-2026",
         "meetEn": "Prague 2026"
+      },
+      {
+        "date": "2026-08-03",
+        "secs": 64.7,
+        "meet": "Speedo Junior National Championships 2026",
+        "location": "Irvine, California",
+        "round": "PRE",
+        "slug": "speedo-junior-nationals-2026",
+        "meetEn": "Speedo Junior National Championships 2026"
       }
     ],
     "SCM": [

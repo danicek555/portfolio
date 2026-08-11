@@ -67,7 +67,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "pioneer-open-2026": "/pioneerOpen/team.jpg",
     "praha-2026": "/praha2026/podium.jpg",
     "slovakia-cup-2024": "/samorin.jpg",
-    "speedo-junior-nationals-2026": "/juniors2026/woollett.jpg",
+    "speedo-junior-nationals-2026": "/summerJuniors/hero-team.jpg",
     "speedo-sectionals-2026": "/sectionals2026/celebration.jpg",
     "team-championship-finals-2025": "/ostrava1.jpg",
   };

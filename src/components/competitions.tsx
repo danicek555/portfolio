@@ -29,9 +29,7 @@ const Competitions: React.FC = () => {
       title: t("competitions.13.title"),
       description: t("competitions.13.description"),
       link: "/competitions/speedo-junior-nationals-2026",
-      // Woollett Aquatics Center, Irvine — foto Brian MacIntosh (BMacZero),
-      // Wikimedia Commons, CC BY-SA 4.0
-      img: "/juniors2026/woollett.jpg",
+      img: "/summerJuniors/hero-team.jpg",
     },
     {
       title: t("competitions.12.title"),

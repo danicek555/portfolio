@@ -15,7 +15,7 @@ export async function generateMetadata({
     slug: "speedo-junior-nationals-2026",
     title: "Speedo Junior National Championships 2026 — Daniel Mitka",
     description:
-      "Daniel Mitka reached the C finals of the 200m freestyle and 200m individual medley at the 2026 Speedo Junior National Championships in Irvine, California.",
+      "Daniel Mitka helped the University of Denver Hilltoppers place 3rd in the combined team standings at the 2026 Speedo Junior National Championships, alongside two C finals and three relays.",
     keywords: [
       "Daniel Mitka",
       "Speedo Junior Nationals 2026",
@@ -25,7 +25,7 @@ export async function generateMetadata({
       "University of Denver Hilltoppers",
       "long course swimming",
     ],
-    image: "/juniors2026/woollett.jpg",
+    image: "/summerJuniors/hero-team.jpg",
     publishedTime: "2026-08-07",
   });
 }
@@ -53,6 +53,7 @@ export default async function SpeedoJuniorNationals2026Page({
         region="California"
         level="National"
         awards={[
+          "3rd — Combined Team Standings",
           "C final — 200m Freestyle",
           "C final — 200m Individual Medley",
           "10th — 4x200m Freestyle Relay",
@@ -72,20 +73,22 @@ export default async function SpeedoJuniorNationals2026Page({
         }
         location={cs ? "Irvine, Kalifornie" : "Irvine, California"}
         dateLabel={cs ? "3.–7. srpna 2026" : "August 3–7, 2026"}
-        heroImage="/juniors2026/woollett.jpg"
+        heroImage="/summerJuniors/hero-team.jpg"
         intro={
           cs
-            ? "Jeden z největších závodů Danielovy kariéry: vrcholné letní juniorské mistrovství USA Swimming ve William Woollett Jr. Aquatics Center. Daniel postoupil do finále C na 200 m volný způsob i 200 m polohový závod a pomohl štafetě University of Denver Hilltoppers na 4×200 m volný způsob k 10. místu."
-            : "One of the biggest meets of Daniel's career: USA Swimming's premier summer junior championship at the William Woollett Jr. Aquatics Center. Daniel reached the C finals of both the 200m freestyle and 200m individual medley and helped the University of Denver Hilltoppers place 10th in the 4x200m freestyle relay."
+            ? "Jeden z největších závodů Danielovy kariéry: vrcholné letní juniorské mistrovství USA Swimming ve William Woollett Jr. Aquatics Center. Daniel postoupil do finále C na 200 m volný způsob i 200 m polohový závod, nastoupil ve třech štafetách a University of Denver Hilltoppers obsadili výjimečné 3. místo v kombinovaném pořadí týmů."
+            : "One of the biggest meets of Daniel's career: USA Swimming's premier summer junior championship at the William Woollett Jr. Aquatics Center. Daniel reached the C finals of both the 200m freestyle and 200m individual medley, raced on three relays, and helped the University of Denver Hilltoppers earn an exceptional 3rd-place finish in the combined team standings."
         }
         stats={[
-          { value: "2", label: cs ? "finále C" : "C finals" },
           {
-            value: "10.",
-            label: cs ? "místo · štafeta 4×200 m" : "place · 4x200m relay",
+            value: "3.",
+            label: cs ? "místo · týmy celkem" : "place · combined team",
+            medal: true,
+            medalTone: "bronze",
           },
+          { value: "2", label: cs ? "finále C" : "C finals" },
+          { value: "3", label: cs ? "štafety" : "relays" },
           { value: "6", label: cs ? "individuálních startů" : "individual starts" },
-          { value: "50 m", label: cs ? "bazén v Irvine" : "pool in Irvine" },
         ]}
         results={[
           {
@@ -93,7 +96,8 @@ export default async function SpeedoJuniorNationals2026Page({
             finalTime: "1:53.27",
             placement: cs ? "7. místo · finále C" : "7th · C final",
             progression: [
-              { stage: cs ? "Rozplavby" : "Heats", time: "1:52.61" },
+              { stage: cs ? "Předchozí OR" : "Previous PB", time: "1:55.31" },
+              { stage: cs ? "Rozplavby" : "Heats", time: "1:52.61", pb: true },
               { stage: cs ? "Finále C" : "C final", time: "1:53.27" },
             ],
             splits: [
@@ -108,6 +112,7 @@ export default async function SpeedoJuniorNationals2026Page({
             finalTime: "2:06.11",
             placement: cs ? "5. místo · finále C" : "5th · C final",
             progression: [
+              { stage: cs ? "Osobní rekord" : "Personal best", time: "2:06.02" },
               { stage: cs ? "Rozplavby" : "Heats", time: "2:06.38" },
               { stage: cs ? "Finále C" : "C final", time: "2:06.11" },
             ],
@@ -119,16 +124,13 @@ export default async function SpeedoJuniorNationals2026Page({
             ],
           },
           {
-            event: cs ? "4×200 m volný způsob" : "4x200m Freestyle Relay",
-            finalTime: "7:38.85",
-            placement: cs
-              ? "10. místo · Danielův 2. úsek 1:54.50"
-              : "10th · Daniel's 2nd leg 1:54.50",
-          },
-          {
             event: cs ? "100 m prsa" : "100m Breaststroke",
             finalTime: "1:04.70",
-            placement: cs ? "57. místo · rozplavby" : "T-57th · heats",
+            placement: cs ? "dělené 57. místo · rozplavby" : "T-57th · heats",
+            progression: [
+              { stage: cs ? "Předchozí OR" : "Previous PB", time: "1:05.89" },
+              { stage: cs ? "Rozplavby" : "Heats", time: "1:04.70", pb: true },
+            ],
             splits: [
               { distance: "50", time: "30.76" },
               { distance: "100", time: "1:04.70" },
@@ -137,39 +139,102 @@ export default async function SpeedoJuniorNationals2026Page({
           {
             event: cs ? "50 m prsa" : "50m Breaststroke",
             finalTime: "29.90",
-            placement: cs ? "86. místo · rozplavby" : "T-86th · heats",
+            placement: cs ? "dělené 86. místo · rozplavby" : "T-86th · heats",
+            progression: [
+              { stage: cs ? "Předchozí OR" : "Previous PB", time: "30.79" },
+              { stage: cs ? "Rozplavby" : "Heats", time: "29.90", pb: true },
+            ],
           },
           {
             event: cs ? "100 m volný způsob" : "100m Freestyle",
             finalTime: "52.80",
             placement: cs ? "138. místo · rozplavby" : "138th · heats",
+            progression: [
+              { stage: cs ? "Předchozí OR" : "Previous PB", time: "52.81" },
+              { stage: cs ? "Rozplavby" : "Heats", time: "52.80", pb: true },
+            ],
             splits: [
               { distance: "50", time: "25.99" },
               { distance: "100", time: "52.80" },
             ],
           },
+          {
+            group: "relay",
+            event: cs ? "4×50 m volný způsob" : "4x50m Freestyle Relay",
+            finalTime: "1:36.88",
+            placement: cs
+              ? "27. místo · Danielův 2. úsek 23.85"
+              : "27th · Daniel's 2nd leg 23.85",
+          },
+          {
+            group: "relay",
+            event: cs ? "4×200 m volný způsob" : "4x200m Freestyle Relay",
+            finalTime: "7:38.85",
+            placement: cs
+              ? "10. místo · Danielův 2. úsek 1:54.50"
+              : "10th · Daniel's 2nd leg 1:54.50",
+          },
+          {
+            group: "relay",
+            event: cs ? "4×100 m volný způsob" : "4x100m Freestyle Relay",
+            finalTime: "3:31.08",
+            placement: cs
+              ? "21. místo · Danielův 2. úsek 53.63"
+              : "21st · Daniel's 2nd leg 53.63",
+          },
         ]}
         highlights={
           cs
             ? [
+                "University of Denver Hilltoppers obsadili 3. místo v kombinovaném pořadí týmů.",
                 "Dvě finále C v jednom z nejsilnějších juniorských mítinků v USA.",
                 "Nejrychlejší čas na 200 m volný způsob přišel v rozplavbách — 1:52.61.",
                 "Zlepšení na 200 m polohový závod z 2:06.38 v rozplavbách na 2:06.11 ve finále C.",
                 "10. místo štafety TOPS na 4×200 m volný způsob; Daniel zaplaval druhý úsek za 1:54.50.",
               ]
             : [
+                "The University of Denver Hilltoppers finished 3rd in the combined team standings.",
                 "Two C finals at one of the strongest junior meets in the United States.",
                 "His fastest 200m freestyle came in the heats — 1:52.61.",
                 "Improved the 200m individual medley from 2:06.38 in the heats to 2:06.11 in the C final.",
                 "10th with TOPS in the 4x200m freestyle relay; Daniel split 1:54.50 on the second leg.",
               ]
         }
-        gallery={[]}
+        gallery={[
+          {
+            src: "/summerJuniors/IMG_6851.JPG",
+            caption: cs
+              ? "Závěrečný večer Summer Junior Nationals"
+              : "Final night at Summer Junior Nationals",
+            objectPosition: "50% 25%",
+          },
+          {
+            src: "/summerJuniors/final-night.jpg",
+            caption: cs ? "Tým TOPS v Irvine" : "TOPS in Irvine",
+            objectPosition: "50% 20%",
+          },
+          {
+            src: "/summerJuniors/poolside.jpg",
+            caption: cs ? "U bazénu ve Woollett" : "Poolside at Woollett",
+            objectPosition: "50% 20%",
+          },
+          {
+            src: "/summerJuniors/IMG_6745.JPG",
+            caption: cs
+              ? "William Woollett Jr. Aquatics Center"
+              : "William Woollett Jr. Aquatics Center",
+            objectPosition: "50% 35%",
+          },
+        ]}
         videos={[]}
         links={[
           {
             label: cs ? "Oficiální výsledky OMEGA" : "Official OMEGA results",
             url: "https://www.omegatiming.com/2026/speedo-junior-national-champs-live-results",
+          },
+          {
+            label: cs ? "Danielovy časy na SwimCloud" : "Daniel's times on SwimCloud",
+            url: "https://www.swimcloud.com/swimmer/1828936/",
           },
         ]}
       />
