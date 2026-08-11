@@ -202,7 +202,7 @@ export default async function SpeedoJuniorNationals2026Page({
         }
         gallery={[
           {
-            src: "/summerJuniors/IMG_6851-rotated.jpg",
+            src: "/summerJuniors/IMG_6851-upright.jpg",
             caption: cs
               ? "Závěrečný večer Summer Junior Nationals"
               : "Final night at Summer Junior Nationals",
